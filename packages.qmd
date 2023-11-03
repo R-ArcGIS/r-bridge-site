@@ -1,0 +1,22 @@
+---
+title: "Packages"
+---
+
+- [`{arcgisbinding}`](https://github.com/R-ArcGIS/r-bridge)
+  - Audience: 
+  - About:
+- [`{arcgis}`](https://github.com/R-ArcGIS/arcgis)
+  - Audience:
+  - About: 
+- [`{arcgislayers}`](https://github.com/R-ArcGIS/arcgislayers)
+  - Audience: 
+  - About:
+- [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils)
+  - Audience: Developers
+  - About: a low-level package to handle authorization and conversion to and from Esri json formats.
+- [`{arcpbf}`](https://github.com/JosiahParry/arcpbf)
+  - Audience: Developers 
+  - About: Read ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests.
+  
+  
+Inspired by https://www.tidyverse.org/packages/

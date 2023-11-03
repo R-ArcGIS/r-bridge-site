@@ -1,0 +1,16 @@
+{
+  "hash": "83bb561cb539776bde9b1eeae265d890",
+  "result": {
+    "markdown": "\nR-ArcGIS Bridge is a powerful framework that you can use to solve complex problems by combining cutting-edge statistical models with R and ArcGIS for spatial data access, visualization, and analysis.\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(arcgis)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\nAttaching core arcgis packages:\n  - {arcgisutils} v0.1.0\n  - {arcgislayers} v0.1.0\n```\n:::\n:::\n\n\n\n## Packages\n\n\n\n::: {layout=\"[1,1]\"}\n\n\n::: {.card}\n`{arcgisbinding}`\n\nHarness the power of ArcGIS Pro from R.\n:::\n\n::: {.card}\n`{arcgis}`\n\nRead and write to Feature Services and much more with ArcGIS Location Services.\n:::\n\n:::\n\n\n## Not sure where to start?\n\n- Create R based Geoprocessing tools\n- Access your enterprise geodatabase from R\n- Interact with ArcGIS Online and Portal \n\n\n### Vignettes & Tutorials\n\n- ArcGIS binding tutorials \n  - https://github.com/R-ArcGIS/R-Bridge-Tutorial-Notebooks/\n  - TODO: convert these to markdown\n- R-Sample GP tools:\n  - https://github.com/R-ArcGIS/r-sample-tools\n\n\n\n(for now start with combined liks because we lack content )\n\nAnalogous to Python API     \nVignette -> Guide\nTutorial -> Sample\n\n(this would hyper link to written tutorials)\nThese could correspond to workflows / tutorial\n\n\n\nTutorial/Workflow vs Vignette\n\n- Tutorial would be a end to end process\n  - read in, manipulate, etc, then write back up to online\n  - How to batch geocode and upload results to AGOL \n  - How to create a GP tool (best practices)\n  - Read from an enterprise geodatabase / sde file\n  - using R for something specific that you dont do in pro (for binding) or analysis tools\n- Vignette: how to understand / interact with a specific piece of code\n  - authorization\n  - creating new packages \n    - tips for developers \n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
