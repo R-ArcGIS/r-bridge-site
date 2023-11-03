@@ -1,1 +1,1 @@
-Sitemap: https://R-ArcGIS.github.io/r-bridge-site/sitemap.xml
+Sitemap: https://github.com/R-ArcGIS/r-bridge-site/sitemap.xml
