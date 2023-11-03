@@ -4,13 +4,11 @@ R-ArcGIS Bridge is a powerful framework that you can use to solve complex proble
 
 ## Packages
 
-
-
 ::: {layout="[1,1]"}
 
 
 ::: {.card}
-`{arcgisbinding}`
+[`{arcgisbinding}`](https://github.com/R-ArcGIS/r-bridge)
 
 Harness the power of ArcGIS Pro from R.
 :::
