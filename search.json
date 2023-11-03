@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "Packages",
+    "section": "",
+    "text": "Audience: ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
+  },
+  {
+    "objectID": "packages.html#arcgisbinding",
+    "href": "packages.html#arcgisbinding",
+    "title": "Packages",
+    "section": "",
+    "text": "Audience: ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
+  },
+  {
+    "objectID": "packages.html#arcgis",
+    "href": "packages.html#arcgis",
+    "title": "Packages",
+    "section": "{arcgis}",
+    "text": "{arcgis}\nAudience: analysts & data scientists\n\narcgis is a metapackage that loads all location services packages for you."
+  },
+  {
+    "objectID": "packages.html#arcgislayers",
+    "href": "packages.html#arcgislayers",
+    "title": "Packages",
+    "section": "{arcgislayers}",
+    "text": "{arcgislayers}\nAudience: analysts & data scientists\n\nInterfaces with Feature Services and Image Servers. Enables you to read and write to services directly from R."
+  },
+  {
+    "objectID": "packages.html#arcgisutils",
+    "href": "packages.html#arcgisutils",
+    "title": "Packages",
+    "section": "{arcgisutils}",
+    "text": "{arcgisutils}\nAudience: Package Developers\n\nA low-level package to handle authorization and conversion to and from Esri json formats."
+  },
+  {
+    "objectID": "packages.html#arcpbf",
+    "href": "packages.html#arcpbf",
+    "title": "Packages",
+    "section": "{arcpbf}",
+    "text": "{arcpbf}\nAudience: Package Developers\n\nRead ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R-ArcGIS Bridge",
+    "section": "",
+    "text": "R-ArcGIS Bridge is a powerful framework that you can use to solve complex problems by combining cutting-edge statistical models with R and ArcGIS for spatial data access, visualization, and analysis."
+  },
+  {
+    "objectID": "index.html#packages",
+    "href": "index.html#packages",
+    "title": "R-ArcGIS Bridge",
+    "section": "Packages",
+    "text": "Packages\n\n\n\n{arcgisbinding}\nHarness the power of ArcGIS Pro from R.\n\n\n{arcgis}\nRead and write to Feature Services and much more with ArcGIS Location Services."
+  },
+  {
+    "objectID": "index.html#not-sure-where-to-start",
+    "href": "index.html#not-sure-where-to-start",
+    "title": "R-ArcGIS Bridge",
+    "section": "Not sure where to start?",
+    "text": "Not sure where to start?\n\nRead and write Feature Services using {arcgis}\nCreate R based Geoprocessing tools\nAccess your enterprise geodatabase from R"
+  },
+  {
+    "objectID": "tutorials.html",
+    "href": "tutorials.html",
+    "title": "R-ArcGIS Bridge",
+    "section": "",
+    "text": "{arcgisbinding} tutorial notebooks\nGeoprocessing tools using R scripts\n\n\n\n\n\nAuthorize to ArcGIS Online or an Enterprise Portal"
+  },
+  {
+    "objectID": "tutorials.html#vignettes-tutorials",
+    "href": "tutorials.html#vignettes-tutorials",
+    "title": "R-ArcGIS Bridge",
+    "section": "",
+    "text": "{arcgisbinding} tutorial notebooks\nGeoprocessing tools using R scripts\n\n\n\n\n\nAuthorize to ArcGIS Online or an Enterprise Portal"
+  },
+  {
+    "objectID": "tutorials.html#notes",
+    "href": "tutorials.html#notes",
+    "title": "R-ArcGIS Bridge",
+    "section": "Notes",
+    "text": "Notes\nTutorial/Workflow vs Vignette\nAnalogous to Python API\nVignette -&gt; Guide Tutorial -&gt; Sample\n\nTutorial would be a end to end process\n\nread in, manipulate, etc, then write back up to online\nHow to batch geocode and upload results to AGOL\nHow to create a GP tool (best practices)\nRead from an enterprise geodatabase / sde file\nusing R for something specific that you dont do in pro (for binding) or analysis tools\n\nVignette: how to understand / interact with a specific piece of code\n\nauthorization\ncreating new packages\n\ntips for developers"
+  }
+]
