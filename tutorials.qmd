@@ -3,11 +3,8 @@
 
 ### {arcgisbinding}
 
-- ArcGIS binding tutorials 
-  - https://github.com/R-ArcGIS/R-Bridge-Tutorial-Notebooks/
-  - TODO: convert these to markdown
-- R-Sample GP tools:
-  - https://github.com/R-ArcGIS/r-sample-tools
+- [`{arcgisbinding}`](https://github.com/R-ArcGIS/R-Bridge-Tutorial-Notebooks/) tutorial notebooks
+- [Geoprocessing tools using R scripts](https://github.com/R-ArcGIS/r-sample-tools)
 
 
 ### {arcgis}
@@ -17,12 +14,18 @@
 
 
 
+
+
+
+
+## Notes
+
+Tutorial/Workflow vs Vignette
+
 Analogous to Python API     
 Vignette -> Guide
 Tutorial -> Sample
 
-
-Tutorial/Workflow vs Vignette
 
 - Tutorial would be a end to end process
   - read in, manipulate, etc, then write back up to online
