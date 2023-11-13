@@ -77,6 +77,48 @@
     "text": "Not sure where to start?\n\nRead and write Feature Services using {arcgis}\nCreate R based Geoprocessing tools\nAccess your enterprise geodatabase from R"
   },
   {
+    "objectID": "geoprocessing-tools.html",
+    "href": "geoprocessing-tools.html",
+    "title": "R Geoprocessing tools",
+    "section": "",
+    "text": "Much like a python geoprocessing (GP) script tool, R based script tools can be created allowing you to create GP tools and toolboxes that utilize the power of R. The basic anatomy of an R script GP tool is like so:\nThere must be a function defined named tool_exec(). This is what is going to be ran by ArcGIS Pro."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#input-and-output-parameters",
+    "href": "geoprocessing-tools.html#input-and-output-parameters",
+    "title": "R Geoprocessing tools",
+    "section": "Input and Output Parameters",
+    "text": "Input and Output Parameters\nAdditionally, there must be two arguments that correspond to input parameters and output parameters. The conventional name of these arguments are in_params and out_params. The first argument will always refer to the input parameters and the second to the outputs.\nin_params and out_params are named lists. The elements of these lists are determined by the direction of a parameter.\n\nIf the direction is Input it will be contained in in_params. Likewise, if the direction is Output, it will be contained in out_params."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#using-parameters",
+    "href": "geoprocessing-tools.html#using-parameters",
+    "title": "R Geoprocessing tools",
+    "section": "Using parameters",
+    "text": "Using parameters\nWe can extract values from the in_params and out_params lists by the name of the parameter.\n\n\n\n\n\n\nCaution\n\n\n\nThe name of the parameter must match that of the Name column in the Parameters option of the Tool Properties. It is not the Label column.\n\n\nFor example, if we wanted to parse the date parameter we could write our function like so:\ntool_exec &lt;- function(in_params, out_params) {\n  # fetch the date parameter\n  date_str &lt;- in_params[[\"date\"]]\n  \n  # parse it using {anytime}\n  clean_date &lt;- anytime::anytime(date_str)\n  \n  # ... do additional things\n}"
+  },
+  {
+    "objectID": "geoprocessing-tools.html#parameter-types",
+    "href": "geoprocessing-tools.html#parameter-types",
+    "title": "R Geoprocessing tools",
+    "section": "Parameter types",
+    "text": "Parameter types\nThere are number of different type of parameters that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the GP pane’s UI. Each parameter type can be represented by a basic scalar R type: integer, double, character, logical, or NULL.\n\n\n\n\n\n\nTip\n\n\n\nA scalar value is a vector with only a single element.\n\n\nIt is incumbent upon you to take these parameter inputs and use them appropriately in R.\n\nData type mapping\n\n\n\n\n\n\nParameter Data Type\nR type\n\n\n\n\nString\ncharacter\n\n\nBoolean\nlogical\n\n\nDouble\nnumeric\n\n\nDate\ncharacter in the format of your system e.g. \"11/17/2023 4:35:57 PM\"\n\n\nField\ncharacter the field name of a feature class\n\n\nFolder\ncharacter absolute path e.g. \"C:\\\\Users\\username\\Documents\"\n\n\nFeature Class\ncharacterabsolute path e.g. \"C:\\\\Users\\username\\mydatabase.gdb\\\\feature_class\n\n\nSpatial Reference\ncharacter a string representation of the spatial reference e.g. \"PROJCS[\"....\"]\"\n\n\n\n\nMultiple Values\nWhen selecting the Multiple values check box in the parameter data type UI, users can then provide multiple inputs of that type.\n\nWhen this is done, each of the input values will be contained inside of a list. If you have multiple values ticked for the String type, you will get a list of scalar character vectors.\nThis is important so it bears repeating! When users provide multiple values they will be captured in R as a list of scalars. Meaning that if you have multiple String values you will not get a character vector with a length greater than one.\nTake the below input for example\n\nIn R we would get the list(\"string 1\", \"string 2\") and not c(\"string 1\", \"string 2\").\n\n\n\n\n\n\nTip\n\n\n\nTo turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector you can use unlist(). For example unlist(list(\"string 1\", \"string 2\")) will give us c(\"string 1\", \"string 2\")."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#common-patterns",
+    "href": "geoprocessing-tools.html#common-patterns",
+    "title": "R Geoprocessing tools",
+    "section": "Common Patterns",
+    "text": "Common Patterns\n\nReading a Feature Class\nConverting it to an sf object\nWriting a Feature Class\nAutopopulate field drop-down using dependent parameter"
+  },
+  {
+    "objectID": "geoprocessing-tools.html#dependent-parameters",
+    "href": "geoprocessing-tools.html#dependent-parameters",
+    "title": "R Geoprocessing tools",
+    "section": "Dependent Parameters",
+    "text": "Dependent Parameters\n\nAutopopulate field drop-down using dependent parameter"
+  },
+  {
     "objectID": "tutorials.html",
     "href": "tutorials.html",
     "title": "R-ArcGIS Bridge",

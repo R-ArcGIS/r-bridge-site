@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Packages</title>
+<title>R-ArcGIS Bridge - R Geoprocessing tools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -96,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./geoprocessing-tools.html">R Geoprocessing tools</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -116,13 +150,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link active">
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
+  <a href="./geoprocessing-tools.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">R Geoprocessing tools</span></a>
   </div>
 </li>
@@ -148,11 +182,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#arcgisbinding" id="toc-arcgisbinding" class="nav-link active" data-scroll-target="#arcgisbinding"><code>{arcgisbinding}</code></a></li>
-  <li><a href="#arcgis" id="toc-arcgis" class="nav-link" data-scroll-target="#arcgis"><code>{arcgis}</code></a></li>
-  <li><a href="#arcgislayers" id="toc-arcgislayers" class="nav-link" data-scroll-target="#arcgislayers"><code>{arcgislayers}</code></a></li>
-  <li><a href="#arcgisutils" id="toc-arcgisutils" class="nav-link" data-scroll-target="#arcgisutils"><code>{arcgisutils}</code></a></li>
-  <li><a href="#arcpbf" id="toc-arcpbf" class="nav-link" data-scroll-target="#arcpbf"><code>{arcpbf}</code></a></li>
+  <li><a href="#input-and-output-parameters" id="toc-input-and-output-parameters" class="nav-link active" data-scroll-target="#input-and-output-parameters">Input and Output Parameters</a></li>
+  <li><a href="#using-parameters" id="toc-using-parameters" class="nav-link" data-scroll-target="#using-parameters">Using parameters</a></li>
+  <li><a href="#parameter-types" id="toc-parameter-types" class="nav-link" data-scroll-target="#parameter-types">Parameter types</a>
+  <ul class="collapse">
+  <li><a href="#multiple-values" id="toc-multiple-values" class="nav-link" data-scroll-target="#multiple-values">Multiple Values</a></li>
+  </ul></li>
+  <li><a href="#common-patterns" id="toc-common-patterns" class="nav-link" data-scroll-target="#common-patterns">Common Patterns</a></li>
+  <li><a href="#dependent-parameters" id="toc-dependent-parameters" class="nav-link" data-scroll-target="#dependent-parameters">Dependent Parameters</a></li>
   </ul>
 </nav>
     </div>
@@ -161,7 +198,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Packages</h1>
+<h1 class="title">R Geoprocessing tools</h1>
 </div>
 
 
@@ -176,40 +213,147 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="arcgisbinding" class="level2">
-<h2 class="anchored" data-anchor-id="arcgisbinding"><a href="https://github.com/R-ArcGIS/r-bridge"><code>{arcgisbinding}</code></a></h2>
-<p>For <strong><em>ArcGIS Pro users</em></strong></p>
-<blockquote class="blockquote">
-<p>The original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools.</p>
-</blockquote>
+<p>Much like a python geoprocessing (GP) script tool, R based script tools can be created allowing you to create GP tools and toolboxes that utilize the power of R. The basic anatomy of an R script GP tool is like so:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do things here</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There <em>must</em> be a function defined named <code>tool_exec()</code>. This is what is going to be ran by ArcGIS Pro.</p>
+<section id="input-and-output-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="input-and-output-parameters">Input and Output Parameters</h2>
+<p>Additionally, there must be two arguments that correspond to input parameters and output parameters. The conventional name of these arguments are <code>in_params</code> and <code>out_params</code>. The first argument will <em>always</em> refer to the input parameters and the second to the outputs.</p>
+<p><code>in_params</code> and <code>out_params</code> are named lists. The elements of these lists are determined by the <strong>direction</strong> of a parameter.</p>
+<p><img src="images/gp-tool-properties.png" class="img-fluid" style="width:50.0%"></p>
+<p>If the direction is <code>Input</code> it will be contained in <code>in_params</code>. Likewise, if the direction is <code>Output</code>, it will be contained in <code>out_params</code>.</p>
 </section>
-<section id="arcgis" class="level2">
-<h2 class="anchored" data-anchor-id="arcgis"><a href="https://github.com/R-ArcGIS/arcgis"><code>{arcgis}</code></a></h2>
-<p>For <strong><em>analysts &amp; data scientists</em></strong></p>
-<blockquote class="blockquote">
-<p>arcgis is a metapackage that loads all location services packages for you.</p>
-</blockquote>
+<section id="using-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="using-parameters">Using parameters</h2>
+<p>We can extract values from the <code>in_params</code> and <code>out_params</code> lists by the name of the parameter.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The name of the parameter must match that of the <strong>Name</strong> column in the <code>Parameters</code> option of the Tool Properties. <em>It is not</em> the Label column.</p>
+</div>
+</div>
+<p>For example, if we wanted to parse the <code>date</code> parameter we could write our function like so:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fetch the date parameter</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  date_str <span class="ot">&lt;-</span> in_params[[<span class="st">"date"</span>]]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># parse it using {anytime}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  clean_date <span class="ot">&lt;-</span> anytime<span class="sc">::</span><span class="fu">anytime</span>(date_str)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... do additional things</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="arcgislayers" class="level2">
-<h2 class="anchored" data-anchor-id="arcgislayers"><a href="https://github.com/R-ArcGIS/arcgislayers"><code>{arcgislayers}</code></a></h2>
-<p>For <strong><em>analysts &amp; data scientists</em></strong></p>
-<blockquote class="blockquote">
-<p>Interfaces with Feature Services and Image Servers. Enables you to read and write to services directly from R.</p>
-</blockquote>
+<section id="parameter-types" class="level2">
+<h2 class="anchored" data-anchor-id="parameter-types">Parameter types</h2>
+<p>There are number of different type of parameters that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the GP pane’s UI. Each parameter type can be represented by a basic scalar R type: <code>integer</code>, <code>double</code>, <code>character</code>, <code>logical</code>, or <code>NULL</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A scalar value is a vector with only a single element.</p>
+</div>
+</div>
+<p>It is incumbent upon you to take these parameter inputs and use them appropriately in R.</p>
+<table class="table-striped table">
+<caption>Data type mapping</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter Data Type</th>
+<th>R type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>String</td>
+<td><code>character</code></td>
+</tr>
+<tr class="even">
+<td>Boolean</td>
+<td><code>logical</code></td>
+</tr>
+<tr class="odd">
+<td>Double</td>
+<td><code>numeric</code></td>
+</tr>
+<tr class="even">
+<td>Date</td>
+<td><code>character</code> in the format of your system e.g.&nbsp;<code>"11/17/2023 4:35:57 PM"</code></td>
+</tr>
+<tr class="odd">
+<td>Field</td>
+<td><code>character</code> the field name of a feature class</td>
+</tr>
+<tr class="even">
+<td>Folder</td>
+<td><code>character</code> absolute path e.g.&nbsp;<code>"C:\\Users\username\Documents"</code></td>
+</tr>
+<tr class="odd">
+<td>Feature Class</td>
+<td><code>character</code>absolute path e.g.&nbsp;<code>"C:\\Users\username\mydatabase.gdb\\feature_class</code></td>
+</tr>
+<tr class="even">
+<td>Spatial Reference</td>
+<td><code>character</code> a string representation of the spatial reference e.g.&nbsp;<code>"PROJCS["...."]"</code></td>
+</tr>
+</tbody>
+</table>
+<section id="multiple-values" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-values">Multiple Values</h3>
+<p>When selecting the <code>Multiple values</code> check box in the parameter data type UI, users can then provide multiple inputs of that type.</p>
+<p><img src="images/gp-parameter-type.png" class="img-fluid"></p>
+<p>When this is done, each of the input values will be contained inside of a list. If you have multiple values ticked for the <code>String</code> type, you will get a list of scalar character vectors.</p>
+<p><strong>This is important</strong> so it bears repeating! When users provide multiple values they will be captured in R as a list of scalars. Meaning that if you have multiple <code>String</code> values you will not get a character vector with a length greater than one.</p>
+<p>Take the below input for example</p>
+<p><img src="images/gp-multiple-strings.png" class="img-fluid"></p>
+<p>In R we would get the <code>list("string 1", "string 2")</code> and <strong>not</strong> <code>c("string 1", "string 2")</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To turn a list of scalars of the same type—e.g.&nbsp;double, integer, logical, or character—into a vector you can use <code>unlist()</code>. For example <code>unlist(list("string 1", "string 2"))</code> will give us <code>c("string 1", "string 2")</code>.</p>
+</div>
+</div>
 </section>
-<section id="arcgisutils" class="level2">
-<h2 class="anchored" data-anchor-id="arcgisutils"><a href="https://github.com/R-ArcGIS/arcgisutils"><code>{arcgisutils}</code></a></h2>
-<p>For <strong><em>Package Developers</em></strong></p>
-<blockquote class="blockquote">
-<p>A low-level package to handle authorization and conversion to and from Esri json formats.</p>
-</blockquote>
 </section>
-<section id="arcpbf" class="level2">
-<h2 class="anchored" data-anchor-id="arcpbf"><a href="https://github.com/JosiahParry/arcpbf"><code>{arcpbf}</code></a></h2>
-<p>For <strong><em>Package Developers </em></strong></p>
-<blockquote class="blockquote">
-<p>Read ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests.</p>
-</blockquote>
+<section id="common-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="common-patterns">Common Patterns</h2>
+<ul>
+<li>Reading a Feature Class</li>
+<li>Converting it to an sf object</li>
+<li>Writing a Feature Class</li>
+<li>Autopopulate field drop-down using dependent parameter</li>
+</ul>
+</section>
+<section id="dependent-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="dependent-parameters">Dependent Parameters</h2>
+<ul>
+<li>Autopopulate field drop-down using dependent parameter</li>
+</ul>
 
 
 </section>
