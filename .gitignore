@@ -1,4 +1,7 @@
 /.quarto/
 .Rproj.user
 _site/
-.quarto/
+^.quarto*$
+.quarto
+./quarto/*
+/.quarto/

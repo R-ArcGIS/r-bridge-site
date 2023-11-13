@@ -5,7 +5,7 @@ title: "Packages"
 
 ## [`{arcgisbinding}`](https://github.com/R-ArcGIS/r-bridge)
 
-**Audience**: ArcGIS Pro users
+For ___ArcGIS Pro users___
 
 > The original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro
     to provide native reading and writing capabilities to local data sources as 
@@ -13,26 +13,26 @@ title: "Packages"
 
 ##  [`{arcgis}`](https://github.com/R-ArcGIS/arcgis)
 
-**Audience**: analysts & data scientists
+For ___analysts & data scientists___
 
 > arcgis is a metapackage that loads all location services packages for you.
 
 ##  [`{arcgislayers}`](https://github.com/R-ArcGIS/arcgislayers)
 
-**Audience**: analysts & data scientists
+For ___analysts & data scientists___
 
 > Interfaces with Feature Services and Image Servers. Enables you to read and 
     write to services directly from R. 
     
 ## [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils)
 
-**Audience**: Package Developers
+For  ___Package Developers___
 
 > A low-level package to handle authorization and conversion to and from Esri json formats.
 
 ## [`{arcpbf}`](https://github.com/JosiahParry/arcpbf)
 
-**Audience**: Package Developers 
+For ___Package Developers ___
 
 > Read ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests.
   

@@ -1,10 +1,38 @@
 
-R-ArcGIS Bridge is a powerful framework that you can use to solve complex problems by combining cutting-edge statistical models with R and ArcGIS for spatial data access, visualization, and analysis.
+The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem.
+
+The R-ArcGIS Bridge has capabilities to integrate with [**ArcGIS Pro**](https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview) and [Location Services]().
 
 
-## Packages
 
-::: {layout="[1,1]"}
+## Integrate with ArcGIS Pro `{arcgisbinding}`
+
+`{arcgisbinding}` the first package created under the R-ArcGIS Bridge is designed _bridge_ the powers of R and ArcGIS. 
+
+Using `{arcgisbinding}` you can read and write local data sources and take advantage of ArcGIS Pro's [projection engine](https://github.com/Esri/projection-engine-db-doc). 
+
+- Read and write local data sources with [`arc.write()`](https://r.esri.com/assets/arcgisbinding.pdf) and [`arc.open()`](https://r.esri.com/assets/arcgisbinding.pdf)
+- Convert to `{sf}` and `{raster}` objects with [`arc.data2sf()`](https://r.esri.com/assets/arcgisbinding.pdf) and [`arc.raster()`](https://r.esri.com/assets/arcgisbinding.pdf)
+
+
+### Geoprocessing Tools written in R
+
+The true power of `{arcgisbinding}` lies in it's ability to generate
+geoprocessing tools that execute R code.
+
+Read the documentation to get started building R-based geoprocessing tools! 
+
+
+## Interact with Location Services
+
+The `{arcgis}` metapackage provides access to Esri location services enabling users to read and write data from their hosted or on prem Portals. 
+
+Follow along with the [introduction tutorial]() to get started interacting with your organziation's data directly from R! 
+
+
+## Our R-packages
+
+::: {layout-ncol=2}
 
 
 ::: {.card}
@@ -16,7 +44,27 @@ Harness the power of ArcGIS Pro from R.
 ::: {.card}
 `{arcgis}`
 
+Location services metapackage. Your one stop shop for all your location services needs! 
+:::
+
+::: {.card}
+`{arcgislayers}`
+
 Read and write to Feature Services and much more with ArcGIS Location Services.
+:::
+
+
+::: {.card}
+`{arcgisutils}`
+
+Powers `{arcgis}` by providing functionality to authorize with your portal and convert to and from R objects and Esri JSON.
+:::
+
+
+::: {.card}
+`{arcpbf}`
+
+Process `FeatureCollection` protocol buffers in R using the power of Rust! 
 :::
 
 :::

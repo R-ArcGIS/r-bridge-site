@@ -6,7 +6,6 @@
 - [`{arcgisbinding}`](https://github.com/R-ArcGIS/R-Bridge-Tutorial-Notebooks/) tutorial notebooks
 - [Geoprocessing tools using R scripts](https://github.com/R-ArcGIS/r-sample-tools)
 
-
 ### {arcgis}
 
 - [Authorize to ArcGIS Online or an Enterprise Portal](https://r.esri.com/arcgislayers/articles/Authorization.html)
