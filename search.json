@@ -4,56 +4,70 @@
     "href": "packages.html",
     "title": "Packages",
     "section": "",
-    "text": "Audience: ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
+    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
   },
   {
     "objectID": "packages.html#arcgisbinding",
     "href": "packages.html#arcgisbinding",
     "title": "Packages",
     "section": "",
-    "text": "Audience: ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
+    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
   },
   {
     "objectID": "packages.html#arcgis",
     "href": "packages.html#arcgis",
     "title": "Packages",
     "section": "{arcgis}",
-    "text": "{arcgis}\nAudience: analysts & data scientists\n\narcgis is a metapackage that loads all location services packages for you."
+    "text": "{arcgis}\nFor analysts & data scientists\n\narcgis is a metapackage that loads all location services packages for you."
   },
   {
     "objectID": "packages.html#arcgislayers",
     "href": "packages.html#arcgislayers",
     "title": "Packages",
     "section": "{arcgislayers}",
-    "text": "{arcgislayers}\nAudience: analysts & data scientists\n\nInterfaces with Feature Services and Image Servers. Enables you to read and write to services directly from R."
+    "text": "{arcgislayers}\nFor analysts & data scientists\n\nInterfaces with Feature Services and Image Servers. Enables you to read and write to services directly from R."
   },
   {
     "objectID": "packages.html#arcgisutils",
     "href": "packages.html#arcgisutils",
     "title": "Packages",
     "section": "{arcgisutils}",
-    "text": "{arcgisutils}\nAudience: Package Developers\n\nA low-level package to handle authorization and conversion to and from Esri json formats."
+    "text": "{arcgisutils}\nFor Package Developers\n\nA low-level package to handle authorization and conversion to and from Esri json formats."
   },
   {
     "objectID": "packages.html#arcpbf",
     "href": "packages.html#arcpbf",
     "title": "Packages",
     "section": "{arcpbf}",
-    "text": "{arcpbf}\nAudience: Package Developers\n\nRead ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests."
+    "text": "{arcpbf}\nFor Package Developers \n\nRead ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "R-ArcGIS Bridge",
     "section": "",
-    "text": "R-ArcGIS Bridge is a powerful framework that you can use to solve complex problems by combining cutting-edge statistical models with R and ArcGIS for spatial data access, visualization, and analysis."
+    "text": "The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem.\nThe R-ArcGIS Bridge has capabilities to integrate with ArcGIS Pro and Location Services."
   },
   {
-    "objectID": "index.html#packages",
-    "href": "index.html#packages",
+    "objectID": "index.html#integrate-with-arcgis-pro-arcgisbinding",
+    "href": "index.html#integrate-with-arcgis-pro-arcgisbinding",
     "title": "R-ArcGIS Bridge",
-    "section": "Packages",
-    "text": "Packages\n\n\n\n{arcgisbinding}\nHarness the power of ArcGIS Pro from R.\n\n\n{arcgis}\nRead and write to Feature Services and much more with ArcGIS Location Services."
+    "section": "Integrate with ArcGIS Pro {arcgisbinding}",
+    "text": "Integrate with ArcGIS Pro {arcgisbinding}\n{arcgisbinding} the first package created under the R-ArcGIS Bridge is designed bridge the powers of R and ArcGIS.\nUsing {arcgisbinding} you can read and write local data sources and take advantage of ArcGIS Pro’s projection engine.\n\nRead and write local data sources with arc.write() and arc.open()\nConvert to {sf} and {raster} objects with arc.data2sf() and arc.raster()\n\n\nGeoprocessing Tools written in R\nThe true power of {arcgisbinding} lies in it’s ability to generate geoprocessing tools that execute R code.\nRead the documentation to get started building R-based geoprocessing tools!"
+  },
+  {
+    "objectID": "index.html#interact-with-location-services",
+    "href": "index.html#interact-with-location-services",
+    "title": "R-ArcGIS Bridge",
+    "section": "Interact with Location Services",
+    "text": "Interact with Location Services\nThe {arcgis} metapackage provides access to Esri location services enabling users to read and write data from their hosted or on prem Portals.\nFollow along with the introduction tutorial to get started interacting with your organziation’s data directly from R!"
+  },
+  {
+    "objectID": "index.html#our-r-packages",
+    "href": "index.html#our-r-packages",
+    "title": "R-ArcGIS Bridge",
+    "section": "Our R-packages",
+    "text": "Our R-packages\n\n\n\n{arcgisbinding}\nHarness the power of ArcGIS Pro from R.\n\n\n{arcgis}\nLocation services metapackage. Your one stop shop for all your location services needs!\n\n\n\n\n{arcgislayers}\nRead and write to Feature Services and much more with ArcGIS Location Services.\n\n\n{arcgisutils}\nPowers {arcgis} by providing functionality to authorize with your portal and convert to and from R objects and Esri JSON.\n\n\n\n\n{arcpbf}\nProcess FeatureCollection protocol buffers in R using the power of Rust!"
   },
   {
     "objectID": "index.html#not-sure-where-to-start",

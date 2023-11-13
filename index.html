@@ -142,7 +142,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#integrate-with-arcgis-pro-arcgisbinding" id="toc-integrate-with-arcgis-pro-arcgisbinding" class="nav-link active" data-scroll-target="#integrate-with-arcgis-pro-arcgisbinding">Integrate with ArcGIS Pro <code>{arcgisbinding}</code></a>
+  <ul class="collapse">
+  <li><a href="#geoprocessing-tools-written-in-r" id="toc-geoprocessing-tools-written-in-r" class="nav-link" data-scroll-target="#geoprocessing-tools-written-in-r">Geoprocessing Tools written in R</a></li>
+  </ul></li>
+  <li><a href="#interact-with-location-services" id="toc-interact-with-location-services" class="nav-link" data-scroll-target="#interact-with-location-services">Interact with Location Services</a></li>
+  <li><a href="#our-r-packages" id="toc-our-r-packages" class="nav-link" data-scroll-target="#our-r-packages">Our R-packages</a></li>
   <li><a href="#not-sure-where-to-start" id="toc-not-sure-where-to-start" class="nav-link" data-scroll-target="#not-sure-where-to-start">Not sure where to start?</a></li>
   </ul>
 </nav>
@@ -152,9 +157,29 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>R-ArcGIS Bridge is a powerful framework that you can use to solve complex problems by combining cutting-edge statistical models with R and ArcGIS for spatial data access, visualization, and analysis.</p>
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem.</p>
+<p>The R-ArcGIS Bridge has capabilities to integrate with <a href="https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview"><strong>ArcGIS Pro</strong></a> and <a href="">Location Services</a>.</p>
+<section id="integrate-with-arcgis-pro-arcgisbinding" class="level2">
+<h2 class="anchored" data-anchor-id="integrate-with-arcgis-pro-arcgisbinding">Integrate with ArcGIS Pro <code>{arcgisbinding}</code></h2>
+<p><code>{arcgisbinding}</code> the first package created under the R-ArcGIS Bridge is designed <em>bridge</em> the powers of R and ArcGIS.</p>
+<p>Using <code>{arcgisbinding}</code> you can read and write local data sources and take advantage of ArcGIS Pro’s <a href="https://github.com/Esri/projection-engine-db-doc">projection engine</a>.</p>
+<ul>
+<li>Read and write local data sources with <a href="https://r.esri.com/assets/arcgisbinding.pdf"><code>arc.write()</code></a> and <a href="https://r.esri.com/assets/arcgisbinding.pdf"><code>arc.open()</code></a></li>
+<li>Convert to <code>{sf}</code> and <code>{raster}</code> objects with <a href="https://r.esri.com/assets/arcgisbinding.pdf"><code>arc.data2sf()</code></a> and <a href="https://r.esri.com/assets/arcgisbinding.pdf"><code>arc.raster()</code></a></li>
+</ul>
+<section id="geoprocessing-tools-written-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="geoprocessing-tools-written-in-r">Geoprocessing Tools written in R</h3>
+<p>The true power of <code>{arcgisbinding}</code> lies in it’s ability to generate geoprocessing tools that execute R code.</p>
+<p>Read the documentation to get started building R-based geoprocessing tools!</p>
+</section>
+</section>
+<section id="interact-with-location-services" class="level2">
+<h2 class="anchored" data-anchor-id="interact-with-location-services">Interact with Location Services</h2>
+<p>The <code>{arcgis}</code> metapackage provides access to Esri location services enabling users to read and write data from their hosted or on prem Portals.</p>
+<p>Follow along with the <a href="">introduction tutorial</a> to get started interacting with your organziation’s data directly from R!</p>
+</section>
+<section id="our-r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="our-r-packages">Our R-packages</h2>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="card quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -163,7 +188,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="card quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><code>{arcgis}</code></p>
+<p>Location services metapackage. Your one stop shop for all your location services needs!</p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="card quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><code>{arcgislayers}</code></p>
 <p>Read and write to Feature Services and much more with ArcGIS Location Services.</p>
+</div>
+<div class="card quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><code>{arcgisutils}</code></p>
+<p>Powers <code>{arcgis}</code> by providing functionality to authorize with your portal and convert to and from R objects and Esri JSON.</p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="card quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><code>{arcpbf}</code></p>
+<p>Process <code>FeatureCollection</code> protocol buffers in R using the power of Rust!</p>
 </div>
 </div>
 </div>
