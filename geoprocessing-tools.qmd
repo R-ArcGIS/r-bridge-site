@@ -9,12 +9,12 @@ The basic anatomy of an R script GP tool is like so:
 ```r
 tool_exec <- function(in_params, out_params) {
   # do things here
+  return(out_params)
 }
 ```
 
-
 There _must_ be a function defined named `tool_exec()`. This is what is going
-to be ran by ArcGIS Pro. 
+to be ran by ArcGIS Pro. And it should also always return the output parameters because.... TODO
 
 ## Input and Output Parameters
 
