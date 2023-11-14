@@ -2,6 +2,10 @@
 title: "R Geoprocessing tools"
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
 Much like a python geoprocessing (GP) script tool, R based script tools can be created
 allowing you to create GP tools and toolboxes that utilize the power of R. 
 The basic anatomy of an R script GP tool is like so:
@@ -110,10 +114,84 @@ To turn a list of scalars of the same type—e.g. double, integer, logical, or c
 
 ## Common Patterns
 
-- Reading a Feature Class
-- Converting it to an sf object
-- Writing a Feature Class
-- Autopopulate field drop-down using dependent parameter
+### Reading a Feature Class
+
+Often we you will want to read a feature class using `arcgisbinding` and bring the results into R as an sf object. To do his we will use the functions `arc.open()`, `arc.select()`, and `arc.data2sf()`.
+
+```r
+tool_exec <- function(in_params, out_params) {
+
+  fclass <- arcgisbinding::arc.open(in_params[["fc_path"]])
+  
+  fclass_selected <- arcgisbinding::arc.select(
+    fclass,
+    # fields = c("optional", "fields", "to", "read"),
+    # where_clause = "optional sql where clause to filter"
+  )
+  
+  fclass_sf <- arcgisbinding::arc.data2sf(fclass_selected)
+}
+```
+
+:::{.callout-note}
+If you are going to filter or select columns from your dataset consider doing that with the `fields` and `where_clause` arguments of `arc.select()` to reduce the amount of data read into memory. 
+
+`arc.select()` returns a `data.frame` with fields and a special geometry column which is incompatible with sf. We use `arc.data2sf()` to convert it to an sf object.
+:::
+
+
+### Writing a Feature Class
+
+It is quite common to write the results of an analysis to a file geodatabase. This can be done with `arc.write()`. Typically, the we will capture the output path to write to in the `out_params` list object as a Feature Class type parameter. 
+
+`arc.write()` requires two arguments. The first is the output path to write to and the second is the object to write. The accepted type of objects are `data.frame`, `sf`, `RasterLayer` or `RasterBrick`. 
+
+:::{.callout-note}
+As of Nov 2023 `{terra}` is not supported but we are actively working on this.
+:::
+
+```{r}
+tool_exec <- function(in_params, out_params) {
+  
+  # extract the path to write to
+  out_fp <- out_params[["output_fclass"]]
+  
+  # write the `sf_object` to a geodatabase
+  arcgisbinding::arc.write(out_fp, sf_object)
+  
+}
+```
+
+
+### Installing Required Packages 
+
+When you share your R based GP tools with other users there is a good chance that they do not have the packages that your script tool needs to execute code. In this case, we should install the required packages the first time the script tool is executed. 
+
+In our script tool we should check to see if the required package is installed and if not, install it. We can write a helper function to include at the top of our script if we have multiple packages to check. 
+
+```{r, eval = FALSE}
+install_if_not <- function(pkg) {
+  if (!requireNamespace(pkg)) {
+    message("Installing required package `{", pkg, "}`")
+    install.packages(pkg)
+  }
+}
+```
+
+This function uses `requireNamespace()` which attempts to load the provided package. If it succeeds, it returns `TRUE`, if not it returns `FALSE`. We check to see if it returns `FALSE` and if so, we install the package and print an informative message. 
+
+For example if we need to use the package [`{spdep}`](https://r-spatial.github.io/spdep/) and its not installed it will print the message and install it.
+
+```{r, eval = FALSE}
+tool_exec <- function(in_params, out_params) {
+  # check for required paackages 
+  install_if_not("spdep")
+  
+  # do other thigns with spdep
+  # ...
+}
+```
+
 
 ## Dependent Parameters 
 
