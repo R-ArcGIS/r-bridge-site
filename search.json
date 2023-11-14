@@ -81,7 +81,7 @@
     "href": "geoprocessing-tools.html",
     "title": "R Geoprocessing tools",
     "section": "",
-    "text": "Much like a python geoprocessing (GP) script tool, R based script tools can be created allowing you to create GP tools and toolboxes that utilize the power of R. The basic anatomy of an R script GP tool is like so:\nThere must be a function defined named tool_exec(). This is what is going to be ran by ArcGIS Pro."
+    "text": "Much like a python geoprocessing (GP) script tool, R based script tools can be created allowing you to create GP tools and toolboxes that utilize the power of R. The basic anatomy of an R script GP tool is like so:\nThere must be a function defined named tool_exec(). This is what is going to be ran by ArcGIS Pro. And it should also always return the output parameters because…. TODO"
   },
   {
     "objectID": "geoprocessing-tools.html#input-and-output-parameters",

@@ -221,8 +221,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Much like a python geoprocessing (GP) script tool, R based script tools can be created allowing you to create GP tools and toolboxes that utilize the power of R. The basic anatomy of an R script GP tool is like so:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do things here</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>There <em>must</em> be a function defined named <code>tool_exec()</code>. This is what is going to be ran by ArcGIS Pro.</p>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_params)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There <em>must</em> be a function defined named <code>tool_exec()</code>. This is what is going to be ran by ArcGIS Pro. And it should also always return the output parameters because…. TODO</p>
 <section id="input-and-output-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="input-and-output-parameters">Input and Output Parameters</h2>
 <p>Additionally, there must be two arguments that correspond to input parameters and output parameters. The conventional name of these arguments are <code>in_params</code> and <code>out_params</code>. The first argument will <em>always</em> refer to the input parameters and the second to the outputs.</p>
