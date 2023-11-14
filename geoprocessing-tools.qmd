@@ -2,10 +2,6 @@
 title: "R Geoprocessing tools"
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(eval = FALSE)
-```
-
 Much like a python geoprocessing (GP) script tool, R based script tools can be created
 allowing you to create GP tools and toolboxes that utilize the power of R. 
 The basic anatomy of an R script GP tool is like so:
@@ -150,7 +146,7 @@ It is quite common to write the results of an analysis to a file geodatabase. Th
 As of Nov 2023 `{terra}` is not supported but we are actively working on this.
 :::
 
-```{r}
+```r
 tool_exec <- function(in_params, out_params) {
   
   # extract the path to write to
@@ -169,7 +165,7 @@ When you share your R based GP tools with other users there is a good chance tha
 
 In our script tool we should check to see if the required package is installed and if not, install it. We can write a helper function to include at the top of our script if we have multiple packages to check. 
 
-```{r, eval = FALSE}
+```r
 install_if_not <- function(pkg) {
   if (!requireNamespace(pkg)) {
     message("Installing required package `{", pkg, "}`")
@@ -182,7 +178,7 @@ This function uses `requireNamespace()` which attempts to load the provided pack
 
 For example if we need to use the package [`{spdep}`](https://r-spatial.github.io/spdep/) and its not installed it will print the message and install it.
 
-```{r, eval = FALSE}
+```r
 tool_exec <- function(in_params, out_params) {
   # check for required paackages 
   install_if_not("spdep")
