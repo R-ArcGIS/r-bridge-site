@@ -69,7 +69,7 @@ A scalar value is a vector with only a single element.
 :::
 
 
-It is incumbent upon you to take these parameter inputs and use them appropriately in R.
+It is incumbent upon you to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by `arcgisbinding`. Below are some of the most common parameter types and how they are handled by `arcgisbinding`. This is not a complete enumeration by any means! 
 
 | Parameter Data Type | R type |
 | --------- | ------ | 
