@@ -2,19 +2,25 @@
 title: "R Geoprocessing tools"
 ---
 
+## Overview
+
 Much like a python geoprocessing (GP) script tool, R based script tools can be created
 allowing you to create GP tools and toolboxes that utilize the power of R. 
 The basic anatomy of an R script GP tool is like so:
 
-```r
-tool_exec <- function(in_params, out_params) {
-  # do things here
-  return(out_params)
+```{.r filename="my-geoprocessing-tool.R"}
+tool_exec <- function(in_params, out_params) { # <1>
+  # ... do things here.. 
+  out_params #<2>
 }
 ```
+1. Two arguments capture input and output parameters
+2. Output parameters are returned to be captured by Pro
 
-There _must_ be a function defined named `tool_exec()`. This is what is going
-to be ran by ArcGIS Pro. And it should also always return the output parameters because.... TODO
+GP R script tools are defined in a standalone R script. The GP tool is defined 
+by a function called `tool_exec()`. `tool_exec()` take two and only two 
+arguments capturing input and output parameters. `tool_exec()` should always 
+return the output parameter argument. 
 
 ## Input and Output Parameters
 
@@ -53,8 +59,23 @@ tool_exec <- function(in_params, out_params) {
   clean_date <- anytime::anytime(date_str)
   
   # ... do additional things
+  
+  # return values to ArcGIS Pro
+  out_params
 }
 ```
+
+### Returning values to ArcGIS Pro
+
+You may have noticed that at the end of the `tool_exec()` function we are 
+returning the `out_params` object. If we do not return the output parameters 
+back to Pro—by returning `out_params`—the outputs cannot be captured and used
+by Pro. 
+
+Notably, the output parameters are useful in linking one tool to another, for
+example via use in [ModelBuilder](https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/modelbuilder/modelbuilder-quick-tour.htm) or in an [**`arcpy`**](https://pro.arcgis.com/en/pro-app/latest/arcpy/main/arcgis-pro-arcpy-reference.htm) script. 
+
+See [Using R script tools with **`arcpy`**](#arcpy-integration)
 
 ### Parameter types
 
@@ -225,6 +246,9 @@ tool_exec <- function(in_params, out_params) {
   return(out_params)
 }
 ```
+
+## Using R script tools with **`arcpy`** {#arcpy-integration}
+
 
 
 ## Dependent Parameters 
