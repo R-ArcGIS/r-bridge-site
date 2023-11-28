@@ -3,6 +3,13 @@ project:
 
 website:
   title: "R-ArcGIS Bridge"
+  page-footer:
+    center: "As a member of the R Consortium, Esri is part of the R community and supports the R project."
+    right:
+      - icon: github
+        href: https://github.com/r-arcgis
+      - icon: globe
+        href: https://esri.com
   navbar:
     right:
       - href: index.qmd

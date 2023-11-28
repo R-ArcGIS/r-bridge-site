@@ -1,10 +1,6 @@
 
 The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem.
 
-The R-ArcGIS Bridge has capabilities to integrate with [**ArcGIS Pro**](https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview) and [Location Services]().
-
-
-
 ## Integrate with ArcGIS Pro `{arcgisbinding}`
 
 `{arcgisbinding}`,the first package created under the R-ArcGIS Bridge, is designed to _bridge_ the powers of R and ArcGIS. 
