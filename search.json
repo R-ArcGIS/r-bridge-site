@@ -165,7 +165,7 @@
     "href": "index.html#integrate-with-arcgis-pro-arcgisbinding",
     "title": "R-ArcGIS Bridge",
     "section": "Integrate with ArcGIS Pro {arcgisbinding}",
-    "text": "Integrate with ArcGIS Pro {arcgisbinding}\n{arcgisbinding} the first package created under the R-ArcGIS Bridge is designed bridge the powers of R and ArcGIS.\nUsing {arcgisbinding} you can read and write local data sources and take advantage of ArcGIS Pro’s projection engine.\n\nRead and write local data sources with arc.write() and arc.open()\nConvert to {sf} and {raster} objects with arc.data2sf() and arc.raster()\n\n\nGeoprocessing Tools written in R\nThe true power of {arcgisbinding} lies in it’s ability to generate geoprocessing tools that execute R code.\nRead the documentation to get started building R-based geoprocessing tools!"
+    "text": "Integrate with ArcGIS Pro {arcgisbinding}\n{arcgisbinding},the first package created under the R-ArcGIS Bridge, is designed to bridge the powers of R and ArcGIS.\nUsing {arcgisbinding} you can read and write local data sources and take advantage of ArcGIS Pro’s projection engine.\n\nRead and write local data sources with arc.write() and arc.open()\nConvert to {sf} and {raster} objects with arc.data2sf() and arc.raster()\n\nGet started by installing {arcgisbinding}\n\nGeoprocessing Tools written in R\nThe true power of {arcgisbinding} lies in it’s ability to generate geoprocessing tools that execute R code.\nRead the documentation to get started building R-based geoprocessing tools!"
   },
   {
     "objectID": "index.html#interact-with-location-services",
