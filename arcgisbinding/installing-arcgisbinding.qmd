@@ -1,0 +1,69 @@
+---
+title: "Installing `{arcgisbinding}`"
+---
+
+**`arcgisbinding`** is an R package that enables communication between ArcGIS Pro
+and R. In order to use it, you must have a installation of ArcGIS Pro with a valid
+licenses as well as a supported version of R. 
+
+## Install within ArcGIS Pro (recommended) {#from-pro}
+
+If you are working in Pro 2.0 or beyond you have access to the built-in ArcGIS bridge installer which streamlines the process of installing **arcgisbinding**. It allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario, you will do the following:
+
+- Open ArcGIS Pro and click on the 'Project' tab in your project.
+- Select `Options` on the blue, left-hand side panel and in the pop-up window, under Application, select 'Geoprocessing'.
+- Under the R-ArcGIS Support options, select your desired R home directory.
+
+:::{.callout-warning collapse="false"}
+
+Note: All versions of R installed on your computer will appear in the drop-down menu. Make sure the version you select is R 3.2.2 or later. However, if you have installed R to a location other than the default, you might need to navigate to that location using the browse button.
+
+:::
+
+- If you have never installed the **arcgisbinding**, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to automatically download and install **arcgisbinding**, to separately download the package, or to install the package from file. Select the first option to `"automatically download and install"` the **arcgisbinding** package.
+
+- A pop-up window will appear to inform you there is a new **arcgisbinding** version and will ask you if you wish to install it. Select `"Yes"`.
+
+- A progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package **arcgisbinding** was successfully installed.
+
+## Install from R
+
+Alternatively, you can install the binding directly from R if you so wish! Open RStudio, VS Code, or your favorite text editor and run the following from the console.
+
+```r
+ install.packages(
+  "arcgisbinding", 
+  repos = "https://r.esri.com", 
+  type = "win.binary"
+ )
+ ```
+This will install the package binary directly from our GitHub repository which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer. 
+
+## Offline Installation
+
+Many users of the R-ArcGIS Pro bridge (**arcgisbinding**) work in a completely air-gapped environment where downloading external packages from the internet is not possible. 
+
+In order to install **arcgisbinding** in an air-gapped environment you must first download the package on an internet enabled machine and ["sneakernet"](https://www.techopedia.com/definition/1880/sneakernet) it into your
+offline environment. 
+
+To download the package go to https://r.esri.com/bin/ and choose the version of **arcgisbridge** that matches your version of R. 
+
+Once you've moved the zip file onto your air-gapped machine you can install it using the `install.packages()` command. 
+
+```r
+install.packages("path/to/arcgisbinding_1.0.1.306.zip", repos = NULL)
+```
+
+
+## Upgrading `{arcgisbinding}`
+
+### Using ArcGIS Pro
+
+If you have installed **arcgisbinding** from within ArcGIS Pro, follow the instructions for [installing within ArcGIS Pro](#from-pro). 
+
+If you have previously installed **arcgisbinding**, you will see an installed message that lets you know the version of your **arcgisbinding** package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the **arcgisbinding** package. If prompted to update, click `"Yes"` and the latest version will automatically be installed.
+
+
+### Using R or offline
+
+To upgrade your package using R or in an offline environment, repeat the steps above. 
