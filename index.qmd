@@ -7,13 +7,14 @@ The R-ArcGIS Bridge has capabilities to integrate with [**ArcGIS Pro**](https://
 
 ## Integrate with ArcGIS Pro `{arcgisbinding}`
 
-`{arcgisbinding}` the first package created under the R-ArcGIS Bridge is designed _bridge_ the powers of R and ArcGIS. 
+`{arcgisbinding}`,the first package created under the R-ArcGIS Bridge, is designed to _bridge_ the powers of R and ArcGIS. 
 
 Using `{arcgisbinding}` you can read and write local data sources and take advantage of ArcGIS Pro's [projection engine](https://github.com/Esri/projection-engine-db-doc). 
 
 - Read and write local data sources with [`arc.write()`](https://r.esri.com/assets/arcgisbinding.pdf) and [`arc.open()`](https://r.esri.com/assets/arcgisbinding.pdf)
 - Convert to `{sf}` and `{raster}` objects with [`arc.data2sf()`](https://r.esri.com/assets/arcgisbinding.pdf) and [`arc.raster()`](https://r.esri.com/assets/arcgisbinding.pdf)
 
+_Get started by [installing `{arcgisbinding}`](arcgisbinding/installing-arcgisbinding.qmd)_
 
 ### Geoprocessing Tools written in R
 

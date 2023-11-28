@@ -14,6 +14,7 @@ website:
         text: Home
       - text: Packages
         href: packages.qmd
+      - arcgisbinding/installing-arcgisbinding.qmd
       - geoprocessing-tools.qmd
       - tutorials.qmd
       - workflows.qmd
