@@ -158,7 +158,7 @@
     "href": "index.html",
     "title": "R-ArcGIS Bridge",
     "section": "",
-    "text": "The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem.\nThe R-ArcGIS Bridge has capabilities to integrate with ArcGIS Pro and Location Services."
+    "text": "The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem."
   },
   {
     "objectID": "index.html#integrate-with-arcgis-pro-arcgisbinding",
