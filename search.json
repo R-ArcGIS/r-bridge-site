@@ -1,5 +1,26 @@
 [
   {
+    "objectID": "tutorials.html",
+    "href": "tutorials.html",
+    "title": "R-ArcGIS Bridge",
+    "section": "",
+    "text": "{arcgisbinding} tutorial notebooks\nGeoprocessing tools using R scripts\n\n\n\n\n\nAuthorize to ArcGIS Online or an Enterprise Portal"
+  },
+  {
+    "objectID": "tutorials.html#vignettes-tutorials",
+    "href": "tutorials.html#vignettes-tutorials",
+    "title": "R-ArcGIS Bridge",
+    "section": "",
+    "text": "{arcgisbinding} tutorial notebooks\nGeoprocessing tools using R scripts\n\n\n\n\n\nAuthorize to ArcGIS Online or an Enterprise Portal"
+  },
+  {
+    "objectID": "tutorials.html#notes",
+    "href": "tutorials.html#notes",
+    "title": "R-ArcGIS Bridge",
+    "section": "Notes",
+    "text": "Notes\nTutorial/Workflow vs Vignette\nAnalogous to Python API\nVignette -&gt; Guide Tutorial -&gt; Sample\n\nTutorial would be a end to end process\n\nread in, manipulate, etc, then write back up to online\nHow to batch geocode and upload results to AGOL\nHow to create a GP tool (best practices)\nRead from an enterprise geodatabase / sde file\nusing R for something specific that you dont do in pro (for binding) or analysis tools\n\nVignette: how to understand / interact with a specific piece of code\n\nauthorization\ncreating new packages\n\ntips for developers"
+  },
+  {
     "objectID": "packages.html",
     "href": "packages.html",
     "title": "Packages",
@@ -40,41 +61,6 @@
     "title": "Packages",
     "section": "{arcpbf}",
     "text": "{arcpbf}\nFor Package Developers \n\nRead ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "R-ArcGIS Bridge",
-    "section": "",
-    "text": "The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem.\nThe R-ArcGIS Bridge has capabilities to integrate with ArcGIS Pro and Location Services."
-  },
-  {
-    "objectID": "index.html#integrate-with-arcgis-pro-arcgisbinding",
-    "href": "index.html#integrate-with-arcgis-pro-arcgisbinding",
-    "title": "R-ArcGIS Bridge",
-    "section": "Integrate with ArcGIS Pro {arcgisbinding}",
-    "text": "Integrate with ArcGIS Pro {arcgisbinding}\n{arcgisbinding} the first package created under the R-ArcGIS Bridge is designed bridge the powers of R and ArcGIS.\nUsing {arcgisbinding} you can read and write local data sources and take advantage of ArcGIS Pro’s projection engine.\n\nRead and write local data sources with arc.write() and arc.open()\nConvert to {sf} and {raster} objects with arc.data2sf() and arc.raster()\n\n\nGeoprocessing Tools written in R\nThe true power of {arcgisbinding} lies in it’s ability to generate geoprocessing tools that execute R code.\nRead the documentation to get started building R-based geoprocessing tools!"
-  },
-  {
-    "objectID": "index.html#interact-with-location-services",
-    "href": "index.html#interact-with-location-services",
-    "title": "R-ArcGIS Bridge",
-    "section": "Interact with Location Services",
-    "text": "Interact with Location Services\nThe {arcgis} metapackage provides access to Esri location services enabling users to read and write data from their hosted or on prem Portals.\nFollow along with the introduction tutorial to get started interacting with your organziation’s data directly from R!"
-  },
-  {
-    "objectID": "index.html#our-r-packages",
-    "href": "index.html#our-r-packages",
-    "title": "R-ArcGIS Bridge",
-    "section": "Our R-packages",
-    "text": "Our R-packages\n\n\n\n{arcgisbinding}\nHarness the power of ArcGIS Pro from R.\n\n\n{arcgis}\nLocation services metapackage. Your one stop shop for all your location services needs!\n\n\n\n\n{arcgislayers}\nRead and write to Feature Services and much more with ArcGIS Location Services.\n\n\n{arcgisutils}\nPowers {arcgis} by providing functionality to authorize with your portal and convert to and from R objects and Esri JSON.\n\n\n\n\n{arcpbf}\nProcess FeatureCollection protocol buffers in R using the power of Rust!"
-  },
-  {
-    "objectID": "index.html#not-sure-where-to-start",
-    "href": "index.html#not-sure-where-to-start",
-    "title": "R-ArcGIS Bridge",
-    "section": "Not sure where to start?",
-    "text": "Not sure where to start?\n\nRead and write Feature Services using {arcgis}\nCreate R based Geoprocessing tools\nAccess your enterprise geodatabase from R"
   },
   {
     "objectID": "geoprocessing-tools.html",
@@ -133,24 +119,73 @@
     "text": "Dependent Parameters\n\nAutopopulate field drop-down using dependent parameter"
   },
   {
-    "objectID": "tutorials.html",
-    "href": "tutorials.html",
-    "title": "R-ArcGIS Bridge",
+    "objectID": "arcgisbinding/installing-arcgisbinding.html",
+    "href": "arcgisbinding/installing-arcgisbinding.html",
+    "title": "Installing {arcgisbinding}",
     "section": "",
-    "text": "{arcgisbinding} tutorial notebooks\nGeoprocessing tools using R scripts\n\n\n\n\n\nAuthorize to ArcGIS Online or an Enterprise Portal"
+    "text": "arcgisbinding is an R package that enables communication between ArcGIS Pro and R. In order to use it, you must have a installation of ArcGIS Pro with a valid licenses as well as a supported version of R."
   },
   {
-    "objectID": "tutorials.html#vignettes-tutorials",
-    "href": "tutorials.html#vignettes-tutorials",
-    "title": "R-ArcGIS Bridge",
-    "section": "",
-    "text": "{arcgisbinding} tutorial notebooks\nGeoprocessing tools using R scripts\n\n\n\n\n\nAuthorize to ArcGIS Online or an Enterprise Portal"
+    "objectID": "arcgisbinding/installing-arcgisbinding.html#from-pro",
+    "href": "arcgisbinding/installing-arcgisbinding.html#from-pro",
+    "title": "Installing {arcgisbinding}",
+    "section": "Install within ArcGIS Pro (recommended)",
+    "text": "Install within ArcGIS Pro (recommended)\nIf you are working in Pro 2.0 or beyond you have access to the built-in ArcGIS bridge installer which streamlines the process of installing arcgisbinding. It allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario, you will do the following:\n\nOpen ArcGIS Pro and click on the ‘Project’ tab in your project.\nSelect Options on the blue, left-hand side panel and in the pop-up window, under Application, select ‘Geoprocessing’.\nUnder the R-ArcGIS Support options, select your desired R home directory.\n\n\n\n\n\n\n\nWarning\n\n\n\n\n\nNote: All versions of R installed on your computer will appear in the drop-down menu. Make sure the version you select is R 3.2.2 or later. However, if you have installed R to a location other than the default, you might need to navigate to that location using the browse button.\n\n\n\n\nIf you have never installed the arcgisbinding, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to automatically download and install arcgisbinding, to separately download the package, or to install the package from file. Select the first option to \"automatically download and install\" the arcgisbinding package.\nA pop-up window will appear to inform you there is a new arcgisbinding version and will ask you if you wish to install it. Select \"Yes\".\nA progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package arcgisbinding was successfully installed."
   },
   {
-    "objectID": "tutorials.html#notes",
-    "href": "tutorials.html#notes",
+    "objectID": "arcgisbinding/installing-arcgisbinding.html#install-from-r",
+    "href": "arcgisbinding/installing-arcgisbinding.html#install-from-r",
+    "title": "Installing {arcgisbinding}",
+    "section": "Install from R",
+    "text": "Install from R\nAlternatively, you can install the binding directly from R if you so wish! Open RStudio, VS Code, or your favorite text editor and run the following from the console.\n install.packages(\n  \"arcgisbinding\", \n  repos = \"https://r.esri.com\", \n  type = \"win.binary\"\n )\nThis will install the package binary directly from our GitHub repository which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer."
+  },
+  {
+    "objectID": "arcgisbinding/installing-arcgisbinding.html#offline-installation",
+    "href": "arcgisbinding/installing-arcgisbinding.html#offline-installation",
+    "title": "Installing {arcgisbinding}",
+    "section": "Offline Installation",
+    "text": "Offline Installation\nMany users of the R-ArcGIS Pro bridge (arcgisbinding) work in a completely air-gapped environment where downloading external packages from the internet is not possible.\nIn order to install arcgisbinding in an air-gapped environment you must first download the package on an internet enabled machine and “sneakernet” it into your offline environment.\nTo download the package go to https://r.esri.com/bin/ and choose the version of arcgisbridge that matches your version of R.\nOnce you’ve moved the zip file onto your air-gapped machine you can install it using the install.packages() command.\ninstall.packages(\"path/to/arcgisbinding_1.0.1.306.zip\", repos = NULL)"
+  },
+  {
+    "objectID": "arcgisbinding/installing-arcgisbinding.html#upgrading-arcgisbinding",
+    "href": "arcgisbinding/installing-arcgisbinding.html#upgrading-arcgisbinding",
+    "title": "Installing {arcgisbinding}",
+    "section": "Upgrading {arcgisbinding}",
+    "text": "Upgrading {arcgisbinding}\n\nUsing ArcGIS Pro\nIf you have installed arcgisbinding from within ArcGIS Pro, follow the instructions for installing within ArcGIS Pro.\nIf you have previously installed arcgisbinding, you will see an installed message that lets you know the version of your arcgisbinding package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the arcgisbinding package. If prompted to update, click \"Yes\" and the latest version will automatically be installed.\n\n\nUsing R or offline\nTo upgrade your package using R or in an offline environment, repeat the steps above."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "R-ArcGIS Bridge",
-    "section": "Notes",
-    "text": "Notes\nTutorial/Workflow vs Vignette\nAnalogous to Python API\nVignette -&gt; Guide Tutorial -&gt; Sample\n\nTutorial would be a end to end process\n\nread in, manipulate, etc, then write back up to online\nHow to batch geocode and upload results to AGOL\nHow to create a GP tool (best practices)\nRead from an enterprise geodatabase / sde file\nusing R for something specific that you dont do in pro (for binding) or analysis tools\n\nVignette: how to understand / interact with a specific piece of code\n\nauthorization\ncreating new packages\n\ntips for developers"
+    "section": "",
+    "text": "The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem.\nThe R-ArcGIS Bridge has capabilities to integrate with ArcGIS Pro and Location Services."
+  },
+  {
+    "objectID": "index.html#integrate-with-arcgis-pro-arcgisbinding",
+    "href": "index.html#integrate-with-arcgis-pro-arcgisbinding",
+    "title": "R-ArcGIS Bridge",
+    "section": "Integrate with ArcGIS Pro {arcgisbinding}",
+    "text": "Integrate with ArcGIS Pro {arcgisbinding}\n{arcgisbinding} the first package created under the R-ArcGIS Bridge is designed bridge the powers of R and ArcGIS.\nUsing {arcgisbinding} you can read and write local data sources and take advantage of ArcGIS Pro’s projection engine.\n\nRead and write local data sources with arc.write() and arc.open()\nConvert to {sf} and {raster} objects with arc.data2sf() and arc.raster()\n\n\nGeoprocessing Tools written in R\nThe true power of {arcgisbinding} lies in it’s ability to generate geoprocessing tools that execute R code.\nRead the documentation to get started building R-based geoprocessing tools!"
+  },
+  {
+    "objectID": "index.html#interact-with-location-services",
+    "href": "index.html#interact-with-location-services",
+    "title": "R-ArcGIS Bridge",
+    "section": "Interact with Location Services",
+    "text": "Interact with Location Services\nThe {arcgis} metapackage provides access to Esri location services enabling users to read and write data from their hosted or on prem Portals.\nFollow along with the introduction tutorial to get started interacting with your organziation’s data directly from R!"
+  },
+  {
+    "objectID": "index.html#our-r-packages",
+    "href": "index.html#our-r-packages",
+    "title": "R-ArcGIS Bridge",
+    "section": "Our R-packages",
+    "text": "Our R-packages\n\n\n\n{arcgisbinding}\nHarness the power of ArcGIS Pro from R.\n\n\n{arcgis}\nLocation services metapackage. Your one stop shop for all your location services needs!\n\n\n\n\n{arcgislayers}\nRead and write to Feature Services and much more with ArcGIS Location Services.\n\n\n{arcgisutils}\nPowers {arcgis} by providing functionality to authorize with your portal and convert to and from R objects and Esri JSON.\n\n\n\n\n{arcpbf}\nProcess FeatureCollection protocol buffers in R using the power of Rust!"
+  },
+  {
+    "objectID": "index.html#not-sure-where-to-start",
+    "href": "index.html#not-sure-where-to-start",
+    "title": "R-ArcGIS Bridge",
+    "section": "Not sure where to start?",
+    "text": "Not sure where to start?\n\nRead and write Feature Services using {arcgis}\nCreate R based Geoprocessing tools\nAccess your enterprise geodatabase from R"
   }
 ]
