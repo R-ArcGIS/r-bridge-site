@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/tutorials.html</loc>
-    <lastmod>2023-11-28T15:57:32.327Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/R-ArcGIS/r-bridge-site/workflows.html</loc>
-    <lastmod>2023-11-28T15:57:31.771Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/R-ArcGIS/r-bridge-site/packages.html</loc>
-    <lastmod>2023-11-28T15:57:30.979Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/R-ArcGIS/r-bridge-site/geoprocessing-tools.html</loc>
-    <lastmod>2023-11-28T15:57:30.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/R-ArcGIS/r-bridge-site/arcgisbinding/installing-arcgisbinding.html</loc>
-    <lastmod>2023-11-28T15:57:31.527Z</lastmod>
+    <lastmod>2023-11-29T16:04:49.135Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/index.html</loc>
-    <lastmod>2023-11-28T15:57:32.059Z</lastmod>
+    <lastmod>2023-11-29T16:04:48.335Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/R-ArcGIS/r-bridge-site/arcgisbinding/installing-arcgisbinding.html</loc>
+    <lastmod>2023-11-29T16:04:47.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/R-ArcGIS/r-bridge-site/geoprocessing-tools.html</loc>
+    <lastmod>2023-11-29T16:04:46.795Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/R-ArcGIS/r-bridge-site/packages.html</loc>
+    <lastmod>2023-11-29T16:04:47.331Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/R-ArcGIS/r-bridge-site/workflows.html</loc>
+    <lastmod>2023-11-29T16:04:48.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/R-ArcGIS/r-bridge-site/location-services/connecting-to-a-portal.html</loc>
+    <lastmod>2023-11-29T16:04:48.871Z</lastmod>
   </url>
 </urlset>

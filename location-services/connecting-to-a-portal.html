@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Installing {arcgisbinding}</title>
+<title>R-ArcGIS Bridge - Connecting to your Portal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">Installing <code>{arcgisbinding}</code></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Connecting to your Portal</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link active">
+  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing <code>{arcgisbinding}</code></span></a>
   </div>
 </li>
@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Connecting to your Portal</span></a>
   </div>
 </li>
@@ -206,13 +206,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#from-pro" id="toc-from-pro" class="nav-link active" data-scroll-target="#from-pro">Install within ArcGIS Pro (recommended)</a></li>
-  <li><a href="#install-from-r" id="toc-install-from-r" class="nav-link" data-scroll-target="#install-from-r">Install from R</a></li>
-  <li><a href="#offline-installation" id="toc-offline-installation" class="nav-link" data-scroll-target="#offline-installation">Offline Installation</a></li>
-  <li><a href="#upgrading-arcgisbinding" id="toc-upgrading-arcgisbinding" class="nav-link" data-scroll-target="#upgrading-arcgisbinding">Upgrading <code>{arcgisbinding}</code></a>
+  <li><a href="#obtaining-a-client-id" id="toc-obtaining-a-client-id" class="nav-link active" data-scroll-target="#obtaining-a-client-id">Obtaining a Client ID</a></li>
+  <li><a href="#securing-your-credentials" id="toc-securing-your-credentials" class="nav-link" data-scroll-target="#securing-your-credentials">Securing your credentials</a>
   <ul class="collapse">
-  <li><a href="#using-arcgis-pro" id="toc-using-arcgis-pro" class="nav-link" data-scroll-target="#using-arcgis-pro">Using ArcGIS Pro</a></li>
-  <li><a href="#using-r-or-offline" id="toc-using-r-or-offline" class="nav-link" data-scroll-target="#using-r-or-offline">Using R or offline</a></li>
+  <li><a href="#setting-your-credentials-in-.renviron" id="toc-setting-your-credentials-in-.renviron" class="nav-link" data-scroll-target="#setting-your-credentials-in-.renviron">Setting your credentials in <code>.Renviron</code></a></li>
+  </ul></li>
+  <li><a href="#authorizing" id="toc-authorizing" class="nav-link" data-scroll-target="#authorizing">Authorizing</a>
+  <ul class="collapse">
+  <li><a href="#code-flow" id="toc-code-flow" class="nav-link" data-scroll-target="#code-flow">Code flow</a></li>
+  <li><a href="#client-flow" id="toc-client-flow" class="nav-link" data-scroll-target="#client-flow">Client flow</a></li>
+  <li><a href="#using-arcgis-pro-arcgisbinding" id="toc-using-arcgis-pro-arcgisbinding" class="nav-link" data-scroll-target="#using-arcgis-pro-arcgisbinding">Using ArcGIS Pro &amp; <code>{arcgisbinding}</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -222,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installing <code>{arcgisbinding}</code></h1>
+<h1 class="title">Connecting to your Portal</h1>
 </div>
 
 
@@ -237,65 +240,148 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><strong><code>arcgisbinding</code></strong> is an R package that enables communication between ArcGIS Pro and R. In order to use it, you must have a installation of ArcGIS Pro with a valid licenses as well as a supported version of R.</p>
-<section id="from-pro" class="level2">
-<h2 class="anchored" data-anchor-id="from-pro">Install within ArcGIS Pro (recommended)</h2>
-<p>If you are working in Pro 2.0 or beyond you have access to the built-in ArcGIS bridge installer which streamlines the process of installing <strong>arcgisbinding</strong>. It allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario, you will do the following:</p>
+<p>In order to read content items that do not have a “Public” Sharing level (<img src="images/sharing-public.png" class="img-fluid" style="width:30.0%">), or to write to or modify existing content items that you are an owner of, you will need to be authorized.</p>
+<p><a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/">Authorization is done using OAuth2</a>. There are two ways to authorize with OAuth2: either by using a a <code>code</code> or a <code>client</code> flow. In most cases code based authorization is recommended.</p>
+<p>The first step of authorizing is creating a client ID.</p>
+<section id="obtaining-a-client-id" class="level2">
+<h2 class="anchored" data-anchor-id="obtaining-a-client-id">Obtaining a Client ID</h2>
+<p>If a client ID is not provided to you by an admin and you have the ability to create content items, you can create one.</p>
+<p>You can do so by creating an application item.</p>
 <ul>
-<li>Open ArcGIS Pro and click on the ‘Project’ tab in your project.</li>
-<li>Select <code>Options</code> on the blue, left-hand side panel and in the pop-up window, under Application, select ‘Geoprocessing’.</li>
-<li>Under the R-ArcGIS Support options, select your desired R home directory.</li>
+<li>Log in to your ArcGIS Online or ArcGIS Enterprise organization</li>
+<li>Navigate to the Contents tab</li>
+<li>Click <code>New Item</code></li>
+<li>Select <code>Application</code></li>
 </ul>
+<p><img src="images/content-app.png" class="img-fluid" style="width:50.0%"></p>
+<ul>
+<li>Choose <code>Other application</code> as your <code>Application Type</code></li>
+<li>Give the item an informative name such as <code>r-arcgis</code></li>
+</ul>
+<p><img src="images/new-item.png" class="img-fluid" style="width:50.0%"></p>
+<ul>
+<li>You will be directed to the content page where you can see your credentials. <strong>Do not share these</strong>.</li>
+</ul>
+<p><img src="images/credentials.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="securing-your-credentials" class="level2">
+<h2 class="anchored" data-anchor-id="securing-your-credentials">Securing your credentials</h2>
+<p>By default, packages in the <code>{arcgis}</code> meta-package are configured to work with ArcGIS Online. <code>arcgis</code> utilizes environment variables to determine how requests are crafted and where requests are made. These environment variables are:</p>
+<ul>
+<li><code>ARCGIS_HOST</code></li>
+<li><code>ARCGIS_CLIENT</code></li>
+<li><code>ARCGIS_USER</code></li>
+<li><code>ARCGIS_SECRET</code></li>
+<li><code>ARCGIS_TOKEN</code></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Environment variable descriptions">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Environment variable descriptions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong><code>ARCGIS_HOST</code></strong> is used to to determine where authorization takes place. By default, this is <code>"https://www.arcgis.com"</code>. This is because the packages, by default, interact with ArcGIS Online. To use a different portal, you will need to modify the <code>ARCGIS_HOST</code> path to url of that portal.</p></li>
+<li><p><strong><code>ARCGIS_USER</code></strong> variable is used to determine who actions are performed on behalf of. Notably, it is used in functions that modify or create resource such as functions from <code>arcgislayers</code>: <code>create_service()</code>, <code>add_item()</code>, and <code>publish_item()</code>.</p></li>
+<li><p><strong><code>ARCGIS_CLIENT</code></strong> and <strong><code>ARCGIS_SECRET</code></strong> environment variables are used only in the <code>auth_client()</code> OAuth2 client flow authorization. See the <a href="https://r-arcgis.github.io/arcgislayers/articles/Authorization.html">article on authorization</a> for more.</p></li>
+<li><p><strong><code>ARCGIS_TOKEN</code></strong> is used to fetch a users access token. These are retrieved using the various <code>auth_</code> functions of <code>arcgisutils</code> and set using <code>set_auth_token()</code>. Alternatively, the <code>ARCGIS_TOKEN</code> can be set to an API key.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<section id="setting-your-credentials-in-.renviron" class="level3">
+<h3 class="anchored" data-anchor-id="setting-your-credentials-in-.renviron">Setting your credentials in <code>.Renviron</code></h3>
+<p>Environment variables should <em><strong>never</strong></em> be included in your code. Instead, they should be stored in an external environment file such as an <code>.Renvrion</code> file. To modify your <code>.Renviron</code> run the following in your text editor</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled" title="`.Renviron` scopes">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>.Renviron</code> scopes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>.Renviron</code> files can be created at a user level or a project level. It is recommended to use project level <code>.Renviron</code> files when deploying scripts to production. If most of your work is interactive then a user level file is sufficient.</p>
+<p><strong>Project scoped</strong> <code>.Renviron</code> files store environment variables that are available for the project <em>only</em>. The <code>.Renviron</code> is stored at the root folder level.</p>
+<p><strong>User scoped</strong> <code>.Renviron</code> files store environment variables in the user’s home directory. The environment variables will be available to you in any project you open. However, if you share your project, the environment variables will not be shared with it.</p>
+</div>
+</div>
+</div>
+<p>You <code>.Renviron</code> file will now be opened for you to edit. Fill in the environment variables <code>ARCGIS_CLIENT</code> and <code>ARCGIS_SECRET</code> from the content item we just created.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_CLIENT</span><span class="op">=</span>your-client-id</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_SECRET</span><span class="op">=</span>your-super-secret-key</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_HOST</span><span class="op">=</span>https://your-portal.com/</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_USER</span><span class="op">=</span>your-user-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Warning
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>Note: All versions of R installed on your computer will appear in the drop-down menu. Make sure the version you select is R 3.2.2 or later. However, if you have installed R to a location other than the default, you might need to navigate to that location using the browse button.</p>
+<p>Do not put environment variable values in quotation marks.</p>
+<p>If you are using ArcGIS Online, you do not need to set the environment variable <code>ARCGIS_HOST</code>.</p>
 </div>
 </div>
-</div>
-<ul>
-<li><p>If you have never installed the <strong>arcgisbinding</strong>, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to automatically download and install <strong>arcgisbinding</strong>, to separately download the package, or to install the package from file. Select the first option to <code>"automatically download and install"</code> the <strong>arcgisbinding</strong> package.</p></li>
-<li><p>A pop-up window will appear to inform you there is a new <strong>arcgisbinding</strong> version and will ask you if you wish to install it. Select <code>"Yes"</code>.</p></li>
-<li><p>A progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package <strong>arcgisbinding</strong> was successfully installed.</p></li>
-</ul>
+<p>Environment variables will not be set automatically. To register the new environment variables restart your R session.</p>
 </section>
-<section id="install-from-r" class="level2">
-<h2 class="anchored" data-anchor-id="install-from-r">Install from R</h2>
-<p>Alternatively, you can install the binding directly from R if you so wish! Open RStudio, VS Code, or your favorite text editor and run the following from the console.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"arcgisbinding"</span>, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">"https://r.esri.com"</span>, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"win.binary"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will install the package binary directly from our GitHub repository which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer.</p>
 </section>
-<section id="offline-installation" class="level2">
-<h2 class="anchored" data-anchor-id="offline-installation">Offline Installation</h2>
-<p>Many users of the R-ArcGIS Pro bridge (<strong>arcgisbinding</strong>) work in a completely air-gapped environment where downloading external packages from the internet is not possible.</p>
-<p>In order to install <strong>arcgisbinding</strong> in an air-gapped environment you must first download the package on an internet enabled machine and <a href="https://www.techopedia.com/definition/1880/sneakernet">“sneakernet”</a> it into your offline environment.</p>
-<p>To download the package go to https://r.esri.com/bin/ and choose the version of <strong>arcgisbridge</strong> that matches your version of R.</p>
-<p>Once you’ve moved the zip file onto your air-gapped machine you can install it using the <code>install.packages()</code> command.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"path/to/arcgisbinding_1.0.1.306.zip"</span>, <span class="at">repos =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="authorizing" class="level2">
+<h2 class="anchored" data-anchor-id="authorizing">Authorizing</h2>
+<p>First, load the library.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching core arcgis packages:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   - {arcgisutils} v0.1.0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   - {arcgislayers} v0.1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="code-flow" class="level3">
+<h3 class="anchored" data-anchor-id="code-flow">Code flow</h3>
+<p>Next run <code>auth_code()</code> which will open a tab in your browser. If you are authorizing to an ArcGIS Enterprise portal ensure that you set the <code>ARCGIS_HOST</code> environment variable correctly and that you restarted your R session.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will be prompted to sign in to your portal.</p>
+<p><img src="images/oauth-sign-in.png" class="img-fluid" style="width:50.0%"></p>
+<p>Once you’ve signed in, copy the code that appears, and return to R. Enter the code into the console without any modifications and press enter.</p>
+<p><img src="images/oauth-code.png" class="img-fluid" style="width:70.0%"></p>
+<p>Your authorization will have completed.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>token</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;httr2_token&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; token_type: bearer</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; access_token: &lt;REDACTED&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; expires_at: 2023-03-03 13:21:40</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; refresh_token: &lt;REDACTED&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; username: your-user</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ssl: TRUE</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; refresh_token_expires_in: 1209599</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We now need to set this token to the <code>ARCGIS_SECRET</code> environment variable. We do this with <code>set_auth_token()</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Token set to environment variable `ARCGIS_TOKEN`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="upgrading-arcgisbinding" class="level2">
-<h2 class="anchored" data-anchor-id="upgrading-arcgisbinding">Upgrading <code>{arcgisbinding}</code></h2>
-<section id="using-arcgis-pro" class="level3">
-<h3 class="anchored" data-anchor-id="using-arcgis-pro">Using ArcGIS Pro</h3>
-<p>If you have installed <strong>arcgisbinding</strong> from within ArcGIS Pro, follow the instructions for <a href="#from-pro">installing within ArcGIS Pro</a>.</p>
-<p>If you have previously installed <strong>arcgisbinding</strong>, you will see an installed message that lets you know the version of your <strong>arcgisbinding</strong> package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the <strong>arcgisbinding</strong> package. If prompted to update, click <code>"Yes"</code> and the latest version will automatically be installed.</p>
+<section id="client-flow" class="level3">
+<h3 class="anchored" data-anchor-id="client-flow">Client flow</h3>
+<p>Alternatively, we can authorize using the client OAuth2 flow. This will authorize the application we created and not ourselves. Because of this we cannot use the client flow to create or modify content.</p>
+<p>The client flow has the benefit of being non-interactive, though.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_client</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Token set to environment variable `ARCGIS_TOKEN`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="using-r-or-offline" class="level3">
-<h3 class="anchored" data-anchor-id="using-r-or-offline">Using R or offline</h3>
-<p>To upgrade your package using R or in an offline environment, repeat the steps above.</p>
+<section id="using-arcgis-pro-arcgisbinding" class="level3">
+<h3 class="anchored" data-anchor-id="using-arcgis-pro-arcgisbinding">Using ArcGIS Pro &amp; <code>{arcgisbinding}</code></h3>
+<p>If you are a user of ArcGIS Pro and have <strong>arcgisbinding</strong> installed, you can use <code>auth_binding()</code> to utilize the tokens that result from <code>arc.check_portal()</code>. <code>auth_binding()</code> has the benefit of being non-interactive <em>and</em> authorizes you as a user. You can use <code>auth_binding()</code> for non-interactive work that creates or modifies existing content.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_binding</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Token set to environment variable `ARCGIS_TOKEN`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
