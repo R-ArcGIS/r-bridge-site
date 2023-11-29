@@ -14,9 +14,6 @@
 
 
 
-
-
-
 ## Notes
 
 Tutorial/Workflow vs Vignette

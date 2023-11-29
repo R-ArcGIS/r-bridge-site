@@ -10,21 +10,22 @@ website:
         href: https://github.com/r-arcgis
       - icon: globe
         href: https://esri.com
-  navbar:
-    right:
-      - href: index.qmd
-        text: Home
+
   sidebar:
-    style: "docked"
+    style: "floating"
     contents:
       - href: index.qmd
         text: Home
-      - text: Packages
-        href: packages.qmd
-      - arcgisbinding/installing-arcgisbinding.qmd
-      - geoprocessing-tools.qmd
+      - section: ArcGIS Pro
+        contents:
+          - arcgisbinding/installing-arcgisbinding.qmd
+          - geoprocessing-tools.qmd
+      - section: Location Services
+        contents:
+          - location-services/connecting-to-a-portal.qmd
       - tutorials.qmd
       - workflows.qmd
+      - packages.qmd
 
 format:
   html:

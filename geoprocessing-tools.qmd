@@ -1,5 +1,5 @@
 ---
-title: "R Geoprocessing tools"
+title: "Geoprocessing Tools"
 ---
 
 ## Overview
