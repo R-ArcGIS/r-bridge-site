@@ -260,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="obtaining-a-feature-layer-url" class="level2">
 <h2 class="anchored" data-anchor-id="obtaining-a-feature-layer-url">Obtaining a feature layer url</h2>
 <p>For this example we will read in <a href="https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672">population data of major US cities</a> from ArcGIS Online.</p>
-<p>We need to first create a <code>FeatureLayer</code> object using the <code>arc_open()</code> function. <code>arc_open()</code> requires the url of the hosted feature service. To find this, we can navigate to the item in our portal.</p>
+<p>We will use the functions <code>arc_open()</code> and <code>arc_select()</code> to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, we can navigate to the item in our portal.</p>
 <p><img src="images/read-data/usa-cities.png" class="img-fluid"> When you scroll down, on the right hand side, you will see a button to view the service itself.</p>
 <p><img src="images/read-data/view-url.png" class="img-fluid" style="width:45.0%"></p>
 <p>Clicking this will bring us to the Feature Service itself. Inside of a Feature Server there may be many layers or table that we can use. In this case, there is only one layer. Click the hyperlinked <strong>USA Major Cities</strong>.</p>
@@ -270,10 +270,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Navigate to your browsers search bar, and you can copy the url</p>
 <pre><code>https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Cities_/FeatureServer/0</code></pre>
 </section>
-<section id="opening-a-feature-layer" class="level2">
+<section id="opening-a-feature-layer" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="opening-a-feature-layer">Opening a Feature Layer</h2>
 <p>Before we can read in the Feature Layer, we need to load the <code>arcgis</code> R package. If you do not have <code>arcgis</code> installed, install it with <code>pak::pak("r-arcgis/arcgis")</code>.</p>
-<div class="cell">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><code>{pak}</code> is an R package that makes it faster and easier to install R packages. If you do not have it installed, run <code>install.packages("pak")</code> first.</p>
+</div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Attaching core arcgis packages:
