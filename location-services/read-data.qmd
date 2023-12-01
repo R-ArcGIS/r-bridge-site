@@ -1,5 +1,5 @@
 ---
-title: "Read data from ArcGIS Online or Enterprise"
+title: "Read hosted data"
 subtitle: "Learn how to read data from ArcGIS Online or Enterprise into R"
 freeze: true
 ---
