@@ -24,7 +24,8 @@ website:
         contents:
           - location-services/connecting-to-a-portal.qmd
           - location-services/read-data.qmd
-      - tutorials.qmd
+          - location-services/publishing.qmd
+      #- tutorials.qmd
       - workflows.qmd
       - packages.qmd
 

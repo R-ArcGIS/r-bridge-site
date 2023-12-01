@@ -1,0 +1,107 @@
+---
+title: "Publishing from R"
+subtitle: "Create Hosted ArcGIS Online or Enterprise Feature Services from R"
+freeze: true
+---
+
+While you may often consume data as an R user, you may also want to also publish data as a hosted feature service. In this tutorial we will go over how to publish an `sf` object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise. 
+
+## Authorization
+
+In order to publish content to ArcGIS Online or Enterprise, we must first obtain an access token permitting us to do so. 
+
+:::{.callout-caution}
+If you have not yet set up your R environment for authorization, see [**Connecting to your Portal**](./connecting-to-a-portal.qmd). Ensure that the environment variables `ARCGIS_CLIENT` and `ARCGIS_USER` are set at minimum. If you are using Enterprise ensure that `ARCGIS_HOST` is properly set as well.
+:::
+
+We must go through the code flow to set our credentials.
+
+```{r, eval = FALSE}
+library(arcgis)
+
+token <- auth_code()  # <1>
+set_auth_token(token) # <2>
+#> Token set to environment variable `ARCGIS_TOKEN`
+```
+1. We create an access token
+2. We set it to an environment variable.
+
+Now that we have authorized to our Portal, we will be able to publish our content. 
+
+## Publishing {sf} objects
+
+To publish an `{sf}` object to our portal, we can use the function `publish_layer()`. The publishing process requires us to add an item to our portal and publish it. The `publish_layer()` function handles these steps for us. 
+
+Let's read in the [North Carolina SIDS](https://cran.r-project.org/web/packages/spdep/vignettes/sids.html) dataset that comes packaged with `sf` and store it in an object called `nc`. 
+
+```{r}
+nc <- sf::read_sf(system.file("shape/nc.shp", package = "sf"))
+nc
+```
+
+Now that we have an sf object and we have authorized with our portal, all that's left is to publish the item! 
+
+`publish_layer()` has only two required arguments: 
+
+- `x` the sf object or `data.frame`
+- `title` the title of layer we are creating
+
+```{r, eval=FALSE}
+res <- publish_layer(nc, "North Carolina SIDS")
+res
+#> $services
+#>              type
+#> 1 Feature Service
+#>                                                                                             serviceurl
+#> 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North Carolina SIDS/FeatureServer
+#>     size                                jobId                    serviceItemId
+#> 1 125766 f14451a7-325b-40b0-85c3-534bcf122806 32511ce0413f40d08303e267a7093be0
+#>                                                                                          encodedServiceURL
+#> 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer
+```
+
+
+## Reading the published Feature Layer
+
+The output of this function is a list that contains information about where the sf object was published.
+We can retrieve the `encodedServiceUrl` from the response and read the response. 
+
+```{r eval=FALSE}
+nc_fserver <- arc_open(res[[c("services", "encodedServiceURL")]])
+nc_fserver
+#> <FeatureServer <1 layer, 0 tables>>
+#> CRS: 4267
+#> Capabilities: Create,Delete,Query,Update,Editing
+#>   0: North Carolina SIDS (esriGeometryPolygon)
+```
+
+You'll notice that this is a `FeatureServer`. All items that are published to a Portal become their own Feature Server with a single `FeatureLayer`.
+
+We can extract a single layer from the `FeatureServer` using `get_layer()`. We provide the `FeatureServer` as the first argument and then the ID of the layer we want as the second argument. 
+
+```{r eval=FALSE}
+get_layer(nc_fserver, 0)
+#> <FeatureLayer <100 features, 15 fields>>
+#> Name: North Carolina SIDS
+#> Geometry Type: esriGeometryPolygon
+#> CRS: 4267
+#> Capabilities: Create,Delete,Query,Update,Editing
+```
+
+
+
+## Publishing `data.frame`s 
+
+Publishing a `data.frame` follows the same steps as those above. The difference is that it creates a `Table` object. Try repeating the same process but using the palmerpenguins dataset! 
+
+```{r}
+# install.packages("palmerpenguins")
+palmerpenguins::penguins
+```
+
+:::{.callout-tip title="Solution" collapse="true"}
+```{r eval=FALSE}
+publish_layer(palmerpenguins::penguins, "Palmer Penguins")
+```
+
+:::
