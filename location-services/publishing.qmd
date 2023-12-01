@@ -60,6 +60,9 @@ res
 #> 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer
 ```
 
+Now from your Portal's [Content listing](https://arcgis.com/home/content.html) you should see your feature service. If you open it up you should see something like the below.
+
+![](images/publish/nc-sids.png){width=70%}
 
 ## Reading the published Feature Layer
 
