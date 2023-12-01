@@ -23,6 +23,7 @@ website:
       - section: Location Services
         contents:
           - location-services/connecting-to-a-portal.qmd
+          - location-services/read-data.qmd
       - tutorials.qmd
       - workflows.qmd
       - packages.qmd
