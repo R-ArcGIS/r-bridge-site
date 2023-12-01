@@ -21,7 +21,7 @@ The objective of this tutorial is to teach you how to
 
 For this example we will read in [population data of major US cities](https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672) from ArcGIS Online. 
 
-We need to first create a `FeatureLayer` object using the `arc_open()` function. `arc_open()` requires the url of the hosted feature service. To find this, we can navigate to the item in our portal. 
+We will use the functions `arc_open()` and `arc_select()` to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, we can navigate to the item in our portal. 
 
 
 ![](images/read-data/usa-cities.png)
@@ -47,6 +47,10 @@ https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Citi
 
 Before we can read in the Feature Layer, we need to load the `arcgis` R package. If you do not have `arcgis` installed, install it with `pak::pak("r-arcgis/arcgis")`.
 
+:::{.aside}
+`{pak}` is an R package that makes it faster and easier to install R packages. If you do not have it installed, run `install.packages("pak")` first. 
+:::
+
 ```{r}
 library(arcgis)
 ```
@@ -57,7 +61,7 @@ Let's store the Feature Layer url in an object called `furl` (as in feature laye
 furl <- "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Cities_/FeatureServer/0"
 ```
 
-We then pass this variable to `arc_open()` and save it to `flayer` (feature layer). 
+We then pass this variable to `arc_open()` and save it to `flayer` (feature layer).
 
 ```{r}
 flayer <- arc_open(furl)
