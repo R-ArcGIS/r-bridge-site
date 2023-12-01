@@ -1,6 +1,7 @@
 ---
 title: "Read data from ArcGIS Online or Enterprise"
 subtitle: "Learn how to read data from ArcGIS Online or Enterprise into R"
+freeze: true
 ---
 
 ArcGIS Online and Enterprise hosted Feature Layers can easily be read into R as [`{sf}`](https://r-spatial.github.io/sf/) objects using`{arcgislayers}`. 
