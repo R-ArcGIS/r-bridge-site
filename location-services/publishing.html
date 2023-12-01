@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Installing {arcgisbinding}</title>
+<title>R-ArcGIS Bridge - Publishing from R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">Installing <code>{arcgisbinding}</code></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/publishing.html">Publishing from R</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link active">
+  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing <code>{arcgisbinding}</code></span></a>
   </div>
 </li>
@@ -184,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/publishing.html" class="sidebar-item-text sidebar-link">
+  <a href="../location-services/publishing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Publishing from R</span></a>
   </div>
 </li>
@@ -212,14 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#from-pro" id="toc-from-pro" class="nav-link active" data-scroll-target="#from-pro">Install within ArcGIS Pro (recommended)</a></li>
-  <li><a href="#install-from-r" id="toc-install-from-r" class="nav-link" data-scroll-target="#install-from-r">Install from R</a></li>
-  <li><a href="#offline-installation" id="toc-offline-installation" class="nav-link" data-scroll-target="#offline-installation">Offline Installation</a></li>
-  <li><a href="#upgrading-arcgisbinding" id="toc-upgrading-arcgisbinding" class="nav-link" data-scroll-target="#upgrading-arcgisbinding">Upgrading <code>{arcgisbinding}</code></a>
-  <ul class="collapse">
-  <li><a href="#using-arcgis-pro" id="toc-using-arcgis-pro" class="nav-link" data-scroll-target="#using-arcgis-pro">Using ArcGIS Pro</a></li>
-  <li><a href="#using-r-or-offline" id="toc-using-r-or-offline" class="nav-link" data-scroll-target="#using-r-or-offline">Using R or offline</a></li>
-  </ul></li>
+  <li><a href="#authorization" id="toc-authorization" class="nav-link active" data-scroll-target="#authorization">Authorization</a></li>
+  <li><a href="#publishing-sf-objects" id="toc-publishing-sf-objects" class="nav-link" data-scroll-target="#publishing-sf-objects">Publishing {sf} objects</a></li>
+  <li><a href="#reading-the-published-feature-layer" id="toc-reading-the-published-feature-layer" class="nav-link" data-scroll-target="#reading-the-published-feature-layer">Reading the published Feature Layer</a></li>
+  <li><a href="#publishing-data.frames" id="toc-publishing-data.frames" class="nav-link" data-scroll-target="#publishing-data.frames">Publishing <code>data.frame</code>s</a></li>
   </ul>
 </nav>
     </div>
@@ -228,7 +224,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installing <code>{arcgisbinding}</code></h1>
+<h1 class="title">Publishing from R</h1>
+<p class="subtitle lead">Create Hosted ArcGIS Online or Enterprise Feature Services from R</p>
 </div>
 
 
@@ -243,68 +240,162 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><strong><code>arcgisbinding</code></strong> is an R package that enables communication between ArcGIS Pro and R. In order to use it, you must have a installation of ArcGIS Pro with a valid licenses as well as a supported version of R.</p>
-<section id="from-pro" class="level2">
-<h2 class="anchored" data-anchor-id="from-pro">Install within ArcGIS Pro (recommended)</h2>
-<p>If you are working in Pro 2.0 or beyond you have access to the built-in ArcGIS bridge installer which streamlines the process of installing <strong>arcgisbinding</strong>. It allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario, you will do the following:</p>
-<ul>
-<li>Open ArcGIS Pro and click on the ‘Project’ tab in your project.</li>
-<li>Select <code>Options</code> on the blue, left-hand side panel and in the pop-up window, under Application, select ‘Geoprocessing’.</li>
-<li>Under the R-ArcGIS Support options, select your desired R home directory.</li>
-</ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<p>While you may often consume data as an R user, you may also want to also publish data as a hosted feature service. In this tutorial we will go over how to publish an <code>sf</code> object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise.</p>
+<section id="authorization" class="level2">
+<h2 class="anchored" data-anchor-id="authorization">Authorization</h2>
+<p>In order to publish content to ArcGIS Online or Enterprise, we must first obtain an access token permitting us to do so.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have not yet set up your R environment for authorization, see <a href="../location-services/connecting-to-a-portal.html"><strong>Connecting to your Portal</strong></a>. Ensure that the environment variables <code>ARCGIS_CLIENT</code> and <code>ARCGIS_USER</code> are set at minimum. If you are using Enterprise ensure that <code>ARCGIS_HOST</code> is properly set as well.</p>
+</div>
+</div>
+<p>We must go through the code flow to set our credentials.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Token set to environment variable `ARCGIS_TOKEN`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="3">We create an access token</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-annotation="2" data-code-lines="4">We set it to an environment variable.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Now that we have authorized to our Portal, we will be able to publish our content.</p>
+</section>
+<section id="publishing-sf-objects" class="level2">
+<h2 class="anchored" data-anchor-id="publishing-sf-objects">Publishing {sf} objects</h2>
+<p>To publish an <code>{sf}</code> object to our portal, we can use the function <code>publish_layer()</code>. The publishing process requires us to add an item to our portal and publish it. The <code>publish_layer()</code> function handles these steps for us.</p>
+<p>Let’s read in the <a href="https://cran.r-project.org/web/packages/spdep/vignettes/sids.html">North Carolina SIDS</a> dataset that comes packaged with <code>sf</code> and store it in an object called <code>nc</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 100 features and 14 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+# A tibble: 100 × 15
+    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10
+ 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10
+ 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208
+ 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123
+ 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066
+ 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954
+ 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115
+ 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254
+ 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748
+10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160
+# ℹ 90 more rows
+# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,
+#   geometry &lt;MULTIPOLYGON [°]&gt;</code></pre>
+</div>
+</div>
+<p>Now that we have an sf object and we have authorized with our portal, all that’s left is to publish the item!</p>
+<p><code>publish_layer()</code> has only two required arguments:</p>
+<ul>
+<li><code>x</code> the sf object or <code>data.frame</code></li>
+<li><code>title</code> the title of layer we are creating</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">publish_layer</span>(nc, <span class="st">"North Carolina SIDS"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>res</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $services</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              type</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Feature Service</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                                             serviceurl</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North Carolina SIDS/FeatureServer</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     size                                jobId                    serviceItemId</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 125766 f14451a7-325b-40b0-85c3-534bcf122806 32511ce0413f40d08303e267a7093be0</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                                          encodedServiceURL</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-the-published-feature-layer" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-published-feature-layer">Reading the published Feature Layer</h2>
+<p>The output of this function is a list that contains information about where the sf object was published. We can retrieve the <code>encodedServiceUrl</code> from the response and read the response.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nc_fserver <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(res[[<span class="fu">c</span>(<span class="st">"services"</span>, <span class="st">"encodedServiceURL"</span>)]])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nc_fserver</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;FeatureServer &lt;1 layer, 0 tables&gt;&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; CRS: 4267</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Capabilities: Create,Delete,Query,Update,Editing</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0: North Carolina SIDS (esriGeometryPolygon)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You’ll notice that this is a <code>FeatureServer</code>. All items that are published to a Portal become their own Feature Server with a single <code>FeatureLayer</code>.</p>
+<p>We can extract a single layer from the <code>FeatureServer</code> using <code>get_layer()</code>. We provide the <code>FeatureServer</code> as the first argument and then the ID of the layer we want as the second argument.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layer</span>(nc_fserver, <span class="dv">0</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;FeatureLayer &lt;100 features, 15 fields&gt;&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Name: North Carolina SIDS</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Geometry Type: esriGeometryPolygon</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; CRS: 4267</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Capabilities: Create,Delete,Query,Update,Editing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="publishing-data.frames" class="level2">
+<h2 class="anchored" data-anchor-id="publishing-data.frames">Publishing <code>data.frame</code>s</h2>
+<p>Publishing a <code>data.frame</code> follows the same steps as those above. The difference is that it creates a <code>Table</code> object. Try repeating the same process but using the palmerpenguins dataset!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("palmerpenguins")</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>palmerpenguins<span class="sc">::</span>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# ℹ 334 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Note: All versions of R installed on your computer will appear in the drop-down menu. Make sure the version you select is R 3.2.2 or later. However, if you have installed R to a location other than the default, you might need to navigate to that location using the browse button.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">publish_layer</span>(palmerpenguins<span class="sc">::</span>penguins, <span class="st">"Palmer Penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-<ul>
-<li><p>If you have never installed the <strong>arcgisbinding</strong>, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to automatically download and install <strong>arcgisbinding</strong>, to separately download the package, or to install the package from file. Select the first option to <code>"automatically download and install"</code> the <strong>arcgisbinding</strong> package.</p></li>
-<li><p>A pop-up window will appear to inform you there is a new <strong>arcgisbinding</strong> version and will ask you if you wish to install it. Select <code>"Yes"</code>.</p></li>
-<li><p>A progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package <strong>arcgisbinding</strong> was successfully installed.</p></li>
-</ul>
-</section>
-<section id="install-from-r" class="level2">
-<h2 class="anchored" data-anchor-id="install-from-r">Install from R</h2>
-<p>Alternatively, you can install the binding directly from R if you so wish! Open RStudio, VS Code, or your favorite text editor and run the following from the console.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"arcgisbinding"</span>, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">"https://r.esri.com"</span>, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"win.binary"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will install the package binary directly from our GitHub repository which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer.</p>
-</section>
-<section id="offline-installation" class="level2">
-<h2 class="anchored" data-anchor-id="offline-installation">Offline Installation</h2>
-<p>Many users of the R-ArcGIS Pro bridge (<strong>arcgisbinding</strong>) work in a completely air-gapped environment where downloading external packages from the internet is not possible.</p>
-<p>In order to install <strong>arcgisbinding</strong> in an air-gapped environment you must first download the package on an internet enabled machine and <a href="https://www.techopedia.com/definition/1880/sneakernet">“sneakernet”</a> it into your offline environment.</p>
-<p>To download the package go to https://r.esri.com/bin/ and choose the version of <strong>arcgisbridge</strong> that matches your version of R.</p>
-<p>Once you’ve moved the zip file onto your air-gapped machine you can install it using the <code>install.packages()</code> command.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"path/to/arcgisbinding_1.0.1.306.zip"</span>, <span class="at">repos =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="upgrading-arcgisbinding" class="level2">
-<h2 class="anchored" data-anchor-id="upgrading-arcgisbinding">Upgrading <code>{arcgisbinding}</code></h2>
-<section id="using-arcgis-pro" class="level3">
-<h3 class="anchored" data-anchor-id="using-arcgis-pro">Using ArcGIS Pro</h3>
-<p>If you have installed <strong>arcgisbinding</strong> from within ArcGIS Pro, follow the instructions for <a href="#from-pro">installing within ArcGIS Pro</a>.</p>
-<p>If you have previously installed <strong>arcgisbinding</strong>, you will see an installed message that lets you know the version of your <strong>arcgisbinding</strong> package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the <strong>arcgisbinding</strong> package. If prompted to update, click <code>"Yes"</code> and the latest version will automatically be installed.</p>
-</section>
-<section id="using-r-or-offline" class="level3">
-<h3 class="anchored" data-anchor-id="using-r-or-offline">Using R or offline</h3>
-<p>To upgrade your package using R or in an offline environment, repeat the steps above.</p>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
