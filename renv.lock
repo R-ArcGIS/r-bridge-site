@@ -87,19 +87,31 @@
     "arcgis": {
       "Package": "arcgis",
       "Version": "0.0.0.9000",
-      "Source": "unknown",
-      "Remotes": "R-ArcGIS/arcgisutils, R-ArcGIS/api-interface",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "r-arcgis",
+      "RemoteRepo": "arcgis",
+      "RemoteRef": "main",
+      "RemoteSha": "398f5e06054104dcf368d1c54a6cdd8d9427fb0b",
+      "Remotes": "R-ArcGIS/arcgisutils, R-ArcGIS/arcgislayers",
       "Requirements": [
         "arcgislayers",
         "arcgisutils",
         "rlang"
       ],
-      "Hash": "3b8eabd54bf61094e06192ade96decf7"
+      "Hash": "bdc1cb3f86360e463f8caaf84fd12842"
     },
     "arcgislayers": {
       "Package": "arcgislayers",
       "Version": "0.1.0",
-      "Source": "unknown",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "r-arcgis",
+      "RemoteRepo": "arcgislayers",
+      "RemoteRef": "main",
+      "RemoteSha": "37ae9b1a614e22f6377bb16eb15c4b5ceeac51fd",
       "Remotes": "R-ArcGIS/arcgisutils",
       "Requirements": [
         "RcppSimdJson",
@@ -113,12 +125,18 @@
         "terra",
         "utils"
       ],
-      "Hash": "506d1cc4aa5276bd2d1cca7574ca3f48"
+      "Hash": "2304e0b626c798bad9535f2d7bae49d0"
     },
     "arcgisutils": {
       "Package": "arcgisutils",
       "Version": "0.1.0",
-      "Source": "unknown",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "r-arcgis",
+      "RemoteRepo": "arcgisutils",
+      "RemoteRef": "main",
+      "RemoteSha": "baad6d52ec13ba4108f9cb2dd51f55509ea45e54",
       "Requirements": [
         "Rcpp",
         "RcppSimdJson",
@@ -128,7 +146,7 @@
         "sf",
         "utils"
       ],
-      "Hash": "4f5c9ca6a4f4a2f2e9ce99072a703026"
+      "Hash": "fe1b3311500d2d671d71269c72ec05ef"
     },
     "askpass": {
       "Package": "askpass",
