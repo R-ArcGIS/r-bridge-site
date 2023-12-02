@@ -1,6 +1,7 @@
 ---
 title: "Overwrite Hosted Feature Layer"
 subtitle: "Using the truncate and append workflow"
+freeze: true
 --- 
 
 ```{r include = FALSE}
