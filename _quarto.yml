@@ -26,7 +26,10 @@ website:
           - location-services/read-data.qmd
           - location-services/publishing.qmd
       #- tutorials.qmd
-      - workflows.qmd
+      - section: Workflows
+        contents:
+          - location-services/workflows/overwrite-feature-service.qmd
+      # - workflows.qmd
       - packages.qmd
 
 format:
