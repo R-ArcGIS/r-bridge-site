@@ -24,9 +24,9 @@ First load `arcgis`.
 library(arcgis)
 ```
 ```
-#> Attaching core arcgis packages:
-#>   - {arcgisutils} v0.1.0
-#>   - {arcgislayers} v0.1.0
+Attaching core arcgis packages:
+  - {arcgisutils} v0.1.0
+  - {arcgislayers} v0.1.0
 ```
 
 Next, authorize with the service itself and set the access token.
@@ -36,7 +36,7 @@ token <- auth_code()
 set_auth_token(token)
 ```
 ```
-#> Token set to environment variable `ARCGIS_TOKEN`
+Token set to environment variable `ARCGIS_TOKEN`
 ```
 
 Now that we have verified our identity with our portal we can create a `FeatureLayer` object from our hosted service. From your [content listing](https://arcgis.com/home/content.html) find the Feature Layer url. 
@@ -52,11 +52,11 @@ nc <- arc_open(furl) # <2>
 nc
 ```
 ```
-#> <FeatureLayer <100 features, 15 fields>>
-#> Name: North Carolina SIDS
-#> Geometry Type: esriGeometryPolygon
-#> CRS: 4267
-#> Capabilities: Create,Delete,Query,Update,Editing
+<FeatureLayer <100 features, 15 fields>>
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing
 ```
 
 :::{.aside}
@@ -83,10 +83,10 @@ nc <- refresh_layer(nc)
 nc
 ```
 ```
-#> <FeatureLayer <0 features, 15 fields>>
-#> Name: North Carolina SIDS
-#> Geometry Type: esriGeometryPolygon
-#> Capabilities: Create,Delete,Query,Update,Editing
+<FeatureLayer <0 features, 15 fields>>
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+Capabilities: Create,Delete,Query,Update,Editing
 ```
 
 After refreshing the layer we can see that there are now 0 features! Success! There are still 15 fields and we still have the same name and geometry type. 
@@ -119,7 +119,7 @@ It is important to note that the column names of the sf object must match the na
 add_res <- add_features(nc, nc_convex)
 ```
 ```
-#> Warning: CRS missing from `x` cannot verify matching CRS.
+Warning: CRS missing from `x` cannot verify matching CRS.
 ```
 
 We receive a warning because there is no spatial reference in the hosted `FeatureLayer` after truncating. Print the `add_res` object to see if each feature was successfully added.
@@ -128,13 +128,13 @@ We receive a warning because there is no spatial reference in the hosted `Featur
 head(add_res)
 ```
 ```
-#>     objectId uniqueId globalId success
-#> 1          1        1       NA    TRUE
-#> 2          2        2       NA    TRUE
-#> 3          3        3       NA    TRUE
-#> 4          4        4       NA    TRUE
-#> 5          5        5       NA    TRUE
-#> 6          6        6       NA    TRUE
+    objectId uniqueId globalId success
+1          1        1       NA    TRUE
+2          2        2       NA    TRUE
+3          3        3       NA    TRUE
+4          4        4       NA    TRUE
+5          5        5       NA    TRUE
+6          6        6       NA    TRUE
 ```
 
 Now that we have added our features, let us refresh the layer again.
@@ -143,11 +143,11 @@ Now that we have added our features, let us refresh the layer again.
 nc <- refresh_layer(nc)
 ```
 ```
-#> <FeatureLayer <100 features, 15 fields>>
-#> Name: North Carolina SIDS
-#> Geometry Type: esriGeometryPolygon
-#> CRS: 4267
-#> Capabilities: Create,Delete,Query,Update,Editing
+<FeatureLayer <100 features, 15 fields>>
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing
 ```
 
 If you view the hosted Feature Layer in the map viewer, you should now see the convex hulls.

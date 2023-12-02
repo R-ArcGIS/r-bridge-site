@@ -28,6 +28,7 @@ website:
       #- tutorials.qmd
       - section: Workflows
         contents:
+          - location-services/workflows/add-delete-update.qmd
           - location-services/workflows/overwrite-feature-service.qmd
       # - workflows.qmd
       - packages.qmd
