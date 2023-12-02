@@ -117,6 +117,8 @@ It is important to note that the column names of the sf object must match the na
 
 ```{r}
 add_res <- add_features(nc, nc_convex)
+```
+```
 #> Warning: CRS missing from `x` cannot verify matching CRS.
 ```
 
