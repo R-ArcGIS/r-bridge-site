@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Installing {arcgisbinding}</title>
+<title>R-ArcGIS Bridge - Overwrite Hosted Feature Layer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,10 +95,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">Installing <code>{arcgisbinding}</code></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../location-services/workflows/overwrite-feature-service.html">Workflows</a></li><li class="breadcrumb-item"><a href="../../location-services/workflows/overwrite-feature-service.html">Overwrite Hosted Feature Layer</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">R-ArcGIS Bridge</a> 
+      <a href="../../">R-ArcGIS Bridge</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -149,13 +149,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing <code>{arcgisbinding}</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
+  <a href="../../geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Geoprocessing Tools</span></a>
   </div>
 </li>
@@ -172,19 +172,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Connecting to your Portal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/read-data.html" class="sidebar-item-text sidebar-link">
+  <a href="../../location-services/read-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Read hosted data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/publishing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../location-services/publishing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Publishing from R</span></a>
   </div>
 </li>
@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/workflows/overwrite-feature-service.html" class="sidebar-item-text sidebar-link">
+  <a href="../../location-services/workflows/overwrite-feature-service.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Overwrite Hosted Feature Layer</span></a>
   </div>
 </li>
@@ -209,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../../packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
   </div>
 </li>
@@ -223,23 +223,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#from-pro" id="toc-from-pro" class="nav-link active" data-scroll-target="#from-pro">Install within ArcGIS Pro (recommended)</a></li>
-  <li><a href="#install-from-r" id="toc-install-from-r" class="nav-link" data-scroll-target="#install-from-r">Install from R</a></li>
-  <li><a href="#offline-installation" id="toc-offline-installation" class="nav-link" data-scroll-target="#offline-installation">Offline Installation</a></li>
-  <li><a href="#upgrading-arcgisbinding" id="toc-upgrading-arcgisbinding" class="nav-link" data-scroll-target="#upgrading-arcgisbinding">Upgrading <code>{arcgisbinding}</code></a>
-  <ul class="collapse">
-  <li><a href="#using-arcgis-pro" id="toc-using-arcgis-pro" class="nav-link" data-scroll-target="#using-arcgis-pro">Using ArcGIS Pro</a></li>
-  <li><a href="#using-r-or-offline" id="toc-using-r-or-offline" class="nav-link" data-scroll-target="#using-r-or-offline">Using R or offline</a></li>
-  </ul></li>
+  <li><a href="#truncating-a-feature-layer" id="toc-truncating-a-feature-layer" class="nav-link active" data-scroll-target="#truncating-a-feature-layer">Truncating a Feature Layer</a></li>
+  <li><a href="#adding-features" id="toc-adding-features" class="nav-link" data-scroll-target="#adding-features">Adding features</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installing <code>{arcgisbinding}</code></h1>
+<h1 class="title">Overwrite Hosted Feature Layer</h1>
+<p class="subtitle lead">Using the truncate and append workflow</p>
 </div>
 
 
@@ -254,68 +249,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><strong><code>arcgisbinding</code></strong> is an R package that enables communication between ArcGIS Pro and R. In order to use it, you must have a installation of ArcGIS Pro with a valid licenses as well as a supported version of R.</p>
-<section id="from-pro" class="level2">
-<h2 class="anchored" data-anchor-id="from-pro">Install within ArcGIS Pro (recommended)</h2>
-<p>If you are working in Pro 2.0 or beyond you have access to the built-in ArcGIS bridge installer which streamlines the process of installing <strong>arcgisbinding</strong>. It allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario, you will do the following:</p>
-<ul>
-<li>Open ArcGIS Pro and click on the ‘Project’ tab in your project.</li>
-<li>Select <code>Options</code> on the blue, left-hand side panel and in the pop-up window, under Application, select ‘Geoprocessing’.</li>
-<li>Under the R-ArcGIS Support options, select your desired R home directory.</li>
-</ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<p>From time to time as the owner of a Feature Layer, you may need to completely overwrite the data in the service. Overwriting a web layer from ArcGIS Pro may lead to a loss of associated pop-ups and symbology. One way to get around this is to truncate the feature service and append new data to the same service.</p>
+<p>For this example, we need to be the owner of a Feature Service. As such, we will use the North Carolina SIDS dataset we created in the <a href="../../location-services/publishing.html"><strong>Publishing from R</strong></a> tutorial. If you have not done that tutorial, complete it first.</p>
+<section id="truncating-a-feature-layer" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="truncating-a-feature-layer">Truncating a Feature Layer</h2>
+<p>Truncating a Feature Layer deletes every single record in the service and resets the auto-increment of the object ID. Truncating a service does not change the field definitions or permit us to add or remove fields to it. If you wish to do so, publish a new layer instead.</p>
+<p>Before we can modify a service, we must first authorize ourselves with the portal. To do so we will use the <code>auth_code()</code> authorization flow. If you have not yet configured you environment to authorize with your portal, follow the <a href="../../location-services/connecting-to-a-portal.html"><strong>Connecting to your Portal</strong></a> tutorial.</p>
+<p>First load <code>arcgis</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>#&gt; Attaching core arcgis packages:
+#&gt;   - {arcgisutils} v0.1.0
+#&gt;   - {arcgislayers} v0.1.0</code></pre>
+<p>Next, authorize with the service itself and set the access token.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>#&gt; Token set to environment variable `ARCGIS_TOKEN`</code></pre>
+<p>Now that we have verified our identity with our portal we can create a <code>FeatureLayer</code> object from our hosted service. From your <a href="https://arcgis.com/home/content.html">content listing</a> find the Feature Layer url.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Tip
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>Note: All versions of R installed on your computer will appear in the drop-down menu. Make sure the version you select is R 3.2.2 or later. However, if you have installed R to a location other than the default, you might need to navigate to that location using the browse button.</p>
+<p>Revisit the “Obtaining a feature layer url” section of the <a href="../../location-services/read-data.html#obtaining-a-feature-layer-url"><strong>Read hosted data</strong></a> tutorial if you forgot how to retrieve the service url.</p>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0"</span></span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li><p>If you have never installed the <strong>arcgisbinding</strong>, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to automatically download and install <strong>arcgisbinding</strong>, to separately download the package, or to install the package from file. Select the first option to <code>"automatically download and install"</code> the <strong>arcgisbinding</strong> package.</p></li>
-<li><p>A pop-up window will appear to inform you there is a new <strong>arcgisbinding</strong> version and will ask you if you wish to install it. Select <code>"Yes"</code>.</p></li>
-<li><p>A progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package <strong>arcgisbinding</strong> was successfully installed.</p></li>
-</ul>
+<pre><code>#&gt; &lt;FeatureLayer &lt;100 features, 15 fields&gt;&gt;
+#&gt; Name: North Carolina SIDS
+#&gt; Geometry Type: esriGeometryPolygon
+#&gt; CRS: 4267
+#&gt; Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>This is the url of your hosted feature service. This will be different than what is here. Note that the <code>/0</code> indicates the layer index. You can often copy the url from under the URL section on the right hand menu and append the <code>/0</code> to it.</p>
+</div></div><p>Before we can truncate the <code>FeatureLayer</code>, we should check to see that the layer itself supports this operation. The <code>supportsTruncate</code> attribute will return <code>TRUE</code> if we can truncate it. If not, we’re out of luck and need to create an entirely new service!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nc[[<span class="st">"supportsTruncate"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since we know that we can truncate the service, we can go ahead and do so.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>truncate_res <span class="ot">&lt;-</span> <span class="fu">truncate_layer</span>(nc)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>truncate_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We store the result into <code>truncate_res</code> to see the results. Let’s now go ahead and refresh our layer and check to see if the changes have taken place.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">refresh_layer</span>(nc)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>#&gt; &lt;FeatureLayer &lt;0 features, 15 fields&gt;&gt;
+#&gt; Name: North Carolina SIDS
+#&gt; Geometry Type: esriGeometryPolygon
+#&gt; Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<p>After refreshing the layer we can see that there are now 0 features! Success! There are still 15 fields and we still have the same name and geometry type.</p>
 </section>
-<section id="install-from-r" class="level2">
-<h2 class="anchored" data-anchor-id="install-from-r">Install from R</h2>
-<p>Alternatively, you can install the binding directly from R if you so wish! Open RStudio, VS Code, or your favorite text editor and run the following from the console.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"arcgisbinding"</span>, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">"https://r.esri.com"</span>, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"win.binary"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will install the package binary directly from our GitHub repository which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer.</p>
-</section>
-<section id="offline-installation" class="level2">
-<h2 class="anchored" data-anchor-id="offline-installation">Offline Installation</h2>
-<p>Many users of the R-ArcGIS Pro bridge (<strong>arcgisbinding</strong>) work in a completely air-gapped environment where downloading external packages from the internet is not possible.</p>
-<p>In order to install <strong>arcgisbinding</strong> in an air-gapped environment you must first download the package on an internet enabled machine and <a href="https://www.techopedia.com/definition/1880/sneakernet">“sneakernet”</a> it into your offline environment.</p>
-<p>To download the package go to https://r.esri.com/bin/ and choose the version of <strong>arcgisbridge</strong> that matches your version of R.</p>
-<p>Once you’ve moved the zip file onto your air-gapped machine you can install it using the <code>install.packages()</code> command.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"path/to/arcgisbinding_1.0.1.306.zip"</span>, <span class="at">repos =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="upgrading-arcgisbinding" class="level2">
-<h2 class="anchored" data-anchor-id="upgrading-arcgisbinding">Upgrading <code>{arcgisbinding}</code></h2>
-<section id="using-arcgis-pro" class="level3">
-<h3 class="anchored" data-anchor-id="using-arcgis-pro">Using ArcGIS Pro</h3>
-<p>If you have installed <strong>arcgisbinding</strong> from within ArcGIS Pro, follow the instructions for <a href="#from-pro">installing within ArcGIS Pro</a>.</p>
-<p>If you have previously installed <strong>arcgisbinding</strong>, you will see an installed message that lets you know the version of your <strong>arcgisbinding</strong> package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the <strong>arcgisbinding</strong> package. If prompted to update, click <code>"Yes"</code> and the latest version will automatically be installed.</p>
-</section>
-<section id="using-r-or-offline" class="level3">
-<h3 class="anchored" data-anchor-id="using-r-or-offline">Using R or offline</h3>
-<p>To upgrade your package using R or in an offline environment, repeat the steps above.</p>
+<section id="adding-features" class="level2">
+<h2 class="anchored" data-anchor-id="adding-features">Adding features</h2>
+<p>Now that we have deleted all of the features of the layer, lets go ahead and add some new ones. Let’s read the <code>nc.shp</code> file from sf into memory, give it a slight modification, and add those features to our service.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nc_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nc_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 100 features and 14 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+# A tibble: 100 × 15
+    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10
+ 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10
+ 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208
+ 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123
+ 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066
+ 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954
+ 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115
+ 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254
+ 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748
+10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160
+# ℹ 90 more rows
+# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,
+#   geometry &lt;MULTIPOLYGON [°]&gt;</code></pre>
+</div>
+</div>
+<p>Rather than publish the polygons as they are, let’s calculate the convex hull of each shape and publish those.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nc_convex <span class="ot">&lt;-</span> <span class="fu">st_convex_hull</span>(nc_sf)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(nc_convex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s take this sf object and add them as features to our now empty <code>FeatureLayer</code>. To add features we use the <code>add_features()</code> function. The first argument is the <code>FeatureLayer</code> (or <code>Table</code>) that we are adding features to. The second is the sf object that we will be adding to the layer.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is important to note that the column names of the sf object must match the names of the fields in the <code>FeatureLayer</code> otherwise <code>arcgis</code> does not know which column matches which field.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>add_res <span class="ot">&lt;-</span> <span class="fu">add_features</span>(nc, nc_convex)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: CRS missing from `x` cannot verify matching CRS.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We receive a warning because there is no spatial reference in the hosted <code>FeatureLayer</code> after truncating. Print the <code>add_res</code> object to see if each feature was successfully added.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(add_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>#&gt;     objectId uniqueId globalId success
+#&gt; 1          1        1       NA    TRUE
+#&gt; 2          2        2       NA    TRUE
+#&gt; 3          3        3       NA    TRUE
+#&gt; 4          4        4       NA    TRUE
+#&gt; 5          5        5       NA    TRUE
+#&gt; 6          6        6       NA    TRUE</code></pre>
+<p>Now that we have added our features, let us refresh the layer again.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>#&gt; &lt;FeatureLayer &lt;100 features, 15 fields&gt;&gt;
+#&gt; Name: North Carolina SIDS
+#&gt; Geometry Type: esriGeometryPolygon
+#&gt; CRS: 4267
+#&gt; Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<p>If you view the hosted Feature Layer in the map viewer, you should now see the convex hulls.</p>
+<p><img src="images/nc-convex-hulls.png" class="img-fluid"></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
