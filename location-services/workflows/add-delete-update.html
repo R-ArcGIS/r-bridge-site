@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../location-services/workflows/add-delete-update.html">Workflows</a></li><li class="breadcrumb-item"><a href="../../location-services/workflows/add-delete-update.html">Editing Features</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../location-services/connecting-to-a-portal.html">Location Services</a></li><li class="breadcrumb-item"><a href="../../location-services/workflows/add-delete-update.html">Editing Features</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -188,17 +188,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Publishing from R</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Workflows</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../location-services/workflows/add-delete-update.html" class="sidebar-item-text sidebar-link active">
@@ -232,6 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link active" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
   <li><a href="#adding-features" id="toc-adding-features" class="nav-link" data-scroll-target="#adding-features">Adding features</a></li>
   <li><a href="#updating-features" id="toc-updating-features" class="nav-link" data-scroll-target="#updating-features">Updating Features</a></li>
+  <li><a href="#deleting-features" id="toc-deleting-features" class="nav-link" data-scroll-target="#deleting-features">Deleting Features</a></li>
   </ul>
 </nav>
     </div>
@@ -324,19 +314,19 @@ Geodetic CRS:  NAD27
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="5" data-code-annotation="1" data-code-cell="annotated-cell-4">The <a href="https://dplyr.tidyverse.org/reference/across.html"><code>across()</code></a> function applies a function to multiple columns at once.</span>
+<span data-code-cell="annotated-cell-4" data-code-annotation="1" data-code-lines="5">The <a href="https://dplyr.tidyverse.org/reference/across.html"><code>across()</code></a> function applies a function to multiple columns at once.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="6" data-code-annotation="2" data-code-cell="annotated-cell-4">We specify the columns we will be apply a function to in <code>.cols</code>. We use the <code>tidyselect</code> helpers to catch any columns that end with <code>74</code> or <code>79</code>.</span>
+<span data-code-cell="annotated-cell-4" data-code-annotation="2" data-code-lines="6">We specify the columns we will be apply a function to in <code>.cols</code>. We use the <code>tidyselect</code> helpers to catch any columns that end with <code>74</code> or <code>79</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="7" data-code-annotation="3" data-code-cell="annotated-cell-4">The <code>.fns</code> argument specifies which functions will be applied to the columns. In this case, we apply on the <code>mean()</code> function to calculate the average.</span>
+<span data-code-cell="annotated-cell-4" data-code-annotation="3" data-code-lines="7">The <code>.fns</code> argument specifies which functions will be applied to the columns. In this case, we apply on the <code>mean()</code> function to calculate the average.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="9" data-code-annotation="4" data-code-cell="annotated-cell-4">The <code>NAME</code> field is set manually to the value of <code>"Total"</code> to indicate that it is not a county.</span>
+<span data-code-cell="annotated-cell-4" data-code-annotation="4" data-code-lines="9">The <code>NAME</code> field is set manually to the value of <code>"Total"</code> to indicate that it is not a county.</span>
 </dd>
 </dl>
 </div>
@@ -423,11 +413,13 @@ Geodetic CRS:  NAD27
 <p>In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable <code>nc_totals</code>. When looking at it, we can see that the <code>AREA</code> AND <code>PERIMTER</code> values are missing. These might be helpful at a later point.</p>
 <p>In this section we will use the function <code>update_features()</code> to modify these values. First, let’s create a new object called <code>to_update</code> that has the <code>AREA</code> and <code>PERIMETER</code> computed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nc_avgs <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nc_area_perim <span class="ot">&lt;-</span> nc_avgs <span class="sc">|&gt;</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">AREA =</span> <span class="fu">st_area</span>(geometry) <span class="sc">/</span> <span class="fl">1e10</span>,</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">PERIMETER =</span> s2<span class="sc">::</span><span class="fu">s2_perimeter</span>(geometry) <span class="sc">/</span> <span class="fl">1e5</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>nc_area_perim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>Simple feature collection with 1 feature and 15 fields
 Geometry type: MULTIPOLYGON
@@ -436,7 +428,120 @@ Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
 Geodetic CRS:  NAD27
   object_id           AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
 1       101 12.70259 [m^2]  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...</code></pre>
-<p>Like <code>add_features()</code>, we need to match the field names</p>
+<p>Like <code>add_features()</code>, we need to be able to match columns to their respective fields. The <code>match_on</code> argument is used to specify if the column names match the field name or field alias.</p>
+<p>In the case of <code>update_features()</code> we also need to be able to match the features in the <code>sf</code> dataset to the <em>exact</em> feature in the <code>FeatureLayer</code>. We do this by providing the object ID of the feature. This tells ArcGIS <em>which</em> features we are actually going to update.</p>
+<p>When using <code>update_features()</code> we should be aware that <em>every</em> column present in the <code>sf</code> object will be updated <em>including the geometry</em>. For this reason, we should select only those columns which we truly wish to update.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>to_update <span class="ot">&lt;-</span> nc_area_perim <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(object_id, AREA, PERIMETER)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>to_update</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here we use <code>sf::st_drop_geometry()</code>to remove the geometry of our object since we do not want to update the geometry in our <code>FeatureLayer</code>. We also only select the <code>object_id</code>, <code>AREA</code>, and <code>PERIMETER</code> columns so that we do not make an errant updates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>update_res <span class="ot">&lt;-</span> <span class="fu">update_features</span>(nc, to_update)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>$updateResults
+  objectId uniqueId globalId success
+1      101      101       NA    TRUE</code></pre>
+<p>Our update process was successful! We can repeat our previous query to verify this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a> nc <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Simple feature collection with 1 feature and 15 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+  object_id     AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
+1       101 12.70259  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...</code></pre>
+</section>
+<section id="deleting-features" class="level2">
+<h2 class="anchored" data-anchor-id="deleting-features">Deleting Features</h2>
+<p>While <code>add_features()</code> and <code>update_features()</code> had a very similar syntax, <code>delete_features()</code> has a somewhat different interface. We have 3 different ways in which we can delete features. Here we will explore only two of them.</p>
+<p>We can delete features based on object IDs, or a SQL where clause. Let explore deleting features based on object IDs. To do so, we need to pass the <code>FeatureLayer</code> obejct as the first argument to <code>delete_features()</code> and the second argument is a numeric vector of the IDs we want to delete. The ID <code>101</code> is the new feature that we created.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>delete_res <span class="ot">&lt;-</span> <span class="fu">delete_features</span>(nc, <span class="at">object_ids =</span> <span class="dv">101</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>delete_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>$deleteResults
+  objectId uniqueId globalId success
+1      101      101       NA    TRUE</code></pre>
+<p>We can check to see if the delete worked by refreshing the laye and seeing the count that is printed out.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>&lt;FeatureLayer &lt;100 features, 15 fields&gt;&gt;
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<p>Alternatively, we can delete features based on a <code>where</code> clause. Say we wanted to delete all of the features where the <code>BIR74</code> value was less than <code>1000</code>. We can accomplish this using a where clause.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>delete_res <span class="ot">&lt;-</span> <span class="fu">delete_features</span>(nc, <span class="at">where =</span> <span class="st">"BIR74 &lt; 1000"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>delete_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>$deleteResults
+   objectId uniqueId globalId success
+1         2        2       NA    TRUE
+2         4        4       NA    TRUE
+3         7        7       NA    TRUE
+4         8        8       NA    TRUE
+5         9        9       NA    TRUE
+6        20       20       NA    TRUE
+7        21       21       NA    TRUE
+8        22       22       NA    TRUE
+9        32       32       NA    TRUE
+10       35       35       NA    TRUE
+11       38       38       NA    TRUE
+12       44       44       NA    TRUE
+13       45       45       NA    TRUE
+14       56       56       NA    TRUE
+15       58       58       NA    TRUE
+16       59       59       NA    TRUE
+17       73       73       NA    TRUE
+18       77       77       NA    TRUE
+19       78       78       NA    TRUE
+20       80       80       NA    TRUE
+21       83       83       NA    TRUE
+22       87       87       NA    TRUE
+23       90       90       NA    TRUE</code></pre>
+<p>Successful deletes! Again, we can check to see the new count using <code>refresh_layer()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>&lt;FeatureLayer &lt;77 features, 15 fields&gt;&gt;
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<p>Lastly, if you want to delete <em>every single feature</em>. We can take advantage of the where clause again. If we set <code>where = "1 = 1"</code> that will evaluate <code>TRUE</code> for every single feature.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>delete_res <span class="ot">&lt;-</span> <span class="fu">delete_features</span>(nc, <span class="at">where =</span> <span class="st">"1 = 1"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>delete_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>$deleteResults
+   objectId uniqueId globalId success
+1         1        1       NA    TRUE
+2         3        3       NA    TRUE
+3         5        5       NA    TRUE
+4         6        6       NA    TRUE
+5        10       10       NA    TRUE
+6        11       11       NA    TRUE
+          ... Truncated ...</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>&lt;FeatureLayer &lt;0 features, 15 fields&gt;&gt;
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<p>Using <code>delete_features(x, where = "1 = 1")</code> is basically the equivalent of <code>truncate_layer()</code>.</p>
+<p>Congratulations! You’ve now learned how to add features, update them, and delete them from a hosted <code>FeatureLayer</code>.</p>
 
 
 </section>
