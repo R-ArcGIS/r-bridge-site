@@ -144,11 +144,13 @@ In the previous section we added a new feature that is the average of our numeri
 In this section we will use the function `update_features()` to modify these values. First, let's create a new object called `to_update` that has the `AREA` and `PERIMETER` computed. 
 
 ```{r}
-nc_avgs |> 
+nc_area_perim <- nc_avgs |> 
   mutate(
     AREA = st_area(geometry) / 1e10,
     PERIMETER = s2::s2_perimeter(geometry) / 1e5
   )
+
+nc_area_perim
 ```
 ```
 Simple feature collection with 1 feature and 15 fields
@@ -160,11 +162,154 @@ Geodetic CRS:  NAD27
 1       101 12.70259 [m^2]  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...
 ```
 
+Like `add_features()`, we need to be able to match columns to their respective fields. The `match_on` argument is used to specify if the column names match the field name or field alias. 
 
-Like `add_features()`, we need to match the field names 
+In the case of `update_features()` we also need to be able to match the features in the `sf` dataset to the _exact_ feature in the `FeatureLayer`. We do this by providing the object ID of the feature. This tells ArcGIS _which_ features we are actually going to update. 
 
+When using `update_features()` we should be aware that _every_ column present in the `sf` object will be updated _including the geometry_. For this reason, we should select only those columns which we truly wish to update.
 
+```{r}
+to_update <- nc_area_perim |> 
+  st_drop_geometry() |> 
+  select(object_id, AREA, PERIMETER)
 
+to_update
+```
 
+Here we use `sf::st_drop_geometry()`to remove the geometry of our object since we do not want to update the geometry in our `FeatureLayer`. We also only select the `object_id`, `AREA`, and `PERIMETER` columns so that we do not make an errant updates. 
 
+```{r}
+update_res <- update_features(nc, to_update)
+```
+```
+$updateResults
+  objectId uniqueId globalId success
+1      101      101       NA    TRUE
+```
 
+Our update process was successful! We can repeat our previous query to verify this. 
+
+```{r}
+ nc |> 
+  filter(NAME == "Total") |> 
+  collect()
+```
+```
+Simple feature collection with 1 feature and 15 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+  object_id     AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
+1       101 12.70259  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...
+```
+
+## Deleting Features
+
+While `add_features()` and `update_features()` had a very similar syntax, `delete_features()` has a somewhat different interface. We have 3 different ways in which we can delete features. Here we will explore only two of them.
+
+We can delete features based on object IDs, or a SQL where clause. Let explore deleting features based on object IDs. To do so, we need to pass the `FeatureLayer` obejct as the first argument to `delete_features()` and the second argument is a numeric vector of the IDs we want to delete. The ID `101` is the new feature that we created. 
+
+```{r}
+delete_res <- delete_features(nc, object_ids = 101)
+delete_res
+```
+
+```
+$deleteResults
+  objectId uniqueId globalId success
+1      101      101       NA    TRUE
+```
+
+We can check to see if the delete worked by refreshing the laye and seeing the count that is printed out. 
+
+```{r}
+refresh_layer(nc)
+```
+```
+<FeatureLayer <100 features, 15 fields>>
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing
+```
+
+Alternatively, we can delete features based on a `where` clause. Say we wanted to delete all of the features where the `BIR74` value was less than `1000`. We can accomplish this using a where clause. 
+
+```{r}
+delete_res <- delete_features(nc, where = "BIR74 < 1000")
+delete_res
+```
+```
+$deleteResults
+   objectId uniqueId globalId success
+1         2        2       NA    TRUE
+2         4        4       NA    TRUE
+3         7        7       NA    TRUE
+4         8        8       NA    TRUE
+5         9        9       NA    TRUE
+6        20       20       NA    TRUE
+7        21       21       NA    TRUE
+8        22       22       NA    TRUE
+9        32       32       NA    TRUE
+10       35       35       NA    TRUE
+11       38       38       NA    TRUE
+12       44       44       NA    TRUE
+13       45       45       NA    TRUE
+14       56       56       NA    TRUE
+15       58       58       NA    TRUE
+16       59       59       NA    TRUE
+17       73       73       NA    TRUE
+18       77       77       NA    TRUE
+19       78       78       NA    TRUE
+20       80       80       NA    TRUE
+21       83       83       NA    TRUE
+22       87       87       NA    TRUE
+23       90       90       NA    TRUE
+```
+
+Successful deletes! Again, we can check to see the new count using `refresh_layer()`.
+
+```{r}
+refresh_layer(nc)
+```
+```
+<FeatureLayer <77 features, 15 fields>>
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing
+```
+
+Lastly, if you want to delete _every single feature_. We can take advantage of the where clause again. If we set `where = "1 = 1"` that will evaluate `TRUE` for every single feature.
+
+```{r}
+delete_res <- delete_features(nc, where = "1 = 1")
+delete_res
+```
+```
+$deleteResults
+   objectId uniqueId globalId success
+1         1        1       NA    TRUE
+2         3        3       NA    TRUE
+3         5        5       NA    TRUE
+4         6        6       NA    TRUE
+5        10       10       NA    TRUE
+6        11       11       NA    TRUE
+          ... Truncated ...
+```
+
+```{r}
+refresh_layer(nc)
+```
+```
+<FeatureLayer <0 features, 15 fields>>
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing
+```
+
+Using `delete_features(x, where = "1 = 1")` is basically the equivalent of `truncate_layer()`. 
+
+Congratulations! You've now learned how to add features, update them, and delete them from a hosted `FeatureLayer`.
