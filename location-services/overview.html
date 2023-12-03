@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Workflows</title>
+<title>R-ArcGIS Bridge - Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -59,9 +61,40 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="styles.css">
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -73,9 +106,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      R-ArcGIS Bridge
-      </li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/overview.html">Overview</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -90,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">R-ArcGIS Bridge</a> 
+      <a href="../">R-ArcGIS Bridge</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -102,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -117,13 +148,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
+  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing <code>{arcgisbinding}</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
+  <a href="../geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Geoprocessing Tools</span></a>
   </div>
 </li>
@@ -140,37 +171,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./location-services/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../location-services/overview.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Connecting to your Portal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./location-services/read-data.html" class="sidebar-item-text sidebar-link">
+  <a href="../location-services/read-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Read hosted data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./location-services/publishing.html" class="sidebar-item-text sidebar-link">
+  <a href="../location-services/publishing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Publishing from R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./location-services/workflows/add-delete-update.html" class="sidebar-item-text sidebar-link">
+  <a href="../location-services/workflows/add-delete-update.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Editing Features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./location-services/workflows/overwrite-feature-service.html" class="sidebar-item-text sidebar-link">
+  <a href="../location-services/workflows/overwrite-feature-service.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overwrite Hosted Feature Layer</span></a>
   </div>
 </li>
@@ -178,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
   </div>
 </li>
@@ -195,7 +226,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Workflows</h1>
+<h1 class="title">Overview</h1>
+<p class="subtitle lead">Interact with ArcGIS Location Services directly from R</p>
 </div>
 
 
@@ -213,7 +245,119 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1701620059314" data-listing-reading-time-sort="5">
+<div class="thumbnail">
+<p><a href="../location-services/connecting-to-a-portal.html"> <p class="card-img-top"><img src="images/sharing-public.png"  class="thumbnail-image card-img"/></p> </a></p>
+</div>
+<div class="body">
+<a href="../location-services/connecting-to-a-portal.html">
+<h3 class="no-anchor listing-title">
+Connecting to your Portal
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+In order to read content items that do not have a “Public” Sharing level (), or to write to or modify existing content items that you are an owner of, you will need to be authorized.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="../location-services/connecting-to-a-portal.html"> </a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1701620059322" data-listing-reading-time-sort="13">
+<div class="thumbnail">
+<p><a href="../location-services/workflows/add-delete-update.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
+</div>
+<div class="body">
+<a href="../location-services/workflows/add-delete-update.html">
+<h3 class="no-anchor listing-title">
+Editing Features
+</h3>
+<div class="listing-subtitle">
+Learn to add, update, or delete features
+</div>
+<div class="listing-description">
+Programmatically, adding, deleting, or updating features using <code>{arcgis}</code> is a deceptively simple process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted Feature Layer or Table.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="../location-services/workflows/add-delete-update.html"> </a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1701620059334" data-listing-reading-time-sort="5">
+<div class="thumbnail">
+<p><a href="../location-services/workflows/overwrite-feature-service.html"> <p class="card-img-top"><img src="workflows/images/nc-convex-hulls.png"  class="thumbnail-image card-img"/></p> </a></p>
+</div>
+<div class="body">
+<a href="../location-services/workflows/overwrite-feature-service.html">
+<h3 class="no-anchor listing-title">
+Overwrite Hosted Feature Layer
+</h3>
+<div class="listing-subtitle">
+Using the truncate and append workflow
+</div>
+<div class="listing-description">
+From time to time as the owner of a Feature Layer, you may need to completely overwrite the data in the service. Overwriting a web layer from ArcGIS Pro may lead to a loss of associated pop-ups and symbology. One way to get around this is to truncate the feature service and append new data to the same service.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="../location-services/workflows/overwrite-feature-service.html"> </a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1701620059322" data-listing-reading-time-sort="4">
+<div class="thumbnail">
+<p><a href="../location-services/publishing.html"> <p class="card-img-top"><img src="images/publish/nc-sids.png"  class="thumbnail-image card-img"/></p> </a></p>
+</div>
+<div class="body">
+<a href="../location-services/publishing.html">
+<h3 class="no-anchor listing-title">
+Publishing from R
+</h3>
+<div class="listing-subtitle">
+Create Hosted ArcGIS Online or Enterprise Feature Services from R
+</div>
+<div class="listing-description">
+While you may often consume data as an R user, you may also want to also publish data as a hosted feature service. In this tutorial we will go over how to publish an <code>sf</code> object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="../location-services/publishing.html"> </a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1701620059322" data-listing-reading-time-sort="6">
+<div class="thumbnail">
+<p><a href="../location-services/read-data.html"> <p class="card-img-top"><img src="images/read-data/usa-cities.png"  class="thumbnail-image card-img"/></p> </a></p>
+</div>
+<div class="body">
+<a href="../location-services/read-data.html">
+<h3 class="no-anchor listing-title">
+Read hosted data
+</h3>
+<div class="listing-subtitle">
+Learn how to read data from ArcGIS Online or Enterprise into R
+</div>
+<div class="listing-description">
+ArcGIS Online and Enterprise hosted Feature Layers can easily be read into R as <code>{sf}</code> objects using<code>{arcgislayers}</code>.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="../location-services/read-data.html"> </a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
