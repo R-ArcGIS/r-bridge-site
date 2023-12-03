@@ -22,15 +22,12 @@ website:
           - geoprocessing-tools.qmd
       - section: Location Services
         contents:
+          - location-services/overview.qmd
           - location-services/connecting-to-a-portal.qmd
           - location-services/read-data.qmd
           - location-services/publishing.qmd
-      #- tutorials.qmd
-      # - section: Workflows
-        # contents:
           - location-services/workflows/add-delete-update.qmd
           - location-services/workflows/overwrite-feature-service.qmd
-      # - workflows.qmd
       - packages.qmd
 
 format:

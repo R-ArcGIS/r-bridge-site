@@ -1,0 +1,6 @@
+---
+title: "Overview"
+subtitle: "Interact with ArcGIS Location Services directly from R"
+listing: 
+  max-description-length: 500
+---
