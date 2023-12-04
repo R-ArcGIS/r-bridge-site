@@ -27,7 +27,7 @@ library(leaflet)
 library(thematic)
 
 theme_set(theme_minimal())
-thematic_rmd()
+thematic_shiny()
 ```
 
 
@@ -311,6 +311,7 @@ Create an empty page with `bslib::page_fillable()`. We can add all of our elemen
 
 ```{r}
 page_fillable(
+  theme = theme_bootswatch("darkly"),
   map_card, stats, plot_tab
 )
 ```

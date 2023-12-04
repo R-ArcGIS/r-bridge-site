@@ -42,8 +42,8 @@ plot_tab <- navset_card_tab(
 )
 
 ui <- page_fillable(
-  theme = bs_theme(bootswatch = "quartz"),
-  card_title("Automobile Crashes"),
+  theme = bs_theme(bootswatch = "darkly"),
+  card_title("Vehicle-Pedestrian Incidents for Chattanooga, TN (2018-2023)"),
   layout_columns(
     card(
       leafletOutput("map")
