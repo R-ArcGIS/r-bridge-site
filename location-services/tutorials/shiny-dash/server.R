@@ -17,6 +17,36 @@ inci_sf <- arc_select(incidents)
 hs_sf <- arc_select(hotspots)
 
 
+
+# Plots -------------------------------------------------------------------
+
+annual_counts <- inci_sf |>
+  st_drop_geometry() |>
+  mutate(year = lubridate::year(Incident_Date)) |>
+  group_by(year) |>
+  count() |>
+  ungroup()
+
+gg_annual <- ggplot(annual_counts, aes(year, n)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Incidents"
+  )
+
+speed_counts <- inci_sf |>
+  st_drop_geometry() |>
+  count(Posted_Speed) |>
+  filter(!is.na(Posted_Speed))
+
+gg_speed <- ggplot(speed_counts, aes(Posted_Speed, n)) +
+  geom_col() +
+  labs(
+    x = "Posted Speed Limit (miles per hour)",
+    y = "Incidents"
+  )
+
 # Map ---------------------------------------------------------------------
 
 # create Hotspot labels in the dataset
@@ -61,35 +91,6 @@ map <- leaflet() |>
   ) |>
   setView(-85.3, 35.04, 12.5)
 
-
-# Plots -------------------------------------------------------------------
-
-annual_counts <- inci_sf |>
-  st_drop_geometry() |>
-  mutate(year = lubridate::year(Incident_Date)) |>
-  group_by(year) |>
-  count() |>
-  ungroup()
-
-gg_annual <- ggplot(annual_counts, aes(year, n)) +
-  geom_line() +
-  geom_point() +
-  labs(
-    x = "Year",
-    y = "Incidents"
-  )
-
-speed_counts <- inci_sf |>
-  st_drop_geometry() |>
-  count(Posted_Speed) |>
-  filter(!is.na(Posted_Speed))
-
-gg_speed <- ggplot(speed_counts, aes(Posted_Speed, n)) +
-  geom_col() +
-  labs(
-    x = "Posted Speed Limit (miles per hour)",
-    y = "Incidents"
-  )
 
 # Server ------------------------------------------------------------------
 
