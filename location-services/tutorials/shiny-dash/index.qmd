@@ -3,7 +3,7 @@ title: "WIP: Shiny App"
 subtitle: "Building a shiny dashboard"
 freeze: true
 resources: 
-  - ./html/lib
+  - html/lib
 ---
 
 This dashboard is live [here](./html/index.html)
