@@ -1,24 +1,30 @@
 ---
-title: "WIP: Shiny App"
-subtitle: "Building a shiny dashboard"
+title: "Dashboard using ArcGIS Hosted Data"
+subtitle: "Building an interactive dashboard with {arcgis}"
 freeze: true
 resources: 
   - html/lib
 ---
 
-This dashboard is live [here](./html/index.html)
+In this tutorial we will be recreating a dashboard that utilizes the data from the [City of Chattanooga Open Data Hub](https://www.chattadata.org/Public-Safety/Pedestrian-Accidents/8piy-9u9f). In the below LinkedIn post by [Charlie Mix](https://www.linkedin.com/in/charlie-mix/), they use this data to create an ArcGIS Dashboard. 
 
-Creating a dashboard https://igtlab.maps.arcgis.com/apps/dashboards/4447ff31b260499a84272c63c9b6da05
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7135693622615691264" height="500" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
-We will create a lightweight dashboard in R using `{bslib}`. The data will be static and the interactivity minimal.
+[Original LinkedIn Post](https://www.linkedin.com/posts/charlie-mix_arcgisdashboard-gis-activity-7135693623307767808-sbRW?utm_source=share&utm_medium=member_desktop)
 
-There are 4 components to this dashboard that we will want to recreate. These are the two plots, the statistics, and the map. 
+The data is provided as a [Feature Service](https://services.arcgis.com/UnTXoPXBYERF0OH6/arcgis/rest/services/Vehicle_Pedestrian_Incidents/FeatureServer) by Charlie Mix, which we will use to create a lightweight interactive dashboard in R using `{arcgis}` and `{bslib}`.
+
+The dashboard that we are going to create can be [viewed live here](https://r.esri.com/traffic-incidents-dashboard/index.html).
 
 ## The Packages
 
+
+There are 4 components to this dashboard that we will want to recreate. These are the two plots, the statistics, and the map. 
+
+
 We're going to use 9 packages to make this happen.
 ```{r}
-knitr::opts_chunk$set(eval = FALSE)
+# knitr::opts_chunk$set(eval = FALSE)
 ```
 
 
