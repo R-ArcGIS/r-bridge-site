@@ -6,8 +6,8 @@ library(plotly)
 library(bsicons)
 library(ggplot2)
 library(leaflet)
-library(thematic)
 
+theme_set(theme_minimal())
 # open the feature server
 crash_server <- arc_open("https://services.arcgis.com/UnTXoPXBYERF0OH6/arcgis/rest/services/Vehicle_Pedestrian_Incidents/FeatureServer")
 
@@ -19,6 +19,7 @@ hotspots <- get_layer(crash_server, 2)
 inci_sf <- arc_select(incidents)
 hs_sf <- arc_select(hotspots)
 
+# count the number of incidents by year
 annual_counts <- inci_sf |>
   st_drop_geometry() |>
   mutate(year = lubridate::year(Incident_Date)) |>
@@ -26,6 +27,7 @@ annual_counts <- inci_sf |>
   count() |>
   ungroup()
 
+# make annual incidents plot
 gg_annual <- ggplot(annual_counts, aes(year, n)) +
   geom_line() +
   geom_point(size = 3) +
@@ -34,20 +36,11 @@ gg_annual <- ggplot(annual_counts, aes(year, n)) +
     y = "Incidents"
   )
 
+# count incidents by speed
 speed_counts <- inci_sf |>
   st_drop_geometry() |>
   count(Posted_Speed) |>
   filter(!is.na(Posted_Speed))
-
-
-# Plotting ----------------------------------------------------------------
-# ensure theme is set
-thematic_on()
-theme_set(theme_minimal())
-auto_config_set(auto_config(priority = "bslib"))
-theme <- bs_theme(bootswatch = "darkly")
-bs_global_set(theme)
-
 
 gg_speed <- ggplot(speed_counts, aes(Posted_Speed, n)) +
   geom_col() +
@@ -180,9 +173,9 @@ dash_content <- layout_columns(
 )
 
 ui <- page_fillable(
-  theme = bs_theme(bootswatch = "darkly"),
   dash_content
 )
 
+ui
 # save to files
-# htmltools::save_html(ui, "location-services/tutorials/shiny-dash/html/index.html")
+htmltools::save_html(ui, "location-services/tutorials/shiny-dash/html/index.html")

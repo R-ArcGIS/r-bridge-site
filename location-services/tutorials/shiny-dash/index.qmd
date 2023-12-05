@@ -2,8 +2,11 @@
 title: "WIP: Shiny App"
 subtitle: "Building a shiny dashboard"
 freeze: true
+resources: 
+  - html/lib
 ---
 
+This dashboard is live [here](./html/index.html)
 
 Creating a dashboard https://igtlab.maps.arcgis.com/apps/dashboards/4447ff31b260499a84272c63c9b6da05
 
@@ -14,6 +17,10 @@ There are 4 components to this dashboard that we will want to recreate. These ar
 ## The Packages
 
 We're going to use 9 packages to make this happen.
+```{r}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
 
 ```{r, message = FALSE}
 library(sf)
@@ -24,10 +31,8 @@ library(plotly)
 library(bsicons)
 library(ggplot2)
 library(leaflet)
-library(thematic)
 
 theme_set(theme_minimal())
-thematic_shiny()
 ```
 
 
