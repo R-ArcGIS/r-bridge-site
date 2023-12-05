@@ -3,7 +3,7 @@ title: "Dashboard using ArcGIS Hosted Data"
 subtitle: "Building an interactive dashboard with {arcgis}"
 freeze: true
 resources: 
-  - html/lib
+  - html/*
 ---
 
 In this tutorial we will be recreating a dashboard that utilizes the data from the [City of Chattanooga Open Data Hub](https://www.chattadata.org/Public-Safety/Pedestrian-Accidents/8piy-9u9f). In the below LinkedIn post by [Charlie Mix](https://www.linkedin.com/in/charlie-mix/), they use this data to create an ArcGIS Dashboard. 
