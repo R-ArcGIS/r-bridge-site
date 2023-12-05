@@ -2,54 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/tutorials.html</loc>
-    <lastmod>2023-12-05T15:46:53.063Z</lastmod>
+    <lastmod>2023-12-05T16:31:15.234Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/location-services/overview.html</loc>
-    <lastmod>2023-12-05T15:46:52.263Z</lastmod>
+    <lastmod>2023-12-05T16:31:14.422Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/location-services/workflows/overwrite-feature-service.html</loc>
-    <lastmod>2023-12-05T15:46:51.211Z</lastmod>
+    <lastmod>2023-12-05T16:31:13.358Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/location-services/read-data.html</loc>
-    <lastmod>2023-12-05T15:46:50.087Z</lastmod>
+    <lastmod>2023-12-05T16:31:12.158Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/index.html</loc>
-    <lastmod>2023-12-05T15:46:48.859Z</lastmod>
+    <lastmod>2023-12-05T16:31:10.942Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/arcgisbinding/installing-arcgisbinding.html</loc>
-    <lastmod>2023-12-05T15:46:48.327Z</lastmod>
+    <lastmod>2023-12-05T16:31:10.402Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/geoprocessing-tools.html</loc>
-    <lastmod>2023-12-05T15:46:47.287Z</lastmod>
+    <lastmod>2023-12-05T16:31:09.350Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/packages.html</loc>
-    <lastmod>2023-12-05T15:46:47.831Z</lastmod>
+    <lastmod>2023-12-05T16:31:09.894Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/workflows.html</loc>
-    <lastmod>2023-12-05T15:46:48.583Z</lastmod>
+    <lastmod>2023-12-05T16:31:10.654Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/location-services/connecting-to-a-portal.html</loc>
-    <lastmod>2023-12-05T15:46:49.415Z</lastmod>
+    <lastmod>2023-12-05T16:31:11.498Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/location-services/tutorials/shiny-dash/index.html</loc>
-    <lastmod>2023-12-05T15:46:50.687Z</lastmod>
+    <lastmod>2023-12-05T16:31:12.822Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/location-services/workflows/add-delete-update.html</loc>
-    <lastmod>2023-12-05T15:46:51.835Z</lastmod>
+    <lastmod>2023-12-05T16:31:13.994Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/R-ArcGIS/r-bridge-site/location-services/publishing.html</loc>
-    <lastmod>2023-12-05T15:46:52.783Z</lastmod>
+    <lastmod>2023-12-05T16:31:14.954Z</lastmod>
   </url>
 </urlset>
