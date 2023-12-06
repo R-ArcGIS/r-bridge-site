@@ -98,7 +98,7 @@ glimpse(inci_sf)
 
 ## Creating the plots
 
-Next, we will recreate the charts that were used in the original dashboard using the packages `**ggplot2**` and `**plotly**` There are two plots that we will need to create. The first is the total number of incidents annually.
+Next, we will recreate the charts that were used in the original dashboard using the packages **`ggplot2`** and **`plotly`** There are two plots that we will need to create. The first is the total number of incidents annually.
 
 Before we can make the plots, we need to calculate the annual counts and store them in their own `data.frame`.
 
