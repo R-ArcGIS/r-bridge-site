@@ -1,6 +1,6 @@
 ---
-title: "Dashboard using ArcGIS Hosted Data"
-subtitle: "Building an interactive dashboard with {arcgis}"
+title: "Dashboard using `{arcgis}`"
+subtitle: "Building an interactive dashboard with ArcGIS hosted data"
 freeze: true
 resources: 
   - dash/**
