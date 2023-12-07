@@ -6,7 +6,7 @@ resources:
   - dash/**
 ---
 ```{r, include = FALSE, echo = FALSE}
-knitr::opts_chunk$set(comment = "#>")
+knitr::opts_chunk$set(comment = "#>", message = FALSE)
 ```
 
 In this tutorial we will be recreating a dashboard that utilizes the data from the [City of Chattanooga Open Data Portal](https://www.chattadata.org/Public-Safety/Pedestrian-Accidents/8piy-9u9f). In the below LinkedIn post by [Charlie Mix](https://www.linkedin.com/in/charlie-mix/), they use this data to create an ArcGIS Dashboard.
@@ -25,7 +25,7 @@ There are 4 components to this dashboard that we will want to recreate. These ar
 
 In addition to **arcgis** we will use a number of other packages to make this happen some may be new to you:
 
-- `sf`: spatial data manipulation
+- [`sf`](https://r-spatial.github.io/sf/): spatial data manipulation
 - [`bslib`](https://rstudio.github.io/bslib/): create the UI
 - [`dplyr`](https://dplyr.tidyverse.org/): basic data manipulation
 - [`arcgis`](https://r.esri.com/arcgis/): interact with feature services
