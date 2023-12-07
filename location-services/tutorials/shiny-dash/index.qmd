@@ -9,7 +9,7 @@ resources:
 knitr::opts_chunk$set(comment = "#>", message = FALSE)
 ```
 
-In this tutorial we will be recreating a dashboard that utilizes the data from the [City of Chattanooga Open Data Portal](https://www.chattadata.org/Public-Safety/Pedestrian-Accidents/8piy-9u9f). In the below LinkedIn post by [Charlie Mix](https://www.linkedin.com/in/charlie-mix/), they use this data to create an ArcGIS Dashboard.
+In this tutorial we will be recreating a dashboard that utilizes the data from the [City of Chattanooga Open Data Portal](https://www.chattadata.org/Public-Safety/Pedestrian-Accidents/8piy-9u9f). In the below LinkedIn post by [Charlie Mix](https://www.linkedin.com/in/charlie-mix/), GIS Director at the University of Tennessee at Chattanooga [IGTLab](https://www.utc.edu/interdisciplinary-geospatial-technology-lab), they use this data to create an ArcGIS Dashboard.
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7135693622615691264" height="500" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
