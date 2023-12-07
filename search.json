@@ -291,7 +291,7 @@
     "href": "location-services/tutorials/shiny-dash/index.html",
     "title": "Dashboard using {arcgis}",
     "section": "",
-    "text": "In this tutorial we will be recreating a dashboard that utilizes the data from the City of Chattanooga Open Data Portal. In the below LinkedIn post by Charlie Mix, they use this data to create an ArcGIS Dashboard.\nOriginal LinkedIn Post\nThe data is provided as a Feature Service by Charlie Mix, which we will use to create a lightweight interactive dashboard in R using {arcgis} and additional R packages.\nThe dashboard that we are going to create can be viewed live here."
+    "text": "In this tutorial we will be recreating a dashboard that utilizes the data from the City of Chattanooga Open Data Portal. In the below LinkedIn post by Charlie Mix, GIS Director at the University of Tennessee at Chattanooga IGTLab, they use this data to create an ArcGIS Dashboard.\nOriginal LinkedIn Post\nThe data is provided as a Feature Service by Charlie Mix, which we will use to create a lightweight interactive dashboard in R using {arcgis} and additional R packages.\nThe dashboard that we are going to create can be viewed live here."
   },
   {
     "objectID": "location-services/tutorials/shiny-dash/index.html#the-packages",
