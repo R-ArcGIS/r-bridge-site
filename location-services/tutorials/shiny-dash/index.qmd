@@ -5,7 +5,7 @@ freeze: true
 resources: 
   - dash/**
 ---
-```{r}
+```{r, include = FALSE, echo = FALSE}
 knitr::opts_chunk$set(comment = "#>")
 ```
 
@@ -292,7 +292,7 @@ drugs_card <- value_box(
 )
 ```
 
-Next, we will build out another component of our dashboar from these cards. We'll create a grid of these 4 using `bslib::layout_columns()`. This will arrange bslib components into columns for us. 
+Next, we will build out another component of our dashboard from these cards. We'll create a grid of these 4 using `bslib::layout_columns()`. This will arrange bslib components into columns for us. 
 
 ```{r}
 layout_columns(
@@ -319,7 +319,13 @@ stats
 
 ## Creating the map
 
-Having created two of the three component of our dashboard, let's take on the most challenging one: the map. We will use leaflet to create the map itself. However, for the sake of simplicity we will only be visualizing the hot spots and not adding in further interactivity such as pop-ups. 
+Having created two of the three component of our dashboard, let's take on the most challenging one: the map. We will use leaflet to create the map itself. However, for the sake of simplicity we will only be visualizing the hot spots and not adding in further interactivity such as pop-ups. Or the location of individual incidents.
+
+First let's create a vector of [Hot Spot Analysis](https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-how-hot-spot-analysis-getis-ord-gi-spatial-stati.htm) result labels called `gi_labels`. 
+
+:::{.aside}
+Hot Spot Analysis works by calculating a statistic called the Gi* (gee-eye-star).
+:::
 
 ```{r}
 # create labels vector to pass to leaflet
@@ -329,7 +335,13 @@ gi_labels <- c(
   "Hot Spot with 95% Confidence",
   "Hot Spot with 99% Confidence"
 )
+```
 
+We'll translate the `Gi_Bin` values to labels using the `dplyr::case_when()` function which lets us evaluate logical statements and when they evaluate to true, assign a value. 
+
+Since we will be using `leaflet` we will also need to use WGS84 coordinate system. We can use `st_transform()` to transform the geometry. 
+
+```{r}
 hexes <- hs_sf |>
   transmute(
     classification = case_when(
@@ -340,12 +352,22 @@ hexes <- hs_sf |>
     )
   ) |>
   st_transform(4326)
+```
 
+In order to modify the symbology used by leaflet, we need to create a color palette ourselves. For this, we will use the `colorFactor()` function. We need to provide it with two arguments. The first argument will be a character vector of color codes. The second argument `levels`, is also a character vector of the same length as the `palette` argument. The colors match the levels by position. 
+
+```{r}
 pal <- colorFactor(
   palette = c("#c6c6c3", "#c8976e", "#be6448", "#af3129"),
   levels = gi_labels
 )
+```
 
+With all of this, we can create our map in one chain. There's a lot going on here, but if you run it step by step, it'll be quite clear.
+
+First, we instantiate a leaflet map using `leaflet()`. Then, we add tiles (a base map) using `addProviderTiles()`. Following, we add our `hexes` object to the map using the `addPolygons()` function, add a legend with `addLegend()`. Lastly, we set an initial viewport location with the `setView()` function.
+
+```{r}
 map <- leaflet() |>
   addProviderTiles("Esri.WorldGrayCanvas") |>
   addPolygons(
@@ -365,7 +387,8 @@ map <- leaflet() |>
 
 map
 ```
-Let's put this map in a `bslib::card()` component with a proper title as well. We'll ad a title to the card with `bslib::card_header()`.
+
+To simplify our dashboard creation later, we can put this map into a bslib component with `bslib::card()`. We will give it a proper title as well with `bslib::card_header()`.
 
 ```{r}
 map_card <- card(
@@ -381,14 +404,18 @@ map_card
 
 Create an empty page with `bslib::page_fillable()`. We can add all of our elements directly to this page.
 
+
 ```{r}
 page_fillable(
   theme = theme_bootswatch("darkly"),
   map_card, stats, plot_tab
 )
 ```
-But they are all squished together and it isnt much of a dashboard. We can use the `bslib::layout_columns()` function to begin to arrange this a bit more. Let's first get our right hand side of the dashboard arranged into its own layout so that the statistics sit above the plots. 
+
+But they are all squished together and it isn't much of a dashboard. We can use the `bslib::layout_columns()` function to begin to arrange this a bit more. Let's first get our right hand side of the dashboard arranged into its own layout so that the statistics sit above the plots. 
+
 We'll set the `col_widths = 12` so that each component takes the full width. 
+
 
 ```{r}
 rhs_col <- layout_columns(
@@ -399,6 +426,7 @@ rhs_col <- layout_columns(
 
 rhs_col
 ```
+
 Now that we have the right hand side sorted out, let's create another `layout_columns()` where the map takes up 2/3 of the screen and the right hand column takes up the rest of the space. 
 
 ```{r}
@@ -431,8 +459,11 @@ library(ggplot2)
 library(leaflet)
 
 theme_set(theme_minimal())
+
+data_url <- "https://services.arcgis.com/UnTXoPXBYERF0OH6/arcgis/rest/services/Vehicle_Pedestrian_Incidents/FeatureServer"
+
 # open the feature server
-crash_server <- arc_open("https://services.arcgis.com/UnTXoPXBYERF0OH6/arcgis/rest/services/Vehicle_Pedestrian_Incidents/FeatureServer")
+crash_server <- arc_open(data_url)
 
 # fetch individual layers
 incidents <- get_layer(crash_server, 1)
@@ -543,16 +574,6 @@ rhs_col <- layout_columns(
   col_widths = 12
 )
 
-hexes <- hs_sf |>
-  transmute(
-    classification = case_when(
-      Gi_Bin == 0 ~ "Not Significant",
-      Gi_Bin == 1 ~ "Hot Spot with 90% Confidence",
-      Gi_Bin == 2 ~ "Hot Spot with 95% Confidence",
-      Gi_Bin == 3 ~ "Hot Spot with 99% Confidence"
-    )
-  ) |>
-  st_transform(4326)
 
 # create labels vector to pass to leaflet
 gi_labels <- c(
@@ -561,6 +582,17 @@ gi_labels <- c(
   "Hot Spot with 95% Confidence",
   "Hot Spot with 99% Confidence"
 )
+
+hexes <- hs_sf |>
+  transmute(
+    classification = case_when(
+      Gi_Bin == 0 ~ gi_labels[1],
+      Gi_Bin == 1 ~ gi_labels[2],
+      Gi_Bin == 2 ~ gi_labels[3],
+      Gi_Bin == 3 ~ gi_labels[4]
+    )
+  ) |>
+  st_transform(4326)
 
 pal <- colorFactor(
   palette = c("#c6c6c3", "#c8976e", "#be6448", "#af3129"),
