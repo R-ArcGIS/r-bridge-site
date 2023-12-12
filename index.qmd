@@ -1,36 +1,30 @@
 
-The R-ArcGIS Bridge is a project designed to integrate the power of R with the greater ArcGIS ecosystem.
-
-## Integrate with ArcGIS Pro `{arcgisbinding}`
-
-`{arcgisbinding}`,the first package created under the R-ArcGIS Bridge, is designed to _bridge_ the powers of R and ArcGIS. 
-
-Using `{arcgisbinding}` you can read and write local data sources and take advantage of ArcGIS Pro's [projection engine](https://github.com/Esri/projection-engine-db-doc). 
-
-- Read and write local data sources with [`arc.write()`](https://r.esri.com/assets/arcgisbinding.pdf) and [`arc.open()`](https://r.esri.com/assets/arcgisbinding.pdf)
-- Convert to `{sf}` and `{raster}` objects with [`arc.data2sf()`](https://r.esri.com/assets/arcgisbinding.pdf) and [`arc.raster()`](https://r.esri.com/assets/arcgisbinding.pdf)
-
-_Get started by [installing `{arcgisbinding}`](arcgisbinding/installing-arcgisbinding.qmd)_
-
-### Geoprocessing Tools written in R
-
-The true power of `{arcgisbinding}` lies in it's ability to generate
-geoprocessing tools that execute R code.
-
-Read the documentation to get started building R-based geoprocessing tools! 
 
 
-## Interact with Location Services
+:::{.fs-1 .fw-lighter .text-center .mt-4}
+_Building bridges between 
+<br>the R and ArcGIS ecosystems_ 
+:::
+<hr>
 
-The `{arcgis}` metapackage provides access to Esri location services enabling users to read and write data from their hosted or on prem Portals. 
 
-Follow along with the [introduction tutorial]() to get started interacting with your organziation's data directly from R! 
+# Use ArcGIS Location Services 
 
+The **`arcgis`** package for location services meets developers where they are at. At it's core, **`arcgis`** is a collection of R packages designed to interact with [ArcGIS Location Services](https://developers.arcgis.com/documentation/mapping-apis-and-services/) all from the comfort of R and your text editor. 
+
+ArcGIS Location Services are provided as REST API endpoints and **`arcgis`** makes interacting with the services using R native objects seamless.
+
+# Interact with ArcGIS Pro
+
+`{arcgisbinding}`, the first package created for the R-ArcGIS Bridge, is designed to bind the powers of R and ArcGIS. Using `{arcgisbinding}` you can read and write local data sources and take advantage of ArcGIS Pro's [projection engine](https://github.com/Esri/projection-engine-db-doc). 
+
+Read and write local data sources with [`arc.write()`](https://r.esri.com/assets/arcgisbinding.pdf) and [`arc.open()`](https://r.esri.com/assets/arcgisbinding.pdf). Convert to `{sf}` and `{raster}` objects with [`arc.data2sf()`](https://r.esri.com/assets/arcgisbinding.pdf) and [`arc.raster()`](https://r.esri.com/assets/arcgisbinding.pdf). Or, create [geoprocessing script tools that use R](geoprocessing-tools.qmd).
+
+_Get started by [installing `{arcgisbinding}`.](arcgisbinding/installing-arcgisbinding.qmd)_
 
 ## Our R-packages
 
 ::: {layout-ncol=2}
-
 
 ::: {.card}
 [`{arcgisbinding}`](https://github.com/R-ArcGIS/r-bridge)
@@ -65,10 +59,3 @@ Process `FeatureCollection` protocol buffers in R using the power of Rust!
 :::
 
 :::
-
-
-## Not sure where to start?
-
-- Read and write Feature Services using `{arcgis}`
-- Create R based Geoprocessing tools
-- Access your enterprise geodatabase from R
