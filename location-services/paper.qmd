@@ -1,0 +1,46 @@
+---
+title: "`arcgislayers`: an open source package for ArcGIS Location Services"
+authors:
+  name: Josiah Parry
+  affiliation: Environmental Systems Research Institute, Redlands, CA, USA
+---
+
+## Summary
+
+arcgislayers is an open source package as part of Environmental Systems Research Institute's (Esri) R-ArcGIS Bridge project. arcgislayers enables developers to interact with ArcGIS data services directly from R. With arcgislayers, users can read, write, and administer remotely hosted data directly from R using native objects. 
+
+## Statement of need
+
+
+
+- Aydin et al introduce arcgisbinding which provides a binding to ArcGIS pro enabling the reading and writing of ArcGIS Proprietary data formats and on the fly geospatial transformations using the transformation engine
+- We're seeing a shift towards cloud-native geospatial analysisdata infrastructure which are exposed via rest apis
+- Esri provides very useful technology via ArcGIS Location Services. Location services are exposed via rest APIs which are well documented. Endpoints can be both public or private depending on the hosting solution and authentication used. 
+- REST services provide a language agnostic interface to proprietary code allowing the development of completely open source bindings to the services
+
+- While arcgisbinding provides a way for users of R _and_ ArcGIS Pro to read image and feature services it is fairly limited. Noteably, the use of arcgisbinding requires an ArcGIS Pro license which itself requires a window machine. Further, arcgisbinding does not provide further capabilities for hosted data management. 
+
+- arcgislayers builds upon the REST service provided by ArcGIS. arcgislayers is an open source R package for interacting with ArcGIS image servers and Feature services. 
+
+- there are a number of community driven efforts to address this gap which are notably esri2sf, arcpullr, among others. 
+
+- arcgislayers is an official, esri supported, and highly performant alternative to these packages
+
+
+# Implementation 
+
+- arcgislayers' raster capabilities are limited to image reading which is represented as terra 
+
+- vector capabilites are much more sophisticated
+
+- In the r-spatial ecosystem, sf objects are the de facto standard representation of geometric objects with associated attributes. As such, arcgislayers utilizes sf objects and data.frames to represent spatial and a-spatial data respectively. 
+
+- additional geometry object types are supported if converted to sf object first (likely via wk (dunnington))
+
+arcgislayers provides users with a way to read Feature Services, Image Servers, as well as add, delete, or update features, and even publish new ones directly from R. 
+
+The ArcGIS REST API defines a number of JSON objects that are understood by the endpoints. Notably, the REST APIs have their own definitions for geometries objects. Underpinning arcgislayers is the R package arcgisutils which is used for serializing data.frame and sf objects into Esri JSON formats. arcgisutils also provides utilities for deserializing Esri JSON returned from the REST APIs into sf or data.frame objects. 
+
+
+## Example usage 
+
