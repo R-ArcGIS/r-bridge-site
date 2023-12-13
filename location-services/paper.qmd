@@ -3,6 +3,7 @@ title: "`arcgislayers`: an open source package for ArcGIS Location Services"
 authors:
   name: Josiah Parry
   affiliation: Environmental Systems Research Institute, Redlands, CA, USA
+freeze: true
 ---
 
 ## Summary
@@ -20,24 +21,33 @@ Moreover, the community-driven endeavors such as esri2sf, arcpullr, among others
 arcgislayers is an official, Esri-backed, open-source R package designed to interact with ArcGIS Image Servers and Feature Services. Leveraging the REST services offered by ArcGIS, arcgislayers empowers developers to seamlessly administer, read, and write data without the constraints of proprietary licenses or operating systems.
 
 
-
 # Implementation 
 
-- arcgislayers' raster capabilities are limited to image reading which is represented as terra 
+arcgislayers supports both Image Servers and Feature Services. When reading raster imagery, arcgislayers returns objects of class `SpatRaster` from the terra package. arcgislayers' vector capabilities are much more sophisticated, however. 
 
-- vector capabilites are much more sophisticated
-
-- In the r-spatial ecosystem, sf objects are the de facto standard representation of geometric objects with associated attributes. As such, arcgislayers utilizes sf objects and data.frames to represent spatial and a-spatial data respectively. 
-
-- additional geometry object types are supported if converted to sf object first (likely via wk (dunnington))
-
-arcgislayers provides users with a way to read Feature Services, Image Servers, as well as add, delete, or update features, and even publish new ones directly from R. 
+In the r-spatial ecosystem, sf objects are the de facto representation of geometric objects with associated attributes. As such, arcgislayers utilizes sf objects and data.frames to represent spatial and a-spatial data respectively. Due to the ubiquity of sf objects additional geometry types are not supported directly but can be via wk (edzer, probably bivand somewhere inhere dunnington).
 
 The ArcGIS REST API defines a number of JSON objects that are understood by the endpoints. Notably, the REST APIs have their own definitions for geometries objects. Underpinning arcgislayers is the R package arcgisutils which is used for serializing data.frame and sf objects into Esri JSON formats. arcgisutils also provides utilities for deserializing Esri JSON returned from the REST APIs into sf or data.frame objects. 
+
+The de/serialization provided by arcgisutils enables seamless reading and writing of geospatial data with ArcGIS Location Services. 
+
+```{r, message = FALSE}
+sf::st_point(c(3.0, 0.14)) |> 
+  arcgisutils::as_esri_geometry() |> 
+  jsonify::pretty_json()
+```
 
 
 ## Example usage 
 
+```{r}
+library(arcgislayers)
+
+url <- "https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer/0"
+
+flayer <- arc_open(url)
+flayer
+```
 
 
 
