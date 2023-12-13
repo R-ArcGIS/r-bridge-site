@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -264,16 +298,43 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="implementation" class="level1">
 <h1>Implementation</h1>
-<ul>
-<li><p>arcgislayers’ raster capabilities are limited to image reading which is represented as terra</p></li>
-<li><p>vector capabilites are much more sophisticated</p></li>
-<li><p>In the r-spatial ecosystem, sf objects are the de facto standard representation of geometric objects with associated attributes. As such, arcgislayers utilizes sf objects and data.frames to represent spatial and a-spatial data respectively.</p></li>
-<li><p>additional geometry object types are supported if converted to sf object first (likely via wk (dunnington))</p></li>
-</ul>
-<p>arcgislayers provides users with a way to read Feature Services, Image Servers, as well as add, delete, or update features, and even publish new ones directly from R.</p>
+<p>arcgislayers supports both Image Servers and Feature Services. When reading raster imagery, arcgislayers returns objects of class <code>SpatRaster</code> from the terra package. arcgislayers’ vector capabilities are much more sophisticated, however.</p>
+<p>In the r-spatial ecosystem, sf objects are the de facto representation of geometric objects with associated attributes. As such, arcgislayers utilizes sf objects and data.frames to represent spatial and a-spatial data respectively. Due to the ubiquity of sf objects additional geometry types are not supported directly but can be via wk (edzer, probably bivand somewhere inhere dunnington).</p>
 <p>The ArcGIS REST API defines a number of JSON objects that are understood by the endpoints. Notably, the REST APIs have their own definitions for geometries objects. Underpinning arcgislayers is the R package arcgisutils which is used for serializing data.frame and sf objects into Esri JSON formats. arcgisutils also provides utilities for deserializing Esri JSON returned from the REST APIs into sf or data.frame objects.</p>
+<p>The de/serialization provided by arcgisutils enables seamless reading and writing of geospatial data with ArcGIS Location Services.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">3.0</span>, <span class="fl">0.14</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  arcgisutils<span class="sc">::</span><span class="fu">as_esri_geometry</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  jsonify<span class="sc">::</span><span class="fu">pretty_json</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{
+    "hasZ": false,
+    "hasM": false,
+    "x": 3.0,
+    "y": 0.14,
+    "spatialReference": {
+        "wkid": 4326
+    }
+}</code></pre>
+</div>
+</div>
 <section id="example-usage" class="level2">
 <h2 class="anchored" data-anchor-id="example-usage">Example usage</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgislayers)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer/0"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>flayer <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(url)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>flayer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;FeatureLayer &lt;28484 features, 154 fields&gt;&gt;
+Name: PlacePoints
+Geometry Type: esriGeometryPoint
+CRS: 3785
+Capabilities: Query,Extract</code></pre>
+</div>
+</div>
 <hr>
 <p>Notes</p>
 <ul>
