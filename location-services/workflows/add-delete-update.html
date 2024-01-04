@@ -337,19 +337,19 @@ Geodetic CRS:  NAD27
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-4" data-code-lines="5">The <a href="https://dplyr.tidyverse.org/reference/across.html"><code>across()</code></a> function applies a function to multiple columns at once.</span>
+<span data-code-annotation="1" data-code-lines="5" data-code-cell="annotated-cell-4">The <a href="https://dplyr.tidyverse.org/reference/across.html"><code>across()</code></a> function applies a function to multiple columns at once.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-4" data-code-lines="6">We specify the columns we will be apply a function to in <code>.cols</code>. We use the <code>tidyselect</code> helpers to catch any columns that end with <code>74</code> or <code>79</code>.</span>
+<span data-code-annotation="2" data-code-lines="6" data-code-cell="annotated-cell-4">We specify the columns we will be apply a function to in <code>.cols</code>. We use the <code>tidyselect</code> helpers to catch any columns that end with <code>74</code> or <code>79</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-4" data-code-lines="7">The <code>.fns</code> argument specifies which functions will be applied to the columns. In this case, we apply on the <code>mean()</code> function to calculate the average.</span>
+<span data-code-annotation="3" data-code-lines="7" data-code-cell="annotated-cell-4">The <code>.fns</code> argument specifies which functions will be applied to the columns. In this case, we apply on the <code>mean()</code> function to calculate the average.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-cell="annotated-cell-4" data-code-lines="9">The <code>NAME</code> field is set manually to the value of <code>"Total"</code> to indicate that it is not a county.</span>
+<span data-code-annotation="4" data-code-lines="9" data-code-cell="annotated-cell-4">The <code>NAME</code> field is set manually to the value of <code>"Total"</code> to indicate that it is not a county.</span>
 </dd>
 </dl>
 </div>
@@ -371,7 +371,7 @@ Geodetic CRS:  NAD27
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(nc_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>&lt;FeatureLayer &lt;100 features, 15 fields&gt;&gt;
+<pre><code>&lt;FeatureLayer&gt;
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -410,7 +410,7 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>&lt;FeatureLayer &lt;101 features, 15 fields&gt;&gt;
+<pre><code>&lt;FeatureLayer&gt;
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -497,7 +497,7 @@ Geodetic CRS:  NAD27
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>&lt;FeatureLayer &lt;100 features, 15 fields&gt;&gt;
+<pre><code>&lt;FeatureLayer&gt;
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -536,7 +536,7 @@ Capabilities: Create,Delete,Query,Update,Editing</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>&lt;FeatureLayer &lt;77 features, 15 fields&gt;&gt;
+<pre><code>&lt;FeatureLayer&gt;
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -558,7 +558,7 @@ Capabilities: Create,Delete,Query,Update,Editing</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>&lt;FeatureLayer &lt;0 features, 15 fields&gt;&gt;
+<pre><code>&lt;FeatureLayer&gt;
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267

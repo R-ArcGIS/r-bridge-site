@@ -277,15 +277,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>#&gt; Attaching core arcgis packages:
-#&gt;   - {arcgisutils} v0.1.0
-#&gt;   - {arcgislayers} v0.1.0</code></pre>
+<pre><code>Attaching core arcgis packages:
+  - {arcgisutils} v0.1.0
+  - {arcgislayers} v0.1.0</code></pre>
 <p>Next, authorize with the service itself and set the access token.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>#&gt; Token set to environment variable `ARCGIS_TOKEN`</code></pre>
+<pre><code>Token set to environment variable `ARCGIS_TOKEN`</code></pre>
 <p>Now that we have verified our identity with our portal we can create a <code>FeatureLayer</code> object from our hosted service. From your <a href="https://arcgis.com/home/content.html">content listing</a> find the Feature Layer url.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -306,11 +306,11 @@ Tip
 <span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
 <span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>#&gt; &lt;FeatureLayer &lt;100 features, 15 fields&gt;&gt;
-#&gt; Name: North Carolina SIDS
-#&gt; Geometry Type: esriGeometryPolygon
-#&gt; CRS: 4267
-#&gt; Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<pre><code>&lt;FeatureLayer&gt;
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing</code></pre>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>This is the url of your hosted feature service. This will be different than what is here. Note that the <code>/0</code> indicates the layer index. You can often copy the url from under the URL section on the right hand menu and append the <code>/0</code> to it.</p>
@@ -328,10 +328,10 @@ Tip
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">refresh_layer</span>(nc)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>#&gt; &lt;FeatureLayer &lt;0 features, 15 fields&gt;&gt;
-#&gt; Name: North Carolina SIDS
-#&gt; Geometry Type: esriGeometryPolygon
-#&gt; Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<pre><code>&lt;FeatureLayer&gt;
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+Capabilities: Create,Delete,Query,Update,Editing</code></pre>
 <p>After refreshing the layer we can see that there are now 0 features! Success! There are still 15 fields and we still have the same name and geometry type.</p>
 </section>
 <section id="adding-features" class="level2">
@@ -390,27 +390,27 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>add_res <span class="ot">&lt;-</span> <span class="fu">add_features</span>(nc, nc_convex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>#&gt; Warning: CRS missing from `x` cannot verify matching CRS.</code></pre>
+<pre><code>Warning: CRS missing from `x` cannot verify matching CRS.</code></pre>
 <p>We receive a warning because there is no spatial reference in the hosted <code>FeatureLayer</code> after truncating. Print the <code>add_res</code> object to see if each feature was successfully added.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(add_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>#&gt;     objectId uniqueId globalId success
-#&gt; 1          1        1       NA    TRUE
-#&gt; 2          2        2       NA    TRUE
-#&gt; 3          3        3       NA    TRUE
-#&gt; 4          4        4       NA    TRUE
-#&gt; 5          5        5       NA    TRUE
-#&gt; 6          6        6       NA    TRUE</code></pre>
+<pre><code>    objectId uniqueId globalId success
+1          1        1       NA    TRUE
+2          2        2       NA    TRUE
+3          3        3       NA    TRUE
+4          4        4       NA    TRUE
+5          5        5       NA    TRUE
+6          6        6       NA    TRUE</code></pre>
 <p>Now that we have added our features, let us refresh the layer again.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>#&gt; &lt;FeatureLayer &lt;100 features, 15 fields&gt;&gt;
-#&gt; Name: North Carolina SIDS
-#&gt; Geometry Type: esriGeometryPolygon
-#&gt; CRS: 4267
-#&gt; Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<pre><code>&lt;FeatureLayer&gt;
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing</code></pre>
 <p>If you view the hosted Feature Layer in the map viewer, you should now see the convex hulls.</p>
 <p><img src="images/nc-convex-hulls.png" class="img-fluid"></p>
 
