@@ -52,7 +52,7 @@ nc <- arc_open(furl) # <2>
 nc
 ```
 ```
-<FeatureLayer <100 features, 15 fields>>
+<FeatureLayer>
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -83,7 +83,7 @@ nc <- refresh_layer(nc)
 nc
 ```
 ```
-<FeatureLayer <0 features, 15 fields>>
+<FeatureLayer>
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 Capabilities: Create,Delete,Query,Update,Editing
@@ -143,7 +143,7 @@ Now that we have added our features, let us refresh the layer again.
 nc <- refresh_layer(nc)
 ```
 ```
-<FeatureLayer <100 features, 15 fields>>
+<FeatureLayer>
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267

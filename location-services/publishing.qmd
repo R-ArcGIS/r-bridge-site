@@ -84,7 +84,7 @@ We can extract a single layer from the `FeatureServer` using `get_layer()`. We p
 
 ```{r eval=FALSE}
 get_layer(nc_fserver, 0)
-#> <FeatureLayer <100 features, 15 fields>>
+#> <FeatureLayer>
 #> Name: North Carolina SIDS
 #> Geometry Type: esriGeometryPolygon
 #> CRS: 4267

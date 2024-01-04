@@ -71,7 +71,7 @@ nc_url <- "https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/No
 nc <- arc_open(nc_url)
 ```
 ```
-<FeatureLayer <100 features, 15 fields>>
+<FeatureLayer>
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -110,7 +110,7 @@ Once we've added the results to the `FeatureLayer`, we may want to refresh the o
 nc <- refresh_layer(nc)
 ```
 ```
-<FeatureLayer <101 features, 15 fields>>
+<FeatureLayer>
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -227,7 +227,7 @@ We can check to see if the delete worked by refreshing the laye and seeing the c
 refresh_layer(nc)
 ```
 ```
-<FeatureLayer <100 features, 15 fields>>
+<FeatureLayer>
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -274,7 +274,7 @@ Successful deletes! Again, we can check to see the new count using `refresh_laye
 refresh_layer(nc)
 ```
 ```
-<FeatureLayer <77 features, 15 fields>>
+<FeatureLayer>
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267
@@ -303,7 +303,7 @@ $deleteResults
 refresh_layer(nc)
 ```
 ```
-<FeatureLayer <0 features, 15 fields>>
+<FeatureLayer>
 Name: North Carolina SIDS
 Geometry Type: esriGeometryPolygon
 CRS: 4267

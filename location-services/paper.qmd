@@ -58,7 +58,7 @@ Notes
 
 
 - Aydin et al introduce arcgisbinding which provides a binding to ArcGIS pro enabling the reading and writing of ArcGIS Proprietary data formats and on the fly geospatial transformations using the transformation engine
-- We're seeing a shift towards cloud-native geospatial analysisdata infrastructure which are exposed via rest apis
+- We're seeing a shift towards cloud-native geospatial analysis data infrastructure which are exposed via rest apis
 - Esri provides very useful technology via ArcGIS Location Services. Location services are exposed via rest APIs which are well documented. Endpoints can be both public or private depending on the hosting solution and authentication used. 
 - REST services provide a language agnostic interface to proprietary code allowing the development of completely open source bindings to the services
 
