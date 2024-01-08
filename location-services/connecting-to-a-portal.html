@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Connecting to your Portal</title>
+<title>R-ArcGIS Bridge - Authorize with your Portal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Connecting to your Portal</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Authorize with your Portal</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Connecting to your Portal</span></a>
+ <span class="menu-text">Authorize with your Portal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -260,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Connecting to your Portal</h1>
+<h1 class="title">Authorize with your Portal</h1>
 </div>
 
 
@@ -276,32 +276,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>In order to read content items that do not have a “Public” Sharing level (<img src="images/sharing-public.png" class="img-fluid" style="width:30.0%">), or to write to or modify existing content items that you are an owner of, you will need to be authorized.</p>
-<p><a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/">Authorization is done using OAuth2</a>. There are two ways to authorize with OAuth2: either by using a a <code>code</code> or a <code>client</code> flow. In most cases code based authorization is recommended.</p>
-<p>The first step of authorizing is creating a client ID.</p>
+<p><a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/">Authorization is done using OAuth2</a>. There are two ways to authorize with OAuth2: either by using a a <code>code</code> or a <code>client</code> flow. In most cases code based authorization is recommended. These two methods are explained below.</p>
+<p>Before you can authorize, you must first create a client ID.</p>
 <section id="obtaining-a-client-id" class="level2">
 <h2 class="anchored" data-anchor-id="obtaining-a-client-id">Obtaining a Client ID</h2>
-<p>If a client ID is not provided to you by an admin and you have the ability to create content items, you can create one.</p>
+<p>If a client ID is not provided to you by an administrator and you have the ability to create content items, you can create one.</p>
 <p>You can do so by creating an application item.</p>
 <ul>
 <li>Log in to your ArcGIS Online or ArcGIS Enterprise organization</li>
-<li>Navigate to the Contents tab</li>
+<li>Navigate to the Content tab</li>
 <li>Click <code>New Item</code></li>
 <li>Select <code>Application</code></li>
 </ul>
 <p><img src="images/content-app.png" class="img-fluid" style="width:50.0%"></p>
 <ul>
 <li>Choose <code>Other application</code> as your <code>Application Type</code></li>
-<li>Give the item an informative name such as <code>r-arcgis</code></li>
+<li>Give the item an informative name such as <code>r-arcgis</code>
+<ul>
+<li>Optionally, specify the folder, tags, and summary as well.</li>
+</ul></li>
 </ul>
 <p><img src="images/new-item.png" class="img-fluid" style="width:50.0%"></p>
 <ul>
-<li>You will be directed to the content page where you can see your credentials. <strong>Do not share these</strong>.</li>
+<li>You will be directed to the item details page of the newly created application where you can see your credentials. <strong>Do not share these</strong>.</li>
 </ul>
 <p><img src="images/credentials.png" class="img-fluid" style="width:50.0%"></p>
 </section>
 <section id="securing-your-credentials" class="level2">
 <h2 class="anchored" data-anchor-id="securing-your-credentials">Securing your credentials</h2>
-<p>By default, packages in the <code>{arcgis}</code> meta-package are configured to work with ArcGIS Online. <code>arcgis</code> utilizes environment variables to determine how requests are crafted and where requests are made. These environment variables are:</p>
+<p>By default, packages in the <code>{arcgis}</code> metapackage are configured to work with ArcGIS Online. <code>arcgis</code> utilizes environment variables to determine how requests are crafted and where requests are made. These environment variables are:</p>
 <ul>
 <li><code>ARCGIS_HOST</code></li>
 <li><code>ARCGIS_CLIENT</code></li>
@@ -332,7 +335,7 @@ Environment variable descriptions
 </div>
 <section id="setting-your-credentials-in-.renviron" class="level3">
 <h3 class="anchored" data-anchor-id="setting-your-credentials-in-.renviron">Setting your credentials in <code>.Renviron</code></h3>
-<p>Environment variables should <em><strong>never</strong></em> be included in your code. Instead, they should be stored in an external environment file such as an <code>.Renvrion</code> file. To modify your <code>.Renviron</code> run the following in your text editor</p>
+<p>Environment variables should <em><strong>never</strong></em> be included in your code. Instead, they should be stored in an external environment file such as an <code>.Renvrion</code> file. To modify your <code>.Renviron</code>, you can use the <code>usethis</code> package. Ensure it is installed and run the following in your text editor:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled" title="`.Renviron` scopes">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -352,7 +355,7 @@ Environment variable descriptions
 </div>
 </div>
 </div>
-<p>You <code>.Renviron</code> file will now be opened for you to edit. Fill in the environment variables <code>ARCGIS_CLIENT</code> and <code>ARCGIS_SECRET</code> from the content item we just created.</p>
+<p>This will open your <code>.Renviron</code> file for you to edit. Fill in the environment variables <code>ARCGIS_CLIENT</code> and <code>ARCGIS_SECRET</code> from the content item we just created. If you are not using ArcGIS Online, ensure that your portal’s host is provided to <code>ARCGIS_HOST</code>. Additionally, provide your username to <code>ARCGIS_USER</code> if you plan to publish or edit existing content.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_CLIENT</span><span class="op">=</span>your-client-id</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_SECRET</span><span class="op">=</span>your-super-secret-key</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_HOST</span><span class="op">=</span>https://your-portal.com/</span>
@@ -371,7 +374,7 @@ Warning
 <p>If you are using ArcGIS Online, you do not need to set the environment variable <code>ARCGIS_HOST</code>.</p>
 </div>
 </div>
-<p>Environment variables will not be set automatically. To register the new environment variables restart your R session.</p>
+<p>Be sure to save your changes to the file. To register the new environment variables restart your R session.</p>
 </section>
 </section>
 <section id="authorizing" class="level2">
@@ -383,7 +386,8 @@ Warning
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   - {arcgislayers} v0.1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="code-flow" class="level3">
 <h3 class="anchored" data-anchor-id="code-flow">Code flow</h3>
-<p>Next run <code>auth_code()</code> which will open a tab in your browser. If you are authorizing to an ArcGIS Enterprise portal ensure that you set the <code>ARCGIS_HOST</code> environment variable correctly and that you restarted your R session.</p>
+<p>The OAuth2 Code Flow is a process where a user authorizes an application to act on its behalf by granting a temporary access token. This type of authorization permits the application to take actions on the users behalf for the duration of the access token. Learn more about how <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2/">ArcGIS uses OAuth2.0</a>.</p>
+<p>Running <code>auth_code()</code> will open a tab in your browser to begin the code flow. If you are authorizing to an ArcGIS Enterprise portal ensure that you set the <code>ARCGIS_HOST</code> environment variable correctly and that you have restarted your R session.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will be prompted to sign in to your portal.</p>
 <p><img src="images/oauth-sign-in.png" class="img-fluid" style="width:50.0%"></p>

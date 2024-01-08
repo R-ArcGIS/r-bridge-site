@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Connecting to your Portal</span></a>
+ <span class="menu-text">Authorize with your Portal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Much like a python geoprocessing (GP) script tool, R based script tools can be created allowing you to create GP tools and toolboxes that utilize the power of R. The basic anatomy of an R script GP tool is like so:</p>
+<p>Much like a python geoprocessing (GP) <a href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm">script tool</a>, you can also create R-based GP script tools and toolboxes that utilize the power of R.</p>
+<p>The basic anatomy of an R script GP tool is like so:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>my-geoprocessing-tool.R</strong></pre>
@@ -296,18 +297,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-1" data-code-lines="1">Two arguments capture input and output parameters</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-1" data-code-annotation="1">Two arguments capture input and output parameters</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-1" data-code-lines="3">Output parameters are returned to be captured by Pro</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-1" data-code-annotation="2">Output parameters are returned to be captured by ArcGIS Pro</span>
 </dd>
 </dl>
-<p>GP R script tools are defined in a standalone R script. The GP tool is defined by a function called <code>tool_exec()</code>. <code>tool_exec()</code> take two and only two arguments capturing input and output parameters. <code>tool_exec()</code> should always return the output parameter argument.</p>
+<p>R-base GP script tools are defined in a standalone R script. The GP tool is defined by a function called <code>tool_exec()</code>. <code>tool_exec()</code> takes exactly two arguments capturing input and output parameters. <code>tool_exec()</code> should always return the output parameter argument.</p>
 </section>
 <section id="input-and-output-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="input-and-output-parameters">Input and Output Parameters</h2>
-<p>Additionally, there must be two arguments that correspond to input parameters and output parameters. The conventional name of these arguments are <code>in_params</code> and <code>out_params</code>. The first argument will <em>always</em> refer to the input parameters and the second to the outputs.</p>
+<p>There must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are <code>in_params</code> and <code>out_params</code>. The first argument will <em>always</em> refer to the input parameters and the second to the outputs.</p>
 <p><code>in_params</code> and <code>out_params</code> are named lists. The elements of these lists are determined by the <strong>direction</strong> of a parameter.</p>
 <p><img src="images/gp-tool-properties.png" class="img-fluid" style="width:50.0%"></p>
 <p>If the direction is <code>Input</code> it will be contained in <code>in_params</code>. Likewise, if the direction is <code>Output</code>, it will be contained in <code>out_params</code>.</p>
@@ -343,13 +344,13 @@ Caution
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="returning-values-to-arcgis-pro" class="level3">
 <h3 class="anchored" data-anchor-id="returning-values-to-arcgis-pro">Returning values to ArcGIS Pro</h3>
-<p>You may have noticed that at the end of the <code>tool_exec()</code> function we are returning the <code>out_params</code> object. If we do not return the output parameters back to Pro—by returning <code>out_params</code>—the outputs cannot be captured and used by Pro.</p>
+<p>You may have noticed that at the end of the <code>tool_exec()</code> function we are returning the <code>out_params</code> object. If we do not return the output parameters back to ArcGIS Pro—by returning <code>out_params</code>—the outputs cannot be captured and used by Pro.</p>
 <p>Notably, the output parameters are useful in linking one tool to another, for example via use in <a href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/modelbuilder/modelbuilder-quick-tour.htm">ModelBuilder</a> or in an <a href="https://pro.arcgis.com/en/pro-app/latest/arcpy/main/arcgis-pro-arcpy-reference.htm"><strong><code>arcpy</code></strong></a> script.</p>
 <p>See <a href="#arcpy-integration">Using R script tools with <strong><code>arcpy</code></strong></a></p>
 </section>
 <section id="parameter-types" class="level3">
 <h3 class="anchored" data-anchor-id="parameter-types">Parameter types</h3>
-<p>There are number of different type of parameters that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the GP pane’s UI. Each parameter type can be represented by a basic scalar R type: <code>integer</code>, <code>double</code>, <code>character</code>, <code>logical</code>, or <code>NULL</code>.</p>
+<p>There are number of different parameter types that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: <code>integer</code>, <code>double</code>, <code>character</code>, <code>logical</code>, or <code>NULL</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -363,7 +364,7 @@ Tip
 <p>A scalar value is a vector with only a single element.</p>
 </div>
 </div>
-<p>It is incumbent upon you to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by <code>arcgisbinding</code>. Below are some of the most common parameter types and how they are handled by <code>arcgisbinding</code>. This is not a complete enumeration by any means!</p>
+<p>It is incumbent upon you to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by <code>arcgisbinding</code>. Below are some of the most common parameter types and how they are handled by <code>arcgisbinding</code>. This is not a complete enumeration by any means.</p>
 <table class="table-striped table">
 <caption>Data type mapping</caption>
 <colgroup>
@@ -372,8 +373,8 @@ Tip
 </colgroup>
 <thead>
 <tr class="header">
-<th>Parameter Data Type</th>
-<th>R type</th>
+<th>ArcGIS Pro Parameter Type</th>
+<th>R Data Type</th>
 </tr>
 </thead>
 <tbody>
@@ -414,13 +415,13 @@ Tip
 </section>
 <section id="multiple-values" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-values">Multiple Values</h3>
-<p>When selecting the <code>Multiple values</code> check box in the parameter data type UI, users can then provide multiple inputs of that type.</p>
+<p>When selecting the <code>Multiple values</code> check box in the parameter data type dialog box, users can then provide multiple inputs of that type.</p>
 <p><img src="images/gp-parameter-type.png" class="img-fluid"></p>
 <p>When this is done, each of the input values will be contained inside of a list. If you have multiple values ticked for the <code>String</code> type, you will get a list of scalar character vectors.</p>
-<p><strong>This is important</strong> so it bears repeating! When users provide multiple values they will be captured in R as a list of scalars. Meaning that if you have multiple <code>String</code> values you will not get a character vector with a length greater than one.</p>
+<p><strong>This is important</strong> so it bears repeating! When you provide multiple values they will be captured in R as a list of scalars. This means that if you have multiple <code>String</code> values you will not get a character vector with a length greater than one.</p>
 <p>Take the below input for example</p>
 <p><img src="images/gp-multiple-strings.png" class="img-fluid"></p>
-<p>In R we would get the <code>list("string 1", "string 2")</code> and <strong>not</strong> <code>c("string 1", "string 2")</code>.</p>
+<p>In R we would get <code>list("string 1", "string 2")</code> and <strong>not</strong> <code>c("string 1", "string 2")</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

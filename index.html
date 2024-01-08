@@ -145,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Connecting to your Portal</span></a>
+ <span class="menu-text">Authorize with your Portal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -210,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#use-arcgis-location-services" id="toc-use-arcgis-location-services" class="nav-link active" data-scroll-target="#use-arcgis-location-services">Use ArcGIS Location Services</a></li>
   <li><a href="#interact-with-arcgis-pro" id="toc-interact-with-arcgis-pro" class="nav-link" data-scroll-target="#interact-with-arcgis-pro">Interact with ArcGIS Pro</a>
   <ul class="collapse">
-  <li><a href="#our-r-packages" id="toc-our-r-packages" class="nav-link" data-scroll-target="#our-r-packages">Our R-packages</a></li>
+  <li><a href="#our-packages" id="toc-our-packages" class="nav-link" data-scroll-target="#our-packages">Our Packages</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -224,23 +224,32 @@ ul.task-list li input[type="checkbox"] {
 <p><em>Building bridges between <br>the R and ArcGIS ecosystems</em></p>
 </div>
 <hr>
+<p>The R-ArcGIS Bridge enables ArcGIS users to enrich their workflows by accessing thousands of open-source data science and statistical packages in R. It also helps R users extend their analyses by accessing the authoritative datasets, mapping and visualization capabilities, and advanced spatial analytics of ArcGIS.</p>
 <section id="use-arcgis-location-services" class="level1">
 <h1>Use ArcGIS Location Services</h1>
-<p>The <strong><code>arcgis</code></strong> package for location services meets developers where they are at. At it’s core, <strong><code>arcgis</code></strong> is a collection of R packages designed to interact with <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/">ArcGIS Location Services</a> all from the comfort of R and your text editor.</p>
+<p>The <strong><code>arcgis</code></strong> meta-package for location services brings ArcGIS to data scientists, analysts, and developers where they work. At it’s core, <strong><code>arcgis</code></strong> is a collection of R packages designed to interact with <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/">ArcGIS Location Services</a> all from the comfort of R and your text editor.</p>
 <p>ArcGIS Location Services are provided as REST API endpoints and <strong><code>arcgis</code></strong> makes interacting with the services using R native objects seamless.</p>
+<!-- 
+Nick: Below this, suggest a bulleted list of a few of the location services, using the language of the developers doc:
+- Data hosting
+- Geocoding
+- Routing
+
+Josiah: we only support data hosting so we cannot mention any of these other options
+
+-->
 </section>
 <section id="interact-with-arcgis-pro" class="level1">
 <h1>Interact with ArcGIS Pro</h1>
-<p><code>{arcgisbinding}</code>, the first package created for the R-ArcGIS Bridge, is designed to bind the powers of R and ArcGIS. Using <code>{arcgisbinding}</code> you can read and write local data sources and take advantage of ArcGIS Pro’s <a href="https://github.com/Esri/projection-engine-db-doc">projection engine</a>.</p>
-<p>Read and write local data sources with <a href="https://r.esri.com/assets/arcgisbinding.pdf"><code>arc.write()</code></a> and <a href="https://r.esri.com/assets/arcgisbinding.pdf"><code>arc.open()</code></a>. Convert to <code>{sf}</code> and <code>{raster}</code> objects with <a href="https://r.esri.com/assets/arcgisbinding.pdf"><code>arc.data2sf()</code></a> and <a href="https://r.esri.com/assets/arcgisbinding.pdf"><code>arc.raster()</code></a>. Or, create <a href="./geoprocessing-tools.html">geoprocessing script tools that use R</a>.</p>
+<p><code>{arcgisbinding}</code>, the first package created for the R-ArcGIS Bridge, is designed to bind the powers of R and ArcGIS Pro. Using <code>{arcgisbinding}</code> you can read and write local data sources and take advantage of ArcGIS Pro’s <a href="https://github.com/Esri/projection-engine-db-doc">projection engine</a> or create <a href="./geoprocessing-tools.html">geoprocessing script tools that use R</a>.</p>
 <p><em>Get started by <a href="./arcgisbinding/installing-arcgisbinding.html">installing <code>{arcgisbinding}</code>.</a></em></p>
-<section id="our-r-packages" class="level2">
-<h2 class="anchored" data-anchor-id="our-r-packages">Our R-packages</h2>
+<section id="our-packages" class="level2">
+<h2 class="anchored" data-anchor-id="our-packages">Our Packages</h2>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="card quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><a href="https://github.com/R-ArcGIS/r-bridge"><code>{arcgisbinding}</code></a></p>
-<p>Harness the power of ArcGIS Pro from R.</p>
+<p>Move data between R and ArcGIS Pro. Build R-driven geoprocessing tools.</p>
 </div>
 <div class="card quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><code>{arcgis}</code></p>
