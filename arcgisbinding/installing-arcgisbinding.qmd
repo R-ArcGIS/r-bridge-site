@@ -6,13 +6,26 @@ title: "Installing `{arcgisbinding}`"
 and R. In order to use it, you must have a installation of ArcGIS Pro with a valid
 licenses as well as a supported version of R. 
 
+<!-- 
+Nick says: 
+While we recommend that you download and install the latest version of R for Windows (link here - https://cran.r-project.org/bin/windows/), the R-ArcGIS Bridge supports all previous versions or R (link here - https://cran.r-project.org/bin/windows/base/old/) back to version 3.2.2.
+
+Josiah: Dima wants to drop support for old versions of R i think going only back to 3.6.3
+-->
+
+:::{.callout-note}
+If you do not currently have access to ArcGIS Pro, you can [sign up for a free 21-day trial version](https://www.esri.com/en-us/arcgis/products/arcgis-pro/trial).
+:::
+
 ## Install within ArcGIS Pro (recommended) {#from-pro}
 
-If you are working in Pro 2.0 or beyond you have access to the built-in ArcGIS bridge installer which streamlines the process of installing **arcgisbinding**. It allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario, you will do the following:
+If you are working in ArcGIS Pro 2.0 or beyond you have access to the built-in installer <!-- Nick prefers R-ArcGIS Bridge installer, i think that is too broad and continues to conflate remove--> which streamlines the process of installing **arcgisbinding**. It also allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario, you will do the following:
 
 - Open ArcGIS Pro and click on the 'Project' tab in your project.
 - Select `Options` on the blue, left-hand side panel and in the pop-up window, under Application, select 'Geoprocessing'.
 - Under the R-ArcGIS Support options, select your desired R home directory.
+
+<!-- TODO Nick wants screen shot here --> 
 
 :::{.callout-warning collapse="false"}
 
@@ -26,9 +39,11 @@ Note: All versions of R installed on your computer will appear in the drop-down 
 
 - A progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package **arcgisbinding** was successfully installed.
 
-## Install from R
+<!-- TODO Nick wants a screen shot -->
 
-Alternatively, you can install the binding directly from R if you so wish! Open RStudio, VS Code, or your favorite text editor and run the following from the console.
+## Install from R {#from-r}
+
+Alternatively, you can install **arcgisbinding** directly from R. Open RStudio, VS Code, or your favorite text editor and run the following from the console.
 
 ```r
  install.packages(
@@ -37,33 +52,50 @@ Alternatively, you can install the binding directly from R if you so wish! Open 
   type = "win.binary"
  )
  ```
-This will install the package binary directly from our GitHub repository which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer. 
+This will install the package binary directly from the [R-ArcGIS GitHub repository](https://github.com/R-ArcGIS/r-arcgis.github.io/tree/master/bin/windows/contrib) which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer. 
 
-## Offline Installation
+## Offline Installation {#offline}
 
-Many users of the R-ArcGIS Pro bridge (**arcgisbinding**) work in a completely air-gapped environment where downloading external packages from the internet is not possible. 
+Many users of **arcgisbinding** work in a completely air-gapped environment where downloading external packages from the internet is not possible. 
 
-In order to install **arcgisbinding** in an air-gapped environment you must first download the package on an internet enabled machine and ["sneakernet"](https://www.techopedia.com/definition/1880/sneakernet) it into your
-offline environment. 
+In order to install **arcgisbinding** in an air-gapped environment you must first download the package on a machine with internet access and ["sneakernet"](https://www.techopedia.com/definition/1880/sneakernet) it into your offline environment. 
 
-To download the package go to https://r.esri.com/bin/ and choose the version of **arcgisbridge** that matches your version of R. 
+<!-- 
+Nick: "However, I'm not sure if we need to be more formal/literal here." 
+Josiah: This is quite literate! If we try to be more specific we get ourselves in the business of telling customers how to migrate data from offline environments which are not. Some people temporarily open internet access. Sometimes they move to a thumbdrive, or even a cd. 
+--> 
 
-Once you've moved the zip file onto your air-gapped machine you can install it using the `install.packages()` command. 
+To download the package go to https://r.esri.com/bin/ and choose the version of **arcgisbinding** that matches your version of R. 
+
+Once you have downloaded and moved the zip file onto your air-gapped machine you can install it using the `install.packages()` command. 
 
 ```r
 install.packages("path/to/arcgisbinding_1.0.1.306.zip", repos = NULL)
 ```
 
+:::{.callout-warning}
+Note that depending on the version of the package you download, the file name will be different. Be sure the file path and name are accurate. 
+:::
+
+## Verify your installation
+
+Once you have the **arcgisbinding** installed, you can check if your installation was successful by loading the package. 
+
+```r
+library(arcgisbinding)
+arc.check_product()
+```
+
+This will print a message informing you of the version of ArcGIS Pro you are using. You do not need to install **arcgisbinding** again until you download a new version of R or wish to upgrade the package. 
 
 ## Upgrading `{arcgisbinding}`
 
 ### Using ArcGIS Pro
 
-If you have installed **arcgisbinding** from within ArcGIS Pro, follow the instructions for [installing within ArcGIS Pro](#from-pro). 
+If you have installed **arcgisbinding** from within ArcGIS Pro, follow the instructions for accessing ArcGIS Pro's R-ArcGIS Support options in the [installing within ArcGIS Pro section](#from-pro). 
 
 If you have previously installed **arcgisbinding**, you will see an installed message that lets you know the version of your **arcgisbinding** package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the **arcgisbinding** package. If prompted to update, click `"Yes"` and the latest version will automatically be installed.
 
-
 ### Using R or offline
 
-To upgrade your package using R or in an offline environment, repeat the steps above. 
+To upgrade your package using R or in an offline environment, repeat the steps above for either [installing from R](#from-r) or [offline installation](#offline).

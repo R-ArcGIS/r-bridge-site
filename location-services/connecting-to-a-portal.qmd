@@ -1,21 +1,21 @@
 ---
-title: "Connecting to your Portal"
+title: "Authorize with your Portal"
 ---
 
 In order to read content items that do not have a "Public" Sharing level (![](images/sharing-public.png){width=30%}), or to write to or modify existing content items that you are an owner of, you will need to be authorized. 
 
-[Authorization is done using OAuth2](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/). There are two ways to authorize with OAuth2: either by using a a `code` or a `client` flow. In most cases code based authorization is recommended. 
+[Authorization is done using OAuth2](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/). There are two ways to authorize with OAuth2: either by using a a `code` or a `client` flow. In most cases code based authorization is recommended. These two methods are explained below. 
 
-The first step of authorizing is creating a client ID. 
+Before you can authorize, you must first create a client ID. 
 
 ## Obtaining a Client ID
 
-If a client ID is not provided to you by an admin and you have the ability to create content items, you can create one. 
+If a client ID is not provided to you by an administrator and you have the ability to create content items, you can create one. 
 
 You can do so by creating an application item. 
 
 - Log in to your ArcGIS Online or ArcGIS Enterprise organization
-- Navigate to the Contents tab
+- Navigate to the Content tab
 - Click `New Item`
 - Select `Application` 
 
@@ -23,17 +23,18 @@ You can do so by creating an application item.
 
 - Choose `Other application` as your `Application Type`
 - Give the item an informative name such as `r-arcgis`
+    - Optionally, specify the folder, tags, and summary as well.
 
 ![](images/new-item.png){width=50%}
 
-- You will be directed to the content page where you can see your credentials. **Do not share these**.
+- You will be directed to the item details page of the newly created application where you can see your credentials. **Do not share these**.
 
 ![](images/credentials.png){width=50%}
 
 
 ## Securing your credentials
 
-By default, packages in the `{arcgis}` meta-package are configured to work with ArcGIS Online. `arcgis` utilizes environment variables to determine how requests are crafted and where requests are made. These environment variables are: 
+By default, packages in the `{arcgis}` metapackage are configured to work with ArcGIS Online. `arcgis` utilizes environment variables to determine how requests are crafted and where requests are made. These environment variables are: 
 
 - `ARCGIS_HOST`
 - `ARCGIS_CLIENT`
@@ -53,7 +54,7 @@ By default, packages in the `{arcgis}` meta-package are configured to work with 
 
 ### Setting your credentials in `.Renviron`
 
-Environment variables should _**never**_ be included in your code. Instead, they should be stored in an external environment file such as an `.Renvrion` file. To modify your `.Renviron` run the following in your text editor
+Environment variables should _**never**_ be included in your code. Instead, they should be stored in an external environment file such as an `.Renvrion` file. To modify your `.Renviron`, you can use the `usethis` package. Ensure it is installed and run the following in your text editor:
 
 ```r
 usethis::edit_r_environ()
@@ -66,7 +67,7 @@ usethis::edit_r_environ()
 **User scoped** `.Renviron` files store environment variables in the user's home directory. The environment variables will be available to you in any project you open. However, if you share your project, the environment variables will not be shared with it.
 :::
 
-You `.Renviron` file will now be opened for you to edit. Fill in the environment variables `ARCGIS_CLIENT` and `ARCGIS_SECRET` from the content item we just created.
+This will open your `.Renviron` file for you to edit. Fill in the environment variables `ARCGIS_CLIENT` and `ARCGIS_SECRET` from the content item we just created. If you are not using ArcGIS Online, ensure that your portal's host is provided to `ARCGIS_HOST`. Additionally, provide your username to `ARCGIS_USER` if you plan to publish or edit existing content.
 
 ```bash
 ARCGIS_CLIENT=your-client-id
@@ -80,7 +81,7 @@ Do not put environment variable values in quotation marks.
 If you are using ArcGIS Online, you do not need to set the environment variable `ARCGIS_HOST`.
 :::
 
-Environment variables will not be set automatically. To register the new environment variables restart your R session. 
+Be sure to save your changes to the file. To register the new environment variables restart your R session. 
 
 ## Authorizing
 
@@ -95,7 +96,9 @@ library(arcgis)
 
 ### Code flow
 
-Next run `auth_code()` which will open a tab in your browser. If you are authorizing to an ArcGIS Enterprise portal ensure that you set the `ARCGIS_HOST` environment variable correctly and that you restarted your R session. 
+The OAuth2 Code Flow is a process where a user authorizes an application to act on its behalf by granting a temporary access token. This type of authorization permits the application to take actions on the users behalf for the duration of the access token. Learn more about how [ArcGIS uses OAuth2.0](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2/).
+
+Running `auth_code()` will open a tab in your browser to begin the code flow. If you are authorizing to an ArcGIS Enterprise portal ensure that you set the `ARCGIS_HOST` environment variable correctly and that you have restarted your R session. 
 
 ```r
 token <- auth_code()
