@@ -57,7 +57,7 @@ Read and write to Feature Services and much more with ArcGIS Location Services.
 ::: {.card}
 `{arcgisutils}`
 
-Powers `{arcgis}` by providing functionality to authorize with your portal and convert to and from R objects and Esri JSON.
+Powers `{arcgis}` by providing functionality for authorization and converting to and from R objects and Esri JSON.
 :::
 
 
