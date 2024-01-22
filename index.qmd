@@ -22,7 +22,7 @@ ArcGIS Location Services are provided as REST API endpoints. **`arcgis`** enable
 
 # Interact with ArcGIS Pro
 
-`{arcgisbinding}`, the first package created for the R-ArcGIS Bridge, is designed to bind the powers of R and ArcGIS Pro. Using `{arcgisbinding}` you can read and write local data sources and take advantage of ArcGIS Pro's [projection engine](https://github.com/Esri/projection-engine-db-doc) or create [geoprocessing script tools that use R](geoprocessing-tools.qmd). 
+`{arcgisbinding}`, the first package created for the R-ArcGIS Bridge, is designed to bind the powers of R and ArcGIS Pro. Using `{arcgisbinding}` you can read and write local data sources, call [ArcPy functions](https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm) from R, take advantage of ArcGIS Pro's [projection engine](https://github.com/Esri/projection-engine-db-doc), or create [geoprocessing script tools that use R](geoprocessing-tools.qmd). 
 
 _Get started by [installing `{arcgisbinding}`.](arcgisbinding/installing-arcgisbinding.qmd)_
 
@@ -33,7 +33,7 @@ _Get started by [installing `{arcgisbinding}`.](arcgisbinding/installing-arcgisb
 ::: {.card}
 [`{arcgisbinding}`](https://github.com/R-ArcGIS/r-bridge)
 
-Move data between R and ArcGIS Pro.  Build R-driven geoprocessing tools.
+Move data between R and ArcGIS Pro. Use ArcPy from R. Build R-driven geoprocessing tools.
 :::
 
 ::: {.card}
@@ -52,7 +52,7 @@ Read and write to Feature Services and much more with ArcGIS Location Services.
 ::: {.card}
 `{arcgisutils}`
 
-Powers `{arcgis}` by providing functionality for authorization and converting to and from R objects and Esri JSON.
+Powers `{arcgis}` by providing functionality for authorization and converting between R objects and Esri JSON.
 :::
 
 
