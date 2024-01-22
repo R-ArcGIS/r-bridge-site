@@ -4,13 +4,16 @@ title: "Installing `{arcgisbinding}`"
 
 **`arcgisbinding`** is an R package that enables communication between ArcGIS Pro
 and R. In order to use it, you must have a installation of ArcGIS Pro with a valid
-licenses as well as a supported version of R. 
+license as well as a supported version of R. 
 
+Downloading and installing the latest version of [R](https://cran.r-project.org/) is recommended. For previous versions of R, check the [arcgisbinding documentation](https://github.com/R-ArcGIS/r-bridge) to ensure compatibility.
 <!-- 
 Nick says: 
 While we recommend that you download and install the latest version of R for Windows (link here - https://cran.r-project.org/bin/windows/), the R-ArcGIS Bridge supports all previous versions or R (link here - https://cran.r-project.org/bin/windows/base/old/) back to version 3.2.2.
 
 Josiah: Dima wants to drop support for old versions of R i think going only back to 3.6.3
+
+Martha: Maybe we should link to the authoritative source on version compatibility in case support for R versions changes? (Unless this IS the authoritative source on version compatibility!)
 -->
 
 :::{.callout-note}
