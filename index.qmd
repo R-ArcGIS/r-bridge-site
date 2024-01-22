@@ -12,9 +12,9 @@ It also helps R users extend their analyses by accessing the authoritative datas
 
 # Use ArcGIS Location Services 
 
-The **`arcgis`** meta-package for location services brings ArcGIS to data scientists, analysts, and developers where they work. At its core, **`arcgis`** is a collection of R packages designed to interact with [ArcGIS Location Services](https://developers.arcgis.com/documentation/mapping-apis-and-services/) all from the comfort of R and your text editor. 
+The **`arcgis`** meta-package for location services brings ArcGIS to data scientists, analysts, and developers where they work. At its core, **`arcgis`** is a collection of R packages designed to interact with [ArcGIS Location Services](https://developers.arcgis.com/documentation/mapping-apis-and-services/) all from the comfort of R and your development environment of choice. 
 
-ArcGIS Location Services are provided as REST API endpoints and **`arcgis`** makes interacting with the services using R native objects seamless.
+ArcGIS Location Services are provided as REST API endpoints. **`arcgis`** enables seamless interaction with these services using R native objects.
 
 <!-- 
 Nick: Below this, suggest a bulleted list of a few of the location services, using the language of the developers doc:
