@@ -4,7 +4,7 @@ title: "Geoprocessing Tools"
 
 ## Overview
 
-Much like a python geoprocessing (GP) [script tool](https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm), GP script tools and toolboxes can be created utilizing the power of R. 
+Much like a Python geoprocessing (GP) [script tool](https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm), you can also create R-based GP script tools and toolboxes utilizing the power of R. 
 
 The basic anatomy of an R-based GP script tool is like so:
 
@@ -39,7 +39,7 @@ if the direction is `Output`, it will be contained in `out_params`.
 
 ## Using parameters
 
-Values can be extracted from the `in_params` and `out_params` lists by the name or position of the parameter. We highly recommended using name-based indexing rather than position-based indexing for clarity.
+Values can be extracted from the `in_params` and `out_params` lists by the name or position of the parameter. It is highly recommended to use name-based indexing rather than position-based indexing for clarity.
 
 <!-- 
 Martha: Since other/previous arcgisbinding documentation (and Python script tool/pyt documentation) uses position-based indexing, I think we should mention it but keep our recommendation to use the names.
@@ -49,7 +49,7 @@ Martha: Since other/previous arcgisbinding documentation (and Python script tool
 The name of the parameter must match the value in the **Name** (_not_ Label) column in the `Parameters` tab of the Tool Properties.
 :::
 
-Below is an example of a function to parse a parameter named `date`:
+This is an example of a function to parse a parameter named `date`:
 
 ```r
 tool_exec <- function(in_params, out_params) {
@@ -79,8 +79,7 @@ See [Using R script tools with **`arcpy`**](#arcpy-integration).
 
 There are number of different parameter types that can be provided to a 
 geoprocessing (GP) tool. The type of parameter that is chosen determines how 
-that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: `integer`, `double`, `character`, `logical`, or 
-`NULL`.
+that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: `integer`, `double`, `character`, `logical`, or `NULL`.
 
 :::{.callout-tip}
 A scalar value is a vector with only a single element. 
@@ -110,15 +109,14 @@ Martha: Copied wording from here: https://pro.arcgis.com/en/pro-app/latest/arcpy
 
 ### Multiple Values
 
-When selecting the `Multiple values` check box in the parameter data type dialog box, users 
-can then provide multiple inputs of that type. 
+When selecting the `Multiple values` check box in the parameter data type dialog box, users can then provide multiple inputs of that type. 
 
 ![](images/gp-parameter-type.png)
 
 When the `Multiple values` option is enabled, the parameter returns a list containing each of the input values. 
 
 Note that when multiple values are provided, they will
-be represented in R as a list of scalars. Take the below input, for example:
+be captured in R as a list of scalars. Take the below input, for example:
 
 ![](images/gp-multiple-strings.png)
 
@@ -164,7 +162,7 @@ To filter or select columns from a dataset, consider using the `fields` and `whe
 
 It is quite common to write the results of an analysis to a file geodatabase. This can be done with `arc.write()`. A Feature Class type parameter can be used in the `out_params` list object to capture a user-defined output path.
 
-`arc.write()` requires two arguments. The first is the output path to write to and the second is the object to write. The accepted type of objects are `data.frame`, `sf`, `RasterLayer` or `RasterBrick`. 
+`arc.write()` requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are `data.frame`, `sf`, `RasterLayer` or `RasterBrick`. 
 
 :::{.callout-note}
 As of Nov 2023, support for `{terra}` is in development.
@@ -198,9 +196,9 @@ install_if_not <- function(pkg) {
 }
 ```
 
-This function uses `requireNamespace()` which attempts to load the provided package. If it succeeds, it returns `TRUE`, if not it returns `FALSE`. The function checks to see if `FALSE` is returned and if so, installs the package and prints an informative message. 
+This function uses `requireNamespace()` which attempts to load the provided package. If it succeeds, it returns `TRUE`, and if not it returns `FALSE`. The function checks to see if `FALSE` is returned and if so, installs the package and prints an informative message. 
 
-For example, if the script requires the package [`{spdep}`](https://r-spatial.github.io/spdep/) and it is not installed, the function will print the message and install it.
+For example, if the script requires the package [`{spdep}`](https://r-spatial.github.io/spdep/) and it is not installed, the function will print the message and install the package.
 
 ```r
 tool_exec <- function(in_params, out_params) {
