@@ -57,17 +57,18 @@ Alternatively, you can install **arcgisbinding** directly from R. Open RStudio, 
   type = "win.binary"
  )
  ```
-This will install the package binary directly from the [R-ArcGIS GitHub repository](https://github.com/R-ArcGIS/r-arcgis.github.io/tree/master/bin/windows/contrib) which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer. 
+This will install the package binary directly from the [R-ArcGIS GitHub repository](https://github.com/R-ArcGIS/r-arcgis.github.io/tree/master/bin/windows/contrib), which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer. 
 
 ## Offline Installation {#offline}
 
 Many users of **arcgisbinding** work in a completely air-gapped environment where downloading external packages from the internet is not possible. 
 
-In order to install **arcgisbinding** in an air-gapped environment you must first download the package on a machine with internet access and ["sneakernet"](https://www.techopedia.com/definition/1880/sneakernet) it into your offline environment. 
+In order to install **arcgisbinding** in an air-gapped environment you must first download the package on a machine with internet access and transfer it into your offline environment. 
 
 <!-- 
 Nick: "However, I'm not sure if we need to be more formal/literal here." 
 Josiah: This is quite literate! If we try to be more specific we get ourselves in the business of telling customers how to migrate data from offline environments which are not. Some people temporarily open internet access. Sometimes they move to a thumbdrive, or even a cd. 
+Martha: Agreed we shouldn't get specific on how the transfer happens. In fact, I think using "transfer" is more flexible? That would cover physical transfer/sneakernet (had not heard this term!) or if there are other mechanisms for file transfers.
 --> 
 
 To download the package go to https://r.esri.com/bin/ and choose the version of **arcgisbinding** that matches your version of R. 
@@ -84,7 +85,7 @@ Note that depending on the version of the package you download, the file name wi
 
 ## Verify your installation
 
-Once you have the **arcgisbinding** installed, you can check if your installation was successful by loading the package. 
+Once you have **arcgisbinding** installed, you can check if your installation was successful by loading the package. 
 
 ```r
 library(arcgisbinding)
