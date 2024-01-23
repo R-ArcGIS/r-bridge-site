@@ -4,9 +4,9 @@ title: "Geoprocessing Tools"
 
 ## Overview
 
-Much like a python geoprocessing (GP) [script tool](https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm), you can also create R-based GP script tools and toolboxes that utilize the power of R. 
+Much like a python geoprocessing (GP) [script tool](https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm), GP script tools and toolboxes can be created utilizing the power of R. 
 
-The basic anatomy of an R script GP tool is like so:
+The basic anatomy of an R-based GP script tool is like so:
 
 ```{.r filename="my-geoprocessing-tool.R"}
 tool_exec <- function(in_params, out_params) { # <1>
@@ -17,14 +17,14 @@ tool_exec <- function(in_params, out_params) { # <1>
 1. Two arguments capture input and output parameters
 2. Output parameters are returned to be captured by ArcGIS Pro
 
-R-base GP script tools are defined in a standalone R script. The GP tool is defined 
+R-based GP script tools are defined in a standalone R script. The GP tool is defined 
 by a function called `tool_exec()`. `tool_exec()` takes exactly two 
 arguments capturing input and output parameters. `tool_exec()` should always 
 return the output parameter argument. 
 
 ## Input and Output Parameters
 
-There must be two arguments that  correspond to input 
+There must be two arguments that correspond to input 
 parameters and output parameters. The conventional names of 
 these arguments are `in_params` and `out_params`. The first argument will 
 _always_ refer to the input parameters and the second to the outputs.
@@ -34,21 +34,22 @@ determined by the **direction** of a parameter.
 
 ![](images/gp-tool-properties.png){width=50%}
 
-If the direction is `Input` it will be contained in `in_params`. Likewise, 
+If the direction is `Input`, it will be contained in `in_params`. Likewise, 
 if the direction is `Output`, it will be contained in `out_params`. 
 
 ## Using parameters
 
-We can extract values from the `in_params` and `out_params` lists by the name
-of the parameter. 
+Values can be extracted from the `in_params` and `out_params` lists by the name or position of the parameter. We highly recommended using name-based indexing rather than position-based indexing for clarity.
+
+<!-- 
+Martha: Since other/previous arcgisbinding documentation (and Python script tool/pyt documentation) uses position-based indexing, I think we should mention it but keep our recommendation to use the names.
+--> 
 
 :::{.callout-caution}
-The name of the parameter must match that of the **Name** column in the `Parameters` 
-option of the Tool Properties. _It is not_ the Label column.
+The name of the parameter must match the value in the **Name** (_not_ Label) column in the `Parameters` tab of the Tool Properties.
 :::
 
-For example, if we wanted to parse the `date` parameter we could write our
-function like so: 
+Below is an example of a function to parse a parameter named `date`:
 
 ```r
 tool_exec <- function(in_params, out_params) {
@@ -67,22 +68,18 @@ tool_exec <- function(in_params, out_params) {
 
 ### Returning values to ArcGIS Pro
 
-You may have noticed that at the end of the `tool_exec()` function we are 
-returning the `out_params` object. If we do not return the output parameters 
-back to ArcGIS Pro—by returning `out_params`—the outputs cannot be captured and used
-by Pro. 
+At the end of the `tool_exec()` function above, the `out_params` object is returned. Returning the output parameters using this syntax allows ArcGIS Pro to capture and use the outputs of the script tool.
 
 Notably, the output parameters are useful in linking one tool to another, for
 example via use in [ModelBuilder](https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/modelbuilder/modelbuilder-quick-tour.htm) or in an [**`arcpy`**](https://pro.arcgis.com/en/pro-app/latest/arcpy/main/arcgis-pro-arcpy-reference.htm) script. 
 
-See [Using R script tools with **`arcpy`**](#arcpy-integration)
+See [Using R script tools with **`arcpy`**](#arcpy-integration).
 
 ### Parameter types
 
 There are number of different parameter types that can be provided to a 
 geoprocessing (GP) tool. The type of parameter that is chosen determines how 
-that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be 
-represented by a basic scalar R type: `integer`, `double`, `character`, `logical`, or 
+that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: `integer`, `double`, `character`, `logical`, or 
 `NULL`.
 
 :::{.callout-tip}
@@ -90,7 +87,7 @@ A scalar value is a vector with only a single element.
 :::
 
 
-It is incumbent upon you to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by `arcgisbinding`. Below are some of the most common parameter types and how they are handled by `arcgisbinding`. This is not a complete enumeration by any means.
+It is incumbent upon the developer to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by `arcgisbinding`. Below are examples of common parameter types and how they are handled by `arcgisbinding`:
 
 | ArcGIS Pro Parameter Type | R Data Type |
 | --------- | ------ | 
@@ -105,6 +102,12 @@ It is incumbent upon you to take these parameter inputs and use them appropriate
 
 : Data type mapping {.striped tbl-colwidths="[25,75]"}
 
+For a complete list of parameter data types, see [Geoprocessing data types](https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm).
+
+<!-- 
+Martha: Copied wording from here: https://pro.arcgis.com/en/pro-app/latest/arcpy/classes/parameter.htm
+--> 
+
 ### Multiple Values
 
 When selecting the `Multiple values` check box in the parameter data type dialog box, users 
@@ -112,28 +115,28 @@ can then provide multiple inputs of that type.
 
 ![](images/gp-parameter-type.png)
 
-When this is done, each of the input values will be contained inside of a list. If you have multiple values ticked for the `String` type, you will get a list of scalar character vectors.
+When the `Multiple values` option is enabled, the parameter returns a list containing each of the input values. 
 
-**This is important** so it bears repeating! When you provide multiple values they will
-be captured in R as a list of scalars. This means that if you have multiple `String` values 
-you will not get a character vector with a length greater than one. 
-
-Take the below input for example
+Note that when multiple values are provided, they will
+be represented in R as a list of scalars. Take the below input, for example:
 
 ![](images/gp-multiple-strings.png)
 
-In R we would get `list("string 1", "string 2")` and **not** `c("string 1", "string 2")`.
+In R, this parameter value would be `list("string 1", "string 2")` and **not** `c("string 1", "string 2")`.
 
 :::{.callout-tip}
-To turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector you can use `unlist()`. For example `unlist(list("string 1", "string 2"))` will give us `c("string 1", "string 2")`.
+To turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector, use `unlist()`. For example `unlist(list("string 1", "string 2"))` returns `c("string 1", "string 2")`.
 :::
 
+<!-- 
+Martha: Tried to consolidate the info above without losing the emphasis.
+--> 
 
 ## Common Patterns
 
 ### Reading a Feature Class
 
-Often we you will want to read a feature class using `arcgisbinding` and bring the results into R as an sf object. To do his we will use the functions `arc.open()`, `arc.select()`, and `arc.data2sf()`.
+Reading a feature class using `arcgisbinding` and bringing the results into R as an sf object is a common pattern. To do this, use the functions `arc.open()`, `arc.select()`, and `arc.data2sf()`.
 
 ```r
 tool_exec <- function(in_params, out_params) {
@@ -151,20 +154,20 @@ tool_exec <- function(in_params, out_params) {
 ```
 
 :::{.callout-note}
-If you are going to filter or select columns from your dataset consider doing that with the `fields` and `where_clause` arguments of `arc.select()` to reduce the amount of data read into memory. 
+To filter or select columns from a dataset, consider using the `fields` and `where_clause` arguments of `arc.select()` to reduce the amount of data read into memory. 
 
-`arc.select()` returns a `data.frame` with fields and a special geometry column which is incompatible with sf. We use `arc.data2sf()` to convert it to an sf object.
+`arc.select()` returns a `data.frame` with fields and a special geometry column which is incompatible with sf. Use `arc.data2sf()` to convert it to an sf object.
 :::
 
 
 ### Writing a Feature Class
 
-It is quite common to write the results of an analysis to a file geodatabase. This can be done with `arc.write()`. Typically, the we will capture the output path to write to in the `out_params` list object as a Feature Class type parameter. 
+It is quite common to write the results of an analysis to a file geodatabase. This can be done with `arc.write()`. A Feature Class type parameter can be used in the `out_params` list object to capture a user-defined output path.
 
 `arc.write()` requires two arguments. The first is the output path to write to and the second is the object to write. The accepted type of objects are `data.frame`, `sf`, `RasterLayer` or `RasterBrick`. 
 
 :::{.callout-note}
-As of Nov 2023 `{terra}` is not supported but we are actively working on this.
+As of Nov 2023, support for `{terra}` is in development.
 :::
 
 ```r
@@ -182,9 +185,9 @@ tool_exec <- function(in_params, out_params) {
 
 ### Installing Required Packages 
 
-When you share your R based GP tools with other users there is a good chance that they do not have the packages that your script tool needs to execute code. In this case, we should install the required packages the first time the script tool is executed. 
+When sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages should be automatically installed the first time the script tool is executed.
 
-In our script tool we should check to see if the required package is installed and if not, install it. We can write a helper function to include at the top of our script if we have multiple packages to check. 
+The script tool can check to see if the required package is installed and if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:
 
 ```r
 install_if_not <- function(pkg) {
@@ -195,16 +198,16 @@ install_if_not <- function(pkg) {
 }
 ```
 
-This function uses `requireNamespace()` which attempts to load the provided package. If it succeeds, it returns `TRUE`, if not it returns `FALSE`. We check to see if it returns `FALSE` and if so, we install the package and print an informative message. 
+This function uses `requireNamespace()` which attempts to load the provided package. If it succeeds, it returns `TRUE`, if not it returns `FALSE`. The function checks to see if `FALSE` is returned and if so, installs the package and prints an informative message. 
 
-For example if we need to use the package [`{spdep}`](https://r-spatial.github.io/spdep/) and its not installed it will print the message and install it.
+For example, if the script requires the package [`{spdep}`](https://r-spatial.github.io/spdep/) and it is not installed, the function will print the message and install it.
 
 ```r
 tool_exec <- function(in_params, out_params) {
-  # check for required paackages 
+  # check for required packages 
   install_if_not("spdep")
   
-  # do other thigns with spdep
+  # do other things with spdep
   # ...
 }
 ```
@@ -254,3 +257,8 @@ tool_exec <- function(in_params, out_params) {
 ## Dependent Parameters 
 
 - Autopopulate field drop-down using dependent parameter
+
+<!-- 
+Martha: Happy to take a stab at the above two sections once I get through a 
+first look at all the pages!
+--> 
