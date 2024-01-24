@@ -3,6 +3,8 @@ project:
 
 website:
   title: "R-ArcGIS Bridge"
+  repo-url: https://github.com/r-arcgis
+  repo-actions: [edit, issue]
   page-footer:
     center: "As a member of the R Consortium, Esri is part of the R community and supports the R project."
     right:
