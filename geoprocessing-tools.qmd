@@ -41,10 +41,6 @@ if the direction is `Output`, it will be contained in `out_params`.
 
 Values can be extracted from the `in_params` and `out_params` lists by the name or position of the parameter. It is highly recommended to use name-based indexing rather than position-based indexing for clarity.
 
-<!-- 
-Martha: Since other/previous arcgisbinding documentation (and Python script tool/pyt documentation) uses position-based indexing, I think we should mention it but keep our recommendation to use the names.
---> 
-
 :::{.callout-caution}
 The name of the parameter must match the value in the **Name** (_not_ Label) column in the `Parameters` tab of the Tool Properties.
 :::
@@ -103,10 +99,6 @@ It is incumbent upon the developer to take these parameter inputs and use them a
 
 For a complete list of parameter data types, see [Geoprocessing data types](https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm).
 
-<!-- 
-Martha: Copied wording from here: https://pro.arcgis.com/en/pro-app/latest/arcpy/classes/parameter.htm
---> 
-
 ### Multiple Values
 
 When selecting the `Multiple values` check box in the parameter data type dialog box, users can then provide multiple inputs of that type. 
@@ -125,10 +117,6 @@ In R, this parameter value would be `list("string 1", "string 2")` and **not** `
 :::{.callout-tip}
 To turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector, use `unlist()`. For example `unlist(list("string 1", "string 2"))` returns `c("string 1", "string 2")`.
 :::
-
-<!-- 
-Martha: Tried to consolidate the info above without losing the emphasis.
---> 
 
 ## Common Patterns
 
@@ -165,7 +153,7 @@ It is quite common to write the results of an analysis to a file geodatabase. Th
 `arc.write()` requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are `data.frame`, `sf`, `RasterLayer` or `RasterBrick`. 
 
 :::{.callout-note}
-As of Nov 2023, support for `{terra}` is in development.
+Support for `{terra}` is planned to accompany the ArcGIS Pro 3.3 release.
 :::
 
 ```r
@@ -183,9 +171,9 @@ tool_exec <- function(in_params, out_params) {
 
 ### Installing Required Packages 
 
-When sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages should be automatically installed the first time the script tool is executed.
+When sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages can be automatically installed the first time the script tool is executed.
 
-The script tool can check to see if the required package is installed and if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:
+The script tool can check to see if the required package is installed and, if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:
 
 ```r
 install_if_not <- function(pkg) {
@@ -255,8 +243,3 @@ tool_exec <- function(in_params, out_params) {
 ## Dependent Parameters 
 
 - Autopopulate field drop-down using dependent parameter
-
-<!-- 
-Martha: Happy to take a stab at the above two sections once I get through a 
-first look at all the pages!
---> 
