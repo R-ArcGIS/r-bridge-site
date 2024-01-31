@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -104,12 +111,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="./geoprocessing-tools.html">Geoprocessing Tools</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="./geoprocessing-tools.html">Geoprocessing Tools</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -119,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R-ArcGIS Bridge</a> 
@@ -234,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -259,12 +266,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#arcpy-integration" id="toc-arcpy-integration" class="nav-link" data-scroll-target="#arcpy-integration">Using R script tools with <strong><code>arcpy</code></strong></a></li>
   <li><a href="#dependent-parameters" id="toc-dependent-parameters" class="nav-link" data-scroll-target="#dependent-parameters">Dependent Parameters</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/geoprocessing-tools.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/geoprocessing-tools.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="./geoprocessing-tools.html">Geoprocessing Tools</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Geoprocessing Tools</h1>
 </div>
@@ -279,17 +286,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Much like a python geoprocessing (GP) <a href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm">script tool</a>, you can also create R-based GP script tools and toolboxes that utilize the power of R.</p>
-<p>The basic anatomy of an R script GP tool is like so:</p>
+<p>Much like a Python geoprocessing (GP) <a href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm">script tool</a>, you can also create R-based GP script tools and toolboxes utilizing the power of R.</p>
+<p>The basic anatomy of an R-based GP script tool is like so:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>my-geoprocessing-tool.R</strong></pre>
 </div>
-<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<div class="sourceCode" id="annotated-cell-1" data-filename="my-geoprocessing-tool.R"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... do things here.. </span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>  out_params</span>
 <span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -297,25 +306,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-1">Two arguments capture input and output parameters</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Two arguments capture input and output parameters</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-1">Output parameters are returned to be captured by ArcGIS Pro</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">Output parameters are returned to be captured by ArcGIS Pro</span>
 </dd>
 </dl>
-<p>R-base GP script tools are defined in a standalone R script. The GP tool is defined by a function called <code>tool_exec()</code>. <code>tool_exec()</code> takes exactly two arguments capturing input and output parameters. <code>tool_exec()</code> should always return the output parameter argument.</p>
+<p>R-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called <code>tool_exec()</code>. <code>tool_exec()</code> takes exactly two arguments capturing input and output parameters. <code>tool_exec()</code> should always return the output parameter argument.</p>
 </section>
 <section id="input-and-output-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="input-and-output-parameters">Input and Output Parameters</h2>
 <p>There must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are <code>in_params</code> and <code>out_params</code>. The first argument will <em>always</em> refer to the input parameters and the second to the outputs.</p>
 <p><code>in_params</code> and <code>out_params</code> are named lists. The elements of these lists are determined by the <strong>direction</strong> of a parameter.</p>
 <p><img src="images/gp-tool-properties.png" class="img-fluid" style="width:50.0%"></p>
-<p>If the direction is <code>Input</code> it will be contained in <code>in_params</code>. Likewise, if the direction is <code>Output</code>, it will be contained in <code>out_params</code>.</p>
+<p>If the direction is <code>Input</code>, it will be contained in <code>in_params</code>. Likewise, if the direction is <code>Output</code>, it will be contained in <code>out_params</code>.</p>
 </section>
 <section id="using-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="using-parameters">Using parameters</h2>
-<p>We can extract values from the <code>in_params</code> and <code>out_params</code> lists by the name of the parameter.</p>
+<p>Values can be extracted from the <code>in_params</code> and <code>out_params</code> lists by the name or position of the parameter. It is strongly recommended to use name-based indexing rather than position-based indexing for clarity.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -326,10 +335,10 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The name of the parameter must match that of the <strong>Name</strong> column in the <code>Parameters</code> option of the Tool Properties. <em>It is not</em> the Label column.</p>
+<p>The name of the parameter must match the value in the <strong>Name</strong> (<em>not</em> Label) column in the <code>Parameters</code> tab of the Tool Properties.</p>
 </div>
 </div>
-<p>For example, if we wanted to parse the <code>date</code> parameter we could write our function like so:</p>
+<p>This is an example of a function to parse a <code>date</code> parameter with the name <code>date</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fetch the date parameter</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  date_str <span class="ot">&lt;-</span> in_params[[<span class="st">"date"</span>]]</span>
@@ -344,9 +353,9 @@ Caution
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="returning-values-to-arcgis-pro" class="level3">
 <h3 class="anchored" data-anchor-id="returning-values-to-arcgis-pro">Returning values to ArcGIS Pro</h3>
-<p>You may have noticed that at the end of the <code>tool_exec()</code> function we are returning the <code>out_params</code> object. If we do not return the output parameters back to ArcGIS Pro—by returning <code>out_params</code>—the outputs cannot be captured and used by Pro.</p>
+<p>At the end of the <code>tool_exec()</code> function above, the <code>out_params</code> object is returned. Returning the output parameters using this syntax allows ArcGIS Pro to capture and use the outputs of the script tool.</p>
 <p>Notably, the output parameters are useful in linking one tool to another, for example via use in <a href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/modelbuilder/modelbuilder-quick-tour.htm">ModelBuilder</a> or in an <a href="https://pro.arcgis.com/en/pro-app/latest/arcpy/main/arcgis-pro-arcpy-reference.htm"><strong><code>arcpy</code></strong></a> script.</p>
-<p>See <a href="#arcpy-integration">Using R script tools with <strong><code>arcpy</code></strong></a></p>
+<p>See <a href="#arcpy-integration">Using R script tools with <strong><code>arcpy</code></strong></a>.</p>
 </section>
 <section id="parameter-types" class="level3">
 <h3 class="anchored" data-anchor-id="parameter-types">Parameter types</h3>
@@ -364,7 +373,7 @@ Tip
 <p>A scalar value is a vector with only a single element.</p>
 </div>
 </div>
-<p>It is incumbent upon you to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by <code>arcgisbinding</code>. Below are some of the most common parameter types and how they are handled by <code>arcgisbinding</code>. This is not a complete enumeration by any means.</p>
+<p>It is incumbent upon the developer to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by <code>arcgisbinding</code>. Below are examples of common parameter types and how they are handled by <code>arcgisbinding</code>:</p>
 <table class="table-striped table">
 <caption>Data type mapping</caption>
 <colgroup>
@@ -412,16 +421,16 @@ Tip
 </tr>
 </tbody>
 </table>
+<p>For a complete list of parameter data types, see <a href="https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm">Geoprocessing data types</a>.</p>
 </section>
 <section id="multiple-values" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-values">Multiple Values</h3>
 <p>When selecting the <code>Multiple values</code> check box in the parameter data type dialog box, users can then provide multiple inputs of that type.</p>
 <p><img src="images/gp-parameter-type.png" class="img-fluid"></p>
-<p>When this is done, each of the input values will be contained inside of a list. If you have multiple values ticked for the <code>String</code> type, you will get a list of scalar character vectors.</p>
-<p><strong>This is important</strong> so it bears repeating! When you provide multiple values they will be captured in R as a list of scalars. This means that if you have multiple <code>String</code> values you will not get a character vector with a length greater than one.</p>
-<p>Take the below input for example</p>
+<p>When the <code>Multiple values</code> option is enabled, the parameter returns a list containing each of the input values.</p>
+<p>Note that when multiple values are provided, they will be captured in R as a list of scalars. Take the below input, for example:</p>
 <p><img src="images/gp-multiple-strings.png" class="img-fluid"></p>
-<p>In R we would get <code>list("string 1", "string 2")</code> and <strong>not</strong> <code>c("string 1", "string 2")</code>.</p>
+<p>In R, this parameter value would be <code>list("string 1", "string 2")</code> and <strong>not</strong> <code>c("string 1", "string 2")</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -432,7 +441,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To turn a list of scalars of the same type—e.g.&nbsp;double, integer, logical, or character—into a vector you can use <code>unlist()</code>. For example <code>unlist(list("string 1", "string 2"))</code> will give us <code>c("string 1", "string 2")</code>.</p>
+<p>To turn a list of scalars of the same type—e.g.&nbsp;double, integer, logical, or character—into a vector, use <code>unlist()</code>. For example <code>unlist(list("string 1", "string 2"))</code> returns <code>c("string 1", "string 2")</code>.</p>
 </div>
 </div>
 </section>
@@ -441,7 +450,7 @@ Tip
 <h2 class="anchored" data-anchor-id="common-patterns">Common Patterns</h2>
 <section id="reading-a-feature-class" class="level3">
 <h3 class="anchored" data-anchor-id="reading-a-feature-class">Reading a Feature Class</h3>
-<p>Often we you will want to read a feature class using <code>arcgisbinding</code> and bring the results into R as an sf object. To do his we will use the functions <code>arc.open()</code>, <code>arc.select()</code>, and <code>arc.data2sf()</code>.</p>
+<p>Reading a feature class using <code>arcgisbinding</code> and bringing the results into R as an sf object is a common pattern. To do this, use the functions <code>arc.open()</code>, <code>arc.select()</code>, and <code>arc.data2sf()</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  fclass <span class="ot">&lt;-</span> arcgisbinding<span class="sc">::</span><span class="fu">arc.open</span>(in_params[[<span class="st">"fc_path"</span>]])</span>
@@ -464,15 +473,15 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you are going to filter or select columns from your dataset consider doing that with the <code>fields</code> and <code>where_clause</code> arguments of <code>arc.select()</code> to reduce the amount of data read into memory.</p>
-<p><code>arc.select()</code> returns a <code>data.frame</code> with fields and a special geometry column which is incompatible with sf. We use <code>arc.data2sf()</code> to convert it to an sf object.</p>
+<p>To filter or select columns from a dataset, consider using the <code>fields</code> and <code>where_clause</code> arguments of <code>arc.select()</code> to reduce the amount of data read into memory.</p>
+<p><code>arc.select()</code> returns a <code>data.frame</code> with fields and a special geometry column which is incompatible with sf. Use <code>arc.data2sf()</code> to convert it to an sf object.</p>
 </div>
 </div>
 </section>
 <section id="writing-a-feature-class" class="level3">
 <h3 class="anchored" data-anchor-id="writing-a-feature-class">Writing a Feature Class</h3>
-<p>It is quite common to write the results of an analysis to a file geodatabase. This can be done with <code>arc.write()</code>. Typically, the we will capture the output path to write to in the <code>out_params</code> list object as a Feature Class type parameter.</p>
-<p><code>arc.write()</code> requires two arguments. The first is the output path to write to and the second is the object to write. The accepted type of objects are <code>data.frame</code>, <code>sf</code>, <code>RasterLayer</code> or <code>RasterBrick</code>.</p>
+<p>It is quite common to write the results of an analysis to a file geodatabase. This can be done with <code>arc.write()</code>. A Feature Class type parameter can be used in the <code>out_params</code> list object to capture a user-defined output path.</p>
+<p><code>arc.write()</code> requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are <code>data.frame</code>, <code>sf</code>, <code>RasterLayer</code> or <code>RasterBrick</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -483,7 +492,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>As of Nov 2023 <code>{terra}</code> is not supported but we are actively working on this.</p>
+<p>Support for <code>{terra}</code> is planned to accompany the ArcGIS Pro 3.3 release.</p>
 </div>
 </div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
@@ -498,21 +507,21 @@ Note
 </section>
 <section id="installing-required-packages" class="level3">
 <h3 class="anchored" data-anchor-id="installing-required-packages">Installing Required Packages</h3>
-<p>When you share your R based GP tools with other users there is a good chance that they do not have the packages that your script tool needs to execute code. In this case, we should install the required packages the first time the script tool is executed.</p>
-<p>In our script tool we should check to see if the required package is installed and if not, install it. We can write a helper function to include at the top of our script if we have multiple packages to check.</p>
+<p>When sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages can be automatically installed the first time the script tool is executed.</p>
+<p>The script tool can check to see if the required package is installed and, if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>install_if_not <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(pkg)) {</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Installing required package `{"</span>, pkg, <span class="st">"}`"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(pkg)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This function uses <code>requireNamespace()</code> which attempts to load the provided package. If it succeeds, it returns <code>TRUE</code>, if not it returns <code>FALSE</code>. We check to see if it returns <code>FALSE</code> and if so, we install the package and print an informative message.</p>
-<p>For example if we need to use the package <a href="https://r-spatial.github.io/spdep/"><code>{spdep}</code></a> and its not installed it will print the message and install it.</p>
+<p>This function uses <code>requireNamespace()</code> which attempts to load the provided package. If it succeeds, it returns <code>TRUE</code>, and if not it returns <code>FALSE</code>. The function checks to see if <code>FALSE</code> is returned and, if so, installs the package and prints an informative message.</p>
+<p>For example, if the script requires the package <a href="https://r-spatial.github.io/spdep/"><code>{spdep}</code></a> and it is not installed, the function will print the message and install the package.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># check for required paackages </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># check for required packages </span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install_if_not</span>(<span class="st">"spdep"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do other thigns with spdep</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do other things with spdep</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -520,21 +529,24 @@ Note
 <section id="using-progressors" class="level2">
 <h2 class="anchored" data-anchor-id="using-progressors">Using Progressors</h2>
 <p>Geoprocessing tools have a progressor, which includes both a progress label and a progress bar. The default progressor continuously moves back and forth to indicate the script is running. Using <code>arc.progress_label()</code> and <code>arc.progress_pos()</code> allows fine control over the script progress. Updating the progressor isn’t necessary, but is useful in situations where solely outputting messages to the dialog is insufficient to communicate script progress.</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/GUID-CEF2B5E9-DC07-4E63-8377-395F7F4AAC79-web.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Default Progressor</figcaption>
+<figcaption>Default Progressor</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/GUID-2719B74D-3AE1-4D3D-8CA8-EB495492635D-web.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Step Progressor</figcaption>
+<figcaption>Step Progressor</figcaption>
 </figure>
 </div>
 </div>
@@ -664,10 +676,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -677,8 +688,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -691,6 +711,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -734,6 +873,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -759,6 +899,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -824,7 +990,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">As a member of the R Consortium, Esri is part of the R community and supports the R project.</div>
+    <div class="nav-footer-center">
+<p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/geoprocessing-tools.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -843,6 +1011,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

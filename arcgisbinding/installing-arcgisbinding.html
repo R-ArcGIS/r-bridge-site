@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -104,12 +111,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">Installing <code>{arcgisbinding}</code></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">Installing <code>{arcgisbinding}</code></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -119,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">R-ArcGIS Bridge</a> 
@@ -234,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -251,12 +258,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#using-r-or-offline" id="toc-using-r-or-offline" class="nav-link" data-scroll-target="#using-r-or-offline">Using R or offline</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/arcgisbinding/installing-arcgisbinding.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/arcgisbinding/installing-arcgisbinding.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">ArcGIS Pro</a></li><li class="breadcrumb-item"><a href="../arcgisbinding/installing-arcgisbinding.html">Installing <code>{arcgisbinding}</code></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Installing <code>{arcgisbinding}</code></h1>
 </div>
@@ -271,15 +278,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<p><strong><code>arcgisbinding</code></strong> is an R package that enables communication between ArcGIS Pro and R. In order to use it, you must have a installation of ArcGIS Pro with a valid licenses as well as a supported version of R.</p>
-<!-- 
-Nick says: 
-While we recommend that you download and install the latest version of R for Windows (link here - https://cran.r-project.org/bin/windows/), the R-ArcGIS Bridge supports all previous versions or R (link here - https://cran.r-project.org/bin/windows/base/old/) back to version 3.2.2.
 
-Josiah: Dima wants to drop support for old versions of R i think going only back to 3.6.3
--->
+<p><strong><code>arcgisbinding</code></strong> is an R package that enables communication between ArcGIS Pro and R. In order to use it, you must have a installation of ArcGIS Pro with a valid license as well as a supported version of <a href="https://cran.r-project.org/">R</a> (≥ 3.6.3).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -295,13 +298,17 @@ Note
 </div>
 <section id="from-pro" class="level2">
 <h2 class="anchored" data-anchor-id="from-pro">Install within ArcGIS Pro (recommended)</h2>
-<p>If you are working in ArcGIS Pro 2.0 or beyond you have access to the built-in installer <!-- Nick prefers R-ArcGIS Bridge installer, i think that is too broad and continues to conflate remove--> which streamlines the process of installing <strong>arcgisbinding</strong>. It also allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario, you will do the following:</p>
+<p>If you are working in ArcGIS Pro 2.0 or beyond, you have access to the built-in installer, which streamlines the process of installing <strong>arcgisbinding</strong>. It also allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario:</p>
 <ul>
-<li>Open ArcGIS Pro and click on the ‘Project’ tab in your project.</li>
-<li>Select <code>Options</code> on the blue, left-hand side panel and in the pop-up window, under Application, select ‘Geoprocessing’.</li>
+<li>Open ArcGIS Pro and click on the <code>Project</code> tab in your project.</li>
+<li>Select <code>Options</code> on the blue, left-hand side panel and in the pop-up window, under Application, select <code>Geoprocessing</code>.</li>
 <li>Under the R-ArcGIS Support options, select your desired R home directory.</li>
 </ul>
-<!-- TODO Nick wants screen shot here -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/arcgisbinding-installer-homedir.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the Detected R home directories drop-down in the R-ArcGIS Support section highlighted."></p>
+</figure>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -319,32 +326,39 @@ Warning
 </div>
 </div>
 <ul>
-<li><p>If you have never installed the <strong>arcgisbinding</strong>, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to automatically download and install <strong>arcgisbinding</strong>, to separately download the package, or to install the package from file. Select the first option to <code>"automatically download and install"</code> the <strong>arcgisbinding</strong> package.</p></li>
-<li><p>A pop-up window will appear to inform you there is a new <strong>arcgisbinding</strong> version and will ask you if you wish to install it. Select <code>"Yes"</code>.</p></li>
-<li><p>A progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package <strong>arcgisbinding</strong> was successfully installed.</p></li>
+<li>If you have never installed <strong>arcgisbinding</strong>, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to install <strong>arcgisbinding</strong> from the internet, download the latest version of the package, or install the package from file. Select the first option - <code>Install package from the Internet</code> - to install the <strong>arcgisbinding</strong> package.</li>
 </ul>
-<!-- TODO Nick wants a screen shot -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/arcgisbinding-installer-internet.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the ArcGIS R integration package installation drop-down in the R-ArcGIS Support section highlighted, showing the Install package from the internet option."></p>
+</figure>
+</div>
+<ul>
+<li><p>A pop-up window will appear to inform you there is a new <strong>arcgisbinding</strong> version and will ask you if you wish to install it. Select <code>Yes</code>.</p></li>
+<li><p>A progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package <strong>arcgisbinding</strong> was successfully installed. The package will now show as installed in the R-ArcGIS Support section of the Options window.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/arcgisbinding-installer-complete.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the completed installation message highlighted, reading Installed arcgisbinding package version 1.0.1.306."></p>
+</figure>
+</div>
 </section>
 <section id="from-r" class="level2">
 <h2 class="anchored" data-anchor-id="from-r">Install from R</h2>
-<p>Alternatively, you can install <strong>arcgisbinding</strong> directly from R. Open RStudio, VS Code, or your favorite text editor and run the following from the console.</p>
+<p>Alternatively, you can install <strong>arcgisbinding</strong> directly from R. Open RStudio, VS Code, or your favorite text editor and run the following from the console:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"arcgisbinding"</span>, </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">"https://r.esri.com"</span>, </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"win.binary"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will install the package binary directly from the <a href="https://github.com/R-ArcGIS/r-arcgis.github.io/tree/master/bin/windows/contrib">R-ArcGIS GitHub repository</a> which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer.</p>
+<p>This will install the package binary directly from the <a href="https://github.com/R-ArcGIS/r-arcgis.github.io/tree/master/bin/windows/contrib">R-ArcGIS GitHub repository</a>, which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer.</p>
 </section>
 <section id="offline" class="level2">
 <h2 class="anchored" data-anchor-id="offline">Offline Installation</h2>
 <p>Many users of <strong>arcgisbinding</strong> work in a completely air-gapped environment where downloading external packages from the internet is not possible.</p>
-<p>In order to install <strong>arcgisbinding</strong> in an air-gapped environment you must first download the package on a machine with internet access and <a href="https://www.techopedia.com/definition/1880/sneakernet">“sneakernet”</a> it into your offline environment.</p>
-<!-- 
-Nick: "However, I'm not sure if we need to be more formal/literal here." 
-Josiah: This is quite literate! If we try to be more specific we get ourselves in the business of telling customers how to migrate data from offline environments which are not. Some people temporarily open internet access. Sometimes they move to a thumbdrive, or even a cd. 
--->
-<p>To download the package go to https://r.esri.com/bin/ and choose the version of <strong>arcgisbinding</strong> that matches your version of R.</p>
-<p>Once you have downloaded and moved the zip file onto your air-gapped machine you can install it using the <code>install.packages()</code> command.</p>
+<p>In order to install <strong>arcgisbinding</strong> in an air-gapped environment you must first download the package on a machine with internet access and transfer it into your offline environment.</p>
+<p>To download the package, go to https://r.esri.com/bin/ and choose the version of <strong>arcgisbinding</strong> that matches your version of R.</p>
+<p>Once you have downloaded and moved the zip file onto your air-gapped machine, you can install it using the <code>install.packages()</code> command.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"path/to/arcgisbinding_1.0.1.306.zip"</span>, <span class="at">repos =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -362,7 +376,7 @@ Warning
 </section>
 <section id="verify-your-installation" class="level2">
 <h2 class="anchored" data-anchor-id="verify-your-installation">Verify your installation</h2>
-<p>Once you have the <strong>arcgisbinding</strong> installed, you can check if your installation was successful by loading the package.</p>
+<p>Once you have <strong>arcgisbinding</strong> installed, you can check if your installation was successful by loading the package.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisbinding)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arc.check_product</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will print a message informing you of the version of ArcGIS Pro you are using. You do not need to install <strong>arcgisbinding</strong> again until you download a new version of R or wish to upgrade the package.</p>
@@ -372,7 +386,7 @@ Warning
 <section id="using-arcgis-pro" class="level3">
 <h3 class="anchored" data-anchor-id="using-arcgis-pro">Using ArcGIS Pro</h3>
 <p>If you have installed <strong>arcgisbinding</strong> from within ArcGIS Pro, follow the instructions for accessing ArcGIS Pro’s R-ArcGIS Support options in the <a href="#from-pro">installing within ArcGIS Pro section</a>.</p>
-<p>If you have previously installed <strong>arcgisbinding</strong>, you will see an installed message that lets you know the version of your <strong>arcgisbinding</strong> package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the <strong>arcgisbinding</strong> package. If prompted to update, click <code>"Yes"</code> and the latest version will automatically be installed.</p>
+<p>If you have previously installed <strong>arcgisbinding</strong>, you will see an installed message that lets you know the version of your <strong>arcgisbinding</strong> package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the <strong>arcgisbinding</strong> package. If prompted to update, click <code>Yes</code> and the latest version will automatically be installed.</p>
 </section>
 <section id="using-r-or-offline" class="level3">
 <h3 class="anchored" data-anchor-id="using-r-or-offline">Using R or offline</h3>
@@ -462,10 +476,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -475,8 +488,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -489,6 +511,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -532,6 +673,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -557,6 +699,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -622,7 +790,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">As a member of the R Consortium, Esri is part of the R community and supports the R project.</div>
+    <div class="nav-footer-center">
+<p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/arcgisbinding/installing-arcgisbinding.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -641,6 +811,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 
