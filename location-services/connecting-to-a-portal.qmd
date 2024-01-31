@@ -125,6 +125,10 @@ token
 #> refresh_token_expires_in: 1209599
 ```
 
+:::{.callout-warning}
+Authorization tokens are temporary and will expire. If you encounter an invalid token error, you might need to generated a new token.
+:::
+
 We now need to set this token to the `ARCGIS_SECRET` environment variable. We do this with `set_auth_token()`. 
 
 ```r
