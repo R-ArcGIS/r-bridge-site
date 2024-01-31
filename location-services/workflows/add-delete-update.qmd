@@ -139,7 +139,7 @@ Geodetic CRS:  NAD27
 ## Updating Features
 
 
-In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable `nc_totals`. When looking at it, we can see that the `AREA` AND `PERIMTER` values are missing. These might be helpful at a later point. 
+In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable `nc_avgs`. When looking at it, we can see that the `AREA` AND `PERIMTER` values are missing. These might be helpful at a later point. 
 
 In this section we will use the function `update_features()` to modify these values. First, let's create a new object called `to_update` that has the `AREA` and `PERIMETER` computed. 
 
