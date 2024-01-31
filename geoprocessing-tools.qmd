@@ -39,13 +39,13 @@ if the direction is `Output`, it will be contained in `out_params`.
 
 ## Using parameters
 
-Values can be extracted from the `in_params` and `out_params` lists by the name or position of the parameter. It is highly recommended to use name-based indexing rather than position-based indexing for clarity.
+Values can be extracted from the `in_params` and `out_params` lists by the name or position of the parameter. It is strongly recommended to use name-based indexing rather than position-based indexing for clarity.
 
 :::{.callout-caution}
 The name of the parameter must match the value in the **Name** (_not_ Label) column in the `Parameters` tab of the Tool Properties.
 :::
 
-This is an example of a function to parse a parameter named `date`:
+This is an example of a function to parse a `date` parameter with the name `date`:
 
 ```r
 tool_exec <- function(in_params, out_params) {
@@ -184,7 +184,7 @@ install_if_not <- function(pkg) {
 }
 ```
 
-This function uses `requireNamespace()` which attempts to load the provided package. If it succeeds, it returns `TRUE`, and if not it returns `FALSE`. The function checks to see if `FALSE` is returned and if so, installs the package and prints an informative message. 
+This function uses `requireNamespace()` which attempts to load the provided package. If it succeeds, it returns `TRUE`, and if not it returns `FALSE`. The function checks to see if `FALSE` is returned and, if so, installs the package and prints an informative message. 
 
 For example, if the script requires the package [`{spdep}`](https://r-spatial.github.io/spdep/) and it is not installed, the function will print the message and install the package.
 
