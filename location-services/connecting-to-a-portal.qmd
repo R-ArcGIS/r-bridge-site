@@ -59,7 +59,7 @@ By default, packages in the `{arcgis}` metapackage are configured to work with A
 
 - **`ARCGIS_CLIENT`** and **`ARCGIS_SECRET`** environment variables are used only in the `auth_client()` OAuth2 client flow authorization. See the [article on authorization](https://r-arcgis.github.io/arcgislayers/articles/Authorization.html) for more. 
 
-- **`ARCGIS_TOKEN`** is used to fetch a user's access token. These are retrieved using the various `auth_` functions of `arcgisutils` and set using `set_auth_token()`. Alternatively, the `ARCGIS_TOKEN` can be set to an API key. 
+- **`ARCGIS_TOKEN`** is used to fetch a user's access token. These are retrieved using the various `auth_` functions of `arcgisutils` and set using `set_arc_token()`. Alternatively, the `ARCGIS_TOKEN` can be set to an API key. 
 :::
 
 #### Setting your credentials in `.Renviron`
@@ -139,10 +139,10 @@ token
 Authorization tokens are temporary and will expire. If you encounter an invalid token error, you might need to generate a new token.
 :::
 
-We now need to set this token to the `ARCGIS_SECRET` environment variable. We do this with `set_auth_token()`. 
+We now need to set this token to the `ARCGIS_SECRET` environment variable. We do this with `set_arc_token()`. 
 
 ```r
-set_auth_token(token)
+set_arc_token(token)
 #> Token set to environment variable `ARCGIS_TOKEN`
 ```
 
@@ -155,7 +155,7 @@ The client flow has the benefit of being non-interactive, though.
 
 ```r
 token <- auth_client()
-set_auth_token(token)
+set_arc_token(token)
 #> Token set to environment variable `ARCGIS_TOKEN`
 ```
 
@@ -180,7 +180,7 @@ If you are a user of ArcGIS Pro and have **arcgisbinding** installed, you can us
 
 ```r
 token <- auth_binding()
-set_auth_token(token)
+set_arc_token(token)
 #> Token set to environment variable `ARCGIS_TOKEN`
 ```
 
