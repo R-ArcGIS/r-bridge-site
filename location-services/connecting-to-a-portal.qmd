@@ -188,4 +188,4 @@ set_arc_token(token)
 #> Token set to environment variable `ARCGIS_TOKEN`
 ```
 
-This method retrieves the token from the *active* portal in ArcGIS Pro. Make sure that you are logged into the intended portal and that it is set as active. If you make changes to the active portal in ArcGIS Pro, you will need to restart your R session for the new portal to be recognized by `auth_binding()`.
+This method retrieves the token from the *active* portal in ArcGIS Pro. Make sure that you are logged into the intended portal and that it is set as active. If you switch which portal is active in ArcGIS Pro, you will need to restart your R session for the new portal to be recognized by `auth_binding()`.
