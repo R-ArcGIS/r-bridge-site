@@ -2,13 +2,24 @@
 title: "Authorize with your Portal"
 ---
 
-In order to read content items that do not have a "Public" Sharing level (![](images/sharing-public.png){width=30%}), or to write to or modify existing content items that you are an owner of, you will need to be authorized. 
+In order to create content or interact with non-public items in ArcGIS Online or ArcGIS Enterprise, you will need to be authorized using one of the following methods:
 
-[Authorization is done using OAuth2](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/). There are two ways to authorize with OAuth2: either by using a a `code` or a `client` flow. In most cases code based authorization is recommended. These two methods are explained below. 
+- [OAuth2](#authorization-with-oauth2)
+- [Named User](#authorization-with-named-user)
+- [ArcGIS Pro and `{arcgisbinding}`](#authorization-with-arcgis-pro-and-arcgisbinding)
 
-Before you can authorize, you must first create a client ID. 
+:::{.callout-tip title="ArcGIS Sharing model" collapse="true"}
+Items in ArcGIS Online and ArcGIS Enterprise can be unshared (accessible only to the item owner) or shared to groups, your organization, or everyone (![](images/sharing-public.png){width=30%}). [Learn more about Sharing here.](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm) Read and write access to an item is controlled by the owner-specified sharing level, organizational security settings, and the accessing user's [privileges](https://doc.arcgis.com/en/arcgis-online/administer/roles.htm).
+:::
 
-## Obtaining a Client ID
+
+## Authorization with OAuth2
+
+There are two ways to authorize with [OAuth2](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/): either by using a a `code` or a `client` flow. Code-based authorization is interactive, requiring you to copy an authorization code from a browser window into the R console during the execution of your code. Client authorization allows for non-interactive scripting, but cannot be used for creating or modifying content. In most cases, code-based authorization is recommended. These two methods are explained below. 
+
+Before you can authorize with either OAuth2 method, you must first create a client ID. 
+
+### Obtaining a Client ID
 
 If a client ID is not provided to you by an administrator and you have the ability to create content items, you can create one. 
 
@@ -32,7 +43,7 @@ You can do so by creating an application item.
 ![](images/credentials.png){width=50%}
 
 
-## Securing your credentials
+### Securing your credentials
 
 By default, packages in the `{arcgis}` metapackage are configured to work with ArcGIS Online. `arcgis` utilizes environment variables to determine how requests are crafted and where requests are made. These environment variables are: 
 
@@ -49,12 +60,15 @@ By default, packages in the `{arcgis}` metapackage are configured to work with A
 
 - **`ARCGIS_CLIENT`** and **`ARCGIS_SECRET`** environment variables are used only in the `auth_client()` OAuth2 client flow authorization. See the [article on authorization](https://r-arcgis.github.io/arcgislayers/articles/Authorization.html) for more. 
 
-- **`ARCGIS_TOKEN`** is used to fetch a users access token. These are retrieved using the various `auth_` functions of `arcgisutils` and set using `set_auth_token()`. Alternatively, the `ARCGIS_TOKEN` can be set to an API key. 
 :::
 
-### Setting your credentials in `.Renviron`
+#### Setting your credentials in `.Renviron`
 
-Environment variables should _**never**_ be included in your code. Instead, they should be stored in an external environment file such as an `.Renvrion` file. To modify your `.Renviron`, you can use the `usethis` package. Ensure it is installed and run the following in your text editor:
+Environment variables should _**never**_ be included in your code. Instead, they should be stored in an external environment file such as an `.Renviron` file. To modify your `.Renviron`, you can use the `usethis` package. Ensure it is installed and run the following in your text editor:
+
+:::{.callout-warning}
+If you modify environment variables you will need to restart your R session for the change to be registered.
+:::
 
 ```r
 usethis::edit_r_environ()
@@ -67,7 +81,7 @@ usethis::edit_r_environ()
 **User scoped** `.Renviron` files store environment variables in the user's home directory. The environment variables will be available to you in any project you open. However, if you share your project, the environment variables will not be shared with it.
 :::
 
-This will open your `.Renviron` file for you to edit. Fill in the environment variables `ARCGIS_CLIENT` and `ARCGIS_SECRET` from the content item we just created. If you are not using ArcGIS Online, ensure that your portal's host is provided to `ARCGIS_HOST`. Additionally, provide your username to `ARCGIS_USER` if you plan to publish or edit existing content.
+This will open your `.Renviron` file for you to edit. Fill in the environment variables `ARCGIS_CLIENT` and `ARCGIS_SECRET` from the content item you just created. If you are not using ArcGIS Online, ensure that your portal's host is provided to `ARCGIS_HOST`. Additionally, provide your username to `ARCGIS_USER` if you plan to use username and password authentication.
 
 ```bash
 ARCGIS_CLIENT=your-client-id
@@ -81,9 +95,9 @@ Do not put environment variable values in quotation marks.
 If you are using ArcGIS Online, you do not need to set the environment variable `ARCGIS_HOST`.
 :::
 
-Be sure to save your changes to the file. To register the new environment variables restart your R session. 
+Be sure to save your changes to the file. To register the new environment variables, restart your R session. 
 
-## Authorizing
+### Authorizing
 
 First, load the library. 
 
@@ -94,11 +108,11 @@ library(arcgis)
 #>   - {arcgislayers} v0.1.0
 ```
 
-### Code flow
+#### Code flow
 
-The OAuth2 Code Flow is a process where a user authorizes an application to act on its behalf by granting a temporary access token. This type of authorization permits the application to take actions on the users behalf for the duration of the access token. Learn more about how [ArcGIS uses OAuth2.0](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2/).
+The OAuth2 Code Flow is a process where a user authorizes an application to act on their behalf by granting a temporary access token. This type of authorization permits the application to take actions on the user's behalf for the duration of the access token. Learn more about how [ArcGIS uses OAuth2.0](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2/).
 
-Running `auth_code()` will open a tab in your browser to begin the code flow. If you are authorizing to an ArcGIS Enterprise portal ensure that you set the `ARCGIS_HOST` environment variable correctly and that you have restarted your R session. 
+Running `auth_code()` will open a tab in your browser to begin the code flow. If you are authorizing to an ArcGIS Enterprise portal, ensure that you set the `ARCGIS_HOST` environment variable correctly and that you have restarted your R session. 
 
 ```r
 token <- auth_code()
@@ -126,37 +140,52 @@ token
 ```
 
 :::{.callout-warning}
-Authorization tokens are temporary and will expire. If you encounter an invalid token error, you might need to generated a new token.
+Authorization tokens are temporary and will expire. If you encounter an invalid token error, you might need to generate a new token.
 :::
 
-We now need to set this token to the `ARCGIS_SECRET` environment variable. We do this with `set_auth_token()`. 
+To make this token easily accessible to `{arcgis}`, use `set_arc_token()` which sets the token in dedicated authorization token environment.
 
 ```r
-set_auth_token(token)
-#> Token set to environment variable `ARCGIS_TOKEN`
+set_arc_token(token)
 ```
 
 
-### Client flow
+#### Client flow
 
-Alternatively, we can authorize using the client OAuth2 flow. This will authorize the application we created and not ourselves. Because of this we cannot use the client flow to create or modify content. 
+Alternatively, you can authorize using the client OAuth2 flow. This will authorize the application you created and not ourselves. Because of this, you cannot use the client flow to create or modify content. 
 
 The client flow has the benefit of being non-interactive, though. 
 
 ```r
 token <- auth_client()
-set_auth_token(token)
-#> Token set to environment variable `ARCGIS_TOKEN`
+set_arc_token(token)
 ```
 
-### Using ArcGIS Pro & `{arcgisbinding}`
+## Authorization with Named User
+
+Authorizing using an ArcGIS Online or ArcGIS Enterprise [username and password](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/user-authentication/direct-username-password/) is a legacy method that is supported for cases where OAuth2 is not implemented. As a reminder, credentials should never be stored in plaintext in code.
+
+:::{.callout-important}
+**Security consideration**: Obtaining an access token with this method will expose the username and password credentials as plain text and could present a potential security risk.
+:::
+
+```r
+token <- auth_user(
+  username = Sys.getenv("ARCGIS_USER"),
+  password = Sys.getenv("ARCGIS_PASSWORD")
+  host = arc_host(),
+  expiration = 60
+)
+set_arc_token(token)
+```
+
+## Authorization with ArcGIS Pro and `{arcgisbinding}`
 
 If you are a user of ArcGIS Pro and have **arcgisbinding** installed, you can use `auth_binding()` to utilize the tokens that result from `arc.check_portal()`. `auth_binding()` has the benefit of being non-interactive _and_ authorizes you as a user. You can use `auth_binding()` for non-interactive work that creates or modifies existing content.
 
 ```r
 token <- auth_binding()
-set_auth_token(token)
-#> Token set to environment variable `ARCGIS_TOKEN`
+set_arc_token(token)
 ```
 
-
+This method retrieves the token from the *active* portal in ArcGIS Pro. Make sure that you are logged into the intended portal and that it is set as active. If you switch which portal is active in ArcGIS Pro, you will need to restart your R session for the new portal to be recognized by `auth_binding()`.
