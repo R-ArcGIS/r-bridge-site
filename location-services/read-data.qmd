@@ -24,8 +24,8 @@ The objective of this tutorial is to teach you how to:
 
 - find a Feature Layer url from ArcGIS Online
 - read in the data from the Feature Layer
-- filter the Feature Layer query by column
-- filter the Feature Layer query by row
+- filter the Feature Layer data by column
+- filter the Feature Layer data by row
 - use `dplyr` for filtering
 
 ## Obtaining a feature layer url
@@ -40,7 +40,7 @@ When you scroll down, on the right hand side, you will see a button to view the 
 
 ![](images/read-data/view-url.png){width=45%}
 
-Clicking this will bring you to the Feature Service. Inside of a Feature Server there may be many layers or tables that we can use. In this case, there is only one layer. Click the hyperlinked **USA Major Cities**. 
+Clicking this will bring you to the Feature Service. Inside of a Feature Server there may be many layers or tables that you can use. In this case, there is only one layer. Click the hyperlinked **USA Major Cities**. 
 
 ![](images/read-data/usa-cities-server.png)
 
@@ -85,11 +85,11 @@ flayer
 The `FeatureLayer` object is obtained by adding `?f=json` to the feature layer url and processing the json. All of the metadata is stored in the `FeatureLayer` object. You can see this by running `unclass(flayer)`. Be warned! It gets messy. 
 :::
 
-With this `FeatureLayer` object, we can read data from the service into R! 
+With this `FeatureLayer` object, you can read data from the service into R! 
 
 ## Reading from a Feature Layer
 
-Once we have a `FeatureLayer` object, we can read its data into memory using the `arc_select()` function. By default, if we use `arc_select()` on a `FeatureLayer` without any additional arguments, the entire service will be brought into memory.
+Once you have a `FeatureLayer` object, you can read its data into memory using the `arc_select()` function. By default, if you use `arc_select()` on a `FeatureLayer` without any additional arguments, the entire service will be brought into memory.
 
 :::{.callout-warning}
 Avoid reading in more data than you need! Reading an entire feature service is fine for datasets with fewer than 5,000 features. But when there are more than 10,000 features, performance and memory may be throttled. 
@@ -214,7 +214,7 @@ fl_query |>
   filter(POPULATION > 1000000, STATE_ABBR = "CA")
 ```
 
-The query is stored in the `FeatureLayer` object and will not be executed until we request it with `collect()`. 
+The query is stored in the `FeatureLayer` object and will not be executed until you request it with `collect()`. 
 
 ```{r}
 fl_query |> 
