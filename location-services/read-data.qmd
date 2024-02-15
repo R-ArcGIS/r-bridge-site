@@ -260,7 +260,7 @@ If you would like to fetch multiple items at one time there is a plural `get_lay
 get_layers(fsrv, id = c(0, 2, 4))
 ```
 
-There is also a helper `get_all_layers()` to fetch all of layers of a server into a list. The list has two elements `layers` and `tables`. The former containing all of the `FeatureLayer`s and the latter containing all of the `Table`s in the `FeatureServer`.
+There is also a helper `get_all_layers()` to fetch all of layers of a `FeatureServer`, `MapServer`, or `GroupLayer` into a list. The list has two elements `layers` and `tables`. The former containing all of the `FeatureLayer`s and the latter containing all of the `Table`s in the `FeatureServer`.
 
 ```{r}
 get_all_layers(fsrv2)
