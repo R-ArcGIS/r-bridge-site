@@ -4,24 +4,35 @@ subtitle: "Learn how to read data from ArcGIS Online or Enterprise into R"
 freeze: true
 ---
 
-ArcGIS Online and Enterprise hosted Feature Layers can easily be read into R as [`{sf}`](https://r-spatial.github.io/sf/) objects using`{arcgislayers}`. 
+ArcGIS Online and Enterprise web services can easily be read into R using`{arcgislayers}`. Supported service types include:
 
-This tutorial will teach you the basics of reading data using `arcgis`.
+ - [FeatureServer](https://developers.arcgis.com/rest/services-reference/enterprise/feature-service.htm)
+    - [FeatureLayer](https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm)
+    - [Table](https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm)
+ - [MapServer](https://developers.arcgis.com/rest/services-reference/enterprise/map-service.htm)
+    - [GroupLayer](https://developers.arcgis.com/web-map-specification/objects/groupLayer/)
+ - [ImageServer](https://developers.arcgis.com/rest/services-reference/enterprise/image-service.htm)
+
+
+Metadata for all of the above service types can be accessed using `arc_open()`. Feature data can be read in using `arc_select()` for FeatureLayer, Table, and ImageServer.
+
+This tutorial will teach you the basics of reading data from hosted Feature Layers into R as [`{sf}`](https://r-spatial.github.io/sf/) objects using`{arcgislayers}`. 
 
 ## Objective
 
-The objective of this tutorial is to teach you how to 
+The objective of this tutorial is to teach you how to:
 
-- read in a population dataset from ArcGIS Online
-- apply a filter to a Feature Layer
-- read only specified columns
-- find a Feature Layer url 
+- find a Feature Layer url from ArcGIS Online
+- read in the data from the Feature Layer
+- select the Feature Layer data by column
+- filter the Feature Layer data by attributes
+- use `dplyr` for selecting and filtering
 
 ## Obtaining a feature layer url
 
-For this example we will read in [population data of major US cities](https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672) from ArcGIS Online. 
+For this example, you will read in population data of major US cities from ArcGIS Online. 
 
-We will use the functions `arc_open()` and `arc_select()` to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, we can navigate to the item in our portal. 
+You will use the functions `arc_open()` and `arc_select()` to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, navigate to the [item](https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672) in ArcGIS Online. 
 
 
 ![](images/read-data/usa-cities.png)
@@ -29,15 +40,15 @@ When you scroll down, on the right hand side, you will see a button to view the 
 
 ![](images/read-data/view-url.png){width=45%}
 
-Clicking this will bring us to the Feature Service itself. Inside of a Feature Server there may be many layers or table that we can use. In this case, there is only one layer. Click the hyperlinked **USA Major Cities**. 
+Clicking this will bring you to the Feature Service. Inside of a Feature Server there may be many layers or tables that you can use. In this case, there is only one layer. Click the hyperlinked **USA Major Cities**. 
 
 ![](images/read-data/usa-cities-server.png)
 
-Now we will be in the Feature Layer itself. 
+This reveals the Feature Layer of interest. 
 
 ![](images/read-data/usa-cities-layer.png){width=70%}
 
-Navigate to your browsers search bar, and you can copy the url 
+Navigate to your browser's search bar and copy the url.
 
 ```
 https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Cities_/FeatureServer/0
@@ -45,7 +56,7 @@ https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Citi
 
 ## Opening a Feature Layer
 
-Before we can read in the Feature Layer, we need to load the `arcgis` R package. If you do not have `arcgis` installed, install it with `pak::pak("r-arcgis/arcgis")`.
+Before you can read in the Feature Layer, you need to load the `arcgis` R package. If you do not have `arcgis` installed, install it with `pak::pak("r-arcgis/arcgis")`.
 
 :::{.aside}
 `{pak}` is an R package that makes it faster and easier to install R packages. If you do not have it installed, run `install.packages("pak")` first. 
@@ -55,54 +66,55 @@ Before we can read in the Feature Layer, we need to load the `arcgis` R package.
 library(arcgis)
 ```
 
-Let's store the Feature Layer url in an object called `furl` (as in feature layer url).
+Use the below code to store the Feature Layer url in an object called `furl` (as in feature layer url).
 
 ```{r}
 furl <- "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Cities_/FeatureServer/0"
 ```
 
-We then pass this variable to `arc_open()` and save it to `flayer` (feature layer).
+Then pass this variable to `arc_open()` and save it to `flayer` (feature layer).
 
 ```{r}
 flayer <- arc_open(furl)
 flayer
 ```
 
-`arc_open()` will create a `FeatureLayer` object. Under this hood this is really just a list with all of the feature layer's metadata. 
+`arc_open()` will create a `FeatureLayer` object. Under the hood, this is really just a list containing the feature layer's metadata. 
 
 :::{.callout-note collapse="true" title="FeatureLayer details for the curious"}
-The `FeatureLayer` object is obtained by adding `?f=json` to the feature layer url and processing the json. All of the metadata in there is stored in the `FeatureLayer` object. You can see this by running `unclass(flayer)`. Be warned! It gets messy. 
+The `FeatureLayer` object is obtained by adding `?f=json` to the feature layer url and processing the json. All of the metadata is stored in the `FeatureLayer` object. You can see this by running `unclass(flayer)`. Be warned! It gets messy. 
 :::
 
-With this `FeatureLayer` object, we can read data from the service into R using it! 
+With this `FeatureLayer` object, you can read data from the service into R! 
 
 ## Reading from a Feature Layer
 
-Once we have a `FeatureLayer` object we can read its data into memory using the `arc_select()` function. By default, if we use `arc_select()` on a `FeatureLayer` without any additional arguments, the entire service will be brought into memory.
+Once you have a `FeatureLayer` object, you can read its data into memory using the `arc_select()` function. By default, if you use `arc_select()` on a `FeatureLayer` without any additional arguments, the entire service will be brought into memory.
 
 :::{.callout-warning}
-Be careful to not try and read in more data than you need! Reading an entire feature services is fine for datasets in the realm of 0 - 5,000 features. But when we have more than 10,000 features performance and memory may be throttled. 
+Avoid reading in more data than you need! Reading an entire feature service is fine for datasets with fewer than 5,000 features. But when there are more than 10,000 features, performance and memory may be throttled. 
 
-Exceptionally detailed geometries require more data to be transferred across the web and may be slower to process.
+Exceptionally detailed geometries require more data to be transferred across the web and may be slower to process and may require adjustment of the `page_size` argument of `arc_select()`.
 :::
 
+Store the results of `arc_select()` in the object `cities`. 
 
 ```{r, message = FALSE}
 cities <- arc_select(flayer)
 cities
 ```
 
-We store the results of `arc_select()` into the object `cities`. The result is an `sf` object that we can now work with using **`sf`** and any other R package we'd like. 
+The result is an `sf` object that you can now work with using **`sf`** and any other R packages. 
 
 ### Specifying output fields 
 
-In some cases we may have Feature Layers with many fields that we might not want. We can specify which fields we want to return to R by using the `fields` argument. 
+In some cases, you may have Feature Layers with many extraneous fields. You can specify which fields to return to R using the `fields` argument. 
 
 :::{.callout-tip}
-It's always good to only read in the data that you need. Adding unneeded fields uses more memory and takes longer to process. 
+Remember to only read in the data that you need. Adding unneeded fields uses more memory and takes longer to process. 
 :::
 
-`fields` takes a character vector of field names. To see which fields are available in a Feature Layer you can use the utility function `list_fields()`.
+`fields` takes a character vector of field names. To see which fields are available in a Feature Layer, you can use the utility function `list_fields()`.
 
 ```{r}
 fields <- list_fields(flayer)
@@ -123,11 +135,11 @@ arc_select(
 
 ### Using SQL where clauses
 
-Not only can we limit the number of columns that we return from a Feature Layer, but we can also limit the number of rows that we have returned to us. This is very handy in the case of very, very, massive Feature Layers with hundreds of thousands of features. Reading all of those features into memory would be slow, costly (in terms of memory), and unnecessary!
+Not only can you limit the number of columns returned from a Feature Layer, but you can also limit the number of rows returned. This is very handy in the case of Feature Layers with hundreds of thousands of features. Reading all of those features into memory would be slow, costly (in terms of memory), and, in many cases, unnecessary!
 
-The `where` argument of `arc_select()` permits us to provide a very simple SQL where clause to limit what we get back. Let's explore the use of the `where` argument. 
+The `where` argument of `arc_select()` permits you to provide a very simple SQL where clause to limit the features returned. Let's explore the use of the `where` argument. 
 
-Let's modify our above `arc_select()` statement to return only the features in California. We do this by using the where clause `STATE_ABBR = 'CA'`
+Let's modify the above `arc_select()` statement to return only the features in California, using the where clause `STATE_ABBR = 'CA'`
 
 ```{r}
 arc_select(
@@ -137,7 +149,7 @@ arc_select(
 )
 ```
 
-We can also consider finding only the places in the US with more than 1,000,000 people as well.
+You can also consider finding only the places in the US with more than 1,000,000 people.
 
 ```{r}
 arc_select(
@@ -147,7 +159,7 @@ arc_select(
 )
 ```
 
-Now let's try combining both where clauses using `and` to find only the cities in California with a population greater than 1,000,000.
+Now try combining both where clauses using `and` to find only the cities in California with a population greater than 1,000,000.
 
 ```{r}
 arc_select(
@@ -161,9 +173,9 @@ arc_select(
 
 If writing the field names out by hand and coming up with SQL where clauses isn't your thing, that's okay. We also provide `dplyr::select()` and `dplyr::filter()` methods for `FeatureLayer` objects.
 
-The dplyr functionality is modeled off of [`dbplyr`](https://dbplyr.tidyverse.org/). The general concept is that we have a connection object that specifies what we will be querying against. Then we build up our queries using dplyr functions. Unlike using dplyr on `data.frame`s, the results aren't fetched eagerly. Instead they are _lazy_. With `dbplyr` we use the `collect()` function to execute a query and bring it into memory. The same is true with `FeatureLayer` objects. 
+The dplyr functionality is modeled off of [`dbplyr`](https://dbplyr.tidyverse.org/). The general concept is that you have a connection object that specifies what you will be querying against. Then you build up queries using dplyr functions. Unlike using dplyr on `data.frame`s, the results aren't fetched eagerly. Instead they are _lazy_. With `dbplyr`, you use the `collect()` function to execute a query and bring it into memory. The same is true with `FeatureLayer` objects. 
 
-Let's build up a query and see it in action! We need to load dplyr to bring the functions into scope.
+Let's build up a query and see it in action! First, load dplyr to bring the functions into scope.
 
 ```{r, message = FALSE}
 library(dplyr)
@@ -174,10 +186,10 @@ fl_query <- flayer |>
 fl_query
 ```
 
-After doing this, we can see that our `FeatureLayer` object now prints out a `Query` field with the `outFields` parameter set to the result of our `select()` function.
+After doing this, your `FeatureLayer` object now prints out a `Query` field with the `outFields` parameter set to the result of your `select()` function.
 
 :::{.callout-note collapse="true" title="A note for advanced useRs"}
-We build up and store the query in the `query` attribute of a `FeatureLayer` object. It is a named list that will be passed directly to the API endpoint. The names match endpoint parameters. 
+You build up and store the query in the `query` attribute of a `FeatureLayer` object. It is a named list that will be passed directly to the API endpoint. The names match endpoint parameters. 
 
 ```{r}
 attr(fl_query, "query")
@@ -191,7 +203,7 @@ update_params(fl_query, key = "value")
 
 :::
 
-We can continue to build up our query using `filter()` 
+You can continue to build up your query using `filter()` 
 
 :::{.callout-tip}
 Only very basic filter statements are supported such as `==`, `<`, `>`, etc.
@@ -202,7 +214,7 @@ fl_query |>
   filter(POPULATION > 1000000, STATE_ABBR = "CA")
 ```
 
-The query is stored in the `FeatureLayer` object and will not be executed until we request it with `collect()`. 
+The query is stored in the `FeatureLayer` object and will not be executed until you request it with `collect()`. 
 
 ```{r}
 fl_query |> 
