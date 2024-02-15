@@ -224,7 +224,7 @@ fl_query |>
 
 ## Map and Feature Servers
 
-This example has only illustrated how to work with `FeatureLayer` objects. However, often times you may wish to work with a collection of layers in either a `FeatureServer` or `MapServer`. Both of these are collections of multiple layers. Like a `FeatureLayer`, these are accessed with `arc_open()`.
+This example has only illustrated how to work with `FeatureLayer` objects. However, often times you may wish to work with a collection of layers in a `FeatureServer`, `MapServer`, or `GroupLayer`. All of these are collections of multiple layers. Like a `FeatureLayer`, these are accessed with `arc_open()`.
 
 ```{r}
 furl <- "https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer"
