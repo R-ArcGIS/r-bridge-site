@@ -211,7 +211,7 @@ Only very basic filter statements are supported such as `==`, `<`, `>`, etc.
 
 ```{r, message = FALSE}
 fl_query |> 
-  filter(POPULATION > 1000000, STATE_ABBR = "CA")
+  filter(POPULATION > 1000000, STATE_ABBR == "CA")
 ```
 
 The query is stored in the `FeatureLayer` object and will not be executed until you request it with `collect()`. 
@@ -220,5 +220,49 @@ The query is stored in the `FeatureLayer` object and will not be executed until 
 fl_query |> 
   filter(POPULATION > 1000000, STATE_ABBR == "CA") |> 
   collect()
+```
+
+## Map and Feature Servers
+
+This example has only illustrated how to work with `FeatureLayer` objects. However, often times you may wish to work with a collection of layers in either a `FeatureServer` or `MapServer`. Both of these are collections of multiple layers. Like a `FeatureLayer`, these are accessed with `arc_open()`.
+
+```{r}
+furl <- "https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer"
+
+fsrv <- arc_open(furl)
+fsrv
+```
+
+This `FeatureServer` contains 5 layers. The individual layers can be fetched using `get_layer()` which lets us specify the layer by ID or by name. It is recommended to use the ID as that will be less prone to human error (for example a space is secretly a tab). The result of the function is a `FeatureLayer` object that can be used with `arc_select()` as illustrated above.
+
+```{r}
+get_layer(fsrv, id = 2)
+```
+
+Some `FeatureServer`s will also contain tables.
+
+```{r}
+furl <- "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Wetlands/FeatureServer"
+fsrv2 <- arc_open(furl)
+fsrv2
+```
+
+This can be fetched using `get_layer()` as well.
+
+```{r}
+get_layer(fsrv2, 1)
+```
+
+
+If you would like to fetch multiple items at one time there is a plural `get_layers()` which will fetch multiple items based on name or id and return a list.
+
+```{r}
+get_layers(fsrv, id = c(0, 2, 4))
+```
+
+There is also a helper `get_all_layers()` to fetch all of layers of a server into a list. The list has two elements `layers` and `tables`. The former containing all of the `FeatureLayer`s and the latter containing all of the `Table`s in the `FeatureServer`.
+
+```{r}
+get_all_layers(fsrv2)
 ```
 
