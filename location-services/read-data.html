@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -257,6 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#using-sql-where-clauses" id="toc-using-sql-where-clauses" class="nav-link" data-scroll-target="#using-sql-where-clauses">Using SQL where clauses</a></li>
   </ul></li>
   <li><a href="#using-dplyr" id="toc-using-dplyr" class="nav-link" data-scroll-target="#using-dplyr">Using <code>dplyr</code></a></li>
+  <li><a href="#map-and-feature-servers" id="toc-map-and-feature-servers" class="nav-link" data-scroll-target="#map-and-feature-servers">Map and Feature Servers</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/location-services/read-data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -283,34 +284,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>ArcGIS Online and Enterprise hosted Feature Layers can easily be read into R as <a href="https://r-spatial.github.io/sf/"><code>{sf}</code></a> objects using<code>{arcgislayers}</code>.</p>
-<p>This tutorial will teach you the basics of reading data using <code>arcgis</code>.</p>
+<p>ArcGIS Online and Enterprise web services can easily be read into R using<code>{arcgislayers}</code>. Supported service types include:</p>
+<ul>
+<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/feature-service.htm">FeatureServer</a>
+<ul>
+<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm">FeatureLayer</a></li>
+<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm">Table</a></li>
+</ul></li>
+<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/map-service.htm">MapServer</a>
+<ul>
+<li><a href="https://developers.arcgis.com/web-map-specification/objects/groupLayer/">GroupLayer</a></li>
+</ul></li>
+<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/image-service.htm">ImageServer</a></li>
+</ul>
+<p>Metadata for all of the above service types can be accessed using <code>arc_open()</code>. Feature data can be read in using <code>arc_select()</code> for FeatureLayer, Table, and ImageServer.</p>
+<p>This tutorial will teach you the basics of reading data from hosted Feature Layers into R as <a href="https://r-spatial.github.io/sf/"><code>{sf}</code></a> objects using<code>{arcgislayers}</code>.</p>
 <section id="objective" class="level2">
 <h2 class="anchored" data-anchor-id="objective">Objective</h2>
-<p>The objective of this tutorial is to teach you how to</p>
+<p>The objective of this tutorial is to teach you how to:</p>
 <ul>
-<li>read in a population dataset from ArcGIS Online</li>
-<li>apply a filter to a Feature Layer</li>
-<li>read only specified columns</li>
-<li>find a Feature Layer url</li>
+<li>find a Feature Layer url from ArcGIS Online</li>
+<li>read in the data from the Feature Layer</li>
+<li>select the Feature Layer data by column</li>
+<li>filter the Feature Layer data by attributes</li>
+<li>use <code>dplyr</code> for selecting and filtering</li>
 </ul>
 </section>
 <section id="obtaining-a-feature-layer-url" class="level2">
 <h2 class="anchored" data-anchor-id="obtaining-a-feature-layer-url">Obtaining a feature layer url</h2>
-<p>For this example we will read in <a href="https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672">population data of major US cities</a> from ArcGIS Online.</p>
-<p>We will use the functions <code>arc_open()</code> and <code>arc_select()</code> to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, we can navigate to the item in our portal.</p>
+<p>For this example, you will read in population data of major US cities from ArcGIS Online.</p>
+<p>You will use the functions <code>arc_open()</code> and <code>arc_select()</code> to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, navigate to the <a href="https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672">item</a> in ArcGIS Online.</p>
 <p><img src="images/read-data/usa-cities.png" class="img-fluid"> When you scroll down, on the right hand side, you will see a button to view the service itself.</p>
 <p><img src="images/read-data/view-url.png" class="img-fluid" style="width:45.0%"></p>
-<p>Clicking this will bring us to the Feature Service itself. Inside of a Feature Server there may be many layers or table that we can use. In this case, there is only one layer. Click the hyperlinked <strong>USA Major Cities</strong>.</p>
+<p>Clicking this will bring you to the Feature Service. Inside of a Feature Server there may be many layers or tables that you can use. In this case, there is only one layer. Click the hyperlinked <strong>USA Major Cities</strong>.</p>
 <p><img src="images/read-data/usa-cities-server.png" class="img-fluid"></p>
-<p>Now we will be in the Feature Layer itself.</p>
+<p>This reveals the Feature Layer of interest.</p>
 <p><img src="images/read-data/usa-cities-layer.png" class="img-fluid" style="width:70.0%"></p>
-<p>Navigate to your browsers search bar, and you can copy the url</p>
+<p>Navigate to your browser’s search bar and copy the url.</p>
 <pre><code>https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Cities_/FeatureServer/0</code></pre>
 </section>
 <section id="opening-a-feature-layer" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="opening-a-feature-layer">Opening a Feature Layer</h2>
-<p>Before we can read in the Feature Layer, we need to load the <code>arcgis</code> R package. If you do not have <code>arcgis</code> installed, install it with <code>pak::pak("r-arcgis/arcgis")</code>.</p>
+<p>Before you can read in the Feature Layer, you need to load the <code>arcgis</code> R package. If you do not have <code>arcgis</code> installed, install it with <code>pak::pak("r-arcgis/arcgis")</code>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p><code>{pak}</code> is an R package that makes it faster and easier to install R packages. If you do not have it installed, run <code>install.packages("pak")</code> first.</p>
@@ -318,15 +333,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Attaching core arcgis packages:
-  - {arcgisutils} v0.1.0
+  - {arcgisutils} v0.1.1.9001
   - {arcgislayers} v0.1.0</code></pre>
 </div>
 </div>
-<p>Let’s store the Feature Layer url in an object called <code>furl</code> (as in feature layer url).</p>
+<p>Use the below code to store the Feature Layer url in an object called <code>furl</code> (as in feature layer url).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Cities_/FeatureServer/0"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We then pass this variable to <code>arc_open()</code> and save it to <code>flayer</code> (feature layer).</p>
+<p>Then pass this variable to <code>arc_open()</code> and save it to <code>flayer</code> (feature layer).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>flayer <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>flayer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -338,7 +353,7 @@ CRS: 4326
 Capabilities: Query,Extract</code></pre>
 </div>
 </div>
-<p><code>arc_open()</code> will create a <code>FeatureLayer</code> object. Under this hood this is really just a list with all of the feature layer’s metadata.</p>
+<p><code>arc_open()</code> will create a <code>FeatureLayer</code> object. Under the hood, this is really just a list containing the feature layer’s metadata.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="FeatureLayer details for the curious">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -351,15 +366,15 @@ FeatureLayer details for the curious
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The <code>FeatureLayer</code> object is obtained by adding <code>?f=json</code> to the feature layer url and processing the json. All of the metadata in there is stored in the <code>FeatureLayer</code> object. You can see this by running <code>unclass(flayer)</code>. Be warned! It gets messy.</p>
+<p>The <code>FeatureLayer</code> object is obtained by adding <code>?f=json</code> to the feature layer url and processing the json. All of the metadata is stored in the <code>FeatureLayer</code> object. You can see this by running <code>unclass(flayer)</code>. Be warned! It gets messy.</p>
 </div>
 </div>
 </div>
-<p>With this <code>FeatureLayer</code> object, we can read data from the service into R using it!</p>
+<p>With this <code>FeatureLayer</code> object, you can read data from the service into R!</p>
 </section>
 <section id="reading-from-a-feature-layer" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="reading-from-a-feature-layer">Reading from a Feature Layer</h2>
-<p>Once we have a <code>FeatureLayer</code> object we can read its data into memory using the <code>arc_select()</code> function. By default, if we use <code>arc_select()</code> on a <code>FeatureLayer</code> without any additional arguments, the entire service will be brought into memory.</p>
+<p>Once you have a <code>FeatureLayer</code> object, you can read its data into memory using the <code>arc_select()</code> function. By default, if you use <code>arc_select()</code> on a <code>FeatureLayer</code> without any additional arguments, the entire service will be brought into memory.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -370,15 +385,16 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Be careful to not try and read in more data than you need! Reading an entire feature services is fine for datasets in the realm of 0 - 5,000 features. But when we have more than 10,000 features performance and memory may be throttled.</p>
-<p>Exceptionally detailed geometries require more data to be transferred across the web and may be slower to process.</p>
+<p>Avoid reading in more data than you need! Reading an entire feature service is fine for datasets with fewer than 5,000 features. But when there are more than 10,000 features, performance and memory may be throttled.</p>
+<p>Exceptionally detailed geometries require more data to be transferred across the web and may be slower to process and may require adjustment of the <code>page_size</code> argument of <code>arc_select()</code>.</p>
 </div>
 </div>
+<p>Store the results of <code>arc_select()</code> in the object <code>cities</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">arc_select</span>(flayer)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 4185 features and 11 fields
+<pre><code>Simple feature collection with 4186 features and 11 fields
 Geometry type: POINT
 Dimension:     XY
 Bounding box:  xmin: -159.3191 ymin: 19.58272 xmax: -68.67922 ymax: 64.86928
@@ -408,10 +424,10 @@ First 10 features:
 10         6    674.0  24.47          POINT (-86.74549 33.1244)</code></pre>
 </div>
 </div>
-<p>We store the results of <code>arc_select()</code> into the object <code>cities</code>. The result is an <code>sf</code> object that we can now work with using <strong><code>sf</code></strong> and any other R package we’d like.</p>
+<p>The result is an <code>sf</code> object that you can now work with using <strong><code>sf</code></strong> and any other R packages.</p>
 <section id="specifying-output-fields" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="specifying-output-fields">Specifying output fields</h3>
-<p>In some cases we may have Feature Layers with many fields that we might not want. We can specify which fields we want to return to R by using the <code>fields</code> argument.</p>
+<p>In some cases, you may have Feature Layers with many extraneous fields. You can specify which fields to return to R using the <code>fields</code> argument.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -422,10 +438,10 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It’s always good to only read in the data that you need. Adding unneeded fields uses more memory and takes longer to process.</p>
+<p>Remember to only read in the data that you need. Adding unneeded fields uses more memory and takes longer to process.</p>
 </div>
 </div>
-<p><code>fields</code> takes a character vector of field names. To see which fields are available in a Feature Layer you can use the utility function <code>list_fields()</code>.</p>
+<p><code>fields</code> takes a character vector of field names. To see which fields are available in a Feature Layer, you can use the utility function <code>list_fields()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fields <span class="ot">&lt;-</span> <span class="fu">list_fields</span>(flayer)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fields[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -454,7 +470,7 @@ Tip
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"STATE_ABBR"</span>, <span class="st">"POPULATION"</span>, <span class="st">"NAME"</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 4185 features and 3 fields
+<pre><code>Simple feature collection with 4186 features and 3 fields
 Geometry type: POINT
 Dimension:     XY
 Bounding box:  xmin: -159.3191 ymin: 19.58272 xmax: -68.67922 ymax: 64.86928
@@ -476,9 +492,9 @@ First 10 features:
 </section>
 <section id="using-sql-where-clauses" class="level3">
 <h3 class="anchored" data-anchor-id="using-sql-where-clauses">Using SQL where clauses</h3>
-<p>Not only can we limit the number of columns that we return from a Feature Layer, but we can also limit the number of rows that we have returned to us. This is very handy in the case of very, very, massive Feature Layers with hundreds of thousands of features. Reading all of those features into memory would be slow, costly (in terms of memory), and unnecessary!</p>
-<p>The <code>where</code> argument of <code>arc_select()</code> permits us to provide a very simple SQL where clause to limit what we get back. Let’s explore the use of the <code>where</code> argument.</p>
-<p>Let’s modify our above <code>arc_select()</code> statement to return only the features in California. We do this by using the where clause <code>STATE_ABBR = 'CA'</code></p>
+<p>Not only can you limit the number of columns returned from a Feature Layer, but you can also limit the number of rows returned. This is very handy in the case of Feature Layers with hundreds of thousands of features. Reading all of those features into memory would be slow, costly (in terms of memory), and, in many cases, unnecessary!</p>
+<p>The <code>where</code> argument of <code>arc_select()</code> permits you to provide a very simple SQL where clause to limit the features returned. Let’s explore the use of the <code>where</code> argument.</p>
+<p>Let’s modify the above <code>arc_select()</code> statement to return only the features in California, using the where clause <code>STATE_ABBR = 'CA'</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
@@ -505,7 +521,7 @@ First 10 features:
 10         CA      12042    Alum Rock  POINT (-121.8239 37.3694)</code></pre>
 </div>
 </div>
-<p>We can also consider finding only the places in the US with more than 1,000,000 people as well.</p>
+<p>You can also consider finding only the places in the US with more than 1,000,000 people.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
@@ -531,7 +547,7 @@ Geodetic CRS:  WGS 84
 10         TX    1434625  San Antonio  POINT (-98.4925 29.42354)</code></pre>
 </div>
 </div>
-<p>Now let’s try combining both where clauses using <code>and</code> to find only the cities in California with a population greater than 1,000,000.</p>
+<p>Now try combining both where clauses using <code>and</code> to find only the cities in California with a population greater than 1,000,000.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
@@ -555,8 +571,8 @@ Geodetic CRS:  WGS 84
 <section id="using-dplyr" class="level2">
 <h2 class="anchored" data-anchor-id="using-dplyr">Using <code>dplyr</code></h2>
 <p>If writing the field names out by hand and coming up with SQL where clauses isn’t your thing, that’s okay. We also provide <code>dplyr::select()</code> and <code>dplyr::filter()</code> methods for <code>FeatureLayer</code> objects.</p>
-<p>The dplyr functionality is modeled off of <a href="https://dbplyr.tidyverse.org/"><code>dbplyr</code></a>. The general concept is that we have a connection object that specifies what we will be querying against. Then we build up our queries using dplyr functions. Unlike using dplyr on <code>data.frame</code>s, the results aren’t fetched eagerly. Instead they are <em>lazy</em>. With <code>dbplyr</code> we use the <code>collect()</code> function to execute a query and bring it into memory. The same is true with <code>FeatureLayer</code> objects.</p>
-<p>Let’s build up a query and see it in action! We need to load dplyr to bring the functions into scope.</p>
+<p>The dplyr functionality is modeled off of <a href="https://dbplyr.tidyverse.org/"><code>dbplyr</code></a>. The general concept is that you have a connection object that specifies what you will be querying against. Then you build up queries using dplyr functions. Unlike using dplyr on <code>data.frame</code>s, the results aren’t fetched eagerly. Instead they are <em>lazy</em>. With <code>dbplyr</code>, you use the <code>collect()</code> function to execute a query and bring it into memory. The same is true with <code>FeatureLayer</code> objects.</p>
+<p>Let’s build up a query and see it in action! First, load dplyr to bring the functions into scope.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -574,7 +590,7 @@ Query:
   outFields: STATE_ABBR,POPULATION,NAME</code></pre>
 </div>
 </div>
-<p>After doing this, we can see that our <code>FeatureLayer</code> object now prints out a <code>Query</code> field with the <code>outFields</code> parameter set to the result of our <code>select()</code> function.</p>
+<p>After doing this, your <code>FeatureLayer</code> object now prints out a <code>Query</code> field with the <code>outFields</code> parameter set to the result of your <code>select()</code> function.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="A note for advanced useRs">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -587,7 +603,7 @@ A note for advanced useRs
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We build up and store the query in the <code>query</code> attribute of a <code>FeatureLayer</code> object. It is a named list that will be passed directly to the API endpoint. The names match endpoint parameters.</p>
+<p>You build up and store the query in the <code>query</code> attribute of a <code>FeatureLayer</code> object. It is a named list that will be passed directly to the API endpoint. The names match endpoint parameters.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(fl_query, <span class="st">"query"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -612,7 +628,7 @@ Query:
 </div>
 </div>
 </div>
-<p>We can continue to build up our query using <code>filter()</code></p>
+<p>You can continue to build up your query using <code>filter()</code></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -628,7 +644,7 @@ Tip
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fl_query <span class="sc">|&gt;</span> </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(POPULATION <span class="sc">&gt;</span> <span class="dv">1000000</span>, <span class="at">STATE_ABBR =</span> <span class="st">"CA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(POPULATION <span class="sc">&gt;</span> <span class="dv">1000000</span>, STATE_ABBR <span class="sc">==</span> <span class="st">"CA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;FeatureLayer&gt;
 Name: USA Major Cities
@@ -637,10 +653,10 @@ CRS: 4326
 Capabilities: Query,Extract
 Query:
   outFields: STATE_ABBR,POPULATION,NAME
-  where: POPULATION &gt; 1000000.0 AND 'CA'</code></pre>
+  where: POPULATION &gt; 1000000.0 AND STATE_ABBR = 'CA'</code></pre>
 </div>
 </div>
-<p>The query is stored in the <code>FeatureLayer</code> object and will not be executed until we request it with <code>collect()</code>.</p>
+<p>The query is stored in the <code>FeatureLayer</code> object and will not be executed until you request it with <code>collect()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fl_query <span class="sc">|&gt;</span> </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(POPULATION <span class="sc">&gt;</span> <span class="dv">1000000</span>, STATE_ABBR <span class="sc">==</span> <span class="st">"CA"</span>) <span class="sc">|&gt;</span> </span>
@@ -655,6 +671,105 @@ Geodetic CRS:  WGS 84
 1         CA    3898747 Los Angeles POINT (-118.2706 34.05279)
 2         CA    1386932   San Diego POINT (-117.1456 32.72033)
 3         CA    1013240    San Jose POINT (-121.8864 37.33941)</code></pre>
+</div>
+</div>
+</section>
+<section id="map-and-feature-servers" class="level2">
+<h2 class="anchored" data-anchor-id="map-and-feature-servers">Map and Feature Servers</h2>
+<p>This example has only illustrated how to work with <code>FeatureLayer</code> objects. However, often times you may wish to work with a collection of layers in either a <code>FeatureServer</code> or <code>MapServer</code>. Both of these are collections of multiple layers. Like a <code>FeatureLayer</code>, these are accessed with <code>arc_open()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>fsrv <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>fsrv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;FeatureServer &lt;5 layers, 0 tables&gt;&gt;
+CRS: 3785
+Capabilities: Query,Extract
+  0: PlacePoints (esriGeometryPoint)
+  1: PlaceBoundaries (esriGeometryPolygon)
+  2: Counties (esriGeometryPolygon)
+  3: Tracts (esriGeometryPolygon)
+  4: ZCTAs (esriGeometryPolygon)</code></pre>
+</div>
+</div>
+<p>This <code>FeatureServer</code> contains 5 layers. The individual layers can be fetched using <code>get_layer()</code> which lets us specify the layer by ID or by name. It is recommended to use the ID as that will be less prone to human error (for example a space is secretly a tab). The result of the function is a <code>FeatureLayer</code> object that can be used with <code>arc_select()</code> as illustrated above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layer</span>(fsrv, <span class="at">id =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;FeatureLayer&gt;
+Name: Counties
+Geometry Type: esriGeometryPolygon
+CRS: 3785
+Capabilities: Query,Extract</code></pre>
+</div>
+</div>
+<p>Some <code>FeatureServer</code>s will also contain tables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Wetlands/FeatureServer"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>fsrv2 <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>fsrv2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;FeatureServer &lt;1 layer, 1 table&gt;&gt;
+CRS: 3857
+Capabilities: Query,Extract,Sync
+  0: USA_Wetlands (esriGeometryPolygon)
+  1: Pop_Up_Table (Table)</code></pre>
+</div>
+</div>
+<p>This can be fetched using <code>get_layer()</code> as well.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layer</span>(fsrv2, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Table&gt;
+Name: Pop_Up_Table
+Capabilities: Query,Extract,Sync</code></pre>
+</div>
+</div>
+<p>If you would like to fetch multiple items at one time there is a plural <code>get_layers()</code> which will fetch multiple items based on name or id and return a list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layers</span>(fsrv, <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+&lt;FeatureLayer&gt;
+Name: PlacePoints
+Geometry Type: esriGeometryPoint
+CRS: 3785
+Capabilities: Query,Extract
+
+[[2]]
+&lt;FeatureLayer&gt;
+Name: Counties
+Geometry Type: esriGeometryPolygon
+CRS: 3785
+Capabilities: Query,Extract
+
+[[3]]
+&lt;FeatureLayer&gt;
+Name: ZCTAs
+Geometry Type: esriGeometryPolygon
+CRS: 3785
+Capabilities: Query,Extract</code></pre>
+</div>
+</div>
+<p>There is also a helper <code>get_all_layers()</code> to fetch all of layers of a server into a list. The list has two elements <code>layers</code> and <code>tables</code>. The former containing all of the <code>FeatureLayer</code>s and the latter containing all of the <code>Table</code>s in the <code>FeatureServer</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_all_layers</span>(fsrv2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$layers
+$layers$`0`
+&lt;FeatureLayer&gt;
+Name: USA_Wetlands
+Geometry Type: esriGeometryPolygon
+CRS: 3857
+Capabilities: Query,Extract,Sync
+
+
+$tables
+$tables$`1`
+&lt;Table&gt;
+Name: Pop_Up_Table
+Capabilities: Query,Extract,Sync</code></pre>
 </div>
 </div>
 
