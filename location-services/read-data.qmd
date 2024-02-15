@@ -24,9 +24,9 @@ The objective of this tutorial is to teach you how to:
 
 - find a Feature Layer url from ArcGIS Online
 - read in the data from the Feature Layer
-- filter the Feature Layer data by column
-- filter the Feature Layer data by row
-- use `dplyr` for filtering
+- select the Feature Layer data by column
+- filter the Feature Layer data by attributes
+- use `dplyr` for selecting and filtering
 
 ## Obtaining a feature layer url
 
@@ -94,7 +94,7 @@ Once you have a `FeatureLayer` object, you can read its data into memory using t
 :::{.callout-warning}
 Avoid reading in more data than you need! Reading an entire feature service is fine for datasets with fewer than 5,000 features. But when there are more than 10,000 features, performance and memory may be throttled. 
 
-Exceptionally detailed geometries require more data to be transferred across the web and may be slower to process.
+Exceptionally detailed geometries require more data to be transferred across the web and may be slower to process and may require adjustment of the `page_size` argument of `arc_select()`.
 :::
 
 Store the results of `arc_select()` in the object `cities`. 
