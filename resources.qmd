@@ -13,21 +13,20 @@ title: "Resources"
 - [`{arcpbf}`](https://github.com/JosiahParry/arcpbf) - [documentation](https://r.esri.com/arcpbf/)
 
 #### Learning Resources
-- ArcGIS Learn Lessons? 
-- Esri Academy??
+- [Using the R-ArcGIS Bridge](https://www.esri.com/training/catalog/58b5e417b89b7e000d8bfe45/using-the-rarcgis-bridge/)
+- [ArcGIS Learn Lesson: Get Started with R and ArcGIS](https://learn.arcgis.com/en/paths/get-started-with-r-and-arcgis/)
+- [ArcGIS Technology for Spatial Data Science](https://www.esri.com/training/catalog/5e4c5550a333e81cae8274f0/arcgis-technology-for-spatial-data-science/)
 
 
 ## Learn about ArcGIS
-- REST API documentation
-- ArcGIS Pro
-- ArcGIS Online
-- ArcGIS Enterprise
-- ArcGIS Learn Lessons? 
-- Esri Academy??
+- [ArcGIS REST API documentation](https://developers.arcgis.com/rest/)
+- [ArcGIS Pro resources](https://www.esri.com/en-us/arcgis/products/arcgis-pro/resources)
+- [ArcGIS Online resources](https://www.esri.com/en-us/arcgis/products/arcgis-online/resources)
+- [ArcGIS Enterprise resources](https://www.esri.com/en-us/arcgis/products/arcgis-enterprise/windows-linux)
+- [ArcGIS Tutorial Gallery](https://learn.arcgis.com/en/gallery/) 
+- [Esri Training](https://www.esri.com/training/)
 
 ## Learn about R
-
-For ___analysts & data scientists___
-
-> arcgis is a metapackage that loads all location services packages for you.
+- [R](https://www.r-project.org/)
+- [CRAN](https://cran.r-project.org/)
 
