@@ -34,6 +34,7 @@ website:
             contents:
               - location-services/tutorials/shiny-dash/index.qmd
       - packages.qmd
+      - resources.qmd
 
 format:
   html:
