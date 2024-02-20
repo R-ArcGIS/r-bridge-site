@@ -1,11 +1,13 @@
 ---
 title: "Overview"
 subtitle: "Interact with ArcGIS Location Services directly from R"
-listing: 
-  max-description-length: 500
+listing:
+  - id: gallery
+    template: gallery.ejs
+    contents: gallery.yml
 ---
 
-The **`arcgis`** package for location services meets developers where they are at. At it's core, **`arcgis`** is a collection of R packages designed to interact with [ArcGIS Location Services](https://developers.arcgis.com/documentation/mapping-apis-and-services/) all from the comfort of R and your text editor. 
+The **`arcgis`** package for location services meets developers where they are at. At its core, **`arcgis`** is a collection of R packages designed to interact with [ArcGIS Location Services](https://developers.arcgis.com/documentation/mapping-apis-and-services/) from the comfort of R and your development environment of choice. 
 
 ArcGIS Location Services are provided as REST API endpoints and **`arcgis`** makes interacting with the services using R native objects seamless.
 
