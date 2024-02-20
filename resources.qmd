@@ -20,6 +20,7 @@ title: "Resources"
 
 
 ## Learn about ArcGIS
+
 - [ArcGIS REST API documentation](https://developers.arcgis.com/rest/)
 - [ArcGIS Pro resources](https://www.esri.com/en-us/arcgis/products/arcgis-pro/resources)
 - [ArcGIS Online resources](https://www.esri.com/en-us/arcgis/products/arcgis-online/resources)
@@ -28,6 +29,10 @@ title: "Resources"
 - [Esri Training](https://www.esri.com/training/)
 
 ## Learn about R
+
 - [R](https://www.r-project.org/)
+- [R for Data Science](https://r4ds.had.co.nz/)
+- [Geocomputation with R](https://r.geocompx.org/)
+- [Spatial Data Science: With Applications in R](https://r-spatial.org/book/)
 - [CRAN](https://cran.r-project.org/)
 
