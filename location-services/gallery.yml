@@ -3,16 +3,16 @@
   description: |
     Explore the core functions.
   tiles:
-    - title: Authorize with your Portal
-      subtitle: Log in using your ArcGIS Online or Enterprise credentials
-      href: https://r.esri.com/r-bridge-site/location-services/connecting-to-a-portal.html
-      code: connecting-to-a-portal.qmd
-      thumbnail: images/gallery-authorize.png
     - title: Read hosted data
       subtitle: Bring geometries and attributes into R
       href: https://r.esri.com/r-bridge-site/location-services/read-data.html
       code: read-data.qmd
       thumbnail: images/gallery-read.png
+    - title: Authorize with your Portal
+      subtitle: Log in using your ArcGIS Online or Enterprise credentials
+      href: https://r.esri.com/r-bridge-site/location-services/connecting-to-a-portal.html
+      code: connecting-to-a-portal.qmd
+      thumbnail: images/gallery-authorize.png
     - title: Publishing from R
       subtitle: Make data services accessible online
       href: https://r.esri.com/r-bridge-site/location-services/publishing.html
@@ -55,4 +55,3 @@
       href: https://www.linkedin.com/posts/diego-gabriel-miguel-v%C3%A1zquez-462a41201_greetings-again-dear-community-recently-activity-7158941012063584257-vR8x?utm_source=share&utm_medium=member_desktop
       code: https://www.linkedin.com/posts/diego-gabriel-miguel-v%C3%A1zquez-462a41201_greetings-again-dear-community-recently-activity-7158941012063584257-vR8x?utm_source=share&utm_medium=member_desktop
       thumbnail: images/gallery-integration.png
-  
