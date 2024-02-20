@@ -1,14 +1,6 @@
 [
   {
     "listing": "/location-services/overview.html",
-    "items": [
-      "/location-services/connecting-to-a-portal.html",
-      "/location-services/tutorials/shiny-dash/index.html",
-      "/location-services/workflows/add-delete-update.html",
-      "/location-services/workflows/overwrite-feature-service.html",
-      "/location-services/publishing.html",
-      "/location-services/read-data.html",
-      "/location-services/paper.html"
-    ]
+    "items": []
   }
 ]

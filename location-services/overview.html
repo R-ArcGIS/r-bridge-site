@@ -71,20 +71,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-gallery .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-category','listing-description','listing-tiles',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+      searchColumns: ["listing-category","listing-description","listing-tiles"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-gallery'] = new List('listing-gallery', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -295,170 +295,218 @@ window.Quarto = {
 </header>
 
 
-<p>The <strong><code>arcgis</code></strong> package for location services meets developers where they are at. At it’s core, <strong><code>arcgis</code></strong> is a collection of R packages designed to interact with <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/">ArcGIS Location Services</a> all from the comfort of R and your text editor.</p>
+<p>The <strong><code>arcgis</code></strong> package for location services meets developers where they are at. At its core, <strong><code>arcgis</code></strong> is a collection of R packages designed to interact with <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/">ArcGIS Location Services</a> from the comfort of R and your development environment of choice.</p>
 <p>ArcGIS Location Services are provided as REST API endpoints and <strong><code>arcgis</code></strong> makes interacting with the services using R native objects seamless.</p>
 <hr>
 
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1708013319725" data-listing-reading-time-sort="6" data-listing-word-count-sort="1155">
-<div class="thumbnail">
-<p><a href="../location-services/connecting-to-a-portal.html" class="no-external"></a></p><a href="../location-services/connecting-to-a-portal.html" class="no-external">
-<p class="card-img-top"><img src="images/sharing-public.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="../location-services/connecting-to-a-portal.html" class="no-external"></a></p>
+<div class="quarto-listing quarto-listing-container-custom" id="listing-gallery">
+
+<h2 class="anchored">Workflows</h2>
+
+<p>Explore the core functions.
+</p>
+
+<div class="list default" style="column-gap: 10px;">
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="0">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://r.esri.com/r-bridge-site/location-services/read-data.html" class="listing-title">Read hosted data</a>
+      </h3>
+        <!-- 
+        <a href="read-data.qmd" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">Bring geometries and attributes into R</span>
+
+    </div>
+    <a href="https://r.esri.com/r-bridge-site/location-services/read-data.html">
+      <img src="images/gallery-read.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="1">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://r.esri.com/r-bridge-site/location-services/connecting-to-a-portal.html" class="listing-title">Authorize with your Portal</a>
+      </h3>
+        <!-- 
+        <a href="connecting-to-a-portal.qmd" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">Log in using your ArcGIS Online or Enterprise credentials</span>
+
+    </div>
+    <a href="https://r.esri.com/r-bridge-site/location-services/connecting-to-a-portal.html">
+      <img src="images/gallery-authorize.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="2">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://r.esri.com/r-bridge-site/location-services/publishing.html" class="listing-title">Publishing from R</a>
+      </h3>
+        <!-- 
+        <a href="publishing.qmd" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">Make data services accessible online</span>
+
+    </div>
+    <a href="https://r.esri.com/r-bridge-site/location-services/publishing.html">
+      <img src="images/gallery-publish.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="3">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://r.esri.com/r-bridge-site/location-services/workflows/add-delete-update.html" class="listing-title">Editing Features</a>
+      </h3>
+        <!-- 
+        <a href="workflows/add-delete-update.qmd" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">Add, delete, and update features in a data service</span>
+
+    </div>
+    <a href="https://r.esri.com/r-bridge-site/location-services/workflows/add-delete-update.html">
+      <img src="images/gallery-edit.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="4">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://r.esri.com/r-bridge-site/location-services/workflows/overwrite-feature-service.html" class="listing-title">Overwrite Hosted Feature Layer</a>
+      </h3>
+        <!-- 
+        <a href="workflows/overwrite-feature-service.qmd" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">Replace the features populating a data service</span>
+
+    </div>
+    <a href="https://r.esri.com/r-bridge-site/location-services/workflows/overwrite-feature-service.html">
+      <img src="images/gallery-overwrite.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../location-services/connecting-to-a-portal.html" class="no-external">Authorize with your Portal</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../location-services/connecting-to-a-portal.html" class="no-external"></a>
+
+<h2 class="anchored">Tutorials</h2>
+
+<p>Follow along to learn about advanced uses.
+</p>
+
+<div class="list default" style="column-gap: 10px;">
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="5">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://r.esri.com/r-bridge-site/location-services/tutorials/shiny-dash/" class="listing-title">Dashboard using {arcgis}</a>
+      </h3>
+        <!-- 
+        <a href="tutorials/dash/index.qmd" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">Build a dashboard using ArcGIS hosted data</span>
+
+    </div>
+    <a href="https://r.esri.com/r-bridge-site/location-services/tutorials/shiny-dash/">
+      <img src="images/gallery-dash.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
 </div>
-<div class="listing-description">
-<a href="../location-services/connecting-to-a-portal.html" class="no-external">In order to create content or interact with non-public items in ArcGIS Online or ArcGIS Enterprise, you will need to be authorized using one of the following methods:</a>
+
+<h2 class="anchored">From the Community</h2>
+
+<p>See how others are using the package!
+</p>
+
+<div class="list default" style="column-gap: 10px;">
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="6">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://www.youtube.com/watch?v=GzyYLA_0xcc" class="listing-title">NDVI Mapping with {arcgis}</a>
+      </h3>
+        <!-- 
+        <a href="https://github.com/milos-agathon/arcgis-in-r" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">by Milos Popovic</span>
+
+    </div>
+    <a href="https://www.youtube.com/watch?v=GzyYLA_0xcc">
+      <img src="images/gallery-ndvi.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="7">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://www.linkedin.com/posts/diego-gabriel-miguel-v%C3%A1zquez-462a41201_greetings-again-dear-community-recently-activity-7158941012063584257-vR8x?utm_source=share&amp;utm_medium=member_desktop" class="listing-title">Integration Examples using {arcgis}</a>
+      </h3>
+        <!-- 
+        <a href="https://www.linkedin.com/posts/diego-gabriel-miguel-v%C3%A1zquez-462a41201_greetings-again-dear-community-recently-activity-7158941012063584257-vR8x?utm_source=share&amp;utm_medium=member_desktop" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">by Diego Gabriel Miguel Vázquez</span>
+
+    </div>
+    <a href="https://www.linkedin.com/posts/diego-gabriel-miguel-v%C3%A1zquez-462a41201_greetings-again-dear-community-recently-activity-7158941012063584257-vR8x?utm_source=share&amp;utm_medium=member_desktop">
+      <img src="images/gallery-integration.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
 </div>
-</div>
-<div class="metadata">
-<p><a href="../location-services/connecting-to-a-portal.html" class="no-external"></a></p><a href="../location-services/connecting-to-a-portal.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1708013319785" data-listing-reading-time-sort="13" data-listing-word-count-sort="2425">
-<div class="thumbnail">
-<p><a href="../location-services/tutorials/shiny-dash/index.html" class="no-external"></a></p><a href="../location-services/tutorials/shiny-dash/index.html" class="no-external">
-<p class="card-img-top"><img src="tutorials/shiny-dash/index_files/figure-html/unnamed-chunk-10-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="../location-services/tutorials/shiny-dash/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../location-services/tutorials/shiny-dash/index.html" class="no-external">Dashboard using <code>{arcgis}</code></a>
-</h3>
-<div class="listing-subtitle">
-<a href="../location-services/tutorials/shiny-dash/index.html" class="no-external">Building an interactive dashboard with ArcGIS hosted data</a>
-</div>
-<div class="listing-description">
-<a href="../location-services/tutorials/shiny-dash/index.html" class="no-external">In this tutorial we will be recreating a dashboard that utilizes the data from the City of Chattanooga Open Data Portal. In the below LinkedIn post by Charlie Mix, GIS Director at the University of Tennessee at Chattanooga IGTLab, they use this data to create an ArcGIS Dashboard.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="../location-services/tutorials/shiny-dash/index.html" class="no-external"></a></p><a href="../location-services/tutorials/shiny-dash/index.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1708013319785" data-listing-reading-time-sort="13" data-listing-word-count-sort="2508">
-<div class="thumbnail">
-<p><a href="../location-services/workflows/add-delete-update.html" class="no-external"></a></p><a href="../location-services/workflows/add-delete-update.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../location-services/workflows/add-delete-update.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../location-services/workflows/add-delete-update.html" class="no-external">Editing Features</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../location-services/workflows/add-delete-update.html" class="no-external">Learn to add, update, or delete features</a>
-</div>
-<div class="listing-description">
-<a href="../location-services/workflows/add-delete-update.html" class="no-external">Programmatically, adding, deleting, or updating features using <code>{arcgis}</code> is a deceptively simple process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted Feature Layer or Table.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="../location-services/workflows/add-delete-update.html" class="no-external"></a></p><a href="../location-services/workflows/add-delete-update.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1708013319793" data-listing-reading-time-sort="5" data-listing-word-count-sort="887">
-<div class="thumbnail">
-<p><a href="../location-services/workflows/overwrite-feature-service.html" class="no-external"></a></p><a href="../location-services/workflows/overwrite-feature-service.html" class="no-external">
-<p class="card-img-top"><img src="workflows/images/nc-convex-hulls.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="../location-services/workflows/overwrite-feature-service.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../location-services/workflows/overwrite-feature-service.html" class="no-external">Overwrite Hosted Feature Layer</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../location-services/workflows/overwrite-feature-service.html" class="no-external">Using the truncate and append workflow</a>
-</div>
-<div class="listing-description">
-<a href="../location-services/workflows/overwrite-feature-service.html" class="no-external">From time to time as the owner of a Feature Layer, you may need to completely overwrite the data in the service. Overwriting a web layer from ArcGIS Pro may lead to a loss of associated pop-ups and symbology. One way to get around this is to truncate the feature service and append new data to the same service.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="../location-services/workflows/overwrite-feature-service.html" class="no-external"></a></p><a href="../location-services/workflows/overwrite-feature-service.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1708013319733" data-listing-reading-time-sort="4" data-listing-word-count-sort="729">
-<div class="thumbnail">
-<p><a href="../location-services/publishing.html" class="no-external"></a></p><a href="../location-services/publishing.html" class="no-external">
-<p class="card-img-top"><img src="images/publish/nc-sids.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="../location-services/publishing.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../location-services/publishing.html" class="no-external">Publishing from R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../location-services/publishing.html" class="no-external">Create Hosted ArcGIS Online or Enterprise Feature Services from R</a>
-</div>
-<div class="listing-description">
-<a href="../location-services/publishing.html" class="no-external">While you may often consume data as an R user, you may also want to also publish data as a hosted feature service. In this tutorial we will go over how to publish an <code>sf</code> object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="../location-services/publishing.html" class="no-external"></a></p><a href="../location-services/publishing.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-listing-file-modified-sort="1708013319733" data-listing-reading-time-sort="7" data-listing-word-count-sort="1363">
-<div class="thumbnail">
-<p><a href="../location-services/read-data.html" class="no-external"></a></p><a href="../location-services/read-data.html" class="no-external">
-<p class="card-img-top"><img src="images/read-data/usa-cities.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="../location-services/read-data.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../location-services/read-data.html" class="no-external">Read hosted data</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../location-services/read-data.html" class="no-external">Learn how to read data from ArcGIS Online or Enterprise into R</a>
-</div>
-<div class="listing-description">
-<a href="../location-services/read-data.html" class="no-external">ArcGIS Online and Enterprise web services can easily be read into R using<code>{arcgislayers}</code>. Supported service types include:</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="../location-services/read-data.html" class="no-external"></a></p><a href="../location-services/read-data.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-file-modified-sort="1708013319733" data-listing-reading-time-sort="4" data-listing-word-count-sort="619">
-<div class="thumbnail">
-<p><a href="../location-services/paper.html" class="no-external"></a></p><a href="../location-services/paper.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../location-services/paper.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../location-services/paper.html" class="no-external"><code>arcgislayers</code>: an open source package for ArcGIS Location Services</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../location-services/paper.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="../location-services/paper.html" class="no-external">arcgislayers is an open source package as part of Environmental Systems Research Institute’s (Esri) R-ArcGIS Bridge project. arcgislayers enables developers to interact with ArcGIS data services directly from R. With arcgislayers, users can read, write, and administer remotely hosted data directly from R using native objects.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="../location-services/paper.html" class="no-external"></a></p><a href="../location-services/paper.html" class="no-external">
-</a>
-</div>
-</div>
-</div>
+
 <div class="listing-no-matching d-none">
 No matching items
 </div>
