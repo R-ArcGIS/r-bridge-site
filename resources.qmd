@@ -13,7 +13,8 @@ title: "Resources"
 - [`{arcpbf}`](https://github.com/JosiahParry/arcpbf) - [documentation](https://r.esri.com/arcpbf/)
 
 #### Learning Resources
-- [Using the R-ArcGIS Bridge](https://www.esri.com/training/catalog/58b5e417b89b7e000d8bfe45/using-the-rarcgis-bridge/)
+
+- [Using the R-ArcGIS Bridge with {arcgisbinding}](https://www.esri.com/training/catalog/58b5e417b89b7e000d8bfe45/using-the-rarcgis-bridge/)
 - [ArcGIS Learn Lesson: Get Started with R and ArcGIS](https://learn.arcgis.com/en/paths/get-started-with-r-and-arcgis/)
 - [ArcGIS Technology for Spatial Data Science](https://www.esri.com/training/catalog/5e4c5550a333e81cae8274f0/arcgis-technology-for-spatial-data-science/)
 
