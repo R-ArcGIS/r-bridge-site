@@ -1,0 +1,38 @@
+---
+title: "Resources"
+---
+
+
+##  Learn about R-ArcGIS Bridge
+
+#### Packages
+- [`{arcgisbinding}`](https://github.com/R-ArcGIS/r-bridge) - [documentation](https://rdrr.io/github/R-ArcGIS/r-bridge/man/arcgisbinding.html) | [vignette](https://r.esri.com/assets/arcgisbinding-vignette.html)
+- [`{arcgis}`](https://github.com/R-ArcGIS/arcgis) - [documentation](https://r.esri.com/arcgis/)
+- [`{arcgislayers}`](https://github.com/R-ArcGIS/arcgislayers) - [documentation](https://r.esri.com/arcgislayers/)
+- [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils) - [documentation](https://r.esri.com/arcgisutils/)
+- [`{arcpbf}`](https://github.com/JosiahParry/arcpbf) - [documentation](https://r.esri.com/arcpbf/)
+
+#### Learning Resources
+
+- [Using the R-ArcGIS Bridge with {arcgisbinding}](https://www.esri.com/training/catalog/58b5e417b89b7e000d8bfe45/using-the-rarcgis-bridge/)
+- [ArcGIS Learn Lesson: Get Started with R and ArcGIS](https://learn.arcgis.com/en/paths/get-started-with-r-and-arcgis/)
+- [ArcGIS Technology for Spatial Data Science](https://www.esri.com/training/catalog/5e4c5550a333e81cae8274f0/arcgis-technology-for-spatial-data-science/)
+
+
+## Learn about ArcGIS
+
+- [ArcGIS REST API documentation](https://developers.arcgis.com/rest/)
+- [ArcGIS Pro resources](https://www.esri.com/en-us/arcgis/products/arcgis-pro/resources)
+- [ArcGIS Online resources](https://www.esri.com/en-us/arcgis/products/arcgis-online/resources)
+- [ArcGIS Enterprise resources](https://www.esri.com/en-us/arcgis/products/arcgis-enterprise/windows-linux)
+- [ArcGIS Tutorial Gallery](https://learn.arcgis.com/en/gallery/) 
+- [Esri Training](https://www.esri.com/training/)
+
+## Learn about R
+
+- [R](https://www.r-project.org/)
+- [R for Data Science](https://r4ds.had.co.nz/)
+- [Geocomputation with R](https://r.geocompx.org/)
+- [Spatial Data Science: With Applications in R](https://r-spatial.org/book/)
+- [CRAN](https://cran.r-project.org/)
+
