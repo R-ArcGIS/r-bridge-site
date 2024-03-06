@@ -21,6 +21,7 @@ title: "Resources"
 
 ## Learn about ArcGIS
 
+- [ArcGIS location services documentation](https://developers.arcgis.com/documentation/mapping-apis-and-services/)
 - [ArcGIS REST API documentation](https://developers.arcgis.com/rest/)
 - [ArcGIS Pro resources](https://www.esri.com/en-us/arcgis/products/arcgis-pro/resources)
 - [ArcGIS Online resources](https://www.esri.com/en-us/arcgis/products/arcgis-online/resources)
