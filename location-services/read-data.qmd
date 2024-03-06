@@ -56,7 +56,7 @@ https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Citi
 
 ## Opening a Feature Layer
 
-Before you can read in the Feature Layer, you need to load the `arcgis` R package. If you do not have `arcgis` installed, install it with `pak::pak("r-arcgis/arcgis")`.
+Before you can read in the Feature Layer, you need to load the `arcgis` R package. If you do not have `arcgis` installed, install it with `pak::pak("r-arcgis/arcgis")` or `install.packages("arcgis")`.
 
 :::{.aside}
 `{pak}` is an R package that makes it faster and easier to install R packages. If you do not have it installed, run `install.packages("pak")` first. 
