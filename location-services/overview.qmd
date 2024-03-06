@@ -11,5 +11,12 @@ The **`arcgis`** package for location services meets developers where they are a
 
 ArcGIS location services are provided as REST API endpoints and **`arcgis`** makes interacting with the services using R native objects seamless.
 
+Installing and loading the **`arcgis`** meta-package provides access to all of the associated packages and functionality:
+
+```{r, eval = FALSE}
+install.packages("arcgis") # or pak::pak("r-arcgis/arcgis")
+library(arcgis)
+```
+
 <hr>
 
