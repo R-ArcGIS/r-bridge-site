@@ -4,7 +4,7 @@ subtitle: "Create Hosted ArcGIS Online or Enterprise Feature Services from R"
 freeze: true
 ---
 
-In addition to consuming data as an R user, you may also want to publish data as a hosted feature service. In this tutorial you will learn how to publish an `sf` object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise. 
+In addition to consuming data as an R user, you may also want to publish data as a hosted feature service. In this tutorial, you will learn how to publish an `sf` object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise. 
 
 ## Authorization
 
@@ -39,11 +39,11 @@ nc <- sf::read_sf(system.file("shape/nc.shp", package = "sf"))
 nc
 ```
 
-Now that you have an sf object and you have authorized with your portal, all that's left is to publish the item! 
+Now that you have an `sf` object and you have authorized with your portal, all that's left is to publish the item! 
 
 `publish_layer()` has only two required arguments: 
 
-- `x` the sf object or `data.frame`
+- `x` the `sf` object or `data.frame`
 - `title` the title of layer you are creating
 
 ```{r, eval=FALSE}
@@ -64,14 +64,24 @@ res
 If you encounter errors while publishing, try using a feature layer title that does not contain spaces or special characters, such as "NorthCarolinaSIDS" for this example.
 :::
 
-Now from your Portal's [Content listing](https://arcgis.com/home/content.html) you should see your feature service. If you open it up you should see something like the below.
+Now from your Portal's [Content page](https://arcgis.com/home/content.html) you should see two items associated with your feature service:
+
+![](images/publish/published-items.png){width=70%}
+
+Behind the scenes, `publish_layer()` added the `sf` object as a *Feature Layer* item first and then published this item as a *Feature Layer (hosted)*. After publishing, you will typically only interact with the hosted feature layer. (Note that the dependency between these two items prevents you from deleting the underlying feature layer while the hosted feature layer still exists.)
+
+:::{.aside}
+Learn about [hosted feature layers](https://doc.arcgis.com/en/arcgis-online/reference/feature-layers.htm#ESRI_SECTION1_26EBAE21F63042B9A51A4312A08A1B25)
+:::
+
+Click **View details** on the hosted feature layer item and you should see something like the below:
 
 ![](images/publish/nc-sids.png){width=70%}
 
 ## Reading the published Feature Layer
 
-The output of this function is a list that contains information about where the sf object was published.
-You can retrieve the `encodedServiceUrl` from the response and read the response. 
+The output of the `publish_layer()` function is a list that contains information about where the `sf` object was published.
+You can retrieve the `encodedServiceUrl` from the response and use `arc_open()` to return the metadata for your newly-created service. 
 
 ```{r eval=FALSE}
 nc_fserver <- arc_open(res[[c("services", "encodedServiceURL")]])
@@ -101,7 +111,7 @@ get_layer(nc_fserver, 0)
 
 Publishing a `data.frame` follows the same steps as those above. The difference is that it creates a `Table` object. Try repeating the same process but using the palmerpenguins dataset! 
 
-```{r}
+```{r eval=FALSE}
 # install.packages("palmerpenguins")
 palmerpenguins::penguins
 ```
