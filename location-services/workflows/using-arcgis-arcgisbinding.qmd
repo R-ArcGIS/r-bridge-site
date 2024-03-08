@@ -1,0 +1,105 @@
+---
+title: "Using `arcgis` with `arcgisbinding`"
+subtitle: "Combining the two packages for workflows that span ArcGIS Pro and ArcGIS location services"
+freeze: true
+--- 
+
+```{r include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+While both are components of the R-ArcGIS Bridge, `arcgis` and `arcgisbinding` serve distinct purposes: 
+
+- `arcgis` *bridges* to ArcGIS location services, enabling web-based workflows from R
+- `arcgisbinding` *binds* to ArcGIS Pro, enabling data i/o and other desktop software-based processes from R
+
+However, there may be instances where you want to combine the functionality of these two R packages in a single workflow. The below code samples demonstrate how these packages can be used together, as well as alongside popular spatial R packages like `terra` and `sf`.
+
+## Extract imagery of the Ouarkziz crater
+#### *(from `arcgis` to `arcgisbinding`)*
+
+This sample shows how to extract multispectral Landsat imagery from ArcGIS Living Atlas using `arcgis` and subsequently resample or reproject it using `arcgisbinding`. Both packages also work with `terra`, so you can easily plot, write, and integrate with other R-based raster analysis workflows.
+
+
+```r
+# install.packages('arcgis')
+
+library(terra)
+library(arcgis)
+library(arcgisbinding)
+arc.check_product()
+
+# use arcgis to access imagery from ArcGIS Living Atlas
+rurl <- "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
+
+img_srv <- arc_open(rurl)
+
+img <- arc_raster(
+  img_srv,
+  "-846028", # xmin
+  "-833783", # xmax
+  "3373101", # ymin
+  "3380738", # ymax
+)
+
+# use terra to plot
+plotRGB(img, stretch = "lin")
+
+# use arcgisbdinding to resample?
+# use arcgisbinding to project?
+
+# use terra to write out the raster
+writeRaster(img, "ouarkziz-crater.tif", overwrite=TRUE)
+```
+
+![](images/ouarkziz-crater.png)
+
+Data Source: [Multispectral Landsat](https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b) 
+
+[Learn more about the Ouarkziz crater in Algeria.](https://earthobservatory.nasa.gov/images/77851/ouarkziz-impact-crater-algeria)
+
+
+## Use local data to update an ArcGIS Online feature service
+#### *(from `arcgisbinding` to `arcgis`)*
+
+In this sample, `arcgisbinding` reads and converts a local feature class to `sf`, and then `arcgis` uses the `sf` object to update an ArcGIS Online feature service.
+
+```r
+# install.packages('arcgis')
+
+library(sf)
+library(arcgis)
+library(arcgisbinding)
+arc.check_product()
+
+# use arcgisbinding to read in feature class
+fcpath = "C:\\Data\\FARS_update.gdb\\FARS_2021"
+
+fc <- arc.open(fcpath)
+
+sqlquery <- "STATENAME = 'Missouri'"
+
+fcdata <- arc.select(fc, where_clause=sqlquery)
+
+sfdata <- arc.data2sf(fcdata) # project to 3857
+
+# use arcgis to access feature service
+token <- auth_code() # review connecting-to-a-portal to get more info
+
+set_arc_token(token)
+
+fsurl <- "https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/Fatal_Vehicle_Accidents_in_Missouri/FeatureServer/0"
+
+flyr <- arc_open(fsurl)
+flyr
+
+# use sf to project new data to the same crs as flyr
+sfdataprj <- st_transform(sfdata, st_crs(flyr))
+
+# use arcgis to add the new features
+add_res <- add_features(flyr, sfdataprj)
+add_res
+
+flyr <- refresh_layer(flyr)
+flyr
+```
