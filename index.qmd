@@ -12,9 +12,9 @@ It also helps R users extend their analyses by accessing the authoritative datas
 
 # Use ArcGIS Location Services 
 
-The **`arcgis`** meta-package for location services brings ArcGIS to data scientists, analysts, and developers where they work. At its core, **`arcgis`** is a collection of R packages designed to interact with [ArcGIS Location Services](https://developers.arcgis.com/documentation/mapping-apis-and-services/) all from the comfort of R and your development environment of choice. 
+The **`arcgis`** meta-package for location services brings ArcGIS to data scientists, analysts, and developers where they work. At its core, **`arcgis`** is a collection of R packages designed to interact with [ArcGIS location services](https://developers.arcgis.com/documentation/mapping-apis-and-services/) all from the comfort of R and your development environment of choice. 
 
-ArcGIS Location Services are provided as REST API endpoints. **`arcgis`** enables seamless interaction with these services using R native objects. 
+ArcGIS location services are provided as REST API endpoints. **`arcgis`** enables seamless interaction with these services using R native objects. 
 
 <!-- 
 Nick: Below this, suggest a bulleted list of a few of the location services, using the language of the developers doc:
@@ -42,27 +42,27 @@ Move data between R and ArcGIS Pro. Build R-driven geoprocessing tools.
 :::
 
 ::: {.card}
-`{arcgis}`
+[`{arcgis}`](https://cran.r-project.org/package=arcgis)
 
 Location services metapackage. Your one stop shop for all your location services needs! 
 :::
 
 ::: {.card}
-`{arcgislayers}`
+[`{arcgislayers}`](https://cran.r-project.org/package=arcgislayers)
 
-Read and write to Feature Services and much more with ArcGIS Location Services.
+Read and write to Feature Services and much more with ArcGIS location services.
 :::
 
 
 ::: {.card}
-`{arcgisutils}`
+[`{arcgisutils}`](https://cran.r-project.org/package=arcgisutils)
 
 Powers `{arcgis}` by providing functionality for authorization and converting between R objects and Esri JSON.
 :::
 
 
 ::: {.card}
-`{arcpbf}`
+[`{arcpbf}`](https://cran.r-project.org/package=arcpbf)
 
 Process `FeatureCollection` protocol buffers in R using the power of Rust! 
 :::
