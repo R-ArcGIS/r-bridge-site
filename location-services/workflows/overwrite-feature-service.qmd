@@ -14,7 +14,7 @@ For this example, we need to be the owner of a Feature Service. As such, we will
 
 ## Truncating a Feature Layer
 
-Truncating a Feature Layer deletes every single record in the service and resets the auto-increment of the object ID. Truncating a service does not change the field definitions or permit us to add or remove fields to it. If you wish to do so, publish a new layer instead. 
+Truncating a Feature Layer deletes every single record in the service and resets the auto-increment of the object ID. Truncating a service does not change the field definitions or permit us to add or remove fields. If you wish to do so, publish a new layer instead. 
 
 Before we can modify a service, we must first authorize ourselves with the portal. To do so we will use the `auth_code()` authorization flow. If you have not yet configured you environment to authorize with your portal, follow the [**Connecting to your Portal**](../connecting-to-a-portal.qmd) tutorial. 
 
@@ -29,7 +29,7 @@ Attaching core arcgis packages:
   - {arcgislayers} v0.1.0
 ```
 
-Next, authorize with the service itself and set the access token.
+Next, authorize with the portal and set the access token.
 
 ```{r eval = FALSE}
 token <- auth_code()
@@ -39,7 +39,7 @@ set_auth_token(token)
 Token set to environment variable `ARCGIS_TOKEN`
 ```
 
-Now that we have verified our identity with our portal we can create a `FeatureLayer` object from our hosted service. From your [content listing](https://arcgis.com/home/content.html) find the Feature Layer url. 
+Now that we have verified our identity with our portal we can create a `FeatureLayer` object in R from our hosted service. From your [content listing](https://arcgis.com/home/content.html) find the Feature Layer url. 
 
 :::{.callout-tip}
 Revisit the "Obtaining a feature layer url" section of the [**Read hosted data**](../read-data.qmd#obtaining-a-feature-layer-url) tutorial if you forgot how to retrieve the service url.
@@ -60,7 +60,7 @@ Capabilities: Create,Delete,Query,Update,Editing
 ```
 
 :::{.aside}
-This is the url of your hosted feature service. This will be different than what is here. Note that the `/0` indicates the layer index. You can often copy the url from under the URL section on the right hand menu and append the `/0` to it. 
+This is the url of your hosted feature service. Yours will be different than the URL shown here. Note that the `/0` indicates the layer index. You can often copy the url from under the URL section on the right hand menu and append the `/0` to it. 
 :::
 
 
@@ -109,10 +109,10 @@ nc_convex <- st_convex_hull(nc_sf)
 plot(st_geometry(nc_convex))
 ```
 
-Let's take this sf object and add them as features to our now empty `FeatureLayer`. To add features we use the `add_features()` function. The first argument is the `FeatureLayer` (or `Table`) that we are adding features to. The second is the sf object that we will be adding to the layer.
+Let's take this sf object and add them as features to our now empty `FeatureLayer`. To add features, we use the `add_features()` function. The first argument is the `FeatureLayer` (or `Table`) that we are adding features to. The second is the `sf` object that we will be adding to the layer.
 
 :::{.callout-tip}
-It is important to note that the column names of the sf object must match the names of the fields in the `FeatureLayer` otherwise `arcgis` does not know which column matches which field. 
+It is important to note that the column names of the `sf` object must match the names of the fields in the `FeatureLayer`, otherwise `arcgis` does not know which column matches which field. 
 :::
 
 ```{r}
