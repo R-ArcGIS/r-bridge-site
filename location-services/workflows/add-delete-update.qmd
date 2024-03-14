@@ -8,7 +8,7 @@ freeze: true
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
-Programmatically, adding, deleting, or updating features using `{arcgis}` is a deceptively simple process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted Feature Layer or Table. 
+Programmatically, adding, deleting, or updating features using `{arcgis}` is a straightforward process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted feature layer or table. 
 
 We will go over the functions:
 
@@ -18,7 +18,7 @@ We will go over the functions:
   
 ## Pre-requisites
 
-We will use the the *North Carolina SIDS* dataset we created in the [**Publishing from R**](../publishing.qmd) tutorial. To follow along be sure that you have followed that tutorial and have a `FeatureLayer` that you can modify. If you have not yet configured your environment to authorize with an online portal, start at [**Connecting to your portal**](../connecting-to-a-portal.qmd).
+We will use the the *North Carolina SIDS* dataset we created in the [**Publishing from R**](../publishing.qmd) tutorial. To follow along, be sure that you have followed that tutorial and have a `FeatureLayer` that you can modify. If you have not yet configured your environment to authorize with an online portal, start at [**Connecting to your portal**](../connecting-to-a-portal.qmd).
 
 ## Adding features
 
@@ -34,7 +34,7 @@ set_auth_token(token)
 #> Token set to environment variable `ARCGIS_TOKEN`
 ```
 
-Next, we will create the feature that we want to add using the sf package. We'll read in the `nc.shp` file from the sf package.
+Next, we will create the feature that we want to add using the `sf` package. We'll read in the `nc.shp` file from the `sf` package.
 
 ```{r eval = TRUE, message = FALSE}
 library(sf)
@@ -59,7 +59,7 @@ nc_summary <- nc_sf |>
 nc_summary
 ```
 1. The [`across()`](https://dplyr.tidyverse.org/reference/across.html) function applies a function to multiple columns at once.
-2. We specify the columns we will be apply a function to in `.cols`. We use the `tidyselect` helpers to catch any columns that end with `74` or `79`.
+2. We specify the columns we will be applying a function to in `.cols`. We use the `tidyselect` helpers to catch any columns that end with `74` or `79`.
 3. The `.fns` argument specifies which functions will be applied to the columns. In this case, we apply on the `mean()` function to calculate the average. 
 4. The `NAME` field is set manually to the value of `"Total"` to indicate that it is not a county. 
 
@@ -78,7 +78,7 @@ CRS: 4267
 Capabilities: Create,Delete,Query,Update,Editing
 ```
 :::{.aside}
-The url you use here will be different than the one you see. Be sure to grab the correct url from the content listing. 
+The url you use here will be different than the one you see. Be sure to grab the correct url from the content listing for your item. 
 :::
 
 Now that we have a `FeatureLayer` object we can add features to it using `add_features()`. There are a few key arguments to the function:
@@ -87,9 +87,9 @@ Now that we have a `FeatureLayer` object we can add features to it using `add_fe
 - `.data` is an `sf` object that we want to add to the `FeatureLayer`
 - `match_on` determines how to match sf columns to `FeatureLayer` fields
 
-By default, `add_features()` will compare the column names of the sf object to that of the `FeatureLayer`. We can find the field names and aliases for a `FeatureLayer` by using the `list_fields()` function. Pass the results to `tibble::as_tibble()` to make them more readable.
+By default, `add_features()` will compare the column names of the `sf` object to that of the `FeatureLayer`. We can find the field names and aliases for a `FeatureLayer` by using the `list_fields()` function. Pass the results to `tibble::as_tibble()` to make them more readable.
 
-Since we know that the column names match those of the `FeatureLayer` we can pass `nc_summary` directly to `add_feature()`.
+Since we know that the column names match those of the `FeatureLayer`, we can pass `nc_summary` directly to `add_feature()`.
 
 ```{r}
 add_res <- add_features(nc, nc_summary)
@@ -101,7 +101,7 @@ add_res
 ```
 
 :::{.callout-tip}
-If you are adding a lot of features at one time, consider changing the value of `chunk_size`. By default, `add_features()` will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks. 
+If you are adding many features at one time, consider changing the value of `chunk_size`. By default, `add_features()` will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks. 
 :::
 
 Once we've added the results to the `FeatureLayer`, we may want to refresh the object to catch any important changes to the metadata. 
@@ -139,7 +139,7 @@ Geodetic CRS:  NAD27
 ## Updating Features
 
 
-In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable `nc_avgs`. When looking at it, we can see that the `AREA` AND `PERIMTER` values are missing. These might be helpful at a later point. 
+In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable `nc_avgs`. When looking at it, we can see that the `AREA` AND `PERIMETER` values are missing. These might be helpful at a later point. 
 
 In this section we will use the function `update_features()` to modify these values. First, let's create a new object called `to_update` that has the `AREA` and `PERIMETER` computed. 
 
@@ -176,7 +176,7 @@ to_update <- nc_area_perim |>
 to_update
 ```
 
-Here we use `sf::st_drop_geometry()`to remove the geometry of our object since we do not want to update the geometry in our `FeatureLayer`. We also only select the `object_id`, `AREA`, and `PERIMETER` columns so that we do not make an errant updates. 
+Here we use `sf::st_drop_geometry()`to remove the geometry of our object since we do not want to update the geometry in our `FeatureLayer`. We also only select the `object_id`, `AREA`, and `PERIMETER` columns so that we do not make errant updates. 
 
 ```{r}
 update_res <- update_features(nc, to_update)
@@ -208,7 +208,7 @@ Geodetic CRS:  NAD27
 
 While `add_features()` and `update_features()` had a very similar syntax, `delete_features()` has a somewhat different interface. We have 3 different ways in which we can delete features. Here we will explore only two of them.
 
-We can delete features based on object IDs, or a SQL where clause. Let explore deleting features based on object IDs. To do so, we need to pass the `FeatureLayer` obejct as the first argument to `delete_features()` and the second argument is a numeric vector of the IDs we want to delete. The ID `101` is the new feature that we created. 
+We can delete features based on object IDs or a SQL where clause. Let's explore deleting features based on object IDs. To do so, we need to pass the `FeatureLayer` obejct as the first argument to `delete_features()`. The second argument is a numeric vector of the IDs we want to delete. The ID `101` is the new feature that we created. 
 
 ```{r}
 delete_res <- delete_features(nc, object_ids = 101)
@@ -221,7 +221,7 @@ $deleteResults
 1      101      101       NA    TRUE
 ```
 
-We can check to see if the delete worked by refreshing the laye and seeing the count that is printed out. 
+We can check to see if the delete worked by refreshing the layer and seeing the count that is printed out. 
 
 ```{r}
 refresh_layer(nc)
