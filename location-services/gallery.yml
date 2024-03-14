@@ -28,6 +28,11 @@
       href: https://r.esri.com/r-bridge-site/location-services/workflows/overwrite-feature-service.html
       code: workflows/overwrite-feature-service.qmd
       thumbnail: images/gallery-overwrite.png
+    - title: Using arcgis with arcgisbinding
+      subtitle: Create workflows that use multiple R-ArcGIS Bridge packages
+      href: https://r.esri.com/r-bridge-site/location-services/workflows/using-arcgis-arcgisbinding.html
+      code: workflows/using-arcgis-arcgisbinding.qmd
+      thumbnail: images/gallery-multiple.png
 
 
 - category: Tutorials
