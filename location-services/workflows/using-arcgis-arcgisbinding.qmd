@@ -4,9 +4,9 @@ subtitle: "Combining the two packages for workflows that span ArcGIS Pro and Arc
 freeze: true
 --- 
 
-<!-- ```{r include = FALSE}
+```{r include = FALSE}
 knitr::opts_chunk$set(eval = FALSE)
-``` -->
+```
 
 While both are components of the R-ArcGIS Bridge, `arcgis` and `arcgisbinding` serve distinct purposes: 
 
@@ -28,7 +28,14 @@ library(raster)
 library(arcgis)
 library(arcgisbinding)
 arc.check_product()
+```
+```
+product: ArcGIS Pro (13.2.0.49743)
+license: Advanced
+version: 1.0.1.306 
+```
 
+```{r}
 # ArcGIS Living Atlas Landsat2 imagery service URL 
 rurl <- "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
 
@@ -36,7 +43,15 @@ rurl <- "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer
 img_srv <- arc_open(rurl)
 img_srv
 ```
-
+```
+<ImageServer <11 bands, 26 fields>>
+Name: Landsat/MS
+Description: Multispectral Landsat image service covering the lan
+Extent: -20037507.07 20037507.84 -9694091.07 9691188.93 (xmin, xmax, ymin, ymax)
+Resolution: 30 x 30
+CRS: 3857
+Capabilities: Catalog,Image,Metadata
+```
 ```{r}
 img <- arc_raster(
   img_srv,
@@ -47,12 +62,21 @@ img <- arc_raster(
 )
 img
 ```
+```
+class       : SpatRaster 
+dimensions  : 400, 400, 11  (nrow, ncol, nlyr)
+resolution  : 30.6125, 30.6125  (x, y)
+extent      : -846028, -833783, 3370797, 3383042  (xmin, xmax, ymin, ymax)
+coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) 
+source      : x_____xTRXJxJ6XbIPSrPxM-nRAvA..x_____x_ags_8564ca38_5048_4d92_ad3e_750f12824416.tif 
+names       : Coast~rosol, Blue, Green, Red, NearInfrared, Short~red_1, ... 
+```
 
 ```{r}
 # use terra to view the imagery
 plotRGB(img, stretch = "lin")
 ```
-
+![](images/ouarkziz-crater-RGB.png)
 ```{r}
 # use arcgisbinding to resample and view SWIR
 bbox <- c(-846028, # xmin
@@ -60,14 +84,14 @@ bbox <- c(-846028, # xmin
           -833783, # xmax
           3380738) # ymax
 resampled <- arc.raster(arc.open(rurl), bands=1, nrow=300, ncol=300, resample_type="CubicConvolution", extent=bbox)
-rrast <- as.raster(resampled)
-plot(rrast)
+swir <- as.raster(resampled)
+plot(swir)
 ```
-
+![](images/ouarkziz-crater-SWIR.png)
 ```{r}
 # use terra to write out the natural color & SWIR rasters
 writeRaster(img, "ouarkziz-crater-RGB.tif", overwrite=TRUE)
-writeRaster(rrast, "ouarkziz-crater-SWIR.tif", overwrite=TRUE)
+writeRaster(swir, "ouarkziz-crater-SWIR.tif", overwrite=TRUE)
 ```
 
 Data Source: [Multispectral Landsat](https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b) 
@@ -87,12 +111,29 @@ library(arcgis)
 library(arcgisbinding)
 arc.check_product()
 ```
-
+```
+product: ArcGIS Pro (13.2.0.49743)
+license: Advanced
+version: 1.0.1.306 
+```
 ```{r}
 # use arcgisbinding to read in feature class
 fcpath = "C:\\Data\\FARS_update.gdb\\FARS_2021"
 fc <- arc.open(fcpath)
 fc
+```
+```
+dataset_type    : FeatureClass
+path            : C:\Data\FARS_update.gdb\FARS_2021 
+fields          : OBJECTID, Shape, state, statename, st_case, 
+fields          : peds, pernotmvit, ve_total, ve_forms, pvh_invl, 
+fields          : persons, permvit, county, countyname, city, 
+fields          : cityname, month, monthname, day, dayname, 
+          ... Truncated ...
+extent          : xmin=-162.5944, ymin=17.96028, xmax=-65.65091, ymax=66.89788
+geometry type   : Point
+WKT             : GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984"...
+WKID            : 4326 
 ```
 
 ```{r}
@@ -112,6 +153,13 @@ fsurl <- "https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/Fat
 flyr <- arc_open(fsurl)
 flyr
 ```
+```
+<FeatureLayer>
+Name: Missouri_Fatal_Accidents
+Geometry Type: esriGeometryPoint
+CRS: 3857
+Capabilities: Query
+```
 Access to this feature service is restricted (i.e., it is not shared to "Everyone" in ArcGIS Online). Because the user that requested the token *does* have access to read and modify this feature service, they are able to access the feature service and its metadata, as well as make changes to the data. Learn more about how access to items is managed in ArcGIS Online [here](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm).
 ```{r message = FALSE}
 # use sf to project new data to the same crs as flyr
@@ -120,5 +168,14 @@ sfdataprj <- st_transform(sfdata, st_crs(flyr))
 # use arcgis to add the new features
 add_res <- add_features(flyr, sfdataprj)
 tail(add_res)
+```
+```
+    objectId uniqueId globalId success
+926     9287     9287       NA    TRUE
+927     9288     9288       NA    TRUE
+928     9289     9289       NA    TRUE
+929     9290     9290       NA    TRUE
+930     9291     9291       NA    TRUE
+931     9292     9292       NA    TRUE
 ```
 The result of the `add_features()` function provides fine-grained information about the success (or failure) of the feature additions. Here, all 931 new features were successfully added to the feature service. If you were running this process as an automated script, you may want to capture and log any features that failed.
