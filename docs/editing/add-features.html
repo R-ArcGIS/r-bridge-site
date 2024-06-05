@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Workflows</title>
+<title>R-ArcGIS Bridge - Adding features</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -68,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -80,9 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      R-ArcGIS Bridge
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/editing/overview.html">Editing</a></li><li class="breadcrumb-item"><a href="../../docs/editing/add-features.html">Adding features</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -97,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">R-ArcGIS Bridge</a> 
+      <a href="../../">R-ArcGIS Bridge</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -109,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
@@ -118,13 +150,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/get-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/get-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/installation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/installation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
@@ -139,19 +171,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/auth" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Storing credentials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
@@ -168,13 +200,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/layers/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/layers/read-layers.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/layers/read-layers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Feature Services</span></a>
   </div>
 </li>
@@ -183,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/layers/publishing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/layers/publishing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Publishing layers</span></a>
   </div>
 </li>
@@ -191,40 +223,40 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Editing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/editing/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/editing/add-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/add-features.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Adding features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/editing/update-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/update-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Updating features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/editing/delete-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/delete-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deleting features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docs/editing/overwrite-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/overwrite-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Truncate and append features</span></a>
   </div>
 </li>
@@ -244,14 +276,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link active" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
+  <li><a href="#adding-features" id="toc-adding-features" class="nav-link" data-scroll-target="#adding-features">Adding features</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/editing/add-features.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/editing/overview.html">Editing</a></li><li class="breadcrumb-item"><a href="../../docs/editing/add-features.html">Adding features</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Workflows</h1>
+<h1 class="title">Adding features</h1>
 </div>
 
 
@@ -268,8 +307,179 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Programmatically, adding, deleting, or updating features using <code>{arcgis}</code> is a straightforward process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted feature layer or table.</p>
+<p>We will go over the functions:</p>
+<ul>
+<li><code>add_features()</code></li>
+<li><code>update_features()</code></li>
+<li><code>delete_features()</code></li>
+</ul>
+<section id="pre-requisites" class="level2">
+<h2 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h2>
+<p>We will use the the <em>North Carolina SIDS</em> dataset we created in the <a href="../publishing.qmd"><strong>Publishing from R</strong></a> tutorial. To follow along, be sure that you have followed that tutorial and have a <code>FeatureLayer</code> that you can modify. If you have not yet configured your environment to authorize with an online portal, start at <a href="../connecting-to-a-portal.qmd"><strong>Connecting to your portal</strong></a>.</p>
+</section>
+<section id="adding-features" class="level2">
+<h2 class="anchored" data-anchor-id="adding-features">Adding features</h2>
+<p>For this example, we will add a single feature to the North Carolina SIDS dataset that is a summary over the entire state. Before we can begin, we must load the package and authorize ourselves as a user.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we will create the feature that we want to add using the <code>sf</code> package. We’ll read in the <code>nc.shp</code> file from the <code>sf</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>nc_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nc_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 100 features and 14 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+# A tibble: 100 × 15
+    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10
+ 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10
+ 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208
+ 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123
+ 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066
+ 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954
+ 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115
+ 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254
+ 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748
+10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160
+# ℹ 90 more rows
+# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,
+#   geometry &lt;MULTIPOLYGON [°]&gt;</code></pre>
+</div>
+</div>
+<p>Let’s calculate the average birth rate, SIDS rate, and the non-white birth rate and SIDS rate for the entire state. We will add this as a single feature to our existing feature layer. To do so, we will use the R package <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a> for manipulating our data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>nc_summary <span class="ot">&lt;-</span> nc_sf <span class="sc">|&gt;</span>  </span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-5" class="code-annotation-target"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">.cols =</span> <span class="fu">c</span>(<span class="fu">ends_with</span>(<span class="st">"74"</span>), <span class="fu">ends_with</span>(<span class="st">"79"</span>)),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-7" class="code-annotation-target"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> mean</span>
+<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-9" class="code-annotation-target"><a href="#annotated-cell-3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">NAME =</span> <span class="st">"Total"</span></span>
+<span id="annotated-cell-3-10"><a href="#annotated-cell-3-10" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12" aria-hidden="true" tabindex="-1"></a>nc_summary</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="5" data-code-annotation="1">The <a href="https://dplyr.tidyverse.org/reference/across.html"><code>across()</code></a> function applies a function to multiple columns at once.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="2">We specify the columns we will be applying a function to in <code>.cols</code>. We use the <code>tidyselect</code> helpers to catch any columns that end with <code>74</code> or <code>79</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="7" data-code-annotation="3">The <code>.fns</code> argument specifies which functions will be applied to the columns. In this case, we apply on the <code>mean()</code> function to calculate the average.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="9" data-code-annotation="4">The <code>NAME</code> field is set manually to the value of <code>"Total"</code> to indicate that it is not a county.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 1 feature and 7 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+# A tibble: 1 × 8
+  BIR74 SID74 NWBIR74 BIR79 SID79 NWBIR79 NAME                          geometry
+  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;MULTIPOLYGON [°]&gt;
+1 3300.  6.67   1051. 4224.  8.36   1353. Total (((-75.97629 36.51793, -75.9772…</code></pre>
+</div>
+</div>
+<p>In order to add this new aggregate feature to the <code>FeatureLayer</code> we must create a reference to the layer using <code>arc_open()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nc_url <span class="ot">&lt;-</span> <span class="st">"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0"</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(nc_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>&lt;FeatureLayer&gt;
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The url you use here will be different than the one you see. Be sure to grab the correct url from the content listing for your item.</p>
+</div>
+</div>
+<p>Now that we have a <code>FeatureLayer</code> object we can add features to it using <code>add_features()</code>. There are a few key arguments to the function:</p>
+<ul>
+<li><code>x</code> is the <code>FeatureLayer</code> object that we want to add features to</li>
+<li><code>.data</code> is an <code>sf</code> object that we want to add to the <code>FeatureLayer</code></li>
+<li><code>match_on</code> determines how to match sf columns to <code>FeatureLayer</code> fields</li>
+</ul>
+<p>By default, <code>add_features()</code> will compare the column names of the <code>sf</code> object to that of the <code>FeatureLayer</code>. We can find the field names and aliases for a <code>FeatureLayer</code> by using the <code>list_fields()</code> function. Pass the results to <code>tibble::as_tibble()</code> to make them more readable.</p>
+<p>Since we know that the column names match those of the <code>FeatureLayer</code>, we can pass <code>nc_summary</code> directly to <code>add_feature()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>add_res <span class="ot">&lt;-</span> <span class="fu">add_features</span>(nc, nc_summary)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>add_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>  objectId uniqueId globalId success
+1      101      101       NA    TRUE</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are adding many features at one time, consider changing the value of <code>chunk_size</code>. By default, <code>add_features()</code> will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks.</p>
+</div>
+</div>
+<p>Once we’ve added the results to the <code>FeatureLayer</code>, we may want to refresh the object to catch any important changes to the metadata.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>&lt;FeatureLayer&gt;
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing</code></pre>
+<p>We can see that the <code>FeatureLayer</code> now has 101 features as opposed to the original 100. To sanity check, we can query <code>nc</code> to see how the value comes back.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nc_avgs <span class="ot">&lt;-</span> nc <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>nc_avgs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Simple feature collection with 1 feature and 15 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+  object_id AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
+1       101   NA        NA    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...</code></pre>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -689,7 +899,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/workflows.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/editing/add-features.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

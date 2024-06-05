@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Read hosted data</title>
+<title>R-ArcGIS Bridge - Reading Feature Services</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,7 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating slimcontent">
@@ -114,9 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      R-ArcGIS Bridge
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/layers/overview.html">Layers</a></li><li class="breadcrumb-item"><a href="../../docs/layers/read-layers.html">Reading Feature Services</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -131,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">R-ArcGIS Bridge</a> 
+      <a href="../../">R-ArcGIS Bridge</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -143,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
@@ -152,13 +150,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/get-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/get-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/installation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/installation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
@@ -173,19 +171,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/auth" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Storing credentials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
@@ -193,28 +191,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">Layers</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Reading Feature Services</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/layers/read-layers.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Reading Feature Services</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
  <span class="menu-text">Reading Image Servers</span>
   </li>
           <li class="sidebar-item">
- <span class="menu-text">Publishing layers</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/layers/publishing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Publishing layers</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -227,17 +231,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text">Overview</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/editing/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Adding features</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/editing/add-features.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding features</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Updating features</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/editing/update-features.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Updating features</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Deleting features</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/editing/delete-features.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deleting features</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/editing/overwrite-features.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Truncate and append features</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -269,15 +291,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#using-dplyr" id="toc-using-dplyr" class="nav-link" data-scroll-target="#using-dplyr">Using <code>dplyr</code></a></li>
   <li><a href="#map-and-feature-servers" id="toc-map-and-feature-servers" class="nav-link" data-scroll-target="#map-and-feature-servers">Map and Feature Servers</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/location-services/read-data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/layers/read-layers.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/layers/overview.html">Layers</a></li><li class="breadcrumb-item"><a href="../../docs/layers/read-layers.html">Reading Feature Services</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Read hosted data</h1>
-<p class="subtitle lead">Learn how to read data from ArcGIS Online or Enterprise into R</p>
+<h1 class="title">Reading Feature Services</h1>
 </div>
 
 
@@ -324,18 +345,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="obtaining-a-feature-layer-url">Obtaining a feature layer url</h2>
 <p>For this example, you will read in population data of major US cities from ArcGIS Online.</p>
 <p>You will use the functions <code>arc_open()</code> and <code>arc_select()</code> to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, navigate to the <a href="https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672">item</a> in ArcGIS Online.</p>
-<p><img src="images/read-data/usa-cities.png" class="img-fluid"> When you scroll down, on the right hand side, you will see a button to view the service itself.</p>
-<p><img src="images/read-data/view-url.png" class="img-fluid" style="width:45.0%"></p>
+<p><img src="../images/read-data/usa-cities.png" class="img-fluid"> When you scroll down, on the right hand side, you will see a button to view the service itself.</p>
+<p><img src="../images/read-data/view-url.png" class="img-fluid" style="width:45.0%"></p>
 <p>Clicking this will bring you to the Feature Service. Inside of a Feature Server there may be many layers or tables that you can use. In this case, there is only one layer. Click the hyperlinked <strong>USA Major Cities</strong>.</p>
-<p><img src="images/read-data/usa-cities-server.png" class="img-fluid"></p>
+<p><img src="../images/read-data/usa-cities-server.png" class="img-fluid"></p>
 <p>This reveals the Feature Layer of interest.</p>
-<p><img src="images/read-data/usa-cities-layer.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="../images/read-data/usa-cities-layer.png" class="img-fluid" style="width:70.0%"></p>
 <p>Navigate to your browser’s search bar and copy the url.</p>
 <pre><code>https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Major_Cities_/FeatureServer/0</code></pre>
 </section>
 <section id="opening-a-feature-layer" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="opening-a-feature-layer">Opening a Feature Layer</h2>
-<p>Before you can read in the Feature Layer, you need to load the <code>arcgis</code> R package. If you do not have <code>arcgis</code> installed, install it with <code>pak::pak("r-arcgis/arcgis")</code>.</p>
+<p>Before you can read in the Feature Layer, you need to load the <code>arcgis</code> R package. If you do not have <code>arcgis</code> installed, install it with <code>pak::pak("r-arcgis/arcgis")</code> or <code>install.packages("arcgis")</code>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p><code>{pak}</code> is an R package that makes it faster and easier to install R packages. If you do not have it installed, run <code>install.packages("pak")</code> first.</p>
@@ -343,8 +364,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Attaching core arcgis packages:
-  - {arcgisutils} v0.1.1.9001
-  - {arcgislayers} v0.1.0</code></pre>
+→ arcgisutils v0.3.0
+→ arcgislayers v0.2.0</code></pre>
 </div>
 </div>
 <p>Use the below code to store the Feature Layer url in an object called <code>furl</code> (as in feature layer url).</p>
@@ -407,7 +428,7 @@ Warning
 <pre><code>Simple feature collection with 4186 features and 11 fields
 Geometry type: POINT
 Dimension:     XY
-Bounding box:  xmin: -159.3191 ymin: 19.58272 xmax: -68.67922 ymax: 64.86928
+Bounding box:  xmin: -159.3191 ymin: 19.58272 xmax: -68.77234 ymax: 64.86928
 Geodetic CRS:  WGS 84
 First 10 features:
    OBJECTID           NAME CLASS STATE_ABBR STATE_FIPS PLACE_FIPS POPULATION
@@ -479,11 +500,20 @@ Tip
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  flayer, </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"STATE_ABBR"</span>, <span class="st">"POPULATION"</span>, <span class="st">"NAME"</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Iterating ■■■■■■■■■■■                       33% | ETA:  7s</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Iterating ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3s</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Iterating ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 4186 features and 3 fields
 Geometry type: POINT
 Dimension:     XY
-Bounding box:  xmin: -159.3191 ymin: 19.58272 xmax: -68.67922 ymax: 64.86928
+Bounding box:  xmin: -159.3191 ymin: 19.58272 xmax: -68.77234 ymax: 64.86928
 Geodetic CRS:  WGS 84
 First 10 features:
    STATE_ABBR POPULATION           NAME                   geometry
@@ -506,11 +536,11 @@ First 10 features:
 <p>The <code>where</code> argument of <code>arc_select()</code> permits you to provide a very simple SQL where clause to limit the features returned. Let’s explore the use of the <code>where</code> argument.</p>
 <p>Let’s modify the above <code>arc_select()</code> statement to return only the features in California, using the where clause <code>STATE_ABBR = 'CA'</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">where =</span> <span class="st">"STATE_ABBR = 'CA'"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"STATE_ABBR"</span>, <span class="st">"POPULATION"</span>, <span class="st">"NAME"</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">where =</span> <span class="st">"STATE_ABBR = 'CA'"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"STATE_ABBR"</span>, <span class="st">"POPULATION"</span>, <span class="st">"NAME"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 498 features and 3 fields
 Geometry type: POINT
@@ -533,11 +563,11 @@ First 10 features:
 </div>
 <p>You can also consider finding only the places in the US with more than 1,000,000 people.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">where =</span> <span class="st">"POPULATION &gt; 1000000"</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"STATE_ABBR"</span>, <span class="st">"POPULATION"</span>, <span class="st">"NAME"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">where =</span> <span class="st">"POPULATION &gt; 1000000"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"STATE_ABBR"</span>, <span class="st">"POPULATION"</span>, <span class="st">"NAME"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 10 features and 3 fields
 Geometry type: POINT
@@ -559,11 +589,11 @@ Geodetic CRS:  WGS 84
 </div>
 <p>Now try combining both where clauses using <code>and</code> to find only the cities in California with a population greater than 1,000,000.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">where =</span> <span class="st">"POPULATION &gt; 1000000 and STATE_ABBR = 'CA'"</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"STATE_ABBR"</span>, <span class="st">"POPULATION"</span>, <span class="st">"NAME"</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arc_select</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  flayer,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">where =</span> <span class="st">"POPULATION &gt; 1000000 and STATE_ABBR = 'CA'"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"STATE_ABBR"</span>, <span class="st">"POPULATION"</span>, <span class="st">"NAME"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 3 features and 3 fields
 Geometry type: POINT
@@ -584,12 +614,12 @@ Geodetic CRS:  WGS 84
 <p>The dplyr functionality is modeled off of <a href="https://dbplyr.tidyverse.org/"><code>dbplyr</code></a>. The general concept is that you have a connection object that specifies what you will be querying against. Then you build up queries using dplyr functions. Unlike using dplyr on <code>data.frame</code>s, the results aren’t fetched eagerly. Instead they are <em>lazy</em>. With <code>dbplyr</code>, you use the <code>collect()</code> function to execute a query and bring it into memory. The same is true with <code>FeatureLayer</code> objects.</p>
 <p>Let’s build up a query and see it in action! First, load dplyr to bring the functions into scope.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fl_query <span class="ot">&lt;-</span> flayer <span class="sc">|&gt;</span> </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(STATE_ABBR, POPULATION, NAME)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>fl_query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>fl_query <span class="ot">&lt;-</span> flayer <span class="sc">|&gt;</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(STATE_ABBR, POPULATION, NAME)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>fl_query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;FeatureLayer&gt;
 Name: USA Major Cities
@@ -615,7 +645,7 @@ A note for advanced useRs
 <div class="callout-body-container callout-body">
 <p>You build up and store the query in the <code>query</code> attribute of a <code>FeatureLayer</code> object. It is a named list that will be passed directly to the API endpoint. The names match endpoint parameters.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(fl_query, <span class="st">"query"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(fl_query, <span class="st">"query"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$outFields
 [1] "STATE_ABBR,POPULATION,NAME"</code></pre>
@@ -623,7 +653,7 @@ A note for advanced useRs
 </div>
 <p>You can also manually specify parameters using the <code>update_params()</code> function. Note that there is <em>no</em> parameter validation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_params</span>(fl_query, <span class="at">key =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_params</span>(fl_query, <span class="at">key =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;FeatureLayer&gt;
 Name: USA Major Cities
@@ -653,8 +683,8 @@ Tip
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fl_query <span class="sc">|&gt;</span> </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(POPULATION <span class="sc">&gt;</span> <span class="dv">1000000</span>, STATE_ABBR <span class="sc">==</span> <span class="st">"CA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fl_query <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(POPULATION <span class="sc">&gt;</span> <span class="dv">1000000</span>, STATE_ABBR <span class="sc">==</span> <span class="st">"CA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;FeatureLayer&gt;
 Name: USA Major Cities
@@ -668,30 +698,30 @@ Query:
 </div>
 <p>The query is stored in the <code>FeatureLayer</code> object and will not be executed until you request it with <code>collect()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fl_query <span class="sc">|&gt;</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(POPULATION <span class="sc">&gt;</span> <span class="dv">1000000</span>, STATE_ABBR <span class="sc">==</span> <span class="st">"CA"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fl_query <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(POPULATION <span class="sc">&gt;</span> <span class="dv">1000000</span>, STATE_ABBR <span class="sc">==</span> <span class="st">"CA"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 3 features and 3 fields
+<pre><code>Simple feature collection with 3 features and 0 fields
 Geometry type: POINT
 Dimension:     XY
 Bounding box:  xmin: -121.8864 ymin: 32.72033 xmax: -117.1456 ymax: 37.33941
 Geodetic CRS:  WGS 84
-  STATE_ABBR POPULATION        NAME                   geometry
-1         CA    3898747 Los Angeles POINT (-118.2706 34.05279)
-2         CA    1386932   San Diego POINT (-117.1456 32.72033)
-3         CA    1013240    San Jose POINT (-121.8864 37.33941)</code></pre>
+                    geometry
+1 POINT (-118.2706 34.05279)
+2 POINT (-117.1456 32.72033)
+3 POINT (-121.8864 37.33941)</code></pre>
 </div>
 </div>
 </section>
 <section id="map-and-feature-servers" class="level2">
 <h2 class="anchored" data-anchor-id="map-and-feature-servers">Map and Feature Servers</h2>
-<p>This example has only illustrated how to work with <code>FeatureLayer</code> objects. However, often times you may wish to work with a collection of layers in either a <code>FeatureServer</code> or <code>MapServer</code>. Both of these are collections of multiple layers. Like a <code>FeatureLayer</code>, these are accessed with <code>arc_open()</code>.</p>
+<p>This example has only illustrated how to work with <code>FeatureLayer</code> objects. However, often times you may wish to work with a collection of layers in a <code>FeatureServer</code>, <code>MapServer</code>, or <code>GroupLayer</code>. All of these are collections of multiple layers. Like a <code>FeatureLayer</code>, these are accessed with <code>arc_open()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer"</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>fsrv <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>fsrv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer"</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>fsrv <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>fsrv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;FeatureServer &lt;5 layers, 0 tables&gt;&gt;
 CRS: 3785
@@ -705,7 +735,7 @@ Capabilities: Query,Extract
 </div>
 <p>This <code>FeatureServer</code> contains 5 layers. The individual layers can be fetched using <code>get_layer()</code> which lets us specify the layer by ID or by name. It is recommended to use the ID as that will be less prone to human error (for example a space is secretly a tab). The result of the function is a <code>FeatureLayer</code> object that can be used with <code>arc_select()</code> as illustrated above.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layer</span>(fsrv, <span class="at">id =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layer</span>(fsrv, <span class="at">id =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;FeatureLayer&gt;
 Name: Counties
@@ -716,29 +746,29 @@ Capabilities: Query,Extract</code></pre>
 </div>
 <p>Some <code>FeatureServer</code>s will also contain tables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Wetlands/FeatureServer"</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>fsrv2 <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>fsrv2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Wetlands/FeatureServer"</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>fsrv2 <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(furl)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>fsrv2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;FeatureServer &lt;1 layer, 1 table&gt;&gt;
 CRS: 3857
-Capabilities: Query,Extract,Sync
+Capabilities: Query,Extract
   0: USA_Wetlands (esriGeometryPolygon)
   1: Pop_Up_Table (Table)</code></pre>
 </div>
 </div>
 <p>This can be fetched using <code>get_layer()</code> as well.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layer</span>(fsrv2, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layer</span>(fsrv2, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Table&gt;
 Name: Pop_Up_Table
-Capabilities: Query,Extract,Sync</code></pre>
+Capabilities: Query,Extract</code></pre>
 </div>
 </div>
 <p>If you would like to fetch multiple items at one time there is a plural <code>get_layers()</code> which will fetch multiple items based on name or id and return a list.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layers</span>(fsrv, <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layers</span>(fsrv, <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 &lt;FeatureLayer&gt;
@@ -762,9 +792,9 @@ CRS: 3785
 Capabilities: Query,Extract</code></pre>
 </div>
 </div>
-<p>There is also a helper <code>get_all_layers()</code> to fetch all of layers of a server into a list. The list has two elements <code>layers</code> and <code>tables</code>. The former containing all of the <code>FeatureLayer</code>s and the latter containing all of the <code>Table</code>s in the <code>FeatureServer</code>.</p>
+<p>There is also a helper <code>get_all_layers()</code> to fetch all of layers of a <code>FeatureServer</code>, <code>MapServer</code>, or <code>GroupLayer</code> into a list. The list has two elements <code>layers</code> and <code>tables</code>. The former containing all of the <code>FeatureLayer</code>s and the latter containing all of the <code>Table</code>s in the <code>FeatureServer</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_all_layers</span>(fsrv2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_all_layers</span>(fsrv2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$layers
 $layers$`0`
@@ -772,14 +802,14 @@ $layers$`0`
 Name: USA_Wetlands
 Geometry Type: esriGeometryPolygon
 CRS: 3857
-Capabilities: Query,Extract,Sync
+Capabilities: Query,Extract
 
 
 $tables
 $tables$`1`
 &lt;Table&gt;
 Name: Pop_Up_Table
-Capabilities: Query,Extract,Sync</code></pre>
+Capabilities: Query,Extract</code></pre>
 </div>
 </div>
 
@@ -1204,7 +1234,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/location-services/read-data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/layers/read-layers.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
