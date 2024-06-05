@@ -80,4 +80,5 @@ format:
 
 highlight-style: pygments
 
-freeze: true
+execute:
+  freeze: true

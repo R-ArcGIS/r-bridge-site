@@ -2,7 +2,20 @@
 title: Deleting features
 ---
 
+```{r include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
 While `add_features()` and `update_features()` had a very similar syntax, `delete_features()` has a somewhat different interface. We have 3 different ways in which we can delete features. Here we will explore only two of them.
+
+```{r}
+library(arcgis)
+set_arc_token(auth_code())
+
+nc_url <- "https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0" 
+
+nc <- arc_open(nc_url)
+```
 
 We can delete features based on object IDs or a SQL where clause. Let's explore deleting features based on object IDs. To do so, we need to pass the `FeatureLayer` obejct as the first argument to `delete_features()`. The second argument is a numeric vector of the IDs we want to delete. The ID `101` is the new feature that we created. 
 
@@ -106,4 +119,4 @@ CRS: 4267
 Capabilities: Create,Delete,Query,Update,Editing
 ```
 
-Using `delete_features(x, where = "1 = 1")` is basically the equivalent of `truncate_layer()`.
+Note that you shuold use `truncate_layer()` instead of `delete_features(x, where = "1 = 1")`.
