@@ -1,0 +1,132 @@
+---
+title: Adding features
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+Programmatically, adding, deleting, or updating features using `{arcgis}` is a straightforward process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted feature layer or table. 
+
+We will go over the functions:
+
+  - `add_features()`
+  - `update_features()`
+  - `delete_features()`
+  
+## Pre-requisites
+
+We will use the the *North Carolina SIDS* dataset we created in the [**Publishing from R**](../publishing.qmd) tutorial. To follow along, be sure that you have followed that tutorial and have a `FeatureLayer` that you can modify. If you have not yet configured your environment to authorize with an online portal, start at [**Connecting to your portal**](../connecting-to-a-portal.qmd).
+
+## Adding features
+
+For this example, we will add a single feature to the North Carolina SIDS dataset that is a summary over the entire state. Before we can begin, we must load the package and authorize ourselves as a user. 
+
+```{r}
+library(arcgis)
+
+token <- auth_code()
+set_auth_token(token)
+```
+
+Next, we will create the feature that we want to add using the `sf` package. We'll read in the `nc.shp` file from the `sf` package.
+
+```{r eval = TRUE, message = FALSE}
+library(sf)
+nc_sf <- read_sf(system.file("shape/nc.shp", package = "sf"))
+nc_sf
+```
+
+Let's calculate the average birth rate, SIDS rate, and the non-white birth rate and SIDS rate for the entire state. We will add this as a single feature to our existing feature layer. To do so, we will use the R package [`dplyr`](https://dplyr.tidyverse.org/) for manipulating our data.
+
+```{r, message = FALSE, eval = TRUE}
+library(dplyr)
+
+nc_summary <- nc_sf |>  
+  summarise(
+    across( # <1>
+      .cols = c(ends_with("74"), ends_with("79")), # <2>
+      .fns = mean # <3>
+    ),
+    NAME = "Total" # <4>
+  ) 
+
+nc_summary
+```
+1. The [`across()`](https://dplyr.tidyverse.org/reference/across.html) function applies a function to multiple columns at once.
+2. We specify the columns we will be applying a function to in `.cols`. We use the `tidyselect` helpers to catch any columns that end with `74` or `79`.
+3. The `.fns` argument specifies which functions will be applied to the columns. In this case, we apply on the `mean()` function to calculate the average. 
+4. The `NAME` field is set manually to the value of `"Total"` to indicate that it is not a county. 
+
+In order to add this new aggregate feature to the `FeatureLayer` we must create a reference to the layer using `arc_open()`. 
+
+```{r}
+nc_url <- "https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0" 
+
+nc <- arc_open(nc_url)
+```
+```
+<FeatureLayer>
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing
+```
+:::{.callout-note}
+The url you use here will be different than the one you see. Be sure to grab the correct url from the content listing for your item. 
+:::
+
+Now that we have a `FeatureLayer` object we can add features to it using `add_features()`. There are a few key arguments to the function:
+
+- `x` is the `FeatureLayer` object that we want to add features to 
+- `.data` is an `sf` object that we want to add to the `FeatureLayer`
+- `match_on` determines how to match sf columns to `FeatureLayer` fields
+
+By default, `add_features()` will compare the column names of the `sf` object to that of the `FeatureLayer`. We can find the field names and aliases for a `FeatureLayer` by using the `list_fields()` function. Pass the results to `tibble::as_tibble()` to make them more readable.
+
+Since we know that the column names match those of the `FeatureLayer`, we can pass `nc_summary` directly to `add_feature()`.
+
+```{r}
+add_res <- add_features(nc, nc_summary)
+add_res
+```
+```
+  objectId uniqueId globalId success
+1      101      101       NA    TRUE
+```
+
+:::{.callout-tip}
+If you are adding many features at one time, consider changing the value of `chunk_size`. By default, `add_features()` will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks. 
+:::
+
+Once we've added the results to the `FeatureLayer`, we may want to refresh the object to catch any important changes to the metadata. 
+
+```{r}
+nc <- refresh_layer(nc)
+```
+```
+<FeatureLayer>
+Name: North Carolina SIDS
+Geometry Type: esriGeometryPolygon
+CRS: 4267
+Capabilities: Create,Delete,Query,Update,Editing
+```
+
+We can see that the `FeatureLayer` now has 101 features as opposed to the original 100. To sanity check, we can query `nc` to see how the value comes back.
+
+```{r}
+nc_avgs <- nc |> 
+  filter(NAME == "Total") |> 
+  collect()
+
+nc_avgs
+```
+```
+Simple feature collection with 1 feature and 15 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+  object_id AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
+1       101   NA        NA    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...
+```

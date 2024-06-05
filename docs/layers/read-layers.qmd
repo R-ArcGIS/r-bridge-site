@@ -1,6 +1,5 @@
 ---
-title: "Read hosted data"
-subtitle: "Learn how to read data from ArcGIS Online or Enterprise into R"
+title: "Reading Feature Services"
 freeze: true
 ---
 
@@ -35,18 +34,18 @@ For this example, you will read in population data of major US cities from ArcGI
 You will use the functions `arc_open()` and `arc_select()` to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, navigate to the [item](https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672) in ArcGIS Online. 
 
 
-![](images/read-data/usa-cities.png)
+![](../images/read-data/usa-cities.png)
 When you scroll down, on the right hand side, you will see a button to view the service itself. 
 
-![](images/read-data/view-url.png){width=45%}
+![](../images/read-data/view-url.png){width=45%}
 
 Clicking this will bring you to the Feature Service. Inside of a Feature Server there may be many layers or tables that you can use. In this case, there is only one layer. Click the hyperlinked **USA Major Cities**. 
 
-![](images/read-data/usa-cities-server.png)
+![](../images/read-data/usa-cities-server.png)
 
 This reveals the Feature Layer of interest. 
 
-![](images/read-data/usa-cities-layer.png){width=70%}
+![](../images/read-data/usa-cities-layer.png){width=70%}
 
 Navigate to your browser's search bar and copy the url.
 

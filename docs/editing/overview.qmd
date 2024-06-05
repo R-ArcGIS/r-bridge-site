@@ -1,0 +1,14 @@
+---
+title: Editing layers
+---
+
+Published feature layers often are living datasets. There may be new features that need to be added. Or, sometimes features may be need to be deleted as they are no longer present. Or maybe, the attributes of the feature have become obsolete and need to be updated. 
+
+The `{arcgislayers}` R package provides capabilities to add features, update them, delete features, or even truncate an entire feature service.
+
+## Important considerations
+
+It is important to note that not everyone can edit an existing feature service. You must be an admin or an owner of the service that you want to edit. This requires that you have an account and can authorized yourself as a user. 
+
+Additionally, fields cannot be added or deleted to an already existing feature service. If you wish to add or delete fields, you will need to publish a new layer. 
+

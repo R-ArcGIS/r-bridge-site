@@ -34,14 +34,20 @@ website:
         - text: "Overview"
           href: docs/layers/overview.qmd
         - text: "Reading Feature Services"
+          href: docs/layers/read-layers.qmd
         - text: "Reading Image Servers"
         - text: "Publishing layers"
+          href: docs/layers/publishing.qmd
       - section: Editing
         contents:
-        - Overview
-        - Adding features
-        - Updating features
-        - Deleting features
+        - text: "Overview"
+          href: docs/editing/overview.qmd
+        - text: "Adding features" 
+          href: docs/editing/add-features.qmd
+        - docs/editing/update-features.qmd
+        - docs/editing/delete-features.qmd
+        - text: "Truncate and append features"
+          href: docs/editing/overwrite-features.qmd
       - section: Geocoding
       - section: Places 
 

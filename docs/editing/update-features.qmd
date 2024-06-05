@@ -1,0 +1,82 @@
+---
+title: "Updating features"
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable `nc_avgs`. When looking at it, we can see that the `AREA` AND `PERIMETER` values are missing. These might be helpful at a later point. 
+
+```{r}
+library(arcgis)
+set_arc_token(auth_code())
+
+nc_url <- "https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0" 
+
+nc <- arc_open(nc_url)
+```
+
+
+In this section we will use the function `update_features()` to modify these values. First, let's create a new object called `to_update` that has the `AREA` and `PERIMETER` computed. 
+
+```{r}
+nc_area_perim <- nc_avgs |> 
+  mutate(
+    AREA = st_area(geometry) / 1e10,
+    PERIMETER = s2::s2_perimeter(geometry) / 1e5
+  )
+
+nc_area_perim
+```
+```
+Simple feature collection with 1 feature and 15 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+  object_id           AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
+1       101 12.70259 [m^2]  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...
+```
+
+Like `add_features()`, we need to be able to match columns to their respective fields. The `match_on` argument is used to specify if the column names match the field name or field alias. 
+
+In the case of `update_features()` we also need to be able to match the features in the `sf` dataset to the _exact_ feature in the `FeatureLayer`. We do this by providing the object ID of the feature. This tells ArcGIS _which_ features we are actually going to update. 
+
+When using `update_features()` we should be aware that _every_ column present in the `sf` object will be updated _including the geometry_. For this reason, we should select only those columns which we truly wish to update.
+
+```{r}
+to_update <- nc_area_perim |> 
+  st_drop_geometry() |> 
+  select(object_id, AREA, PERIMETER)
+
+to_update
+```
+
+Here we use `sf::st_drop_geometry()`to remove the geometry of our object since we do not want to update the geometry in our `FeatureLayer`. We also only select the `object_id`, `AREA`, and `PERIMETER` columns so that we do not make errant updates. 
+
+```{r}
+update_res <- update_features(nc, to_update)
+```
+```
+$updateResults
+  objectId uniqueId globalId success
+1      101      101       NA    TRUE
+```
+
+Our update process was successful! We can repeat our previous query to verify this. 
+
+```{r}
+ nc |> 
+  filter(NAME == "Total") |> 
+  collect()
+```
+```
+Simple feature collection with 1 feature and 15 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Geodetic CRS:  NAD27
+  object_id     AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
+1       101 12.70259  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...
+```
