@@ -10,7 +10,6 @@ There a number of times when you will need to verify who you say you are when us
 - store geocoding results in a file
 - or access POI data through `{arcgisplaces}`
 
-
 ## Sign up for an account 
 
 To access certain content, services, or organizations, you will need to be signed in to eithe an ArcGIS Developer account, ArcGIS Online account, or ArcGIS Enterprise account. The type of account, user type, and role you need depends on the resource you need to access and the operations you wish to undertake.

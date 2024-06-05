@@ -14,6 +14,7 @@ website:
         href: https://esri.com
 
   sidebar:
+    collapse-level: 1
     style: "floating"
     contents:
       - href: index.qmd
@@ -28,6 +29,20 @@ website:
           - docs/auth/storing-credentials.qmd
           - href: location-services/connecting-to-a-portal.qmd
             text: "Authenticating with R"
+      - section: Layers
+        contents:
+        - text: "Overview"
+        - text: "Reading Feature Services"
+        - text: "Reading Image Servers"
+        - text: "Publishing layers"
+      - section: Editing
+        contents:
+        - Overview
+        - Adding features
+        - Updating features
+        - Deleting features
+      - section: Geocoding
+      - section: Places 
 
 
             # - section: ArcGIS Pro
@@ -57,3 +72,5 @@ format:
 
 
 highlight-style: pygments
+
+freeze: true
