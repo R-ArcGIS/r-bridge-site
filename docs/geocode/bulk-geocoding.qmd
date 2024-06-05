@@ -1,0 +1,74 @@
+---
+title: "Bulk geocoding"
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+Bulk geocoding capabilities are provided via the `geocode_addresses()` function in `{arcgisgeocode}`. Rather geocoding a single address and returning match candidates, the bulk geocoding capabilities take many addresses and geocode them all at once returning a single location per address. 
+
+Using the bulk geocoding capabilities can result in incurring a cost. See more about [geocoding pricing](https://developers.arcgis.com/documentation/mapping-apis-and-services/geocoding/services/geocoding-service/#pricing).
+
+
+In this example, you will geocode restaurant addresses in Boston, MA collected by the [Boston Area Research Initiative (BARI)](https://cssh.northeastern.edu/bari/). The data is originally from their [data portal](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DMWCBT).
+
+# Step 1. Authenticate
+
+In order to utilize the bulk geocoding capabilities of the ArcGIS World Geocoder, you must first authenticate using `{arcgisutils}`. In this example, we are using user-based authentication via `auth_user()`. You may choose a different authentication function if it works better for you. 
+
+
+```{r message=FALSE}
+library(arcgisutils)
+library(arcgisgeocode)
+
+set_arc_token(auth_user())
+```
+
+# Step 2. Prepare the data 
+
+Similar to using `find_address_candidates()` the geocoding results return an ID that can be used to join back onto the original dataset. First, you will read in the dataset from a filepath using `readr::read_csv()` and then create a unique identifier with `dplyr::mutate()` and `dplyr::row_number()`. 
+
+```{r message= FALSE}
+# Boston Yelp addresses
+# Source: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DMWCBT
+fp <- "https://analysis-1.maps.arcgis.com/sharing/rest/content/items/0423768816b343b69d9a425b82351912/data"
+
+library(dplyr)
+restaurants <- readr::read_csv(fp) |>
+  mutate(id = row_number())
+
+restaurants
+```
+
+# Step 3. Geocode addresses
+
+The restaurant addresses are contained in the `restaurant_address` column. Pass this column into the `single_line` argument of `geocode_addresses()` and store the results in `geocoded`.
+
+```{r message=FALSE}
+geocoded <- geocode_addresses(
+  single_line = restaurants[["restaurant_address"]]
+)
+
+# preview the first 10 columns
+glimpse(geocoded[, 1:10])
+```
+
+:::{.callout-tip}
+You can use `dplyr::reframe()` to geocode these addresses in a dplyr-friendly way. 
+:::
+
+# Step 4. Join the results
+
+In the previous step you geocoded the addresses and returned a data frame containing the location information. More likely than not, it would be helpful to have the locations joined onto the original dataset. You can do this by using `dplyr::left_join()` and joining on the `id` column you created and the `result_id` from the geocoding results. 
+
+
+```{r}
+joined_addresses <- left_join(
+  restaurants,
+  geocoded,
+  by = c("id" = "result_id")
+)
+
+dplyr::glimpse(joined_addresses)
+```

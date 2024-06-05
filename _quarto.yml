@@ -52,6 +52,8 @@ website:
         contents:
         - docs/geocode/overview.qmd
         - docs/geocode/forward-geocoding.qmd
+        - href: docs/geocode/bulk-geocoding.qmd
+          text: "Bulk Geocoding"
       - section: Places 
 
 
