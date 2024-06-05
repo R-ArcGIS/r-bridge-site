@@ -17,25 +17,36 @@ website:
     style: "floating"
     contents:
       - href: index.qmd
-        text: Home
-      - section: ArcGIS Pro
-        contents:
-          - arcgisbinding/installing-arcgisbinding.qmd
-          - geoprocessing-tools.qmd
-      - section: Location Services
-        contents:
-          - location-services/overview.qmd
-          - location-services/connecting-to-a-portal.qmd
-          - location-services/read-data.qmd
-          - location-services/publishing.qmd
-          - location-services/workflows/add-delete-update.qmd
-          - location-services/workflows/overwrite-feature-service.qmd
-          - location-services/workflows/using-arcgis-arcgisbinding.qmd
-          - section: Tutorials
-            contents:
-              - location-services/tutorials/shiny-dash/index.qmd
-      - packages.qmd
-      - resources.qmd
+        text: Overview
+      - text: Key Features
+      - docs/get-started.qmd
+      - docs/installation.qmd
+      - section: Authentication
+        contents: 
+          - text: "Overview"
+            href: docs/auth
+          - docs/auth/storing-credentials.qmd
+          - href: location-services/connecting-to-a-portal.qmd
+            text: "Authenticating with R"
+
+
+            # - section: ArcGIS Pro
+      #   contents:
+      #     - arcgisbinding/installing-arcgisbinding.qmd
+      #     - geoprocessing-tools.qmd
+      # - section: Location Services
+      #   contents:
+      #     - location-services/overview.qmd
+      #     - location-services/connecting-to-a-portal.qmd
+      #     - location-services/read-data.qmd
+      #     - location-services/publishing.qmd
+      #     - location-services/workflows/add-delete-update.qmd
+      #     - location-services/workflows/overwrite-feature-service.qmd
+      #     - section: Tutorials
+      #       contents:
+      #         - location-services/tutorials/shiny-dash/index.qmd
+      # - packages.qmd
+      # - resources.qmd
 
 format:
   html:

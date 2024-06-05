@@ -1,0 +1,55 @@
+---
+title: "Get started"
+---
+
+The R-ArcGIS Bridge supports working with both ArcGIS Pro as well as ArcGIS location services.
+
+# Using ArcGIS location services
+
+The R-ArcGIS Bridge R packages that interact with location services are contained in the metapackage `{arcgis}`. It contains: 
+
+- `{arcgisutils}`: manages authorization for all location service R packages and other utilities
+- `{arcgislayers}`: provides read and write access to layers on ArcGIS Online, Enterprise, and Platform
+- `{arcgisgeocode}`: geocode addresses and reverse geocode point data
+- `{arcgisplaces}`: access rich point-of-interest data from the ArcGIS Places Service
+
+
+## Install the R packages 
+
+To install the packages run: 
+
+```r
+install.packages("arcgis")
+```
+
+Once the installation has finished you can load all of the packages using
+
+```r
+library(arcgis)
+```
+
+Or, you can install the packages individually as well by running: 
+
+```r
+pkgs <- c("arcgisutils", "arcgislayers", "arcgisgeocode", "arcgisplaces")
+
+install.packages(pkgs)
+```
+
+## Learn more
+
+- Reading Data
+- Publishing
+- Geocoding
+- Places services (POI data)
+
+# Get started with `{arcgisbinding}` for ArcGIS Pro
+
+The package `{arcgisbinding}` enables the use of geoprocessing script tools within ArcGIS Pro. It can even be used to deploy R-based geoprocessing tools on ArcGIS Enterprise. 
+
+See the instruction for further details. 
+
+## Learn more
+
+- Installing `{arcgisbinding}`
+- Creating geoprocessing tools

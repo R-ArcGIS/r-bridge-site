@@ -1,6 +1,18 @@
 ---
-title: "Installing `{arcgisbinding}`"
+title: "Install and set up"
 ---
+
+Before installing, we recommend that you have the newest version of R installed. At minimum, we sugest you use R version 4.3 or higher. 
+
+# Installing `{arcgis}`
+
+To install the `{arcgis}` location service metapackage, run the following from your console: 
+
+```r
+install.packages("arcgis")
+```
+
+# Installing `{arcgisbinding}`
 
 **`arcgisbinding`** is an R package that enables communication between ArcGIS Pro
 and R. In order to use it, you must have a installation of ArcGIS Pro with a valid
