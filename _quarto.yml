@@ -49,6 +49,9 @@ website:
         - text: "Truncate and append features"
           href: docs/editing/overwrite-features.qmd
       - section: Geocoding
+        contents:
+        - docs/geocode/overview.qmd
+        - docs/geocode/forward-geocoding.qmd
       - section: Places 
 
 

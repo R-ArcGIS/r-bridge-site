@@ -1,0 +1,91 @@
+---
+title: Forward Geocoding
+--- 
+
+Forward geocoding is the process of taking an address or place information and identifying its location on the globe. 
+
+To geocode addresses, the `{arcgisgeocode}` package provides the function `find_address_candidates()`. This function geocodes a single address at a time and returns up to 50 address candidates (ranked by a score). 
+
+There are two ways in which you can provide address information: 
+
+1. Provide the entire address as a string via the `single_line` argument
+2. Provide parts of the address using the arguments `address`, `city`, `region`, `postal` etc. 
+
+# Single line address geocoding 
+
+It can be tough to parse out addresses into their components. Using the `single_line` argument is a very flexible way of geocoding addresses. Doing utilizes the ArcGIS World Geocoder's address parsing capabilities. 
+
+For example, we can geocode the same location using 3 decreasingly specific addresses.
+
+```{r}
+library(arcgisgeocode)
+
+addresses <- c(
+  "380 New York Street Redlands, California, 92373, USA",
+  "Esri Redlands",
+  "ESRI CA"
+)
+
+locs <- find_address_candidates(
+  addresses,
+  max_locations = 1L
+)
+
+locs$geometry
+```
+
+In each case, it finds the correct address! 
+
+# Geocoding from a dataframe 
+
+Most commonly, you will need to geocode addresses from a column in a data.frame. It is important to note that the `find_address_candidates()` function does not work well in a `dplyr::mutate()` function call. Particularly because it is possible to return more than 1 address at a time. 
+
+Let's read in a csv of bike stores in Tacoma, WA. To use `find_address_candidates()` with a data.frame, it is recommended to create a unique identifier of the row positions. 
+
+```{r message = FALSE}
+library(dplyr)
+
+fp <- "https://www.arcgis.com/sharing/rest/content/items/9a9b91179ac44db1b689b42017471ae6/data"
+
+bike_stores <- readr::read_csv(fp) |>
+  mutate(id = row_number())
+
+bike_stores
+```
+
+
+To geocode addresses from a data.frame, you can use `dplyr::reframe()`. 
+
+```{r}
+bike_stores |>
+  reframe(
+    find_address_candidates(original_address)
+  )
+```
+
+Notice how there are multiple results for each `input_id`. This is because the `max_locations` argument was not specified. To ensure only the best match is returned set `max_locations = 1`
+
+
+```{r}
+geocoded <- bike_stores |>
+  reframe(
+    find_address_candidates(original_address, max_locations = 1)
+  ) |>
+  # reframe drops the sf class, must be added
+  sf::st_as_sf()
+
+geocoded
+```
+
+With this result, you can now join the address fields back onto the `bike_stores` data.frame using a `left_join()`.
+
+```{r}
+left_join(
+  bike_stores,
+  geocoded,
+  by = c("id" = "input_id")
+) |>
+  # left_join keeps the class of the first table
+  # must add sf class back on
+  sf::st_as_sf()
+```

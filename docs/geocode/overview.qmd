@@ -1,0 +1,65 @@
+---
+title: Overview
+---
+
+Addresses represent a physical place. They're meant to be interpreted by people and help guide navigation of the built environment. Addresses represent a geographical place but lack geographic data.
+
+The package `{arcgisgeocode}` enables you to search for an address (geocode), reverse geocode, find candidate matches, get suggestions, and batch geocode. Geocoding is the process of converting text to an address and a location.
+
+- **Address geocoding**, also known as forward geocoding, is the process of converting text for an address to a complete address with a location.
+- **Place geocoding** is the process of searching for addresses for businesses, administrative locations, and geographic features.
+- **Reverse geocoding** is the process of converting a point to an address or place.
+- **Batch geocoding**, also known as bulk geocoding, is the process of converting a list of addresses or place names to a set of complete addresses with locations.
+
+# Licensing considerations
+
+Many features of the ArcGIS World Geocoder are provided for free such as forward geocoding, reverse geocoding, and place search. However, **storing results is not free**. Additionally, the bulk geocoding functionality requires a developer account or available credits. 
+
+In order to store results, each function has an argument `for_storage` which should be set to `TRUE` if you intend to store the results. 
+
+To learn more about free and paid geocoding operations refer to the [storage parameter documentation](https://developers.arcgis.com/documentation/mapping-apis-and-services/geocoding/services/geocoding-service/#storage-parameter).
+
+| Function | Description | Free |
+| -------- | ----------- | ---- |
+| `find_address_candidates()` | Finds up to 50 location candidates based on a provided address. _This function is vectorized_ to work with many addresses at a time. | ✅ |
+| `reverse_geocode()` | Returns an address based on the provided coordinate. _This function is vectorized_ to work with many locations at a time. | ✅ |
+| `suggest_places()` | Returns possible POI information based on a location and a search phrase. This function is not vectorized. | ✅ |
+| `geocoded_addresses()` | Bulk geocodes addresses returning a single location per address. Use this for highly performant and scalable address geocoding. | ❌ |
+
+
+# Get started
+
+To start geocoding with the R-ArcGIS Bridge, install the R package from CRAN. 
+
+```{r include = FALSE}
+library(pillar)
+```
+```r
+# install from CRAN
+install.packages("arcgisgeocode")
+```
+
+```{r}
+# Load the library
+library(arcgisgeocode)
+```
+
+## Geocode an address
+
+Perform single address geocoding using the `find_address_candidates()` function. Limit the number of results using the `max_locations` argument. 
+
+```{r}
+loc <- find_address_candidates(
+    "501 Edgewood Ave SE, Atlanta, GA 30312", max_locations = 1
+)
+
+loc[, 1:8]
+```
+
+## Reverse geocode 
+
+From a location, find its corresponding address using `reverse_geocode()`. 
+
+```{r message=FALSE}
+reverse_geocode(c(-84.371, 33.753))
+```
