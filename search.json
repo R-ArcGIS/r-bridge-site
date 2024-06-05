@@ -132,397 +132,80 @@
     ]
   },
   {
-    "objectID": "docs/editing/overwrite-features.html",
-    "href": "docs/editing/overwrite-features.html",
-    "title": "Overwrite Hosted Feature Layer",
+    "objectID": "docs/geocode/overview.html",
+    "href": "docs/geocode/overview.html",
+    "title": "Overview",
     "section": "",
-    "text": "From time to time as the owner of a Feature Layer, you may need to completely overwrite the data in the service. Overwriting a web layer from ArcGIS Pro may lead to a loss of associated pop-ups and symbology. One way to get around this is to truncate the feature service and append new data to the same service.\nFor this example, we need to be the owner of a Feature Service. As such, we will use the North Carolina SIDS dataset we created in the Publishing from R tutorial. If you have not done that tutorial, complete it first.",
+    "text": "Addresses represent a physical place. They’re meant to be interpreted by people and help guide navigation of the built environment. Addresses represent a geographical place but lack geographic data.\nThe package {arcgisgeocode} enables you to search for an address (geocode), reverse geocode, find candidate matches, get suggestions, and batch geocode. Geocoding is the process of converting text to an address and a location.",
     "crumbs": [
-      "Editing",
-      "Truncate and append features"
+      "Geocoding",
+      "Overview"
     ]
   },
   {
-    "objectID": "docs/editing/overwrite-features.html#truncating-a-feature-layer",
-    "href": "docs/editing/overwrite-features.html#truncating-a-feature-layer",
-    "title": "Overwrite Hosted Feature Layer",
-    "section": "Truncating a Feature Layer",
-    "text": "Truncating a Feature Layer\nTruncating a Feature Layer deletes every single record in the service and resets the auto-increment of the object ID. Truncating a service does not change the field definitions or permit us to add or remove fields. If you wish to do so, publish a new layer instead.\nBefore we can modify a service, we must first authorize ourselves with the portal. To do so we will use the auth_code() authorization flow. If you have not yet configured you environment to authorize with your portal, follow the Connecting to your Portal tutorial.\nFirst load arcgis.\n\nlibrary(arcgis)\n\nAttaching core arcgis packages:\n  - {arcgisutils} v0.3.0\n  - {arcgislayers} v0.2.0\nNext, authorize with the portal and set the access token.\n\ntoken &lt;- auth_code()\nset_auth_token(token)\n\nToken set to environment variable `ARCGIS_TOKEN`\nNow that we have verified our identity with our portal we can create a FeatureLayer object in R from our hosted service. From your content listing find the Feature Layer url.\n\n\n\n\n\n\nTip\n\n\n\nRevisit the “Obtaining a feature layer url” section of the Read hosted data tutorial if you forgot how to retrieve the service url.\n\n\n\nfurl &lt;- \"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0\"\n\nnc &lt;- arc_open(furl)\nnc\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\n\n\nThis is the url of your hosted feature service. Yours will be different than the URL shown here. Note that the /0 indicates the layer index. You can often copy the url from under the URL section on the right hand menu and append the /0 to it.\nBefore we can truncate the FeatureLayer, we should check to see that the layer itself supports this operation. The supportsTruncate attribute will return TRUE if we can truncate it. If not, we’re out of luck and need to create an entirely new service!\n\nnc[[\"supportsTruncate\"]]\n\nSince we know that we can truncate the service, we can go ahead and do so.\n\ntruncate_res &lt;- truncate_layer(nc)\ntruncate_res\n\nWe store the result into truncate_res to see the results. Let’s now go ahead and refresh our layer and check to see if the changes have taken place.\n\nnc &lt;- refresh_layer(nc)\nnc\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCapabilities: Create,Delete,Query,Update,Editing\nAfter refreshing the layer we can see that there are now 0 features! Success! There are still 15 fields and we still have the same name and geometry type.",
+    "objectID": "docs/geocode/overview.html#geocode-an-address",
+    "href": "docs/geocode/overview.html#geocode-an-address",
+    "title": "Overview",
+    "section": "Geocode an address",
+    "text": "Geocode an address\nPerform single address geocoding using the find_address_candidates() function. Limit the number of results using the max_locations argument.\n\nloc &lt;- find_address_candidates(\n    \"501 Edgewood Ave SE, Atlanta, GA 30312\", max_locations = 1\n)\n\nloc[, 1:8]\n\nSimple feature collection with 1 feature and 8 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: -84.37108 ymin: 33.75396 xmax: -84.37108 ymax: 33.75396\nGeodetic CRS:  WGS 84\n  input_id result_id loc_name status score\n1        1        NA    World      M   100\n                                    match_addr\n1 501 Edgewood Ave SE, Atlanta, Georgia, 30312\n                                    long_label         short_label\n1 501 Edgewood Ave SE, Atlanta, GA, 30312, USA 501 Edgewood Ave SE\n                    geometry\n1 POINT (-84.37108 33.75396)",
     "crumbs": [
-      "Editing",
-      "Truncate and append features"
+      "Geocoding",
+      "Overview"
     ]
   },
   {
-    "objectID": "docs/editing/overwrite-features.html#adding-features",
-    "href": "docs/editing/overwrite-features.html#adding-features",
-    "title": "Overwrite Hosted Feature Layer",
+    "objectID": "docs/geocode/overview.html#reverse-geocode",
+    "href": "docs/geocode/overview.html#reverse-geocode",
+    "title": "Overview",
+    "section": "Reverse geocode",
+    "text": "Reverse geocode\nFrom a location, find its corresponding address using reverse_geocode().\n\nreverse_geocode(c(-84.371, 33.753))\n\nRegistered S3 method overwritten by 'jsonify':\n  method     from    \n  print.json jsonlite\n\n\nSimple feature collection with 1 feature and 22 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: -84.37103 ymin: 33.75322 xmax: -84.37103 ymax: 33.75322\nGeodetic CRS:  WGS 84\n                                match_addr\n1 39 Daniel St SE, Atlanta, Georgia, 30312\n                                long_label     short_label    addr_type\n1 39 Daniel St SE, Atlanta, GA, 30312, USA 39 Daniel St SE PointAddress\n  type_field place_name add_num         address block sector neighborhood\n1                            39 39 Daniel St SE                          \n  district    city metro_area     subregion  region region_abbr territory\n1          Atlanta            Fulton County Georgia          GA          \n  postal postal_ext  country_name country_code                   geometry\n1  30312       1907 United States          USA POINT (-84.37103 33.75322)",
+    "crumbs": [
+      "Geocoding",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/editing/delete-features.html",
+    "href": "docs/editing/delete-features.html",
+    "title": "Deleting features",
+    "section": "",
+    "text": "While add_features() and update_features() had a very similar syntax, delete_features() has a somewhat different interface. We have 3 different ways in which we can delete features. Here we will explore only two of them.\n\nlibrary(arcgis)\nset_arc_token(auth_code())\n\nnc_url &lt;- \"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0\" \n\nnc &lt;- arc_open(nc_url)\n\nWe can delete features based on object IDs or a SQL where clause. Let’s explore deleting features based on object IDs. To do so, we need to pass the FeatureLayer obejct as the first argument to delete_features(). The second argument is a numeric vector of the IDs we want to delete. The ID 101 is the new feature that we created.\n\ndelete_res &lt;- delete_features(nc, object_ids = 101)\ndelete_res\n\n$deleteResults\n  objectId uniqueId globalId success\n1      101      101       NA    TRUE\nWe can check to see if the delete worked by refreshing the layer and seeing the count that is printed out.\n\nrefresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nAlternatively, we can delete features based on a where clause. Say we wanted to delete all of the features where the BIR74 value was less than 1000. We can accomplish this using a where clause.\n\ndelete_res &lt;- delete_features(nc, where = \"BIR74 &lt; 1000\")\ndelete_res\n\n$deleteResults\n   objectId uniqueId globalId success\n1         2        2       NA    TRUE\n2         4        4       NA    TRUE\n3         7        7       NA    TRUE\n4         8        8       NA    TRUE\n5         9        9       NA    TRUE\n6        20       20       NA    TRUE\n7        21       21       NA    TRUE\n8        22       22       NA    TRUE\n9        32       32       NA    TRUE\n10       35       35       NA    TRUE\n11       38       38       NA    TRUE\n12       44       44       NA    TRUE\n13       45       45       NA    TRUE\n14       56       56       NA    TRUE\n15       58       58       NA    TRUE\n16       59       59       NA    TRUE\n17       73       73       NA    TRUE\n18       77       77       NA    TRUE\n19       78       78       NA    TRUE\n20       80       80       NA    TRUE\n21       83       83       NA    TRUE\n22       87       87       NA    TRUE\n23       90       90       NA    TRUE\nSuccessful deletes! Again, we can check to see the new count using refresh_layer().\n\nrefresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nLastly, if you want to delete every single feature. We can take advantage of the where clause again. If we set where = \"1 = 1\" that will evaluate TRUE for every single feature.\n\ndelete_res &lt;- delete_features(nc, where = \"1 = 1\")\ndelete_res\n\n$deleteResults\n   objectId uniqueId globalId success\n1         1        1       NA    TRUE\n2         3        3       NA    TRUE\n3         5        5       NA    TRUE\n4         6        6       NA    TRUE\n5        10       10       NA    TRUE\n6        11       11       NA    TRUE\n          ... Truncated ...\n\nrefresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nNote that you shuold use truncate_layer() instead of delete_features(x, where = \"1 = 1\").",
+    "crumbs": [
+      "Editing",
+      "Deleting features"
+    ]
+  },
+  {
+    "objectID": "docs/editing/add-features.html",
+    "href": "docs/editing/add-features.html",
+    "title": "Adding features",
+    "section": "",
+    "text": "Programmatically, adding, deleting, or updating features using {arcgis} is a straightforward process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted feature layer or table.\nWe will go over the functions:",
+    "crumbs": [
+      "Editing",
+      "Adding features"
+    ]
+  },
+  {
+    "objectID": "docs/editing/add-features.html#pre-requisites",
+    "href": "docs/editing/add-features.html#pre-requisites",
+    "title": "Adding features",
+    "section": "Pre-requisites",
+    "text": "Pre-requisites\nWe will use the the North Carolina SIDS dataset we created in the Publishing from R tutorial. To follow along, be sure that you have followed that tutorial and have a FeatureLayer that you can modify. If you have not yet configured your environment to authorize with an online portal, start at Connecting to your portal.",
+    "crumbs": [
+      "Editing",
+      "Adding features"
+    ]
+  },
+  {
+    "objectID": "docs/editing/add-features.html#adding-features",
+    "href": "docs/editing/add-features.html#adding-features",
+    "title": "Adding features",
     "section": "Adding features",
-    "text": "Adding features\nNow that we have deleted all of the features of the layer, lets go ahead and add some new ones. Let’s read the nc.shp file from sf into memory, give it a slight modification, and add those features to our service.\n\nlibrary(sf)\n\nLinking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE\n\nnc_sf &lt;- read_sf(system.file(\"shape/nc.shp\", package = \"sf\"))\nnc_sf\n\nSimple feature collection with 100 features and 14 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n# A tibble: 100 × 15\n    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74\n   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10\n 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10\n 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208\n 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123\n 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066\n 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954\n 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115\n 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254\n 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748\n10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160\n# ℹ 90 more rows\n# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,\n#   geometry &lt;MULTIPOLYGON [°]&gt;\n\n\nRather than publish the polygons as they are, let’s calculate the convex hull of each shape and publish those.\n\nnc_convex &lt;- st_convex_hull(nc_sf)\nplot(st_geometry(nc_convex))\n\nLet’s take this sf object and add them as features to our now empty FeatureLayer. To add features, we use the add_features() function. The first argument is the FeatureLayer (or Table) that we are adding features to. The second is the sf object that we will be adding to the layer.\n\n\n\n\n\n\nTip\n\n\n\nIt is important to note that the column names of the sf object must match the names of the fields in the FeatureLayer, otherwise arcgis does not know which column matches which field.\n\n\n\nadd_res &lt;- add_features(nc, nc_convex)\n\nWarning: CRS missing from `x` cannot verify matching CRS.\nWe receive a warning because there is no spatial reference in the hosted FeatureLayer after truncating. Print the add_res object to see if each feature was successfully added.\n\nhead(add_res)\n\n    objectId uniqueId globalId success\n1          1        1       NA    TRUE\n2          2        2       NA    TRUE\n3          3        3       NA    TRUE\n4          4        4       NA    TRUE\n5          5        5       NA    TRUE\n6          6        6       NA    TRUE\nNow that we have added our features, let us refresh the layer again.\n\nnc &lt;- refresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nIf you view the hosted Feature Layer in the map viewer, you should now see the convex hulls.",
+    "text": "Adding features\nFor this example, we will add a single feature to the North Carolina SIDS dataset that is a summary over the entire state. Before we can begin, we must load the package and authorize ourselves as a user.\n\nlibrary(arcgis)\n\ntoken &lt;- auth_code()\nset_auth_token(token)\n\nNext, we will create the feature that we want to add using the sf package. We’ll read in the nc.shp file from the sf package.\n\nlibrary(sf)\nnc_sf &lt;- read_sf(system.file(\"shape/nc.shp\", package = \"sf\"))\nnc_sf\n\nSimple feature collection with 100 features and 14 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n# A tibble: 100 × 15\n    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74\n   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10\n 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10\n 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208\n 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123\n 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066\n 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954\n 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115\n 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254\n 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748\n10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160\n# ℹ 90 more rows\n# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,\n#   geometry &lt;MULTIPOLYGON [°]&gt;\n\n\nLet’s calculate the average birth rate, SIDS rate, and the non-white birth rate and SIDS rate for the entire state. We will add this as a single feature to our existing feature layer. To do so, we will use the R package dplyr for manipulating our data.\n\nlibrary(dplyr)\n\nnc_summary &lt;- nc_sf |&gt;  \n  summarise(\n1    across(\n2      .cols = c(ends_with(\"74\"), ends_with(\"79\")),\n3      .fns = mean\n    ),\n4    NAME = \"Total\"\n  ) \n\nnc_summary\n\n\n1\n\nThe across() function applies a function to multiple columns at once.\n\n2\n\nWe specify the columns we will be applying a function to in .cols. We use the tidyselect helpers to catch any columns that end with 74 or 79.\n\n3\n\nThe .fns argument specifies which functions will be applied to the columns. In this case, we apply on the mean() function to calculate the average.\n\n4\n\nThe NAME field is set manually to the value of \"Total\" to indicate that it is not a county.\n\n\n\n\nSimple feature collection with 1 feature and 7 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n# A tibble: 1 × 8\n  BIR74 SID74 NWBIR74 BIR79 SID79 NWBIR79 NAME                          geometry\n  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;MULTIPOLYGON [°]&gt;\n1 3300.  6.67   1051. 4224.  8.36   1353. Total (((-75.97629 36.51793, -75.9772…\n\n\nIn order to add this new aggregate feature to the FeatureLayer we must create a reference to the layer using arc_open().\n\nnc_url &lt;- \"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0\" \n\nnc &lt;- arc_open(nc_url)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\n\n\n\n\n\n\nNote\n\n\n\nThe url you use here will be different than the one you see. Be sure to grab the correct url from the content listing for your item.\n\n\nNow that we have a FeatureLayer object we can add features to it using add_features(). There are a few key arguments to the function:\n\nx is the FeatureLayer object that we want to add features to\n.data is an sf object that we want to add to the FeatureLayer\nmatch_on determines how to match sf columns to FeatureLayer fields\n\nBy default, add_features() will compare the column names of the sf object to that of the FeatureLayer. We can find the field names and aliases for a FeatureLayer by using the list_fields() function. Pass the results to tibble::as_tibble() to make them more readable.\nSince we know that the column names match those of the FeatureLayer, we can pass nc_summary directly to add_feature().\n\nadd_res &lt;- add_features(nc, nc_summary)\nadd_res\n\n  objectId uniqueId globalId success\n1      101      101       NA    TRUE\n\n\n\n\n\n\nTip\n\n\n\nIf you are adding many features at one time, consider changing the value of chunk_size. By default, add_features() will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks.\n\n\nOnce we’ve added the results to the FeatureLayer, we may want to refresh the object to catch any important changes to the metadata.\n\nnc &lt;- refresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nWe can see that the FeatureLayer now has 101 features as opposed to the original 100. To sanity check, we can query nc to see how the value comes back.\n\nnc_avgs &lt;- nc |&gt; \n  filter(NAME == \"Total\") |&gt; \n  collect()\n\nnc_avgs\n\nSimple feature collection with 1 feature and 15 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n  object_id AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry\n1       101   NA        NA    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...",
     "crumbs": [
       "Editing",
-      "Truncate and append features"
-    ]
-  },
-  {
-    "objectID": "docs/editing/update-features.html",
-    "href": "docs/editing/update-features.html",
-    "title": "Updating features",
-    "section": "",
-    "text": "In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable nc_avgs. When looking at it, we can see that the AREA AND PERIMETER values are missing. These might be helpful at a later point.\n\nlibrary(arcgis)\nset_arc_token(auth_code())\n\nnc_url &lt;- \"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0\" \n\nnc &lt;- arc_open(nc_url)\n\nIn this section we will use the function update_features() to modify these values. First, let’s create a new object called to_update that has the AREA and PERIMETER computed.\n\nnc_area_perim &lt;- nc_avgs |&gt; \n  mutate(\n    AREA = st_area(geometry) / 1e10,\n    PERIMETER = s2::s2_perimeter(geometry) / 1e5\n  )\n\nnc_area_perim\n\nSimple feature collection with 1 feature and 15 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n  object_id           AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry\n1       101 12.70259 [m^2]  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...\nLike add_features(), we need to be able to match columns to their respective fields. The match_on argument is used to specify if the column names match the field name or field alias.\nIn the case of update_features() we also need to be able to match the features in the sf dataset to the exact feature in the FeatureLayer. We do this by providing the object ID of the feature. This tells ArcGIS which features we are actually going to update.\nWhen using update_features() we should be aware that every column present in the sf object will be updated including the geometry. For this reason, we should select only those columns which we truly wish to update.\n\nto_update &lt;- nc_area_perim |&gt; \n  st_drop_geometry() |&gt; \n  select(object_id, AREA, PERIMETER)\n\nto_update\n\nHere we use sf::st_drop_geometry()to remove the geometry of our object since we do not want to update the geometry in our FeatureLayer. We also only select the object_id, AREA, and PERIMETER columns so that we do not make errant updates.\n\nupdate_res &lt;- update_features(nc, to_update)\n\n$updateResults\n  objectId uniqueId globalId success\n1      101      101       NA    TRUE\nOur update process was successful! We can repeat our previous query to verify this.\n\n nc |&gt; \n  filter(NAME == \"Total\") |&gt; \n  collect()\n\nSimple feature collection with 1 feature and 15 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n  object_id     AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry\n1       101 12.70259  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...",
-    "crumbs": [
-      "Editing",
-      "Updating features"
-    ]
-  },
-  {
-    "objectID": "docs/editing/overview.html",
-    "href": "docs/editing/overview.html",
-    "title": "Editing layers",
-    "section": "",
-    "text": "Published feature layers often are living datasets. There may be new features that need to be added. Or, sometimes features may be need to be deleted as they are no longer present. Or maybe, the attributes of the feature have become obsolete and need to be updated.\nThe {arcgislayers} R package provides capabilities to add features, update them, delete features, or even truncate an entire feature service.",
-    "crumbs": [
-      "Editing",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "docs/editing/overview.html#important-considerations",
-    "href": "docs/editing/overview.html#important-considerations",
-    "title": "Editing layers",
-    "section": "Important considerations",
-    "text": "Important considerations\nIt is important to note that not everyone can edit an existing feature service. You must be an admin or an owner of the service that you want to edit. This requires that you have an account and can authorized yourself as a user.\nAdditionally, fields cannot be added or deleted to an already existing feature service. If you wish to add or delete fields, you will need to publish a new layer.",
-    "crumbs": [
-      "Editing",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "docs/layers/overview.html",
-    "href": "docs/layers/overview.html",
-    "title": "Overview",
-    "section": "",
-    "text": "Layers represent represent a data service hosted by ArcGIS Online, ArcGIS Enterprise, Platform, or even an ArcGIS Hub site. Layers are how you will interact with your remotely hosted data.\nThe {arcgis} R metapackage is able to work with the most common types of data services: feature services and image servers. The types of layers that the R-ArcGIS Bridge does not yet support are vector and map tile services.",
-    "crumbs": [
-      "Layers",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "docs/layers/overview.html#creating-data-service-objects",
-    "href": "docs/layers/overview.html#creating-data-service-objects",
-    "title": "Overview",
-    "section": "Creating data service objects",
-    "text": "Creating data service objects\nUsing {arcgislayers}, the function arc_open() will create a reference to a service based on its url.\n\nlibrary(arcgis)\n\nAttaching core arcgis packages:\n→ arcgisutils v0.3.0\n→ arcgislayers v0.2.0\n\n# feature service url\nfurl &lt;- \"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer/4\"\n\n# feature layer\nflayer &lt;- arc_open(furl)\nflayer\n\n&lt;FeatureLayer&gt;\nName: ZCTAs\nGeometry Type: esriGeometryPolygon\nCRS: 3785\nCapabilities: Query,Extract",
-    "crumbs": [
-      "Layers",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "docs/layers/overview.html#querying-feature-services",
-    "href": "docs/layers/overview.html#querying-feature-services",
-    "title": "Overview",
-    "section": "Querying feature services",
-    "text": "Querying feature services\nTo bring data from the service into memory in R, you must use arc_select().\n\n\n\n\n\n\nTip\n\n\n\nAlways bring as little data as possible into memory. Utilize the fields and where arguments.\n\n\n\narc_select(\n  flayer,\n  where = \"TotalPopulation &gt; 100000\",\n  fields = c(\"objectid\", \"totalpopulation\", \"zcta5\")\n)\n\nSimple feature collection with 9 features and 3 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -13185850 ymin: 3724192 xmax: -8218971 ymax: 5130142\nProjected CRS: WGS 84 / Pseudo-Mercator\n  OBJECTID TotalPopulation ZCTA5                       geometry\n1     1665          111086 79936 MULTIPOLYGON (((-11831249 3...\n2     2387          103892 90011 MULTIPOLYGON (((-13164358 4...\n3     2669          101279 90201 MULTIPOLYGON (((-13157079 4...\n4     2732          105549 90650 MULTIPOLYGON (((-13141865 4...\n5     3027          103689 91331 MULTIPOLYGON (((-13178819 4...\n6    19391          113916 60629 MULTIPOLYGON (((-9767482 51...\n7    25238          109931 11368 MULTIPOLYGON (((-8219675 49...\n8    25242          100820 11373 MULTIPOLYGON (((-8222572 49...\n9    26364          101572 11226 MULTIPOLYGON (((-8231772 49...",
-    "crumbs": [
-      "Layers",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "docs/auth/storing-credentials.html",
-    "href": "docs/auth/storing-credentials.html",
-    "title": "Storing credentials",
-    "section": "",
-    "text": "Authentication requires that you provide sensitive data to the R authentication R functions. These are used to verify your identity to the services that you are calling. These sensitive variables should never be written down in your code.\nThe packages in the R-ArcGIS Bridge rely heavily on environment variables. Environment variables are dynamic values that can be set to store sensitive or configuration information, allowing you to manage and control access to crucial data across various tools and applications, including R scripts.",
-    "crumbs": [
-      "Authentication",
-      "Storing credentials"
-    ]
-  },
-  {
-    "objectID": "docs/auth/storing-credentials.html#environment-variables",
-    "href": "docs/auth/storing-credentials.html#environment-variables",
-    "title": "Storing credentials",
-    "section": "Environment variables",
-    "text": "Environment variables\nThe package {arcgisutils} is responsible for handling authorization for all of the R packages. With it, there are a number of different mechanism for authorizing each requiring a different combination of environment variables.\nEnvironment variables are fetched using Sys.getenv(). They are key-value pairs. For example, to find the path of R run\n\nSys.getenv(\"R_HOME\")\n\n[1] \"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources\"\n\n\nOr to set a value use Sys.setenv()\n\nSys.setenv(\"ANSWER_TO_EVERYTHING\" = 42)\nSys.getenv(\"ANSWER_TO_EVERYTHING\")\n\n[1] \"42\"",
-    "crumbs": [
-      "Authentication",
-      "Storing credentials"
-    ]
-  },
-  {
-    "objectID": "docs/auth/storing-credentials.html#using-an-.renviron-file",
-    "href": "docs/auth/storing-credentials.html#using-an-.renviron-file",
-    "title": "Storing credentials",
-    "section": "Using an .Renviron file",
-    "text": "Using an .Renviron file\nEnvironment variables should never be included in your code. We recommend using an .Renviron file at minimum to store your credentials.\nYou can use the usethis to edit the file. Ensure it is installed and run the following in your text editor:\n\n\n\n\n\n\nWarning\n\n\n\nIf you modify environment variables you will need to restart your R session for the change to be registered.\n\n\nusethis::edit_r_environ()\n\n\n\n\n\n\n.Renviron scopes\n\n\n\n\n\n.Renviron files can be created at a user level or a project level. It is recommended to use project level .Renviron files when deploying scripts to production. If most of your work is interactive then a user level file is sufficient.\nProject scoped .Renviron files store environment variables that are available for the project only. The .Renviron is stored at the root folder level.\nUser scoped .Renviron files store environment variables in the user’s home directory. The environment variables will be available to you in any project you open. However, if you share your project, the environment variables will not be shared with it.\n\n\n\nThis will open your .Renviron file for you to edit.\n# used for OAuth Code & Client\nARCGIS_CLIENT=your-client-id\n# used for OAuth Client flow\nARCGIS_SECRET=your-super-secret-key\n# used for publishing and Username/Password auth\nARCGIS_USER=your-user-name\n# used for API Key auth\nARCGIS_API_KEY=your-developer-api-key\n# specify if not using ArcGIS Online\nARCGIS_HOST=https://your-portal.com/",
-    "crumbs": [
-      "Authentication",
-      "Storing credentials"
-    ]
-  },
-  {
-    "objectID": "docs/installation.html",
-    "href": "docs/installation.html",
-    "title": "Install and set up",
-    "section": "",
-    "text": "Before installing, we recommend that you have the newest version of R installed. At minimum, we sugest you use R version 4.3 or higher.",
-    "crumbs": [
-      "Install and set up"
-    ]
-  },
-  {
-    "objectID": "docs/installation.html#from-pro",
-    "href": "docs/installation.html#from-pro",
-    "title": "Install and set up",
-    "section": "Install within ArcGIS Pro (recommended)",
-    "text": "Install within ArcGIS Pro (recommended)\nIf you are working in ArcGIS Pro 2.0 or beyond, you have access to the built-in installer, which streamlines the process of installing arcgisbinding. It also allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario:\n\nOpen ArcGIS Pro and click on the Project tab in your project.\nSelect Options on the blue, left-hand side panel and in the pop-up window, under Application, select Geoprocessing.\nUnder the R-ArcGIS Support options, select your desired R home directory.\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\n\n\nNote: All versions of R installed on your computer will appear in the drop-down menu. Make sure the version you select is R 3.2.2 or later. However, if you have installed R to a location other than the default, you might need to navigate to that location using the browse button.\n\n\n\n\nIf you have never installed arcgisbinding, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to install arcgisbinding from the internet, download the latest version of the package, or install the package from file. Select the first option - Install package from the Internet - to install the arcgisbinding package.\n\n\n\n\n\n\n\nA pop-up window will appear to inform you there is a new arcgisbinding version and will ask you if you wish to install it. Select Yes.\nA progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package arcgisbinding was successfully installed. The package will now show as installed in the R-ArcGIS Support section of the Options window.",
-    "crumbs": [
-      "Install and set up"
-    ]
-  },
-  {
-    "objectID": "docs/installation.html#from-r",
-    "href": "docs/installation.html#from-r",
-    "title": "Install and set up",
-    "section": "Install from R",
-    "text": "Install from R\nAlternatively, you can install arcgisbinding directly from R. Open RStudio, VS Code, or your favorite text editor and run the following from the console:\n install.packages(\n  \"arcgisbinding\", \n  repos = \"https://r.esri.com\", \n  type = \"win.binary\"\n )\nThis will install the package binary directly from the R-ArcGIS GitHub repository, which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer.",
-    "crumbs": [
-      "Install and set up"
-    ]
-  },
-  {
-    "objectID": "docs/installation.html#offline",
-    "href": "docs/installation.html#offline",
-    "title": "Install and set up",
-    "section": "Offline Installation",
-    "text": "Offline Installation\nMany users of arcgisbinding work in a completely air-gapped environment where downloading external packages from the internet is not possible.\nIn order to install arcgisbinding in an air-gapped environment you must first download the package on a machine with internet access and transfer it into your offline environment.\nTo download the package, go to https://r.esri.com/bin/ and choose the version of arcgisbinding that matches your version of R.\nOnce you have downloaded and moved the zip file onto your air-gapped machine, you can install it using the install.packages() command.\ninstall.packages(\"path/to/arcgisbinding_1.0.1.306.zip\", repos = NULL)\n\n\n\n\n\n\nWarning\n\n\n\nNote that depending on the version of the package you download, the file name will be different. Be sure the file path and name are accurate.",
-    "crumbs": [
-      "Install and set up"
-    ]
-  },
-  {
-    "objectID": "docs/installation.html#verify-your-installation",
-    "href": "docs/installation.html#verify-your-installation",
-    "title": "Install and set up",
-    "section": "Verify your installation",
-    "text": "Verify your installation\nOnce you have arcgisbinding installed, you can check if your installation was successful by loading the package.\nlibrary(arcgisbinding)\narc.check_product()\nThis will print a message informing you of the version of ArcGIS Pro you are using. You do not need to install arcgisbinding again until you download a new version of R or wish to upgrade the package.",
-    "crumbs": [
-      "Install and set up"
-    ]
-  },
-  {
-    "objectID": "docs/installation.html#upgrading-arcgisbinding",
-    "href": "docs/installation.html#upgrading-arcgisbinding",
-    "title": "Install and set up",
-    "section": "Upgrading {arcgisbinding}",
-    "text": "Upgrading {arcgisbinding}\n\nUsing ArcGIS Pro\nIf you have installed arcgisbinding from within ArcGIS Pro, follow the instructions for accessing ArcGIS Pro’s R-ArcGIS Support options in the installing within ArcGIS Pro section.\nIf you have previously installed arcgisbinding, you will see an installed message that lets you know the version of your arcgisbinding package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the arcgisbinding package. If prompted to update, click Yes and the latest version will automatically be installed.\n\n\nUsing R or offline\nTo upgrade your package using R or in an offline environment, repeat the steps above for either installing from R or offline installation.",
-    "crumbs": [
-      "Install and set up"
-    ]
-  },
-  {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
-    "section": "",
-    "text": "{arcgisbinding} - documentation | vignette\n{arcgis} - documentation\n{arcgislayers} - documentation\n{arcgisutils} - documentation\n{arcpbf} - documentation\n\n\n\n\n\nUsing the R-ArcGIS Bridge with {arcgisbinding}\nArcGIS Learn Lesson: Get Started with R and ArcGIS\nArcGIS Technology for Spatial Data Science"
-  },
-  {
-    "objectID": "resources.html#learn-about-r-arcgis-bridge",
-    "href": "resources.html#learn-about-r-arcgis-bridge",
-    "title": "Resources",
-    "section": "",
-    "text": "{arcgisbinding} - documentation | vignette\n{arcgis} - documentation\n{arcgislayers} - documentation\n{arcgisutils} - documentation\n{arcpbf} - documentation\n\n\n\n\n\nUsing the R-ArcGIS Bridge with {arcgisbinding}\nArcGIS Learn Lesson: Get Started with R and ArcGIS\nArcGIS Technology for Spatial Data Science"
-  },
-  {
-    "objectID": "resources.html#learn-about-arcgis",
-    "href": "resources.html#learn-about-arcgis",
-    "title": "Resources",
-    "section": "Learn about ArcGIS",
-    "text": "Learn about ArcGIS\n\nArcGIS location services documentation\nArcGIS REST API documentation\nArcGIS Pro resources\nArcGIS Online resources\nArcGIS Enterprise resources\nArcGIS Tutorial Gallery\nEsri Training"
-  },
-  {
-    "objectID": "resources.html#learn-about-r",
-    "href": "resources.html#learn-about-r",
-    "title": "Resources",
-    "section": "Learn about R",
-    "text": "Learn about R\n\nR\nR for Data Science\nGeocomputation with R\nSpatial Data Science: With Applications in R\nCRAN"
-  },
-  {
-    "objectID": "packages.html",
-    "href": "packages.html",
-    "title": "Packages",
-    "section": "",
-    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
-  },
-  {
-    "objectID": "packages.html#arcgisbinding",
-    "href": "packages.html#arcgisbinding",
-    "title": "Packages",
-    "section": "",
-    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
-  },
-  {
-    "objectID": "packages.html#arcgis",
-    "href": "packages.html#arcgis",
-    "title": "Packages",
-    "section": "{arcgis}",
-    "text": "{arcgis}\nFor analysts & data scientists\n\narcgis is a metapackage that loads all location services packages for you."
-  },
-  {
-    "objectID": "packages.html#arcgislayers",
-    "href": "packages.html#arcgislayers",
-    "title": "Packages",
-    "section": "{arcgislayers}",
-    "text": "{arcgislayers}\nFor analysts & data scientists\n\nInterfaces with Feature Services and Image Servers. Enables you to read and write to services directly from R."
-  },
-  {
-    "objectID": "packages.html#arcgisutils",
-    "href": "packages.html#arcgisutils",
-    "title": "Packages",
-    "section": "{arcgisutils}",
-    "text": "{arcgisutils}\nFor Package Developers\n\nA low-level package to handle authorization and conversion to and from Esri json formats."
-  },
-  {
-    "objectID": "packages.html#arcpbf",
-    "href": "packages.html#arcpbf",
-    "title": "Packages",
-    "section": "{arcpbf}",
-    "text": "{arcpbf}\nFor Package Developers \n\nRead ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests."
-  },
-  {
-    "objectID": "geoprocessing-tools.html",
-    "href": "geoprocessing-tools.html",
-    "title": "Geoprocessing Tools",
-    "section": "",
-    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nThe basic anatomy of an R-based GP script tool is like so:\n\n\nmy-geoprocessing-tool.R\n\n1tool_exec &lt;- function(in_params, out_params) {\n  # ... do things here.. \n2  out_params\n}\n\n\n1\n\nTwo arguments capture input and output parameters\n\n2\n\nOutput parameters are returned to be captured by ArcGIS Pro\n\n\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument."
-  },
-  {
-    "objectID": "geoprocessing-tools.html#overview",
-    "href": "geoprocessing-tools.html#overview",
-    "title": "Geoprocessing Tools",
-    "section": "",
-    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nThe basic anatomy of an R-based GP script tool is like so:\n\n\nmy-geoprocessing-tool.R\n\n1tool_exec &lt;- function(in_params, out_params) {\n  # ... do things here.. \n2  out_params\n}\n\n\n1\n\nTwo arguments capture input and output parameters\n\n2\n\nOutput parameters are returned to be captured by ArcGIS Pro\n\n\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument."
-  },
-  {
-    "objectID": "geoprocessing-tools.html#input-and-output-parameters",
-    "href": "geoprocessing-tools.html#input-and-output-parameters",
-    "title": "Geoprocessing Tools",
-    "section": "Input and Output Parameters",
-    "text": "Input and Output Parameters\nThere must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are in_params and out_params. The first argument will always refer to the input parameters and the second to the outputs.\nin_params and out_params are named lists. The elements of these lists are determined by the direction of a parameter.\n\nIf the direction is Input, it will be contained in in_params. Likewise, if the direction is Output, it will be contained in out_params."
-  },
-  {
-    "objectID": "geoprocessing-tools.html#using-parameters",
-    "href": "geoprocessing-tools.html#using-parameters",
-    "title": "Geoprocessing Tools",
-    "section": "Using parameters",
-    "text": "Using parameters\nValues can be extracted from the in_params and out_params lists by the name or position of the parameter. It is strongly recommended to use name-based indexing rather than position-based indexing for clarity.\n\n\n\n\n\n\nCaution\n\n\n\nThe name of the parameter must match the value in the Name (not Label) column in the Parameters tab of the Tool Properties.\n\n\nThis is an example of a function to parse a date parameter with the name date:\ntool_exec &lt;- function(in_params, out_params) {\n  # fetch the date parameter\n  date_str &lt;- in_params[[\"date\"]]\n  \n  # parse it using {anytime}\n  clean_date &lt;- anytime::anytime(date_str)\n  \n  # ... do additional things\n  \n  # return values to ArcGIS Pro\n  out_params\n}\n\nReturning values to ArcGIS Pro\nAt the end of the tool_exec() function above, the out_params object is returned. Returning the output parameters using this syntax allows ArcGIS Pro to capture and use the outputs of the script tool.\nNotably, the output parameters are useful in linking one tool to another, for example via use in ModelBuilder or in an arcpy script.\nSee Using R script tools with arcpy.\n\n\nParameter types\nThere are number of different parameter types that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: integer, double, character, logical, or NULL.\n\n\n\n\n\n\nTip\n\n\n\nA scalar value is a vector with only a single element.\n\n\nIt is incumbent upon the developer to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by arcgisbinding. Below are examples of common parameter types and how they are handled by arcgisbinding:\n\nData type mapping\n\n\n\n\n\n\nArcGIS Pro Parameter Type\nR Data Type\n\n\n\n\nString\ncharacter\n\n\nBoolean\nlogical\n\n\nDouble\nnumeric\n\n\nDate\ncharacter in the format of your system e.g. \"11/17/2023 4:35:57 PM\"\n\n\nField\ncharacter the field name of a feature class\n\n\nFolder\ncharacter absolute path e.g. \"C:\\\\Users\\username\\Documents\"\n\n\nFeature Class\ncharacterabsolute path e.g. \"C:\\\\Users\\username\\mydatabase.gdb\\\\feature_class\n\n\nSpatial Reference\ncharacter a string representation of the spatial reference e.g. \"PROJCS[\"....\"]\"\n\n\n\nFor a complete list of parameter data types, see Geoprocessing data types.\n\n\nMultiple Values\nWhen selecting the Multiple values check box in the parameter data type dialog box, users can then provide multiple inputs of that type.\n\nWhen the Multiple values option is enabled, the parameter returns a list containing each of the input values.\nNote that when multiple values are provided, they will be captured in R as a list of scalars. Take the below input, for example:\n\nIn R, this parameter value would be list(\"string 1\", \"string 2\") and not c(\"string 1\", \"string 2\").\n\n\n\n\n\n\nTip\n\n\n\nTo turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector, use unlist(). For example unlist(list(\"string 1\", \"string 2\")) returns c(\"string 1\", \"string 2\")."
-  },
-  {
-    "objectID": "geoprocessing-tools.html#common-patterns",
-    "href": "geoprocessing-tools.html#common-patterns",
-    "title": "Geoprocessing Tools",
-    "section": "Common Patterns",
-    "text": "Common Patterns\n\nReading a Feature Class\nReading a feature class using arcgisbinding and bringing the results into R as an sf object is a common pattern. To do this, use the functions arc.open(), arc.select(), and arc.data2sf().\ntool_exec &lt;- function(in_params, out_params) {\n\n  fclass &lt;- arcgisbinding::arc.open(in_params[[\"fc_path\"]])\n  \n  fclass_selected &lt;- arcgisbinding::arc.select(\n    fclass,\n    # fields = c(\"optional\", \"fields\", \"to\", \"read\"),\n    # where_clause = \"optional sql where clause to filter\"\n  )\n  \n  fclass_sf &lt;- arcgisbinding::arc.data2sf(fclass_selected)\n}\n\n\n\n\n\n\nNote\n\n\n\nTo filter or select columns from a dataset, consider using the fields and where_clause arguments of arc.select() to reduce the amount of data read into memory.\narc.select() returns a data.frame with fields and a special geometry column which is incompatible with sf. Use arc.data2sf() to convert it to an sf object.\n\n\n\n\nWriting a Feature Class\nIt is quite common to write the results of an analysis to a file geodatabase. This can be done with arc.write(). A Feature Class type parameter can be used in the out_params list object to capture a user-defined output path.\narc.write() requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are data.frame, sf, RasterLayer or RasterBrick.\n\n\n\n\n\n\nNote\n\n\n\nSupport for {terra} is planned to accompany the ArcGIS Pro 3.3 release.\n\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # extract the path to write to\n  out_fp &lt;- out_params[[\"output_fclass\"]]\n  \n  # write the `sf_object` to a geodatabase\n  arcgisbinding::arc.write(out_fp, sf_object)\n  \n}\n\n\nInstalling Required Packages\nWhen sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages can be automatically installed the first time the script tool is executed.\nThe script tool can check to see if the required package is installed and, if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:\ninstall_if_not &lt;- function(pkg) {\n  if (!requireNamespace(pkg)) {\n    message(\"Installing required package `{\", pkg, \"}`\")\n    install.packages(pkg)\n  }\n}\nThis function uses requireNamespace() which attempts to load the provided package. If it succeeds, it returns TRUE, and if not it returns FALSE. The function checks to see if FALSE is returned and, if so, installs the package and prints an informative message.\nFor example, if the script requires the package {spdep} and it is not installed, the function will print the message and install the package.\ntool_exec &lt;- function(in_params, out_params) {\n  # check for required packages \n  install_if_not(\"spdep\")\n  \n  # do other things with spdep\n  # ...\n}"
-  },
-  {
-    "objectID": "geoprocessing-tools.html#using-progressors",
-    "href": "geoprocessing-tools.html#using-progressors",
-    "title": "Geoprocessing Tools",
-    "section": "Using Progressors",
-    "text": "Using Progressors\nGeoprocessing tools have a progressor, which includes both a progress label and a progress bar. The default progressor continuously moves back and forth to indicate the script is running. Using arc.progress_label() and arc.progress_pos() allows fine control over the script progress. Updating the progressor isn’t necessary, but is useful in situations where solely outputting messages to the dialog is insufficient to communicate script progress.\n\n\n\n\n\n\n\n\n\nDefault Progressor\n\n\n\n\n\n\n\nStep Progressor\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nRead more in the Understanding the progressor in script tools article.\n\n\nUsing arc.progress_label() allows control over the label that is displayed at the top of the running script. For example, it might be used to display the current step of the analysis taking place. Using arc.progress_pos() allows control over the progressor position displayed at the top of the running script. The position is an integer percentage, 0 to 100, that the progress bar should be set to, with 100 indicating the script has completed (100%).\nlibrary(arcgisbinding)\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # read feature class \n  arc.progress_label(\"Reading Feature Class\")\n  fclass &lt;- arc.open(in_params[[\"input_fclass\"]])\n  \n  # convert to sf\n  arc.progress_label(\"Converting Feature Class to sf\")\n  sf_obj &lt;- arc.data2sf(arc.select(fclass))\n  \n  # do other things \n  arc.progress_label(\"Doing other computations\")\n  \n  return(out_params)\n}"
-  },
-  {
-    "objectID": "geoprocessing-tools.html#arcpy-integration",
-    "href": "geoprocessing-tools.html#arcpy-integration",
-    "title": "Geoprocessing Tools",
-    "section": "Using R script tools with arcpy",
-    "text": "Using R script tools with arcpy"
-  },
-  {
-    "objectID": "geoprocessing-tools.html#dependent-parameters",
-    "href": "geoprocessing-tools.html#dependent-parameters",
-    "title": "Geoprocessing Tools",
-    "section": "Dependent Parameters",
-    "text": "Dependent Parameters\n\nAutopopulate field drop-down using dependent parameter"
-  },
-  {
-    "objectID": "docs/auth/index.html",
-    "href": "docs/auth/index.html",
-    "title": "Overview",
-    "section": "",
-    "text": "There a number of times when you will need to verify who you say you are when using ArcGIS location services. This is done through a process called authentication. Authentication is required when you want to"
-  },
-  {
-    "objectID": "docs/auth/index.html#sign-up-for-an-account",
-    "href": "docs/auth/index.html#sign-up-for-an-account",
-    "title": "Overview",
-    "section": "Sign up for an account",
-    "text": "Sign up for an account\nTo access certain content, services, or organizations, you will need to be signed in to eithe an ArcGIS Developer account, ArcGIS Online account, or ArcGIS Enterprise account. The type of account, user type, and role you need depends on the resource you need to access and the operations you wish to undertake.\nIf you do not have an account, select one of the options below:\n\nGet started for free with ArcGIS Platform\nGet a free trial of ArcGIS Online\n\n\n\n\n\n\n\nTip\n\n\n\nTo get an account for an existing ArcGIS organization contact your ArcGIS Online or ArcGIS Enterprise administrator."
-  },
-  {
-    "objectID": "docs/auth/index.html#authentication-functions",
-    "href": "docs/auth/index.html#authentication-functions",
-    "title": "Overview",
-    "section": "Authentication functions",
-    "text": "Authentication functions\nAt a high-level, the R package {arcgisutils} provides the following functions for authentication:\n\nauth_key(): uses a developer API key\nauth_user(): username and password\nauth_code(): OAuth2 Code flow\nauth_client(): OAuth2 client flow\nauth_binding(): inherits auth from ArcGIS Pro"
-  },
-  {
-    "objectID": "docs/layers/publishing.html",
-    "href": "docs/layers/publishing.html",
-    "title": "Publishing from R",
-    "section": "",
-    "text": "In addition to consuming data as an R user, you may also want to publish data as a hosted feature service. In this tutorial, you will learn how to publish an sf object  to ArcGIS Online or Enterprise.",
-    "crumbs": [
-      "Layers",
-      "Publishing layers"
-    ]
-  },
-  {
-    "objectID": "docs/layers/publishing.html#authorization",
-    "href": "docs/layers/publishing.html#authorization",
-    "title": "Publishing from R",
-    "section": "Authorization",
-    "text": "Authorization\nIn order to publish content to ArcGIS Online or Enterprise, you must first obtain an access token permitting you to do so.\n\n\n\n\n\n\nCaution\n\n\n\nIf you have not yet set up your R environment for authorization, see Authorize with your Portal. Ensure that the environment variables ARCGIS_CLIENT and ARCGIS_USER are set at minimum. If you are using ArcGIS Enterprise, ensure that ARCGIS_HOST is properly set as well.\n\n\nGo through the following code flow to set your credentials.\n\nlibrary(arcgis)\n\n1token &lt;- auth_code()\n2set_arc_token(token)\n\n\n1\n\nCreate an access token\n\n2\n\nSet it to an environment variable.\n\n\n\n\nNow that you have authorized to your Portal, you will be able to publish content.",
-    "crumbs": [
-      "Layers",
-      "Publishing layers"
-    ]
-  },
-  {
-    "objectID": "docs/layers/publishing.html#publishing-sf-objects",
-    "href": "docs/layers/publishing.html#publishing-sf-objects",
-    "title": "Publishing from R",
-    "section": "Publishing {sf} objects",
-    "text": "Publishing {sf} objects\nTo publish an {sf} object to your portal, you can use the function publish_layer(). The publishing process requires you to add an item to your portal and publish it. The publish_layer() function handles these steps for you.\nFirst, read in the North Carolina SIDS dataset that comes packaged with sf and store it in an object called nc.\n\nnc &lt;- sf::read_sf(system.file(\"shape/nc.shp\", package = \"sf\"))\nnc\n\nSimple feature collection with 100 features and 14 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n# A tibble: 100 × 15\n    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74\n   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10\n 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10\n 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208\n 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123\n 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066\n 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954\n 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115\n 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254\n 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748\n10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160\n# ℹ 90 more rows\n# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,\n#   geometry &lt;MULTIPOLYGON [°]&gt;\n\n\nNow that you have an sf object and you have authorized with your portal, all that’s left is to publish the item!\npublish_layer() has only two required arguments:\n\nx the sf object or data.frame\ntitle the title of layer you are creating\n\n\nres &lt;- publish_layer(nc, \"North Carolina SIDS\")\nres\n#&gt; $services\n#&gt;              type\n#&gt; 1 Feature Service\n#&gt;                                                                                             serviceurl\n#&gt; 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North Carolina SIDS/FeatureServer\n#&gt;     size                                jobId                    serviceItemId\n#&gt; 1 125766 f14451a7-325b-40b0-85c3-534bcf122806 32511ce0413f40d08303e267a7093be0\n#&gt;                                                                                          encodedServiceURL\n#&gt; 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer\n\n\n\n\n\n\n\nWarning\n\n\n\nIf you encounter errors while publishing, try using a feature layer title that does not contain spaces or special characters, such as “NorthCarolinaSIDS” for this example.\n\n\nNow from your Portal’s Content page you should see two items associated with your feature service:\n\nBehind the scenes, publish_layer() added the sf object as a Feature Layer item first and then published this item as a Feature Layer (hosted). After publishing, you will typically only interact with the hosted feature layer. (Note that the dependency between these two items prevents you from deleting the underlying feature layer while the hosted feature layer still exists.)\nClick View details on the hosted feature layer item and you should see something like the below:",
-    "crumbs": [
-      "Layers",
-      "Publishing layers"
-    ]
-  },
-  {
-    "objectID": "docs/layers/publishing.html#reading-the-published-feature-layer",
-    "href": "docs/layers/publishing.html#reading-the-published-feature-layer",
-    "title": "Publishing from R",
-    "section": "Reading the published Feature Layer",
-    "text": "Reading the published Feature Layer\nThe output of the publish_layer() function is a list that contains information about where the sf object was published. You can retrieve the encodedServiceUrl from the response and use arc_open() to return the metadata for your newly-created service.\n\nnc_fserver &lt;- arc_open(res[[c(\"services\", \"encodedServiceURL\")]])\nnc_fserver\n#&gt; &lt;FeatureServer &lt;1 layer, 0 tables&gt;&gt;\n#&gt; CRS: 4267\n#&gt; Capabilities: Create,Delete,Query,Update,Editing\n#&gt;   0: North Carolina SIDS (esriGeometryPolygon)\n\nYou’ll notice that this is a FeatureServer. All items that are published to a Portal become their own Feature Server with a single FeatureLayer.\nYou can extract a single layer from the FeatureServer using get_layer(). Provide the FeatureServer as the first argument and then the ID of the layer you want as the second argument.\n\nget_layer(nc_fserver, 0)\n#&gt; &lt;FeatureLayer&gt;\n#&gt; Name: North Carolina SIDS\n#&gt; Geometry Type: esriGeometryPolygon\n#&gt; CRS: 4267\n#&gt; Capabilities: Create,Delete,Query,Update,Editing",
-    "crumbs": [
-      "Layers",
-      "Publishing layers"
-    ]
-  },
-  {
-    "objectID": "docs/layers/publishing.html#publishing-data.frames",
-    "href": "docs/layers/publishing.html#publishing-data.frames",
-    "title": "Publishing from R",
-    "section": "Publishing data.frames",
-    "text": "Publishing data.frames\nPublishing a data.frame follows the same steps as those above. The difference is that it creates a Table object. Try repeating the same process but using the palmerpenguins dataset!\n\n# install.packages(\"palmerpenguins\")\npalmerpenguins::penguins\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\npublish_layer(palmerpenguins::penguins, \"Palmer Penguins\")",
-    "crumbs": [
-      "Layers",
-      "Publishing layers"
+      "Adding features"
     ]
   },
   {
@@ -603,47 +286,408 @@
     ]
   },
   {
-    "objectID": "docs/editing/add-features.html",
-    "href": "docs/editing/add-features.html",
-    "title": "Adding features",
+    "objectID": "docs/layers/publishing.html",
+    "href": "docs/layers/publishing.html",
+    "title": "Publishing from R",
     "section": "",
-    "text": "Programmatically, adding, deleting, or updating features using {arcgis} is a straightforward process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted feature layer or table.\nWe will go over the functions:",
+    "text": "In addition to consuming data as an R user, you may also want to publish data as a hosted feature service. In this tutorial, you will learn how to publish an sf object  to ArcGIS Online or Enterprise.",
     "crumbs": [
-      "Editing",
-      "Adding features"
+      "Layers",
+      "Publishing layers"
     ]
   },
   {
-    "objectID": "docs/editing/add-features.html#pre-requisites",
-    "href": "docs/editing/add-features.html#pre-requisites",
-    "title": "Adding features",
-    "section": "Pre-requisites",
-    "text": "Pre-requisites\nWe will use the the North Carolina SIDS dataset we created in the Publishing from R tutorial. To follow along, be sure that you have followed that tutorial and have a FeatureLayer that you can modify. If you have not yet configured your environment to authorize with an online portal, start at Connecting to your portal.",
+    "objectID": "docs/layers/publishing.html#authorization",
+    "href": "docs/layers/publishing.html#authorization",
+    "title": "Publishing from R",
+    "section": "Authorization",
+    "text": "Authorization\nIn order to publish content to ArcGIS Online or Enterprise, you must first obtain an access token permitting you to do so.\n\n\n\n\n\n\nCaution\n\n\n\nIf you have not yet set up your R environment for authorization, see Authorize with your Portal. Ensure that the environment variables ARCGIS_CLIENT and ARCGIS_USER are set at minimum. If you are using ArcGIS Enterprise, ensure that ARCGIS_HOST is properly set as well.\n\n\nGo through the following code flow to set your credentials.\n\nlibrary(arcgis)\n\n1token &lt;- auth_code()\n2set_arc_token(token)\n\n\n1\n\nCreate an access token\n\n2\n\nSet it to an environment variable.\n\n\n\n\nNow that you have authorized to your Portal, you will be able to publish content.",
     "crumbs": [
-      "Editing",
-      "Adding features"
+      "Layers",
+      "Publishing layers"
     ]
   },
   {
-    "objectID": "docs/editing/add-features.html#adding-features",
-    "href": "docs/editing/add-features.html#adding-features",
-    "title": "Adding features",
+    "objectID": "docs/layers/publishing.html#publishing-sf-objects",
+    "href": "docs/layers/publishing.html#publishing-sf-objects",
+    "title": "Publishing from R",
+    "section": "Publishing {sf} objects",
+    "text": "Publishing {sf} objects\nTo publish an {sf} object to your portal, you can use the function publish_layer(). The publishing process requires you to add an item to your portal and publish it. The publish_layer() function handles these steps for you.\nFirst, read in the North Carolina SIDS dataset that comes packaged with sf and store it in an object called nc.\n\nnc &lt;- sf::read_sf(system.file(\"shape/nc.shp\", package = \"sf\"))\nnc\n\nSimple feature collection with 100 features and 14 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n# A tibble: 100 × 15\n    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74\n   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10\n 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10\n 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208\n 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123\n 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066\n 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954\n 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115\n 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254\n 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748\n10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160\n# ℹ 90 more rows\n# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,\n#   geometry &lt;MULTIPOLYGON [°]&gt;\n\n\nNow that you have an sf object and you have authorized with your portal, all that’s left is to publish the item!\npublish_layer() has only two required arguments:\n\nx the sf object or data.frame\ntitle the title of layer you are creating\n\n\nres &lt;- publish_layer(nc, \"North Carolina SIDS\")\nres\n#&gt; $services\n#&gt;              type\n#&gt; 1 Feature Service\n#&gt;                                                                                             serviceurl\n#&gt; 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North Carolina SIDS/FeatureServer\n#&gt;     size                                jobId                    serviceItemId\n#&gt; 1 125766 f14451a7-325b-40b0-85c3-534bcf122806 32511ce0413f40d08303e267a7093be0\n#&gt;                                                                                          encodedServiceURL\n#&gt; 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer\n\n\n\n\n\n\n\nWarning\n\n\n\nIf you encounter errors while publishing, try using a feature layer title that does not contain spaces or special characters, such as “NorthCarolinaSIDS” for this example.\n\n\nNow from your Portal’s Content page you should see two items associated with your feature service:\n\nBehind the scenes, publish_layer() added the sf object as a Feature Layer item first and then published this item as a Feature Layer (hosted). After publishing, you will typically only interact with the hosted feature layer. (Note that the dependency between these two items prevents you from deleting the underlying feature layer while the hosted feature layer still exists.)\nClick View details on the hosted feature layer item and you should see something like the below:",
+    "crumbs": [
+      "Layers",
+      "Publishing layers"
+    ]
+  },
+  {
+    "objectID": "docs/layers/publishing.html#reading-the-published-feature-layer",
+    "href": "docs/layers/publishing.html#reading-the-published-feature-layer",
+    "title": "Publishing from R",
+    "section": "Reading the published Feature Layer",
+    "text": "Reading the published Feature Layer\nThe output of the publish_layer() function is a list that contains information about where the sf object was published. You can retrieve the encodedServiceUrl from the response and use arc_open() to return the metadata for your newly-created service.\n\nnc_fserver &lt;- arc_open(res[[c(\"services\", \"encodedServiceURL\")]])\nnc_fserver\n#&gt; &lt;FeatureServer &lt;1 layer, 0 tables&gt;&gt;\n#&gt; CRS: 4267\n#&gt; Capabilities: Create,Delete,Query,Update,Editing\n#&gt;   0: North Carolina SIDS (esriGeometryPolygon)\n\nYou’ll notice that this is a FeatureServer. All items that are published to a Portal become their own Feature Server with a single FeatureLayer.\nYou can extract a single layer from the FeatureServer using get_layer(). Provide the FeatureServer as the first argument and then the ID of the layer you want as the second argument.\n\nget_layer(nc_fserver, 0)\n#&gt; &lt;FeatureLayer&gt;\n#&gt; Name: North Carolina SIDS\n#&gt; Geometry Type: esriGeometryPolygon\n#&gt; CRS: 4267\n#&gt; Capabilities: Create,Delete,Query,Update,Editing",
+    "crumbs": [
+      "Layers",
+      "Publishing layers"
+    ]
+  },
+  {
+    "objectID": "docs/layers/publishing.html#publishing-data.frames",
+    "href": "docs/layers/publishing.html#publishing-data.frames",
+    "title": "Publishing from R",
+    "section": "Publishing data.frames",
+    "text": "Publishing data.frames\nPublishing a data.frame follows the same steps as those above. The difference is that it creates a Table object. Try repeating the same process but using the palmerpenguins dataset!\n\n# install.packages(\"palmerpenguins\")\npalmerpenguins::penguins\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\npublish_layer(palmerpenguins::penguins, \"Palmer Penguins\")",
+    "crumbs": [
+      "Layers",
+      "Publishing layers"
+    ]
+  },
+  {
+    "objectID": "docs/auth/index.html",
+    "href": "docs/auth/index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "There a number of times when you will need to verify who you say you are when using ArcGIS location services. This is done through a process called authentication. Authentication is required when you want to"
+  },
+  {
+    "objectID": "docs/auth/index.html#sign-up-for-an-account",
+    "href": "docs/auth/index.html#sign-up-for-an-account",
+    "title": "Overview",
+    "section": "Sign up for an account",
+    "text": "Sign up for an account\nTo access certain content, services, or organizations, you will need to be signed in to eithe an ArcGIS Developer account, ArcGIS Online account, or ArcGIS Enterprise account. The type of account, user type, and role you need depends on the resource you need to access and the operations you wish to undertake.\nIf you do not have an account, select one of the options below:\n\nGet started for free with ArcGIS Platform\nGet a free trial of ArcGIS Online\n\n\n\n\n\n\n\nTip\n\n\n\nTo get an account for an existing ArcGIS organization contact your ArcGIS Online or ArcGIS Enterprise administrator."
+  },
+  {
+    "objectID": "docs/auth/index.html#authentication-functions",
+    "href": "docs/auth/index.html#authentication-functions",
+    "title": "Overview",
+    "section": "Authentication functions",
+    "text": "Authentication functions\nAt a high-level, the R package {arcgisutils} provides the following functions for authentication:\n\nauth_key(): uses a developer API key\nauth_user(): username and password\nauth_code(): OAuth2 Code flow\nauth_client(): OAuth2 client flow\nauth_binding(): inherits auth from ArcGIS Pro"
+  },
+  {
+    "objectID": "geoprocessing-tools.html",
+    "href": "geoprocessing-tools.html",
+    "title": "Geoprocessing Tools",
+    "section": "",
+    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nThe basic anatomy of an R-based GP script tool is like so:\n\n\nmy-geoprocessing-tool.R\n\n1tool_exec &lt;- function(in_params, out_params) {\n  # ... do things here.. \n2  out_params\n}\n\n\n1\n\nTwo arguments capture input and output parameters\n\n2\n\nOutput parameters are returned to be captured by ArcGIS Pro\n\n\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#overview",
+    "href": "geoprocessing-tools.html#overview",
+    "title": "Geoprocessing Tools",
+    "section": "",
+    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nThe basic anatomy of an R-based GP script tool is like so:\n\n\nmy-geoprocessing-tool.R\n\n1tool_exec &lt;- function(in_params, out_params) {\n  # ... do things here.. \n2  out_params\n}\n\n\n1\n\nTwo arguments capture input and output parameters\n\n2\n\nOutput parameters are returned to be captured by ArcGIS Pro\n\n\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#input-and-output-parameters",
+    "href": "geoprocessing-tools.html#input-and-output-parameters",
+    "title": "Geoprocessing Tools",
+    "section": "Input and Output Parameters",
+    "text": "Input and Output Parameters\nThere must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are in_params and out_params. The first argument will always refer to the input parameters and the second to the outputs.\nin_params and out_params are named lists. The elements of these lists are determined by the direction of a parameter.\n\nIf the direction is Input, it will be contained in in_params. Likewise, if the direction is Output, it will be contained in out_params."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#using-parameters",
+    "href": "geoprocessing-tools.html#using-parameters",
+    "title": "Geoprocessing Tools",
+    "section": "Using parameters",
+    "text": "Using parameters\nValues can be extracted from the in_params and out_params lists by the name or position of the parameter. It is strongly recommended to use name-based indexing rather than position-based indexing for clarity.\n\n\n\n\n\n\nCaution\n\n\n\nThe name of the parameter must match the value in the Name (not Label) column in the Parameters tab of the Tool Properties.\n\n\nThis is an example of a function to parse a date parameter with the name date:\ntool_exec &lt;- function(in_params, out_params) {\n  # fetch the date parameter\n  date_str &lt;- in_params[[\"date\"]]\n  \n  # parse it using {anytime}\n  clean_date &lt;- anytime::anytime(date_str)\n  \n  # ... do additional things\n  \n  # return values to ArcGIS Pro\n  out_params\n}\n\nReturning values to ArcGIS Pro\nAt the end of the tool_exec() function above, the out_params object is returned. Returning the output parameters using this syntax allows ArcGIS Pro to capture and use the outputs of the script tool.\nNotably, the output parameters are useful in linking one tool to another, for example via use in ModelBuilder or in an arcpy script.\nSee Using R script tools with arcpy.\n\n\nParameter types\nThere are number of different parameter types that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: integer, double, character, logical, or NULL.\n\n\n\n\n\n\nTip\n\n\n\nA scalar value is a vector with only a single element.\n\n\nIt is incumbent upon the developer to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by arcgisbinding. Below are examples of common parameter types and how they are handled by arcgisbinding:\n\nData type mapping\n\n\n\n\n\n\nArcGIS Pro Parameter Type\nR Data Type\n\n\n\n\nString\ncharacter\n\n\nBoolean\nlogical\n\n\nDouble\nnumeric\n\n\nDate\ncharacter in the format of your system e.g. \"11/17/2023 4:35:57 PM\"\n\n\nField\ncharacter the field name of a feature class\n\n\nFolder\ncharacter absolute path e.g. \"C:\\\\Users\\username\\Documents\"\n\n\nFeature Class\ncharacterabsolute path e.g. \"C:\\\\Users\\username\\mydatabase.gdb\\\\feature_class\n\n\nSpatial Reference\ncharacter a string representation of the spatial reference e.g. \"PROJCS[\"....\"]\"\n\n\n\nFor a complete list of parameter data types, see Geoprocessing data types.\n\n\nMultiple Values\nWhen selecting the Multiple values check box in the parameter data type dialog box, users can then provide multiple inputs of that type.\n\nWhen the Multiple values option is enabled, the parameter returns a list containing each of the input values.\nNote that when multiple values are provided, they will be captured in R as a list of scalars. Take the below input, for example:\n\nIn R, this parameter value would be list(\"string 1\", \"string 2\") and not c(\"string 1\", \"string 2\").\n\n\n\n\n\n\nTip\n\n\n\nTo turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector, use unlist(). For example unlist(list(\"string 1\", \"string 2\")) returns c(\"string 1\", \"string 2\")."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#common-patterns",
+    "href": "geoprocessing-tools.html#common-patterns",
+    "title": "Geoprocessing Tools",
+    "section": "Common Patterns",
+    "text": "Common Patterns\n\nReading a Feature Class\nReading a feature class using arcgisbinding and bringing the results into R as an sf object is a common pattern. To do this, use the functions arc.open(), arc.select(), and arc.data2sf().\ntool_exec &lt;- function(in_params, out_params) {\n\n  fclass &lt;- arcgisbinding::arc.open(in_params[[\"fc_path\"]])\n  \n  fclass_selected &lt;- arcgisbinding::arc.select(\n    fclass,\n    # fields = c(\"optional\", \"fields\", \"to\", \"read\"),\n    # where_clause = \"optional sql where clause to filter\"\n  )\n  \n  fclass_sf &lt;- arcgisbinding::arc.data2sf(fclass_selected)\n}\n\n\n\n\n\n\nNote\n\n\n\nTo filter or select columns from a dataset, consider using the fields and where_clause arguments of arc.select() to reduce the amount of data read into memory.\narc.select() returns a data.frame with fields and a special geometry column which is incompatible with sf. Use arc.data2sf() to convert it to an sf object.\n\n\n\n\nWriting a Feature Class\nIt is quite common to write the results of an analysis to a file geodatabase. This can be done with arc.write(). A Feature Class type parameter can be used in the out_params list object to capture a user-defined output path.\narc.write() requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are data.frame, sf, RasterLayer or RasterBrick.\n\n\n\n\n\n\nNote\n\n\n\nSupport for {terra} is planned to accompany the ArcGIS Pro 3.3 release.\n\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # extract the path to write to\n  out_fp &lt;- out_params[[\"output_fclass\"]]\n  \n  # write the `sf_object` to a geodatabase\n  arcgisbinding::arc.write(out_fp, sf_object)\n  \n}\n\n\nInstalling Required Packages\nWhen sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages can be automatically installed the first time the script tool is executed.\nThe script tool can check to see if the required package is installed and, if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:\ninstall_if_not &lt;- function(pkg) {\n  if (!requireNamespace(pkg)) {\n    message(\"Installing required package `{\", pkg, \"}`\")\n    install.packages(pkg)\n  }\n}\nThis function uses requireNamespace() which attempts to load the provided package. If it succeeds, it returns TRUE, and if not it returns FALSE. The function checks to see if FALSE is returned and, if so, installs the package and prints an informative message.\nFor example, if the script requires the package {spdep} and it is not installed, the function will print the message and install the package.\ntool_exec &lt;- function(in_params, out_params) {\n  # check for required packages \n  install_if_not(\"spdep\")\n  \n  # do other things with spdep\n  # ...\n}"
+  },
+  {
+    "objectID": "geoprocessing-tools.html#using-progressors",
+    "href": "geoprocessing-tools.html#using-progressors",
+    "title": "Geoprocessing Tools",
+    "section": "Using Progressors",
+    "text": "Using Progressors\nGeoprocessing tools have a progressor, which includes both a progress label and a progress bar. The default progressor continuously moves back and forth to indicate the script is running. Using arc.progress_label() and arc.progress_pos() allows fine control over the script progress. Updating the progressor isn’t necessary, but is useful in situations where solely outputting messages to the dialog is insufficient to communicate script progress.\n\n\n\n\n\n\n\n\n\nDefault Progressor\n\n\n\n\n\n\n\nStep Progressor\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nRead more in the Understanding the progressor in script tools article.\n\n\nUsing arc.progress_label() allows control over the label that is displayed at the top of the running script. For example, it might be used to display the current step of the analysis taking place. Using arc.progress_pos() allows control over the progressor position displayed at the top of the running script. The position is an integer percentage, 0 to 100, that the progress bar should be set to, with 100 indicating the script has completed (100%).\nlibrary(arcgisbinding)\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # read feature class \n  arc.progress_label(\"Reading Feature Class\")\n  fclass &lt;- arc.open(in_params[[\"input_fclass\"]])\n  \n  # convert to sf\n  arc.progress_label(\"Converting Feature Class to sf\")\n  sf_obj &lt;- arc.data2sf(arc.select(fclass))\n  \n  # do other things \n  arc.progress_label(\"Doing other computations\")\n  \n  return(out_params)\n}"
+  },
+  {
+    "objectID": "geoprocessing-tools.html#arcpy-integration",
+    "href": "geoprocessing-tools.html#arcpy-integration",
+    "title": "Geoprocessing Tools",
+    "section": "Using R script tools with arcpy",
+    "text": "Using R script tools with arcpy"
+  },
+  {
+    "objectID": "geoprocessing-tools.html#dependent-parameters",
+    "href": "geoprocessing-tools.html#dependent-parameters",
+    "title": "Geoprocessing Tools",
+    "section": "Dependent Parameters",
+    "text": "Dependent Parameters\n\nAutopopulate field drop-down using dependent parameter"
+  },
+  {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "Packages",
+    "section": "",
+    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
+  },
+  {
+    "objectID": "packages.html#arcgisbinding",
+    "href": "packages.html#arcgisbinding",
+    "title": "Packages",
+    "section": "",
+    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
+  },
+  {
+    "objectID": "packages.html#arcgis",
+    "href": "packages.html#arcgis",
+    "title": "Packages",
+    "section": "{arcgis}",
+    "text": "{arcgis}\nFor analysts & data scientists\n\narcgis is a metapackage that loads all location services packages for you."
+  },
+  {
+    "objectID": "packages.html#arcgislayers",
+    "href": "packages.html#arcgislayers",
+    "title": "Packages",
+    "section": "{arcgislayers}",
+    "text": "{arcgislayers}\nFor analysts & data scientists\n\nInterfaces with Feature Services and Image Servers. Enables you to read and write to services directly from R."
+  },
+  {
+    "objectID": "packages.html#arcgisutils",
+    "href": "packages.html#arcgisutils",
+    "title": "Packages",
+    "section": "{arcgisutils}",
+    "text": "{arcgisutils}\nFor Package Developers\n\nA low-level package to handle authorization and conversion to and from Esri json formats."
+  },
+  {
+    "objectID": "packages.html#arcpbf",
+    "href": "packages.html#arcpbf",
+    "title": "Packages",
+    "section": "{arcpbf}",
+    "text": "{arcpbf}\nFor Package Developers \n\nRead ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests."
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "{arcgisbinding} - documentation | vignette\n{arcgis} - documentation\n{arcgislayers} - documentation\n{arcgisutils} - documentation\n{arcpbf} - documentation\n\n\n\n\n\nUsing the R-ArcGIS Bridge with {arcgisbinding}\nArcGIS Learn Lesson: Get Started with R and ArcGIS\nArcGIS Technology for Spatial Data Science"
+  },
+  {
+    "objectID": "resources.html#learn-about-r-arcgis-bridge",
+    "href": "resources.html#learn-about-r-arcgis-bridge",
+    "title": "Resources",
+    "section": "",
+    "text": "{arcgisbinding} - documentation | vignette\n{arcgis} - documentation\n{arcgislayers} - documentation\n{arcgisutils} - documentation\n{arcpbf} - documentation\n\n\n\n\n\nUsing the R-ArcGIS Bridge with {arcgisbinding}\nArcGIS Learn Lesson: Get Started with R and ArcGIS\nArcGIS Technology for Spatial Data Science"
+  },
+  {
+    "objectID": "resources.html#learn-about-arcgis",
+    "href": "resources.html#learn-about-arcgis",
+    "title": "Resources",
+    "section": "Learn about ArcGIS",
+    "text": "Learn about ArcGIS\n\nArcGIS location services documentation\nArcGIS REST API documentation\nArcGIS Pro resources\nArcGIS Online resources\nArcGIS Enterprise resources\nArcGIS Tutorial Gallery\nEsri Training"
+  },
+  {
+    "objectID": "resources.html#learn-about-r",
+    "href": "resources.html#learn-about-r",
+    "title": "Resources",
+    "section": "Learn about R",
+    "text": "Learn about R\n\nR\nR for Data Science\nGeocomputation with R\nSpatial Data Science: With Applications in R\nCRAN"
+  },
+  {
+    "objectID": "docs/installation.html",
+    "href": "docs/installation.html",
+    "title": "Install and set up",
+    "section": "",
+    "text": "Before installing, we recommend that you have the newest version of R installed. At minimum, we sugest you use R version 4.3 or higher.",
+    "crumbs": [
+      "Install and set up"
+    ]
+  },
+  {
+    "objectID": "docs/installation.html#from-pro",
+    "href": "docs/installation.html#from-pro",
+    "title": "Install and set up",
+    "section": "Install within ArcGIS Pro (recommended)",
+    "text": "Install within ArcGIS Pro (recommended)\nIf you are working in ArcGIS Pro 2.0 or beyond, you have access to the built-in installer, which streamlines the process of installing arcgisbinding. It also allows you to select your desired installation of R, and makes checking the bridge for updates easy. To install the bridge in this scenario:\n\nOpen ArcGIS Pro and click on the Project tab in your project.\nSelect Options on the blue, left-hand side panel and in the pop-up window, under Application, select Geoprocessing.\nUnder the R-ArcGIS Support options, select your desired R home directory.\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\n\n\nNote: All versions of R installed on your computer will appear in the drop-down menu. Make sure the version you select is R 3.2.2 or later. However, if you have installed R to a location other than the default, you might need to navigate to that location using the browse button.\n\n\n\n\nIf you have never installed arcgisbinding, you will see a warning indicating that you need to install the package to enable R to connect with ArcGIS Pro. When you click on the icon next to the warning you will be presented with options to install arcgisbinding from the internet, download the latest version of the package, or install the package from file. Select the first option - Install package from the Internet - to install the arcgisbinding package.\n\n\n\n\n\n\n\nA pop-up window will appear to inform you there is a new arcgisbinding version and will ask you if you wish to install it. Select Yes.\nA progress bar will appear to inform you of the status of the installation before showing an Output Message to report the final status. If you scroll down, you should see that the package arcgisbinding was successfully installed. The package will now show as installed in the R-ArcGIS Support section of the Options window.",
+    "crumbs": [
+      "Install and set up"
+    ]
+  },
+  {
+    "objectID": "docs/installation.html#from-r",
+    "href": "docs/installation.html#from-r",
+    "title": "Install and set up",
+    "section": "Install from R",
+    "text": "Install from R\nAlternatively, you can install arcgisbinding directly from R. Open RStudio, VS Code, or your favorite text editor and run the following from the console:\n install.packages(\n  \"arcgisbinding\", \n  repos = \"https://r.esri.com\", \n  type = \"win.binary\"\n )\nThis will install the package binary directly from the R-ArcGIS GitHub repository, which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer.",
+    "crumbs": [
+      "Install and set up"
+    ]
+  },
+  {
+    "objectID": "docs/installation.html#offline",
+    "href": "docs/installation.html#offline",
+    "title": "Install and set up",
+    "section": "Offline Installation",
+    "text": "Offline Installation\nMany users of arcgisbinding work in a completely air-gapped environment where downloading external packages from the internet is not possible.\nIn order to install arcgisbinding in an air-gapped environment you must first download the package on a machine with internet access and transfer it into your offline environment.\nTo download the package, go to https://r.esri.com/bin/ and choose the version of arcgisbinding that matches your version of R.\nOnce you have downloaded and moved the zip file onto your air-gapped machine, you can install it using the install.packages() command.\ninstall.packages(\"path/to/arcgisbinding_1.0.1.306.zip\", repos = NULL)\n\n\n\n\n\n\nWarning\n\n\n\nNote that depending on the version of the package you download, the file name will be different. Be sure the file path and name are accurate.",
+    "crumbs": [
+      "Install and set up"
+    ]
+  },
+  {
+    "objectID": "docs/installation.html#verify-your-installation",
+    "href": "docs/installation.html#verify-your-installation",
+    "title": "Install and set up",
+    "section": "Verify your installation",
+    "text": "Verify your installation\nOnce you have arcgisbinding installed, you can check if your installation was successful by loading the package.\nlibrary(arcgisbinding)\narc.check_product()\nThis will print a message informing you of the version of ArcGIS Pro you are using. You do not need to install arcgisbinding again until you download a new version of R or wish to upgrade the package.",
+    "crumbs": [
+      "Install and set up"
+    ]
+  },
+  {
+    "objectID": "docs/installation.html#upgrading-arcgisbinding",
+    "href": "docs/installation.html#upgrading-arcgisbinding",
+    "title": "Install and set up",
+    "section": "Upgrading {arcgisbinding}",
+    "text": "Upgrading {arcgisbinding}\n\nUsing ArcGIS Pro\nIf you have installed arcgisbinding from within ArcGIS Pro, follow the instructions for accessing ArcGIS Pro’s R-ArcGIS Support options in the installing within ArcGIS Pro section.\nIf you have previously installed arcgisbinding, you will see an installed message that lets you know the version of your arcgisbinding package and allows you to check for updates, download the latest version, or update from a file. Check for updates and ensure you have the latest version of the arcgisbinding package. If prompted to update, click Yes and the latest version will automatically be installed.\n\n\nUsing R or offline\nTo upgrade your package using R or in an offline environment, repeat the steps above for either installing from R or offline installation.",
+    "crumbs": [
+      "Install and set up"
+    ]
+  },
+  {
+    "objectID": "docs/auth/storing-credentials.html",
+    "href": "docs/auth/storing-credentials.html",
+    "title": "Storing credentials",
+    "section": "",
+    "text": "Authentication requires that you provide sensitive data to the R authentication R functions. These are used to verify your identity to the services that you are calling. These sensitive variables should never be written down in your code.\nThe packages in the R-ArcGIS Bridge rely heavily on environment variables. Environment variables are dynamic values that can be set to store sensitive or configuration information, allowing you to manage and control access to crucial data across various tools and applications, including R scripts.",
+    "crumbs": [
+      "Authentication",
+      "Storing credentials"
+    ]
+  },
+  {
+    "objectID": "docs/auth/storing-credentials.html#environment-variables",
+    "href": "docs/auth/storing-credentials.html#environment-variables",
+    "title": "Storing credentials",
+    "section": "Environment variables",
+    "text": "Environment variables\nThe package {arcgisutils} is responsible for handling authorization for all of the R packages. With it, there are a number of different mechanism for authorizing each requiring a different combination of environment variables.\nEnvironment variables are fetched using Sys.getenv(). They are key-value pairs. For example, to find the path of R run\n\nSys.getenv(\"R_HOME\")\n\n[1] \"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources\"\n\n\nOr to set a value use Sys.setenv()\n\nSys.setenv(\"ANSWER_TO_EVERYTHING\" = 42)\nSys.getenv(\"ANSWER_TO_EVERYTHING\")\n\n[1] \"42\"",
+    "crumbs": [
+      "Authentication",
+      "Storing credentials"
+    ]
+  },
+  {
+    "objectID": "docs/auth/storing-credentials.html#using-an-.renviron-file",
+    "href": "docs/auth/storing-credentials.html#using-an-.renviron-file",
+    "title": "Storing credentials",
+    "section": "Using an .Renviron file",
+    "text": "Using an .Renviron file\nEnvironment variables should never be included in your code. We recommend using an .Renviron file at minimum to store your credentials.\nYou can use the usethis to edit the file. Ensure it is installed and run the following in your text editor:\n\n\n\n\n\n\nWarning\n\n\n\nIf you modify environment variables you will need to restart your R session for the change to be registered.\n\n\nusethis::edit_r_environ()\n\n\n\n\n\n\n.Renviron scopes\n\n\n\n\n\n.Renviron files can be created at a user level or a project level. It is recommended to use project level .Renviron files when deploying scripts to production. If most of your work is interactive then a user level file is sufficient.\nProject scoped .Renviron files store environment variables that are available for the project only. The .Renviron is stored at the root folder level.\nUser scoped .Renviron files store environment variables in the user’s home directory. The environment variables will be available to you in any project you open. However, if you share your project, the environment variables will not be shared with it.\n\n\n\nThis will open your .Renviron file for you to edit.\n# used for OAuth Code & Client\nARCGIS_CLIENT=your-client-id\n# used for OAuth Client flow\nARCGIS_SECRET=your-super-secret-key\n# used for publishing and Username/Password auth\nARCGIS_USER=your-user-name\n# used for API Key auth\nARCGIS_API_KEY=your-developer-api-key\n# specify if not using ArcGIS Online\nARCGIS_HOST=https://your-portal.com/",
+    "crumbs": [
+      "Authentication",
+      "Storing credentials"
+    ]
+  },
+  {
+    "objectID": "docs/layers/overview.html",
+    "href": "docs/layers/overview.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Layers represent represent a data service hosted by ArcGIS Online, ArcGIS Enterprise, Platform, or even an ArcGIS Hub site. Layers are how you will interact with your remotely hosted data.\nThe {arcgis} R metapackage is able to work with the most common types of data services: feature services and image servers. The types of layers that the R-ArcGIS Bridge does not yet support are vector and map tile services.",
+    "crumbs": [
+      "Layers",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/layers/overview.html#creating-data-service-objects",
+    "href": "docs/layers/overview.html#creating-data-service-objects",
+    "title": "Overview",
+    "section": "Creating data service objects",
+    "text": "Creating data service objects\nUsing {arcgislayers}, the function arc_open() will create a reference to a service based on its url.\n\nlibrary(arcgis)\n\nAttaching core arcgis packages:\n→ arcgisutils v0.3.0\n→ arcgislayers v0.2.0\n\n# feature service url\nfurl &lt;- \"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer/4\"\n\n# feature layer\nflayer &lt;- arc_open(furl)\nflayer\n\n&lt;FeatureLayer&gt;\nName: ZCTAs\nGeometry Type: esriGeometryPolygon\nCRS: 3785\nCapabilities: Query,Extract",
+    "crumbs": [
+      "Layers",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/layers/overview.html#querying-feature-services",
+    "href": "docs/layers/overview.html#querying-feature-services",
+    "title": "Overview",
+    "section": "Querying feature services",
+    "text": "Querying feature services\nTo bring data from the service into memory in R, you must use arc_select().\n\n\n\n\n\n\nTip\n\n\n\nAlways bring as little data as possible into memory. Utilize the fields and where arguments.\n\n\n\narc_select(\n  flayer,\n  where = \"TotalPopulation &gt; 100000\",\n  fields = c(\"objectid\", \"totalpopulation\", \"zcta5\")\n)\n\nSimple feature collection with 9 features and 3 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -13185850 ymin: 3724192 xmax: -8218971 ymax: 5130142\nProjected CRS: WGS 84 / Pseudo-Mercator\n  OBJECTID TotalPopulation ZCTA5                       geometry\n1     1665          111086 79936 MULTIPOLYGON (((-11831249 3...\n2     2387          103892 90011 MULTIPOLYGON (((-13164358 4...\n3     2669          101279 90201 MULTIPOLYGON (((-13157079 4...\n4     2732          105549 90650 MULTIPOLYGON (((-13141865 4...\n5     3027          103689 91331 MULTIPOLYGON (((-13178819 4...\n6    19391          113916 60629 MULTIPOLYGON (((-9767482 51...\n7    25238          109931 11368 MULTIPOLYGON (((-8219675 49...\n8    25242          100820 11373 MULTIPOLYGON (((-8222572 49...\n9    26364          101572 11226 MULTIPOLYGON (((-8231772 49...",
+    "crumbs": [
+      "Layers",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/editing/overview.html",
+    "href": "docs/editing/overview.html",
+    "title": "Editing layers",
+    "section": "",
+    "text": "Published feature layers often are living datasets. There may be new features that need to be added. Or, sometimes features may be need to be deleted as they are no longer present. Or maybe, the attributes of the feature have become obsolete and need to be updated.\nThe {arcgislayers} R package provides capabilities to add features, update them, delete features, or even truncate an entire feature service.",
+    "crumbs": [
+      "Editing",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/editing/overview.html#important-considerations",
+    "href": "docs/editing/overview.html#important-considerations",
+    "title": "Editing layers",
+    "section": "Important considerations",
+    "text": "Important considerations\nIt is important to note that not everyone can edit an existing feature service. You must be an admin or an owner of the service that you want to edit. This requires that you have an account and can authorized yourself as a user.\nAdditionally, fields cannot be added or deleted to an already existing feature service. If you wish to add or delete fields, you will need to publish a new layer.",
+    "crumbs": [
+      "Editing",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/editing/update-features.html",
+    "href": "docs/editing/update-features.html",
+    "title": "Updating features",
+    "section": "",
+    "text": "In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable nc_avgs. When looking at it, we can see that the AREA AND PERIMETER values are missing. These might be helpful at a later point.\n\nlibrary(arcgis)\nset_arc_token(auth_code())\n\nnc_url &lt;- \"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0\" \n\nnc &lt;- arc_open(nc_url)\n\nIn this section we will use the function update_features() to modify these values. First, let’s create a new object called to_update that has the AREA and PERIMETER computed.\n\nnc_area_perim &lt;- nc_avgs |&gt; \n  mutate(\n    AREA = st_area(geometry) / 1e10,\n    PERIMETER = s2::s2_perimeter(geometry) / 1e5\n  )\n\nnc_area_perim\n\nSimple feature collection with 1 feature and 15 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n  object_id           AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry\n1       101 12.70259 [m^2]  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...\nLike add_features(), we need to be able to match columns to their respective fields. The match_on argument is used to specify if the column names match the field name or field alias.\nIn the case of update_features() we also need to be able to match the features in the sf dataset to the exact feature in the FeatureLayer. We do this by providing the object ID of the feature. This tells ArcGIS which features we are actually going to update.\nWhen using update_features() we should be aware that every column present in the sf object will be updated including the geometry. For this reason, we should select only those columns which we truly wish to update.\n\nto_update &lt;- nc_area_perim |&gt; \n  st_drop_geometry() |&gt; \n  select(object_id, AREA, PERIMETER)\n\nto_update\n\nHere we use sf::st_drop_geometry()to remove the geometry of our object since we do not want to update the geometry in our FeatureLayer. We also only select the object_id, AREA, and PERIMETER columns so that we do not make errant updates.\n\nupdate_res &lt;- update_features(nc, to_update)\n\n$updateResults\n  objectId uniqueId globalId success\n1      101      101       NA    TRUE\nOur update process was successful! We can repeat our previous query to verify this.\n\n nc |&gt; \n  filter(NAME == \"Total\") |&gt; \n  collect()\n\nSimple feature collection with 1 feature and 15 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n  object_id     AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry\n1       101 12.70259  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...",
+    "crumbs": [
+      "Editing",
+      "Updating features"
+    ]
+  },
+  {
+    "objectID": "docs/editing/overwrite-features.html",
+    "href": "docs/editing/overwrite-features.html",
+    "title": "Overwrite Hosted Feature Layer",
+    "section": "",
+    "text": "From time to time as the owner of a Feature Layer, you may need to completely overwrite the data in the service. Overwriting a web layer from ArcGIS Pro may lead to a loss of associated pop-ups and symbology. One way to get around this is to truncate the feature service and append new data to the same service.\nFor this example, we need to be the owner of a Feature Service. As such, we will use the North Carolina SIDS dataset we created in the Publishing from R tutorial. If you have not done that tutorial, complete it first.",
+    "crumbs": [
+      "Editing",
+      "Truncate and append features"
+    ]
+  },
+  {
+    "objectID": "docs/editing/overwrite-features.html#truncating-a-feature-layer",
+    "href": "docs/editing/overwrite-features.html#truncating-a-feature-layer",
+    "title": "Overwrite Hosted Feature Layer",
+    "section": "Truncating a Feature Layer",
+    "text": "Truncating a Feature Layer\nTruncating a Feature Layer deletes every single record in the service and resets the auto-increment of the object ID. Truncating a service does not change the field definitions or permit us to add or remove fields. If you wish to do so, publish a new layer instead.\nBefore we can modify a service, we must first authorize ourselves with the portal. To do so we will use the auth_code() authorization flow. If you have not yet configured you environment to authorize with your portal, follow the Connecting to your Portal tutorial.\nFirst load arcgis.\n\nlibrary(arcgis)\n\nAttaching core arcgis packages:\n  - {arcgisutils} v0.3.0\n  - {arcgislayers} v0.2.0\nNext, authorize with the portal and set the access token.\n\ntoken &lt;- auth_code()\nset_auth_token(token)\n\nToken set to environment variable `ARCGIS_TOKEN`\nNow that we have verified our identity with our portal we can create a FeatureLayer object in R from our hosted service. From your content listing find the Feature Layer url.\n\n\n\n\n\n\nTip\n\n\n\nRevisit the “Obtaining a feature layer url” section of the Read hosted data tutorial if you forgot how to retrieve the service url.\n\n\n\nfurl &lt;- \"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0\"\n\nnc &lt;- arc_open(furl)\nnc\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\n\n\nThis is the url of your hosted feature service. Yours will be different than the URL shown here. Note that the /0 indicates the layer index. You can often copy the url from under the URL section on the right hand menu and append the /0 to it.\nBefore we can truncate the FeatureLayer, we should check to see that the layer itself supports this operation. The supportsTruncate attribute will return TRUE if we can truncate it. If not, we’re out of luck and need to create an entirely new service!\n\nnc[[\"supportsTruncate\"]]\n\nSince we know that we can truncate the service, we can go ahead and do so.\n\ntruncate_res &lt;- truncate_layer(nc)\ntruncate_res\n\nWe store the result into truncate_res to see the results. Let’s now go ahead and refresh our layer and check to see if the changes have taken place.\n\nnc &lt;- refresh_layer(nc)\nnc\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCapabilities: Create,Delete,Query,Update,Editing\nAfter refreshing the layer we can see that there are now 0 features! Success! There are still 15 fields and we still have the same name and geometry type.",
+    "crumbs": [
+      "Editing",
+      "Truncate and append features"
+    ]
+  },
+  {
+    "objectID": "docs/editing/overwrite-features.html#adding-features",
+    "href": "docs/editing/overwrite-features.html#adding-features",
+    "title": "Overwrite Hosted Feature Layer",
     "section": "Adding features",
-    "text": "Adding features\nFor this example, we will add a single feature to the North Carolina SIDS dataset that is a summary over the entire state. Before we can begin, we must load the package and authorize ourselves as a user.\n\nlibrary(arcgis)\n\ntoken &lt;- auth_code()\nset_auth_token(token)\n\nNext, we will create the feature that we want to add using the sf package. We’ll read in the nc.shp file from the sf package.\n\nlibrary(sf)\nnc_sf &lt;- read_sf(system.file(\"shape/nc.shp\", package = \"sf\"))\nnc_sf\n\nSimple feature collection with 100 features and 14 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n# A tibble: 100 × 15\n    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74\n   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10\n 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10\n 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208\n 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123\n 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066\n 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954\n 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115\n 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254\n 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748\n10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160\n# ℹ 90 more rows\n# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,\n#   geometry &lt;MULTIPOLYGON [°]&gt;\n\n\nLet’s calculate the average birth rate, SIDS rate, and the non-white birth rate and SIDS rate for the entire state. We will add this as a single feature to our existing feature layer. To do so, we will use the R package dplyr for manipulating our data.\n\nlibrary(dplyr)\n\nnc_summary &lt;- nc_sf |&gt;  \n  summarise(\n1    across(\n2      .cols = c(ends_with(\"74\"), ends_with(\"79\")),\n3      .fns = mean\n    ),\n4    NAME = \"Total\"\n  ) \n\nnc_summary\n\n\n1\n\nThe across() function applies a function to multiple columns at once.\n\n2\n\nWe specify the columns we will be applying a function to in .cols. We use the tidyselect helpers to catch any columns that end with 74 or 79.\n\n3\n\nThe .fns argument specifies which functions will be applied to the columns. In this case, we apply on the mean() function to calculate the average.\n\n4\n\nThe NAME field is set manually to the value of \"Total\" to indicate that it is not a county.\n\n\n\n\nSimple feature collection with 1 feature and 7 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n# A tibble: 1 × 8\n  BIR74 SID74 NWBIR74 BIR79 SID79 NWBIR79 NAME                          geometry\n  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;MULTIPOLYGON [°]&gt;\n1 3300.  6.67   1051. 4224.  8.36   1353. Total (((-75.97629 36.51793, -75.9772…\n\n\nIn order to add this new aggregate feature to the FeatureLayer we must create a reference to the layer using arc_open().\n\nnc_url &lt;- \"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0\" \n\nnc &lt;- arc_open(nc_url)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\n\n\n\n\n\n\nNote\n\n\n\nThe url you use here will be different than the one you see. Be sure to grab the correct url from the content listing for your item.\n\n\nNow that we have a FeatureLayer object we can add features to it using add_features(). There are a few key arguments to the function:\n\nx is the FeatureLayer object that we want to add features to\n.data is an sf object that we want to add to the FeatureLayer\nmatch_on determines how to match sf columns to FeatureLayer fields\n\nBy default, add_features() will compare the column names of the sf object to that of the FeatureLayer. We can find the field names and aliases for a FeatureLayer by using the list_fields() function. Pass the results to tibble::as_tibble() to make them more readable.\nSince we know that the column names match those of the FeatureLayer, we can pass nc_summary directly to add_feature().\n\nadd_res &lt;- add_features(nc, nc_summary)\nadd_res\n\n  objectId uniqueId globalId success\n1      101      101       NA    TRUE\n\n\n\n\n\n\nTip\n\n\n\nIf you are adding many features at one time, consider changing the value of chunk_size. By default, add_features() will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks.\n\n\nOnce we’ve added the results to the FeatureLayer, we may want to refresh the object to catch any important changes to the metadata.\n\nnc &lt;- refresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nWe can see that the FeatureLayer now has 101 features as opposed to the original 100. To sanity check, we can query nc to see how the value comes back.\n\nnc_avgs &lt;- nc |&gt; \n  filter(NAME == \"Total\") |&gt; \n  collect()\n\nnc_avgs\n\nSimple feature collection with 1 feature and 15 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n  object_id AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry\n1       101   NA        NA    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...",
+    "text": "Adding features\nNow that we have deleted all of the features of the layer, lets go ahead and add some new ones. Let’s read the nc.shp file from sf into memory, give it a slight modification, and add those features to our service.\n\nlibrary(sf)\n\nLinking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE\n\nnc_sf &lt;- read_sf(system.file(\"shape/nc.shp\", package = \"sf\"))\nnc_sf\n\nSimple feature collection with 100 features and 14 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965\nGeodetic CRS:  NAD27\n# A tibble: 100 × 15\n    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74\n   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10\n 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10\n 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208\n 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123\n 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066\n 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954\n 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115\n 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254\n 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748\n10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160\n# ℹ 90 more rows\n# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,\n#   geometry &lt;MULTIPOLYGON [°]&gt;\n\n\nRather than publish the polygons as they are, let’s calculate the convex hull of each shape and publish those.\n\nnc_convex &lt;- st_convex_hull(nc_sf)\nplot(st_geometry(nc_convex))\n\nLet’s take this sf object and add them as features to our now empty FeatureLayer. To add features, we use the add_features() function. The first argument is the FeatureLayer (or Table) that we are adding features to. The second is the sf object that we will be adding to the layer.\n\n\n\n\n\n\nTip\n\n\n\nIt is important to note that the column names of the sf object must match the names of the fields in the FeatureLayer, otherwise arcgis does not know which column matches which field.\n\n\n\nadd_res &lt;- add_features(nc, nc_convex)\n\nWarning: CRS missing from `x` cannot verify matching CRS.\nWe receive a warning because there is no spatial reference in the hosted FeatureLayer after truncating. Print the add_res object to see if each feature was successfully added.\n\nhead(add_res)\n\n    objectId uniqueId globalId success\n1          1        1       NA    TRUE\n2          2        2       NA    TRUE\n3          3        3       NA    TRUE\n4          4        4       NA    TRUE\n5          5        5       NA    TRUE\n6          6        6       NA    TRUE\nNow that we have added our features, let us refresh the layer again.\n\nnc &lt;- refresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nIf you view the hosted Feature Layer in the map viewer, you should now see the convex hulls.",
     "crumbs": [
       "Editing",
-      "Adding features"
+      "Truncate and append features"
     ]
   },
   {
-    "objectID": "docs/editing/delete-features.html",
-    "href": "docs/editing/delete-features.html",
-    "title": "Deleting features",
+    "objectID": "docs/geocode/forward-geocoding.html",
+    "href": "docs/geocode/forward-geocoding.html",
+    "title": "Forward Geocoding",
     "section": "",
-    "text": "While add_features() and update_features() had a very similar syntax, delete_features() has a somewhat different interface. We have 3 different ways in which we can delete features. Here we will explore only two of them.\n\nlibrary(arcgis)\nset_arc_token(auth_code())\n\nnc_url &lt;- \"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0\" \n\nnc &lt;- arc_open(nc_url)\n\nWe can delete features based on object IDs or a SQL where clause. Let’s explore deleting features based on object IDs. To do so, we need to pass the FeatureLayer obejct as the first argument to delete_features(). The second argument is a numeric vector of the IDs we want to delete. The ID 101 is the new feature that we created.\n\ndelete_res &lt;- delete_features(nc, object_ids = 101)\ndelete_res\n\n$deleteResults\n  objectId uniqueId globalId success\n1      101      101       NA    TRUE\nWe can check to see if the delete worked by refreshing the layer and seeing the count that is printed out.\n\nrefresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nAlternatively, we can delete features based on a where clause. Say we wanted to delete all of the features where the BIR74 value was less than 1000. We can accomplish this using a where clause.\n\ndelete_res &lt;- delete_features(nc, where = \"BIR74 &lt; 1000\")\ndelete_res\n\n$deleteResults\n   objectId uniqueId globalId success\n1         2        2       NA    TRUE\n2         4        4       NA    TRUE\n3         7        7       NA    TRUE\n4         8        8       NA    TRUE\n5         9        9       NA    TRUE\n6        20       20       NA    TRUE\n7        21       21       NA    TRUE\n8        22       22       NA    TRUE\n9        32       32       NA    TRUE\n10       35       35       NA    TRUE\n11       38       38       NA    TRUE\n12       44       44       NA    TRUE\n13       45       45       NA    TRUE\n14       56       56       NA    TRUE\n15       58       58       NA    TRUE\n16       59       59       NA    TRUE\n17       73       73       NA    TRUE\n18       77       77       NA    TRUE\n19       78       78       NA    TRUE\n20       80       80       NA    TRUE\n21       83       83       NA    TRUE\n22       87       87       NA    TRUE\n23       90       90       NA    TRUE\nSuccessful deletes! Again, we can check to see the new count using refresh_layer().\n\nrefresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nLastly, if you want to delete every single feature. We can take advantage of the where clause again. If we set where = \"1 = 1\" that will evaluate TRUE for every single feature.\n\ndelete_res &lt;- delete_features(nc, where = \"1 = 1\")\ndelete_res\n\n$deleteResults\n   objectId uniqueId globalId success\n1         1        1       NA    TRUE\n2         3        3       NA    TRUE\n3         5        5       NA    TRUE\n4         6        6       NA    TRUE\n5        10       10       NA    TRUE\n6        11       11       NA    TRUE\n          ... Truncated ...\n\nrefresh_layer(nc)\n\n&lt;FeatureLayer&gt;\nName: North Carolina SIDS\nGeometry Type: esriGeometryPolygon\nCRS: 4267\nCapabilities: Create,Delete,Query,Update,Editing\nNote that you shuold use truncate_layer() instead of delete_features(x, where = \"1 = 1\").",
+    "text": "Forward geocoding is the process of taking an address or place information and identifying its location on the globe.\nTo geocode addresses, the {arcgisgeocode} package provides the function find_address_candidates(). This function geocodes a single address at a time and returns up to 50 address candidates (ranked by a score).\nThere are two ways in which you can provide address information:\n\nProvide the entire address as a string via the single_line argument\nProvide parts of the address using the arguments address, city, region, postal etc.\n\n\nSingle line address geocoding\nIt can be tough to parse out addresses into their components. Using the single_line argument is a very flexible way of geocoding addresses. Doing utilizes the ArcGIS World Geocoder’s address parsing capabilities.\nFor example, we can geocode the same location using 3 decreasingly specific addresses.\n\nlibrary(arcgisgeocode)\n\naddresses &lt;- c(\n  \"380 New York Street Redlands, California, 92373, USA\",\n  \"Esri Redlands\",\n  \"ESRI CA\"\n)\n\nlocs &lt;- find_address_candidates(\n  addresses,\n  max_locations = 1L\n)\n\nlocs$geometry\n\nGeometry set for 3 features \nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: -117.1948 ymin: 34.05726 xmax: -117.1948 ymax: 34.05726\nGeodetic CRS:  WGS 84\n\n\nPOINT (-117.1948 34.05726)\n\n\nPOINT (-117.1957 34.05609)\nPOINT (-117.1957 34.05609)\n\n\nIn each case, it finds the correct address!\n\n\nGeocoding from a dataframe\nMost commonly, you will need to geocode addresses from a column in a data.frame. It is important to note that the find_address_candidates() function does not work well in a dplyr::mutate() function call. Particularly because it is possible to return more than 1 address at a time.\nLet’s read in a csv of bike stores in Tacoma, WA. To use find_address_candidates() with a data.frame, it is recommended to create a unique identifier of the row positions.\n\nlibrary(dplyr)\n\nfp &lt;- \"https://www.arcgis.com/sharing/rest/content/items/9a9b91179ac44db1b689b42017471ae6/data\"\n\nbike_stores &lt;- readr::read_csv(fp) |&gt;\n  mutate(id = row_number())\n\nbike_stores\n\n# A tibble: 10 × 3\n   store_name                           original_address                      id\n   &lt;chr&gt;                                &lt;chr&gt;                              &lt;int&gt;\n 1 Cascadia Wheel Co.                   3320 N Proctor St, Tacoma, WA 984…     1\n 2 Puget Sound Bike and Ski Shop        between 3206 N. 15th and 1414, N …     2\n 3 Takoma Bike & Ski                    3010 6th Ave, Tacoma, WA 98406         3\n 4 Trek Bicycle Tacoma University Place 3550 Market Pl W Suite 102, Unive…     4\n 5 Opalescent Cyclery                   814 6th Ave, Tacoma, WA 98405          5\n 6 Sound Bikes                          108 W Main, Puyallup, WA 98371         6\n 7 Trek Bicycle Tacoma North End        3009 McCarver St, Tacoma, WA 98403     7\n 8 Second Cycle                         1205 M.L.K. Jr Way, Tacoma, WA 98…     8\n 9 Penny bike co.                       6419 24th St NE, Tacoma, WA 98422      9\n10 Spider's Bike, Ski & Tennis Lab      3608 Grandview St, Gig Harbor, WA…    10\n\n\nTo geocode addresses from a data.frame, you can use dplyr::reframe().\n\nbike_stores |&gt;\n  reframe(\n    find_address_candidates(original_address)\n  )\n\n# A tibble: 13 × 62\n   input_id result_id loc_name status score match_addr    long_label short_label\n      &lt;int&gt;     &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;      \n 1        1        NA World    M      100   3320 N Proct… 3320 N Pr… 3320 N Pro…\n 2        2        NA World    M       97.6 N 15th St & … N 15th St… N 15th St …\n 3        2        NA World    M       97.3 1414 N Alder… 1414 N Al… 1414 N Ald…\n 4        2        NA World    M       94.7 S 15th St & … S 15th St… S 15th St …\n 5        2        NA World    M       84.4 3206 N 15th … 3206 N 15… 3206 N 15t…\n 6        3        NA World    M      100   3010 6th Ave… 3010 6th … 3010 6th A…\n 7        4        NA World    M      100   3550 Market … 3550 Mark… 3550 Marke…\n 8        5        NA World    M      100   814 6th Ave,… 814 6th A… 814 6th Ave\n 9        6        NA World    M      100   108 W Main, … 108 W Mai… 108 W Main \n10        7        NA World    M      100   3009 McCarve… 3009 McCa… 3009 McCar…\n11        8        NA World    M      100   1205 Martin … 1205 Mart… 1205 Marti…\n12        9        NA World    M       97.9 6419 24th St… 6419 24th… 6419 24th …\n13       10        NA World    M      100   3608 Grandvi… 3608 Gran… 3608 Grand…\n# ℹ 54 more variables: addr_type &lt;chr&gt;, type_field &lt;chr&gt;, place_name &lt;chr&gt;,\n#   place_addr &lt;chr&gt;, phone &lt;chr&gt;, url &lt;chr&gt;, rank &lt;dbl&gt;, add_bldg &lt;chr&gt;,\n#   add_num &lt;chr&gt;, add_num_from &lt;chr&gt;, add_num_to &lt;chr&gt;, add_range &lt;chr&gt;,\n#   side &lt;chr&gt;, st_pre_dir &lt;chr&gt;, st_pre_type &lt;chr&gt;, st_name &lt;chr&gt;,\n#   st_type &lt;chr&gt;, st_dir &lt;chr&gt;, bldg_type &lt;chr&gt;, bldg_name &lt;chr&gt;,\n#   level_type &lt;chr&gt;, level_name &lt;chr&gt;, unit_type &lt;chr&gt;, unit_name &lt;chr&gt;,\n#   sub_addr &lt;chr&gt;, st_addr &lt;chr&gt;, block &lt;chr&gt;, sector &lt;chr&gt;, nbrhd &lt;chr&gt;, …\n\n\nNotice how there are multiple results for each input_id. This is because the max_locations argument was not specified. To ensure only the best match is returned set max_locations = 1\n\ngeocoded &lt;- bike_stores |&gt;\n  reframe(\n    find_address_candidates(original_address, max_locations = 1)\n  ) |&gt;\n  # reframe drops the sf class, must be added\n  sf::st_as_sf()\n\ngeocoded\n\nSimple feature collection with 10 features and 61 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: -122.5871 ymin: 47.19164 xmax: -122.294 ymax: 47.32301\nGeodetic CRS:  WGS 84\n# A tibble: 10 × 62\n   input_id result_id loc_name status score match_addr    long_label short_label\n      &lt;int&gt;     &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;      \n 1        1        NA World    M      100   3320 N Proct… 3320 N Pr… 3320 N Pro…\n 2        2        NA World    M       97.6 N 15th St & … N 15th St… N 15th St …\n 3        3        NA World    M      100   3010 6th Ave… 3010 6th … 3010 6th A…\n 4        4        NA World    M      100   3550 Market … 3550 Mark… 3550 Marke…\n 5        5        NA World    M      100   814 6th Ave,… 814 6th A… 814 6th Ave\n 6        6        NA World    M      100   108 W Main, … 108 W Mai… 108 W Main \n 7        7        NA World    M      100   3009 McCarve… 3009 McCa… 3009 McCar…\n 8        8        NA World    M      100   1205 Martin … 1205 Mart… 1205 Marti…\n 9        9        NA World    M       97.9 6419 24th St… 6419 24th… 6419 24th …\n10       10        NA World    M      100   3608 Grandvi… 3608 Gran… 3608 Grand…\n# ℹ 54 more variables: addr_type &lt;chr&gt;, type_field &lt;chr&gt;, place_name &lt;chr&gt;,\n#   place_addr &lt;chr&gt;, phone &lt;chr&gt;, url &lt;chr&gt;, rank &lt;dbl&gt;, add_bldg &lt;chr&gt;,\n#   add_num &lt;chr&gt;, add_num_from &lt;chr&gt;, add_num_to &lt;chr&gt;, add_range &lt;chr&gt;,\n#   side &lt;chr&gt;, st_pre_dir &lt;chr&gt;, st_pre_type &lt;chr&gt;, st_name &lt;chr&gt;,\n#   st_type &lt;chr&gt;, st_dir &lt;chr&gt;, bldg_type &lt;chr&gt;, bldg_name &lt;chr&gt;,\n#   level_type &lt;chr&gt;, level_name &lt;chr&gt;, unit_type &lt;chr&gt;, unit_name &lt;chr&gt;,\n#   sub_addr &lt;chr&gt;, st_addr &lt;chr&gt;, block &lt;chr&gt;, sector &lt;chr&gt;, nbrhd &lt;chr&gt;, …\n\n\nWith this result, you can now join the address fields back onto the bike_stores data.frame using a left_join().\n\nleft_join(\n  bike_stores,\n  geocoded,\n  by = c(\"id\" = \"input_id\")\n) |&gt;\n  # left_join keeps the class of the first table\n  # must add sf class back on\n  sf::st_as_sf()\n\nSimple feature collection with 10 features and 63 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: -122.5871 ymin: 47.19164 xmax: -122.294 ymax: 47.32301\nGeodetic CRS:  WGS 84\n# A tibble: 10 × 64\n   store_name  original_address    id result_id loc_name status score match_addr\n   &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     \n 1 Cascadia W… 3320 N Proctor …     1        NA World    M      100   3320 N Pr…\n 2 Puget Soun… between 3206 N.…     2        NA World    M       97.6 N 15th St…\n 3 Takoma Bik… 3010 6th Ave, T…     3        NA World    M      100   3010 6th …\n 4 Trek Bicyc… 3550 Market Pl …     4        NA World    M      100   3550 Mark…\n 5 Opalescent… 814 6th Ave, Ta…     5        NA World    M      100   814 6th A…\n 6 Sound Bikes 108 W Main, Puy…     6        NA World    M      100   108 W Mai…\n 7 Trek Bicyc… 3009 McCarver S…     7        NA World    M      100   3009 McCa…\n 8 Second Cyc… 1205 M.L.K. Jr …     8        NA World    M      100   1205 Mart…\n 9 Penny bike… 6419 24th St NE…     9        NA World    M       97.9 6419 24th…\n10 Spider's B… 3608 Grandview …    10        NA World    M      100   3608 Gran…\n# ℹ 56 more variables: long_label &lt;chr&gt;, short_label &lt;chr&gt;, addr_type &lt;chr&gt;,\n#   type_field &lt;chr&gt;, place_name &lt;chr&gt;, place_addr &lt;chr&gt;, phone &lt;chr&gt;,\n#   url &lt;chr&gt;, rank &lt;dbl&gt;, add_bldg &lt;chr&gt;, add_num &lt;chr&gt;, add_num_from &lt;chr&gt;,\n#   add_num_to &lt;chr&gt;, add_range &lt;chr&gt;, side &lt;chr&gt;, st_pre_dir &lt;chr&gt;,\n#   st_pre_type &lt;chr&gt;, st_name &lt;chr&gt;, st_type &lt;chr&gt;, st_dir &lt;chr&gt;,\n#   bldg_type &lt;chr&gt;, bldg_name &lt;chr&gt;, level_type &lt;chr&gt;, level_name &lt;chr&gt;,\n#   unit_type &lt;chr&gt;, unit_name &lt;chr&gt;, sub_addr &lt;chr&gt;, st_addr &lt;chr&gt;, …",
     "crumbs": [
-      "Editing",
-      "Deleting features"
+      "Geocoding",
+      "Forward Geocoding"
     ]
   },
   {
