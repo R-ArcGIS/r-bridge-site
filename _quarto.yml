@@ -32,6 +32,7 @@ website:
       - section: Layers
         contents:
         - text: "Overview"
+          href: docs/layers/overview.qmd
         - text: "Reading Feature Services"
         - text: "Reading Image Servers"
         - text: "Publishing layers"

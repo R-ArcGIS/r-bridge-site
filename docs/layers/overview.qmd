@@ -1,0 +1,62 @@
+---
+title: Overview
+---
+
+Layers represent represent a data service hosted by ArcGIS Online, ArcGIS Enterprise, Platform, or even an ArcGIS Hub site. Layers are how you will interact with your remotely hosted data. 
+
+The `{arcgis}` R metapackage is able to work with the most common types of data services: feature services and image servers. The types of layers that the R-ArcGIS Bridge does not yet support are vector and map tile services. 
+
+
+# Types of services 
+
+When working with these data services, each service type is assigned their own S3 class. 
+
+
+| Class | Description |
+| ----- | ----------- |
+| `FeatureLayer` | Represents vector data. Can contain Point, MultiPoint, Polyline, or Polygon data | 
+| `Table` | A type of FeatureLayer in which there is no geometry present. Represents tabular data. | 
+| `ImageServer` | Provides access to raster imagery.  | 
+| `FeatureServer` | A collection of FeatureLayer and Tables. | 
+| `GroupLayer` | A collection of FeatureLayer and Tables. | 
+| `MapServer` | A collection arbitrary data service types. | 
+
+# Accessing data services
+
+The R package `{arcgislayers}` provides access to services. Working with data services follows a pattern:
+
+- first, create a reference to a remote data service
+- query the data service and bring the results back into R
+
+## Creating data service objects
+
+Using `{arcgislayers}`, the function `arc_open()` will create a reference to a service based on its url. 
+
+```{r}
+library(arcgis)
+
+# feature service url
+furl <- "https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer/4"
+
+# feature layer
+flayer <- arc_open(furl)
+flayer
+```
+
+## Querying feature services 
+
+To bring data from the service into memory in R, you must use `arc_select()`. 
+
+
+:::{.callout-tip}
+Always bring as little data as possible into memory. Utilize the `fields` and `where` arguments. 
+:::
+
+```{r message=FALSE}
+arc_select(
+  flayer,
+  where = "TotalPopulation > 100000",
+  fields = c("objectid", "totalpopulation", "zcta5")
+)
+```
+

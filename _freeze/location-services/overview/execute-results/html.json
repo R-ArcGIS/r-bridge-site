@@ -1,0 +1,15 @@
+{
+  "hash": "e6af64ba10b7a4eef497858d00e3eaaa",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Overview\"\nsubtitle: \"Interact with ArcGIS location services directly from R\"\nlisting:\n  - id: gallery\n    template: gallery.ejs\n    contents: gallery.yml\n---\n\n\nThe **`arcgis`** package for location services meets developers where they are at. At its core, **`arcgis`** is a collection of R packages designed to interact with [ArcGIS location services](https://developers.arcgis.com/documentation/mapping-apis-and-services/) from the comfort of R and your development environment of choice. \n\nArcGIS location services are provided as REST API endpoints and **`arcgis`** makes interacting with the services using R native objects seamless.\n\nInstalling and loading the **`arcgis`** meta-package provides access to all of the associated packages and functionality:\n\n\n::: {.cell}\n\n```{.r .cell-code}\ninstall.packages(\"arcgis\") # or pak::pak(\"r-arcgis/arcgis\")\nlibrary(arcgis)\n```\n:::\n\n\n<hr>\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
