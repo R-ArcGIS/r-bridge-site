@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -114,7 +114,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../../location-services/workflows/add-delete-update.html">Editing Features</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R-ArcGIS Bridge
+      </li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -142,108 +144,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">ArcGIS Pro</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installing <code>{arcgisbinding}</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geoprocessing Tools</span></a>
-  </div>
-</li>
-      </ul>
+        <li class="sidebar-item">
+ <span class="menu-text">Key Features</span>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/get-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install and set up</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Location Services</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Authentication</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../location-services/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Storing credentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Authorize with your Portal</span></a>
+ <span class="menu-text">Authenticating with R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Layers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../location-services/read-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Read hosted data</span></a>
-  </div>
-</li>
+ <span class="menu-text">Reading Feature Services</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../location-services/publishing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Publishing from R</span></a>
-  </div>
-</li>
+ <span class="menu-text">Reading Image Servers</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../location-services/workflows/add-delete-update.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Editing Features</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../location-services/workflows/overwrite-feature-service.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overwrite Hosted Feature Layer</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
+ <span class="menu-text">Publishing layers</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Editing</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../location-services/tutorials/shiny-dash/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dashboard using <code>{arcgis}</code></span></a>
-  </div>
-</li>
-      </ul>
+ <span class="menu-text">Overview</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Adding features</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Updating features</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Deleting features</span>
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Packages</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Resources</span></a>
-  </div>
-</li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Geocoding</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Places</span></span>
+  </li>
     </ul>
     </div>
 </nav>
@@ -264,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../../location-services/workflows/add-delete-update.html">Editing Features</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Editing Features</h1>
 <p class="subtitle lead">Learn to add, update, or delete features</p>
@@ -284,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Programmatically, adding, deleting, or updating features using <code>{arcgis}</code> is a deceptively simple process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted Feature Layer or Table.</p>
+<p>Programmatically, adding, deleting, or updating features using <code>{arcgis}</code> is a straightforward process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted feature layer or table.</p>
 <p>We will go over the functions:</p>
 <ul>
 <li><code>add_features()</code></li>
@@ -293,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="pre-requisites" class="level2">
 <h2 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h2>
-<p>We will use the the <em>North Carolina SIDS</em> dataset we created in the <a href="../../location-services/publishing.html"><strong>Publishing from R</strong></a> tutorial. To follow along be sure that you have followed that tutorial and have a <code>FeatureLayer</code> that you can modify. If you have not yet configured your environment to authorize with an online portal, start at <a href="../../location-services/connecting-to-a-portal.html"><strong>Connecting to your portal</strong></a>.</p>
+<p>We will use the the <em>North Carolina SIDS</em> dataset we created in the <a href="../../location-services/publishing.html"><strong>Publishing from R</strong></a> tutorial. To follow along, be sure that you have followed that tutorial and have a <code>FeatureLayer</code> that you can modify. If you have not yet configured your environment to authorize with an online portal, start at <a href="../../location-services/connecting-to-a-portal.html"><strong>Connecting to your portal</strong></a>.</p>
 </section>
 <section id="adding-features" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="adding-features">Adding features</h2>
@@ -305,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>#&gt; Token set to environment variable `ARCGIS_TOKEN`</code></pre>
-<p>Next, we will create the feature that we want to add using the sf package. We’ll read in the <code>nc.shp</code> file from the sf package.</p>
+<p>Next, we will create the feature that we want to add using the <code>sf</code> package. We’ll read in the <code>nc.shp</code> file from the <code>sf</code> package.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nc_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span>
@@ -356,7 +360,7 @@ Geodetic CRS:  NAD27
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="2">We specify the columns we will be apply a function to in <code>.cols</code>. We use the <code>tidyselect</code> helpers to catch any columns that end with <code>74</code> or <code>79</code>.</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="2">We specify the columns we will be applying a function to in <code>.cols</code>. We use the <code>tidyselect</code> helpers to catch any columns that end with <code>74</code> or <code>79</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
 <dd>
@@ -393,15 +397,15 @@ CRS: 4267
 Capabilities: Create,Delete,Query,Update,Editing</code></pre>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>The url you use here will be different than the one you see. Be sure to grab the correct url from the content listing.</p>
+<p>The url you use here will be different than the one you see. Be sure to grab the correct url from the content listing for your item.</p>
 </div></div><p>Now that we have a <code>FeatureLayer</code> object we can add features to it using <code>add_features()</code>. There are a few key arguments to the function:</p>
 <ul>
 <li><code>x</code> is the <code>FeatureLayer</code> object that we want to add features to</li>
 <li><code>.data</code> is an <code>sf</code> object that we want to add to the <code>FeatureLayer</code></li>
 <li><code>match_on</code> determines how to match sf columns to <code>FeatureLayer</code> fields</li>
 </ul>
-<p>By default, <code>add_features()</code> will compare the column names of the sf object to that of the <code>FeatureLayer</code>. We can find the field names and aliases for a <code>FeatureLayer</code> by using the <code>list_fields()</code> function. Pass the results to <code>tibble::as_tibble()</code> to make them more readable.</p>
-<p>Since we know that the column names match those of the <code>FeatureLayer</code> we can pass <code>nc_summary</code> directly to <code>add_feature()</code>.</p>
+<p>By default, <code>add_features()</code> will compare the column names of the <code>sf</code> object to that of the <code>FeatureLayer</code>. We can find the field names and aliases for a <code>FeatureLayer</code> by using the <code>list_fields()</code> function. Pass the results to <code>tibble::as_tibble()</code> to make them more readable.</p>
+<p>Since we know that the column names match those of the <code>FeatureLayer</code>, we can pass <code>nc_summary</code> directly to <code>add_feature()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>add_res <span class="ot">&lt;-</span> <span class="fu">add_features</span>(nc, nc_summary)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>add_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -418,7 +422,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you are adding a lot of features at one time, consider changing the value of <code>chunk_size</code>. By default, <code>add_features()</code> will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks.</p>
+<p>If you are adding many features at one time, consider changing the value of <code>chunk_size</code>. By default, <code>add_features()</code> will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks.</p>
 </div>
 </div>
 <p>Once we’ve added the results to the <code>FeatureLayer</code>, we may want to refresh the object to catch any important changes to the metadata.</p>
@@ -448,7 +452,7 @@ Geodetic CRS:  NAD27
 </section>
 <section id="updating-features" class="level2">
 <h2 class="anchored" data-anchor-id="updating-features">Updating Features</h2>
-<p>In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable <code>nc_totals</code>. When looking at it, we can see that the <code>AREA</code> AND <code>PERIMTER</code> values are missing. These might be helpful at a later point.</p>
+<p>In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable <code>nc_avgs</code>. When looking at it, we can see that the <code>AREA</code> AND <code>PERIMETER</code> values are missing. These might be helpful at a later point.</p>
 <p>In this section we will use the function <code>update_features()</code> to modify these values. First, let’s create a new object called <code>to_update</code> that has the <code>AREA</code> and <code>PERIMETER</code> computed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nc_area_perim <span class="ot">&lt;-</span> nc_avgs <span class="sc">|&gt;</span> </span>
@@ -476,7 +480,7 @@ Geodetic CRS:  NAD27
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>to_update</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here we use <code>sf::st_drop_geometry()</code>to remove the geometry of our object since we do not want to update the geometry in our <code>FeatureLayer</code>. We also only select the <code>object_id</code>, <code>AREA</code>, and <code>PERIMETER</code> columns so that we do not make an errant updates.</p>
+<p>Here we use <code>sf::st_drop_geometry()</code>to remove the geometry of our object since we do not want to update the geometry in our <code>FeatureLayer</code>. We also only select the <code>object_id</code>, <code>AREA</code>, and <code>PERIMETER</code> columns so that we do not make errant updates.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>update_res <span class="ot">&lt;-</span> <span class="fu">update_features</span>(nc, to_update)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -500,7 +504,7 @@ Geodetic CRS:  NAD27
 <section id="deleting-features" class="level2">
 <h2 class="anchored" data-anchor-id="deleting-features">Deleting Features</h2>
 <p>While <code>add_features()</code> and <code>update_features()</code> had a very similar syntax, <code>delete_features()</code> has a somewhat different interface. We have 3 different ways in which we can delete features. Here we will explore only two of them.</p>
-<p>We can delete features based on object IDs, or a SQL where clause. Let explore deleting features based on object IDs. To do so, we need to pass the <code>FeatureLayer</code> obejct as the first argument to <code>delete_features()</code> and the second argument is a numeric vector of the IDs we want to delete. The ID <code>101</code> is the new feature that we created.</p>
+<p>We can delete features based on object IDs or a SQL where clause. Let’s explore deleting features based on object IDs. To do so, we need to pass the <code>FeatureLayer</code> obejct as the first argument to <code>delete_features()</code>. The second argument is a numeric vector of the IDs we want to delete. The ID <code>101</code> is the new feature that we created.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>delete_res <span class="ot">&lt;-</span> <span class="fu">delete_features</span>(nc, <span class="at">object_ids =</span> <span class="dv">101</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>delete_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -508,7 +512,7 @@ Geodetic CRS:  NAD27
 <pre><code>$deleteResults
   objectId uniqueId globalId success
 1      101      101       NA    TRUE</code></pre>
-<p>We can check to see if the delete worked by refreshing the laye and seeing the count that is printed out.</p>
+<p>We can check to see if the delete worked by refreshing the layer and seeing the count that is printed out.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -664,6 +668,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/R-ArcGIS\.github\.io\/r-bridge-site\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -698,7 +720,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

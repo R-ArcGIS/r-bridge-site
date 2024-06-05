@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -114,7 +114,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/publishing.html">Publishing from R</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R-ArcGIS Bridge
+      </li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -142,108 +144,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">ArcGIS Pro</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installing <code>{arcgisbinding}</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geoprocessing Tools</span></a>
-  </div>
-</li>
-      </ul>
+        <li class="sidebar-item">
+ <span class="menu-text">Key Features</span>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/get-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install and set up</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Location Services</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Authentication</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/auth" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Storing credentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Authorize with your Portal</span></a>
+ <span class="menu-text">Authenticating with R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Layers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/read-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Read hosted data</span></a>
-  </div>
-</li>
+ <span class="menu-text">Reading Feature Services</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/publishing.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Publishing from R</span></a>
-  </div>
-</li>
+ <span class="menu-text">Reading Image Servers</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/workflows/add-delete-update.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Editing Features</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/workflows/overwrite-feature-service.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overwrite Hosted Feature Layer</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
+ <span class="menu-text">Publishing layers</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Editing</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/tutorials/shiny-dash/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dashboard using <code>{arcgis}</code></span></a>
-  </div>
-</li>
-      </ul>
+ <span class="menu-text">Overview</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Adding features</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Updating features</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Deleting features</span>
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Packages</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Resources</span></a>
-  </div>
-</li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Geocoding</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Places</span></span>
+  </li>
     </ul>
     </div>
 </nav>
@@ -262,9 +266,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/location-services/publishing.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/publishing.html">Publishing from R</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Publishing from R</h1>
 <p class="subtitle lead">Create Hosted ArcGIS Online or Enterprise Feature Services from R</p>
@@ -284,10 +288,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>While you may often consume data as an R user, you may also want to also publish data as a hosted feature service. In this tutorial we will go over how to publish an <code>sf</code> object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise.</p>
+<p>In addition to consuming data as an R user, you may also want to publish data as a hosted feature service. In this tutorial, you will learn how to publish an <code>sf</code> object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise.</p>
 <section id="authorization" class="level2">
 <h2 class="anchored" data-anchor-id="authorization">Authorization</h2>
-<p>In order to publish content to ArcGIS Online or Enterprise, we must first obtain an access token permitting us to do so.</p>
+<p>In order to publish content to ArcGIS Online or Enterprise, you must first obtain an access token permitting you to do so.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -298,35 +302,35 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you have not yet set up your R environment for authorization, see <a href="../location-services/connecting-to-a-portal.html"><strong>Connecting to your Portal</strong></a>. Ensure that the environment variables <code>ARCGIS_CLIENT</code> and <code>ARCGIS_USER</code> are set at minimum. If you are using Enterprise ensure that <code>ARCGIS_HOST</code> is properly set as well.</p>
+<p>If you have not yet set up your R environment for authorization, see <a href="../location-services/connecting-to-a-portal.html"><strong>Authorize with your Portal</strong></a>. Ensure that the environment variables <code>ARCGIS_CLIENT</code> and <code>ARCGIS_USER</code> are set at minimum. If you are using ArcGIS Enterprise, ensure that <code>ARCGIS_HOST</code> is properly set as well.</p>
 </div>
 </div>
-<p>We must go through the code flow to set our credentials.</p>
+<p>Go through the following code flow to set your credentials.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span>
 <span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Token set to environment variable `ARCGIS_TOKEN`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="1">We create an access token</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="1">Create an access token</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="2">We set it to an environment variable.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="2">Set it to an environment variable.</span>
 </dd>
 </dl>
 </div>
 </div>
-<p>Now that we have authorized to our Portal, we will be able to publish our content.</p>
+<p>Now that you have authorized to your Portal, you will be able to publish content.</p>
 </section>
-<section id="publishing-sf-objects" class="level2">
+<section id="publishing-sf-objects" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="publishing-sf-objects">Publishing {sf} objects</h2>
-<p>To publish an <code>{sf}</code> object to our portal, we can use the function <code>publish_layer()</code>. The publishing process requires us to add an item to our portal and publish it. The <code>publish_layer()</code> function handles these steps for us.</p>
-<p>Let’s read in the <a href="https://cran.r-project.org/web/packages/spdep/vignettes/sids.html">North Carolina SIDS</a> dataset that comes packaged with <code>sf</code> and store it in an object called <code>nc</code>.</p>
+<p>To publish an <code>{sf}</code> object to your portal, you can use the function <code>publish_layer()</code>. The publishing process requires you to add an item to your portal and publish it. The <code>publish_layer()</code> function handles these steps for you.</p>
+<p>First, read in the <a href="https://cran.r-project.org/web/packages/spdep/vignettes/sids.html">North Carolina SIDS</a> dataset that comes packaged with <code>sf</code> and store it in an object called <code>nc</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -354,11 +358,11 @@ Geodetic CRS:  NAD27
 #   geometry &lt;MULTIPOLYGON [°]&gt;</code></pre>
 </div>
 </div>
-<p>Now that we have an sf object and we have authorized with our portal, all that’s left is to publish the item!</p>
+<p>Now that you have an <code>sf</code> object and you have authorized with your portal, all that’s left is to publish the item!</p>
 <p><code>publish_layer()</code> has only two required arguments:</p>
 <ul>
-<li><code>x</code> the sf object or <code>data.frame</code></li>
-<li><code>title</code> the title of layer we are creating</li>
+<li><code>x</code> the <code>sf</code> object or <code>data.frame</code></li>
+<li><code>title</code> the title of layer you are creating</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">publish_layer</span>(nc, <span class="st">"North Carolina SIDS"</span>)</span>
@@ -373,12 +377,31 @@ Geodetic CRS:  NAD27
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                                                          encodedServiceURL</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now from your Portal’s <a href="https://arcgis.com/home/content.html">Content listing</a> you should see your feature service. If you open it up you should see something like the below.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you encounter errors while publishing, try using a feature layer title that does not contain spaces or special characters, such as “NorthCarolinaSIDS” for this example.</p>
+</div>
+</div>
+<p>Now from your Portal’s <a href="https://arcgis.com/home/content.html">Content page</a> you should see two items associated with your feature service:</p>
+<p><img src="images/publish/published-items.png" class="img-fluid" style="width:70.0%"></p>
+<p>Behind the scenes, <code>publish_layer()</code> added the <code>sf</code> object as a <em>Feature Layer</em> item first and then published this item as a <em>Feature Layer (hosted)</em>. After publishing, you will typically only interact with the hosted feature layer. (Note that the dependency between these two items prevents you from deleting the underlying feature layer while the hosted feature layer still exists.)</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Learn about <a href="https://doc.arcgis.com/en/arcgis-online/reference/feature-layers.htm#ESRI_SECTION1_26EBAE21F63042B9A51A4312A08A1B25">hosted feature layers</a></p>
+</div></div><p>Click <strong>View details</strong> on the hosted feature layer item and you should see something like the below:</p>
 <p><img src="images/publish/nc-sids.png" class="img-fluid" style="width:70.0%"></p>
 </section>
 <section id="reading-the-published-feature-layer" class="level2">
 <h2 class="anchored" data-anchor-id="reading-the-published-feature-layer">Reading the published Feature Layer</h2>
-<p>The output of this function is a list that contains information about where the sf object was published. We can retrieve the <code>encodedServiceUrl</code> from the response and read the response.</p>
+<p>The output of the <code>publish_layer()</code> function is a list that contains information about where the <code>sf</code> object was published. You can retrieve the <code>encodedServiceUrl</code> from the response and use <code>arc_open()</code> to return the metadata for your newly-created service.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nc_fserver <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(res[[<span class="fu">c</span>(<span class="st">"services"</span>, <span class="st">"encodedServiceURL"</span>)]])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nc_fserver</span>
@@ -388,7 +411,7 @@ Geodetic CRS:  NAD27
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0: North Carolina SIDS (esriGeometryPolygon)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You’ll notice that this is a <code>FeatureServer</code>. All items that are published to a Portal become their own Feature Server with a single <code>FeatureLayer</code>.</p>
-<p>We can extract a single layer from the <code>FeatureServer</code> using <code>get_layer()</code>. We provide the <code>FeatureServer</code> as the first argument and then the ID of the layer we want as the second argument.</p>
+<p>You can extract a single layer from the <code>FeatureServer</code> using <code>get_layer()</code>. Provide the <code>FeatureServer</code> as the first argument and then the ID of the layer you want as the second argument.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_layer</span>(nc_fserver, <span class="dv">0</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;FeatureLayer&gt;</span></span>
@@ -404,26 +427,9 @@ Geodetic CRS:  NAD27
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("palmerpenguins")</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>palmerpenguins<span class="sc">::</span>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 344 × 8
-   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
- 1 Adelie  Torgersen           39.1          18.7               181        3750
- 2 Adelie  Torgersen           39.5          17.4               186        3800
- 3 Adelie  Torgersen           40.3          18                 195        3250
- 4 Adelie  Torgersen           NA            NA                  NA          NA
- 5 Adelie  Torgersen           36.7          19.3               193        3450
- 6 Adelie  Torgersen           39.3          20.6               190        3650
- 7 Adelie  Torgersen           38.9          17.8               181        3625
- 8 Adelie  Torgersen           39.2          19.6               195        4675
- 9 Adelie  Torgersen           34.1          18.1               193        3475
-10 Adelie  Torgersen           42            20.2               190        4250
-# ℹ 334 more rows
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
-</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -432,10 +438,10 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">publish_layer</span>(palmerpenguins<span class="sc">::</span>penguins, <span class="st">"Palmer Penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">publish_layer</span>(palmerpenguins<span class="sc">::</span>penguins, <span class="st">"Palmer Penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -524,6 +530,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/R-ArcGIS\.github\.io\/r-bridge-site\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -558,7 +582,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

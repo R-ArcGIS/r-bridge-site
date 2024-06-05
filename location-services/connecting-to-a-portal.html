@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Authorize with your Portal</title>
+<title>R-ArcGIS Bridge - Connect to your Portal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Authorize with your Portal</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/auth">Authentication</a></li><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Authenticating with R</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -142,13 +142,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+ <span class="menu-text">Key Features</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/get-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">ArcGIS Pro</span></a>
+ <span class="menu-text">Authentication</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -156,94 +171,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installing <code>{arcgisbinding}</code></span></a>
+  <a href="../docs/auth" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geoprocessing Tools</span></a>
+  <a href="../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Storing credentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Location Services</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Layers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Authorize with your Portal</span></a>
-  </div>
-</li>
+ <span class="menu-text">Reading Feature Services</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/read-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Read hosted data</span></a>
-  </div>
-</li>
+ <span class="menu-text">Reading Image Servers</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/publishing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Publishing from R</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/workflows/add-delete-update.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Editing Features</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/workflows/overwrite-feature-service.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overwrite Hosted Feature Layer</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
+ <span class="menu-text">Publishing layers</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Editing</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/tutorials/shiny-dash/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dashboard using <code>{arcgis}</code></span></a>
-  </div>
-</li>
-      </ul>
+ <span class="menu-text">Overview</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Adding features</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Updating features</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Deleting features</span>
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Packages</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Resources</span></a>
-  </div>
-</li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Geocoding</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Places</span></span>
+  </li>
     </ul>
     </div>
 </nav>
@@ -254,23 +256,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#authorization-with-oauth2" id="toc-authorization-with-oauth2" class="nav-link active" data-scroll-target="#authorization-with-oauth2">Authorization with OAuth2</a>
+  <li><a href="#using-oauth2" id="toc-using-oauth2" class="nav-link active" data-scroll-target="#using-oauth2">Using OAuth2</a>
   <ul class="collapse">
   <li><a href="#obtaining-a-client-id" id="toc-obtaining-a-client-id" class="nav-link" data-scroll-target="#obtaining-a-client-id">Obtaining a Client ID</a></li>
-  <li><a href="#securing-your-credentials" id="toc-securing-your-credentials" class="nav-link" data-scroll-target="#securing-your-credentials">Securing your credentials</a></li>
-  <li><a href="#authorizing" id="toc-authorizing" class="nav-link" data-scroll-target="#authorizing">Authorizing</a></li>
+  <li><a href="#authorizing" id="toc-authorizing" class="nav-link" data-scroll-target="#authorizing">Authorizing</a>
+  <ul class="collapse">
+  <li><a href="#code-flow" id="toc-code-flow" class="nav-link" data-scroll-target="#code-flow">Code flow</a></li>
+  <li><a href="#client-flow" id="toc-client-flow" class="nav-link" data-scroll-target="#client-flow">Client flow</a></li>
   </ul></li>
-  <li><a href="#authorization-with-named-user" id="toc-authorization-with-named-user" class="nav-link" data-scroll-target="#authorization-with-named-user">Authorization with Named User</a></li>
-  <li><a href="#authorization-with-arcgis-pro-and-arcgisbinding" id="toc-authorization-with-arcgis-pro-and-arcgisbinding" class="nav-link" data-scroll-target="#authorization-with-arcgis-pro-and-arcgisbinding">Authorization with ArcGIS Pro and <code>{arcgisbinding}</code></a></li>
+  </ul></li>
+  <li><a href="#using-a-named-user" id="toc-using-a-named-user" class="nav-link" data-scroll-target="#using-a-named-user">Using a Named User</a></li>
+  <li><a href="#using-arcgisbinding" id="toc-using-arcgisbinding" class="nav-link" data-scroll-target="#using-arcgisbinding">Using <code>{arcgisbinding}</code></a></li>
+  <li><a href="#using-an-api-key" id="toc-using-an-api-key" class="nav-link" data-scroll-target="#using-an-api-key">Using an API Key</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/location-services/connecting-to-a-portal.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Authorize with your Portal</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/auth">Authentication</a></li><li class="breadcrumb-item"><a href="../location-services/connecting-to-a-portal.html">Authenticating with R</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Authorize with your Portal</h1>
+<h1 class="title">Connect to your Portal</h1>
 </div>
 
 
@@ -287,12 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In order to create content or interact with non-public items in ArcGIS Online or ArcGIS Enterprise, you will need to be authorized using one of the following methods:</p>
-<ul>
-<li><a href="#authorization-with-oauth2">OAuth2</a></li>
-<li><a href="#authorization-with-named-user">Named User</a></li>
-<li><a href="#authorization-with-arcgis-pro-and-arcgisbinding">ArcGIS Pro and <code>{arcgisbinding}</code></a></li>
-</ul>
+<p>In order to create content, interact with non-public items, save geocoding results, or use POI data with the Places Service, you will need to authenticate through ArcGIS Online, ArcGIS Enterprise, or Platform.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="ArcGIS Sharing model">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -309,12 +310,12 @@ ArcGIS Sharing model
 </div>
 </div>
 </div>
-<section id="authorization-with-oauth2" class="level2">
-<h2 class="anchored" data-anchor-id="authorization-with-oauth2">Authorization with OAuth2</h2>
+<section id="using-oauth2" class="level1">
+<h1>Using OAuth2</h1>
 <p>There are two ways to authorize with <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/">OAuth2</a>: either by using a a <code>code</code> or a <code>client</code> flow. Code-based authorization is interactive, requiring you to copy an authorization code from a browser window into the R console during the execution of your code. Client authorization allows for non-interactive scripting, but cannot be used for creating or modifying content. In most cases, code-based authorization is recommended. These two methods are explained below.</p>
 <p>Before you can authorize with either OAuth2 method, you must first create a client ID.</p>
-<section id="obtaining-a-client-id" class="level3">
-<h3 class="anchored" data-anchor-id="obtaining-a-client-id">Obtaining a Client ID</h3>
+<section id="obtaining-a-client-id" class="level2">
+<h2 class="anchored" data-anchor-id="obtaining-a-client-id">Obtaining a Client ID</h2>
 <p>If a client ID is not provided to you by an administrator and you have the ability to create content items, you can create one.</p>
 <p>You can do so by creating an application item.</p>
 <ul>
@@ -337,119 +338,32 @@ ArcGIS Sharing model
 </ul>
 <p><img src="images/credentials.png" class="img-fluid" style="width:50.0%"></p>
 </section>
-<section id="securing-your-credentials" class="level3">
-<h3 class="anchored" data-anchor-id="securing-your-credentials">Securing your credentials</h3>
-<p>By default, packages in the <code>{arcgis}</code> metapackage are configured to work with ArcGIS Online. <code>arcgis</code> utilizes environment variables to determine how requests are crafted and where requests are made. These environment variables are:</p>
-<ul>
-<li><code>ARCGIS_HOST</code></li>
-<li><code>ARCGIS_CLIENT</code></li>
-<li><code>ARCGIS_USER</code></li>
-<li><code>ARCGIS_SECRET</code></li>
-<li><code>ARCGIS_TOKEN</code></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled" title="Environment variable descriptions">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Environment variable descriptions
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ul>
-<li><p><strong><code>ARCGIS_HOST</code></strong> is used to to determine where authorization takes place. By default, this is <code>"https://www.arcgis.com"</code>. This is because the packages, by default, interact with ArcGIS Online. To use a different portal, you will need to modify the <code>ARCGIS_HOST</code> path to url of that portal.</p></li>
-<li><p><strong><code>ARCGIS_USER</code></strong> variable is used to determine who actions are performed on behalf of. Notably, it is used in functions that modify or create resource such as functions from <code>arcgislayers</code>: <code>create_service()</code>, <code>add_item()</code>, and <code>publish_item()</code>.</p></li>
-<li><p><strong><code>ARCGIS_CLIENT</code></strong> and <strong><code>ARCGIS_SECRET</code></strong> environment variables are used only in the <code>auth_client()</code> OAuth2 client flow authorization. See the <a href="https://r-arcgis.github.io/arcgislayers/articles/Authorization.html">article on authorization</a> for more.</p></li>
-</ul>
-</div>
-</div>
-</div>
-<section id="setting-your-credentials-in-.renviron" class="level4">
-<h4 class="anchored" data-anchor-id="setting-your-credentials-in-.renviron">Setting your credentials in <code>.Renviron</code></h4>
-<p>Environment variables should <em><strong>never</strong></em> be included in your code. Instead, they should be stored in an external environment file such as an <code>.Renviron</code> file. To modify your <code>.Renviron</code>, you can use the <code>usethis</code> package. Ensure it is installed and run the following in your text editor:</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you modify environment variables you will need to restart your R session for the change to be registered.</p>
-</div>
-</div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-tip callout-titled" title="`.Renviron` scopes">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<code>.Renviron</code> scopes
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><code>.Renviron</code> files can be created at a user level or a project level. It is recommended to use project level <code>.Renviron</code> files when deploying scripts to production. If most of your work is interactive then a user level file is sufficient.</p>
-<p><strong>Project scoped</strong> <code>.Renviron</code> files store environment variables that are available for the project <em>only</em>. The <code>.Renviron</code> is stored at the root folder level.</p>
-<p><strong>User scoped</strong> <code>.Renviron</code> files store environment variables in the user’s home directory. The environment variables will be available to you in any project you open. However, if you share your project, the environment variables will not be shared with it.</p>
-</div>
-</div>
-</div>
-<p>This will open your <code>.Renviron</code> file for you to edit. Fill in the environment variables <code>ARCGIS_CLIENT</code> and <code>ARCGIS_SECRET</code> from the content item you just created. If you are not using ArcGIS Online, ensure that your portal’s host is provided to <code>ARCGIS_HOST</code>. Additionally, provide your username to <code>ARCGIS_USER</code> if you plan to use username and password authentication.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_CLIENT</span><span class="op">=</span>your-client-id</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_SECRET</span><span class="op">=</span>your-super-secret-key</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_HOST</span><span class="op">=</span>https://your-portal.com/</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_USER</span><span class="op">=</span>your-user-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Do not put environment variable values in quotation marks.</p>
-<p>If you are using ArcGIS Online, you do not need to set the environment variable <code>ARCGIS_HOST</code>.</p>
-</div>
-</div>
-<p>Be sure to save your changes to the file. To register the new environment variables, restart your R session.</p>
-</section>
-</section>
-<section id="authorizing" class="level3">
-<h3 class="anchored" data-anchor-id="authorizing">Authorizing</h3>
+<section id="authorizing" class="level2">
+<h2 class="anchored" data-anchor-id="authorizing">Authorizing</h2>
 <p>First, load the library.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching core arcgis packages:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   - {arcgisutils} v0.1.0</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   - {arcgislayers} v0.1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="code-flow" class="level4">
-<h4 class="anchored" data-anchor-id="code-flow">Code flow</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching core arcgis packages:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   - {arcgisutils} v0.1.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   - {arcgislayers} v0.1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="code-flow" class="level3">
+<h3 class="anchored" data-anchor-id="code-flow">Code flow</h3>
 <p>The OAuth2 Code Flow is a process where a user authorizes an application to act on their behalf by granting a temporary access token. This type of authorization permits the application to take actions on the user’s behalf for the duration of the access token. Learn more about how <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2/">ArcGIS uses OAuth2.0</a>.</p>
 <p>Running <code>auth_code()</code> will open a tab in your browser to begin the code flow. If you are authorizing to an ArcGIS Enterprise portal, ensure that you set the <code>ARCGIS_HOST</code> environment variable correctly and that you have restarted your R session.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will be prompted to sign in to your portal.</p>
 <p><img src="images/oauth-sign-in.png" class="img-fluid" style="width:50.0%"></p>
 <p>Once you’ve signed in, copy the code that appears, and return to R. Enter the code into the console without any modifications and press enter.</p>
 <p><img src="images/oauth-code.png" class="img-fluid" style="width:70.0%"></p>
 <p>Your authorization will have completed.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>token</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;httr2_token&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; token_type: bearer</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; access_token: &lt;REDACTED&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; expires_at: 2023-03-03 13:21:40</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; refresh_token: &lt;REDACTED&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; username: your-user</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ssl: TRUE</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; refresh_token_expires_in: 1209599</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>token</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;httr2_token&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; token_type: bearer</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; access_token: &lt;REDACTED&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; expires_at: 2023-03-03 13:21:40</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; refresh_token: &lt;REDACTED&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; username: your-user</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ssl: TRUE</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; refresh_token_expires_in: 1209599</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -464,19 +378,19 @@ Warning
 </div>
 </div>
 <p>To make this token easily accessible to <code>{arcgis}</code>, use <code>set_arc_token()</code> which sets the token in dedicated authorization token environment.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="client-flow" class="level4">
-<h4 class="anchored" data-anchor-id="client-flow">Client flow</h4>
+<section id="client-flow" class="level3">
+<h3 class="anchored" data-anchor-id="client-flow">Client flow</h3>
 <p>Alternatively, you can authorize using the client OAuth2 flow. This will authorize the application you created and not ourselves. Because of this, you cannot use the client flow to create or modify content.</p>
 <p>The client flow has the benefit of being non-interactive, though.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_client</span>()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_client</span>()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 </section>
-<section id="authorization-with-named-user" class="level2">
-<h2 class="anchored" data-anchor-id="authorization-with-named-user">Authorization with Named User</h2>
+<section id="using-a-named-user" class="level1">
+<h1>Using a Named User</h1>
 <p>Authorizing using an ArcGIS Online or ArcGIS Enterprise <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/security/user-authentication/direct-username-password/">username and password</a> is a legacy method that is supported for cases where OAuth2 is not implemented. As a reminder, credentials should never be stored in plaintext in code.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -491,20 +405,35 @@ Important
 <p><strong>Security consideration</strong>: Obtaining an access token with this method will expose the username and password credentials as plain text and could present a potential security risk.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_user</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="fu">Sys.getenv</span>(<span class="st">"ARCGIS_USER"</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="fu">Sys.getenv</span>(<span class="st">"ARCGIS_PASSWORD"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="fu">arc_host</span>(),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">expiration =</span> <span class="dv">60</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_user</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="fu">Sys.getenv</span>(<span class="st">"ARCGIS_USER"</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="fu">Sys.getenv</span>(<span class="st">"ARCGIS_PASSWORD"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="fu">arc_host</span>(),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">expiration =</span> <span class="dv">60</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="authorization-with-arcgis-pro-and-arcgisbinding" class="level2">
-<h2 class="anchored" data-anchor-id="authorization-with-arcgis-pro-and-arcgisbinding">Authorization with ArcGIS Pro and <code>{arcgisbinding}</code></h2>
+<section id="using-arcgisbinding" class="level1">
+<h1>Using <code>{arcgisbinding}</code></h1>
 <p>If you are a user of ArcGIS Pro and have <strong>arcgisbinding</strong> installed, you can use <code>auth_binding()</code> to utilize the tokens that result from <code>arc.check_portal()</code>. <code>auth_binding()</code> has the benefit of being non-interactive <em>and</em> authorizes you as a user. You can use <code>auth_binding()</code> for non-interactive work that creates or modifies existing content.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_binding</span>()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_binding</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This method retrieves the token from the <em>active</em> portal in ArcGIS Pro. Make sure that you are logged into the intended portal and that it is set as active. If you switch which portal is active in ArcGIS Pro, you will need to restart your R session for the new portal to be recognized by <code>auth_binding()</code>.</p>
+</section>
+<section id="using-an-api-key" class="level1">
+<h1>Using an API Key</h1>
+<p>If you are using ArcGIS Platform or using the ArcGIS Places Service, you will need to authorize via API key. Create an API key via the following instructions:</p>
+<ul>
+<li>Navigate to https://developers.arcgis.com/</li>
+<li>Sign in</li>
+<li>Navigate to your API keys at https://developers.arcgis.com/api-keys/</li>
+<li>Click <code>+ New API Key</code> &amp; fill out the modal form</li>
+</ul>
+<p>Store the API key in your <code>.Renviron</code> file. You can call <code>usethis::edit_r_environ()</code> to open the file for you.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">ARCGIS_API_KEY</span><span class="op">=</span>your-secret-api-key</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Restart your R session for the key to be found. Next, load the <code>{arcgisutils}</code> package:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisutils)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">auth_key</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -589,6 +518,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/R-ArcGIS\.github\.io\/r-bridge-site\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -623,7 +570,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

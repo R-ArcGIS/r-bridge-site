@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -140,7 +174,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/overview.html">Overview</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R-ArcGIS Bridge
+      </li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -168,108 +204,110 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">ArcGIS Pro</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../arcgisbinding/installing-arcgisbinding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installing <code>{arcgisbinding}</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../geoprocessing-tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geoprocessing Tools</span></a>
-  </div>
-</li>
-      </ul>
+        <li class="sidebar-item">
+ <span class="menu-text">Key Features</span>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/get-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install and set up</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Location Services</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Authentication</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/overview.html" class="sidebar-item-text sidebar-link active">
+  <a href="../docs/auth" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Storing credentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Authorize with your Portal</span></a>
+ <span class="menu-text">Authenticating with R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Layers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/read-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Read hosted data</span></a>
-  </div>
-</li>
+ <span class="menu-text">Reading Feature Services</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/publishing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Publishing from R</span></a>
-  </div>
-</li>
+ <span class="menu-text">Reading Image Servers</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/workflows/add-delete-update.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Editing Features</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/workflows/overwrite-feature-service.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overwrite Hosted Feature Layer</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
+ <span class="menu-text">Publishing layers</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Editing</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../location-services/tutorials/shiny-dash/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dashboard using <code>{arcgis}</code></span></a>
-  </div>
-</li>
-      </ul>
+ <span class="menu-text">Overview</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Adding features</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Updating features</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Deleting features</span>
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Packages</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Resources</span></a>
-  </div>
-</li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Geocoding</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Places</span></span>
+  </li>
     </ul>
     </div>
 </nav>
@@ -281,10 +319,10 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../location-services/overview.html">Location Services</a></li><li class="breadcrumb-item"><a href="../location-services/overview.html">Overview</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Overview</h1>
-<p class="subtitle lead">Interact with ArcGIS Location Services directly from R</p>
+<p class="subtitle lead">Interact with ArcGIS location services directly from R</p>
 </div>
 
 
@@ -301,8 +339,13 @@ window.Quarto = {
 </header>
 
 
-<p>The <strong><code>arcgis</code></strong> package for location services meets developers where they are at. At its core, <strong><code>arcgis</code></strong> is a collection of R packages designed to interact with <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/">ArcGIS Location Services</a> from the comfort of R and your development environment of choice.</p>
-<p>ArcGIS Location Services are provided as REST API endpoints and <strong><code>arcgis</code></strong> makes interacting with the services using R native objects seamless.</p>
+<p>The <strong><code>arcgis</code></strong> package for location services meets developers where they are at. At its core, <strong><code>arcgis</code></strong> is a collection of R packages designed to interact with <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/">ArcGIS location services</a> from the comfort of R and your development environment of choice.</p>
+<p>ArcGIS location services are provided as REST API endpoints and <strong><code>arcgis</code></strong> makes interacting with the services using R native objects seamless.</p>
+<p>Installing and loading the <strong><code>arcgis</code></strong> meta-package provides access to all of the associated packages and functionality:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"arcgis"</span>) <span class="co"># or pak::pak("r-arcgis/arcgis")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <hr>
 
 
@@ -427,6 +470,28 @@ window.Quarto = {
 
   </div>
 
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="5">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <h3 class="card-text inline-block anchored">
+        <a href="https://r.esri.com/r-bridge-site/location-services/workflows/using-arcgis-arcgisbinding.html" class="listing-title">Using arcgis with arcgisbinding</a>
+      </h3>
+        <!-- 
+        <a href="workflows/using-arcgis-arcgisbinding.qmd" title="View source code"
+          class="source-code card-text float-end inline-block">
+          <i class="bi-code-slash"></i>
+        </a>
+         -->
+        <span class="text-muted listing-subtitle">Create workflows that use multiple R-ArcGIS Bridge packages</span>
+
+    </div>
+    <a href="https://r.esri.com/r-bridge-site/location-services/workflows/using-arcgis-arcgisbinding.html">
+      <img src="images/gallery-multiple.png" alt="" class="card-img-top">
+    </a>
+
+    
+
+  </div>
+
 </div>
 
 <h2 class="anchored">Tutorials</h2>
@@ -436,7 +501,7 @@ window.Quarto = {
 
 <div class="list default" style="column-gap: 10px;">
 
-  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="5">
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="6">
     <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
       <h3 class="card-text inline-block anchored">
         <a href="https://r.esri.com/r-bridge-site/location-services/tutorials/shiny-dash/" class="listing-title">Dashboard using {arcgis}</a>
@@ -467,7 +532,7 @@ window.Quarto = {
 
 <div class="list default" style="column-gap: 10px;">
 
-  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="6">
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="7">
     <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
       <h3 class="card-text inline-block anchored">
         <a href="https://www.youtube.com/watch?v=GzyYLA_0xcc" class="listing-title">NDVI Mapping with {arcgis}</a>
@@ -489,7 +554,7 @@ window.Quarto = {
 
   </div>
 
-  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="7">
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="8">
     <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
       <h3 class="card-text inline-block anchored">
         <a href="https://www.linkedin.com/posts/diego-gabriel-miguel-v%C3%A1zquez-462a41201_greetings-again-dear-community-recently-activity-7158941012063584257-vR8x?utm_source=share&amp;utm_medium=member_desktop" class="listing-title">Integration Examples using {arcgis}</a>
@@ -596,6 +661,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/R-ArcGIS\.github\.io\/r-bridge-site\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -630,7 +713,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
