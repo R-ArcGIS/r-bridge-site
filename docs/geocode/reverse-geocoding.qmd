@@ -1,0 +1,102 @@
+---
+title: "Reverse Geocoding"
+---
+
+Often you may coordinates of locations but need their addresses as well. **Reverse geocoding** finds an address associated with a location on earth. 
+
+Use `arcgisgeocode::reverse_geocode()` to perform reverse geocoding. Using this fuction you can
+
+- reverse geocode an `sfc_POINT` geometry column from the `{sf}` package
+- reverse geocode a matrix of coordinates
+- reverse geocode a single location as a length 2 vector e.g. `c(-117, 34)`
+
+
+# Reverse geocode a single point
+
+First, load the R package. 
+
+```{r}
+library(arcgisgeocode)
+```
+
+You can reverse geocode a single longitude/latitude pair as a length 2 vector with `reverse_geocode()`. 
+
+```{r message=FALSE}
+# Find addresses from locations
+res <- reverse_geocode(c(-117.172, 34.052))
+dplyr::glimpse(res)
+```
+
+:::{.callout-important}
+It is important to note that when you are not using an `sfc_POINT` object, the coordinate reference system is not known. So it is assumed to be `EPSG:4326`. If you provide values outside of [-180, 180] and [-90, 90] for longitude or latitude, an error will occur. 
+:::
+
+# Reverse geocode from an sf object
+
+More commonly, you may have an sf object that you want to reverse geocode their locations. To demonstrate this, you will reverse geocode a csv of state capitals. 
+
+First, read the csv file into a data.frame and convert it to an sf object.
+
+```{r message = FALSE}
+library(sf)
+library(dplyr)
+
+# USA State Capitals
+fp <- "https://analysis-1.maps.arcgis.com/sharing/rest/content/items/85bcfca158d641b99e7579b47cfee91e/data"
+
+# read the csv
+capitals <- readr::read_csv(fp) |>
+  # convert to an sf object with EPSG:4326
+  st_as_sf(
+    coords = c("longitude", "latitude"),
+    crs = 4326
+  )
+
+capitals
+```
+
+Use `reverse_geocode()` with the geometry column from the capitals to create a new sf object with the address information.
+
+```{r message = FALSE}
+geocoded <- reverse_geocode(st_geometry(capitals))
+glimpse(geocoded)
+```
+
+Then, you can use dplyr (or base R via `cbind()`) to combine the two datasets. In this example, the geometry column from the reverse geocoding results is drops. This prevents dplyr from renaming the duplicate columns and preserves the sf class.
+
+```{r message= FALSE}
+bind_cols(
+  capitals,
+  st_drop_geometry(geocoded)
+)
+```
+
+
+Alternatively, you can accomplish this using a more esoteric and tidyverse-centric approach. The below is an option that uses `mutate()` to create a new column which is an sf object. Then, it uses `tidyr::unnest()` to unnest the newly created sf column.
+
+```{r}
+capitals |>
+  mutate(
+    address_info = st_drop_geometry(
+      reverse_geocode(geometry)
+    )
+  ) |>
+  tidyr::unnest(address_info)
+```
+
+
+# Reverse geocoding a matrix of coordinates
+
+There are other times where you may have your coordinates stored as a matrix with two columns. `reverse_geocode()` accepts a 2 column numeric matrix as an input to its `location` argument. 
+
+For the sake of example, the coordinates are extracted as a matrix using `sf::st_coordinates()`.
+```{r}
+coords <- st_coordinates(capitals)
+head(coords)
+```
+
+Pass this matrix directly into `reverse_geocode()`.
+```{r}
+geocoded <- reverse_geocode(coords)
+glimpse(geocoded)
+```
