@@ -1,0 +1,115 @@
+---
+title: "Reading Image Services"
+freeze: true
+---
+
+ArcGIS Online and Enterprise web services can easily be read into R using`{arcgislayers}`. Supported service types include:
+
+ - [FeatureServer](https://developers.arcgis.com/rest/services-reference/enterprise/feature-service.htm)
+    - [FeatureLayer](https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm)
+    - [Table](https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm)
+ - [MapServer](https://developers.arcgis.com/rest/services-reference/enterprise/map-service.htm)
+    - [GroupLayer](https://developers.arcgis.com/web-map-specification/objects/groupLayer/)
+ - [ImageServer](https://developers.arcgis.com/rest/services-reference/enterprise/image-service.htm)
+
+
+Metadata for all of the above service types can be accessed using `arc_open()`. Feature data can be read in using `arc_select()` for FeatureLayer, Table, and ImageServer.
+
+This tutorial will teach you the basics of reading data from hosted image services into R as [`{terra} SpatRaster`](https://rspatial.github.io/terra/reference/rast.html) objects using`{arcgislayers}`. The source for an image service is published raster or imagery data. To learn more about image services, see the [Image services documentation](https://enterprise.arcgis.com/en/server/latest/publish-services/windows/key-concepts-for-image-services.htm).
+
+## Objective
+
+The objective of this tutorial is to teach you how to:
+
+- find a image service url from ArcGIS Online
+- read in the data from the image service
+- filter the image service by a bounding box
+- use `terra` for viewing and writing
+
+## Obtaining an image service url
+
+For this example, you will read in multispectral Landsat imagery of the Ouarkziz Crater from ArcGIS Online. 
+
+You will use the functions `arc_open()` and `arc_raster()` to read image data from ArcGIS Online into R. However, these functions require the url of the hosted image service. To find this, navigate to the [item](https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b) in ArcGIS Online. 
+
+
+![](../images/read-data/multispectral-landsat.png)
+When you scroll down, on the right hand side, you will see a button to view the service itself. 
+
+![](../images/read-data/view-url-imagery.png){width=45%}
+
+Clicking this will bring you to the Image Service, where you can more closely investigate the metadata and supported operations for this service. Navigate to your browser's search bar and copy the url.
+
+```
+https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer
+```
+
+## Opening an Image Service
+
+First, load the `arcgis` R package. If you do not have `arcgis` installed, install it with `pak::pak("r-arcgis/arcgis")` or `install.packages("arcgis")`.
+
+:::{.aside}
+`{pak}` is an R package that makes it faster and easier to install R packages. If you do not have it installed, run `install.packages("pak")` first. 
+:::
+
+```{r}
+library(arcgis)
+```
+
+Use the below code to store the image service url in an object called `url`.
+
+```{r}
+url <- "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
+```
+
+Then pass this variable to `arc_open()` and save it to `imgsrv` (image service).
+
+```{r}
+imgsrv <- arc_open(url)
+imgsrv
+```
+
+`arc_open()` will create a `ImageServer` object. Under the hood, this is really just a list containing the image service's metadata. 
+
+:::{.callout-note collapse="true" title="ImageServer details for the curious"}
+The `ImageServer` object is obtained by adding `?f=json` to the image server url and processing the json. All of the metadata is stored in the `ImageServer` object. You can see this by running `unclass(imgsrv)`. Be warned! It gets messy. 
+:::
+
+With this `ImageServer` object, you can read data from the service into R! 
+
+## Reading from a Image Service
+
+Once you have a `ImageServer` object, you can access the image data using the `arc_raster()` function. Pass the coordinates for a bounding box into the function using the `xmin`, `ymin`, `xmax`, and `ymax` arguments. Store the results of `arc_raster()` in the object `crater`. 
+
+:::{.callout-warning}
+Avoid reading in more data than you need! When extracting data from an image service, it is best practice to include a bounding box to limit the extraction to just the area that you need. Make sure to provide the bounding box coordinates in the Coordinate Reference System (CRS) of the image service or use the `bbox_crs` argument to specify another CRS for these coordinates.
+:::
+
+```{r, message = FALSE}
+crater <- arc_raster(
+  imgsrv,
+  xmin = "-846028",
+  ymin = "3373101",
+  xmax = "-833783",
+  ymax = "3380738"
+)
+crater
+```
+
+The result is a `SpatRaster` object that you can now work with using **`terra`** and any other R packages. 
+
+
+### Using `terra`
+
+From here, you can pursue your own raster and imagery workflows using `terra`. For some simple examples, consider plotting the image:
+
+```{r, message = FALSE}
+terra::plotRGB(img, stretch = "lin")
+```
+
+or saving the image locally:
+
+```{r, message = FALSE}
+terra::writeRaster(crater, "ouarkziz-crater-RGB.tif", overwrite=TRUE)
+```
+
