@@ -57,6 +57,8 @@ website:
         - href: docs/geocode/reverse-geocoding.qmd
           text: "Reverse Geocoding"
       - section: Places 
+        contents: 
+        - docs/places/overview.qmd
 
 
             # - section: ArcGIS Pro
