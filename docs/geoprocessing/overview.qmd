@@ -1,0 +1,19 @@
+---
+title: Overview
+---
+
+Much like a Python geoprocessing (GP) [script tool](https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm), you can also create R-based GP script tools and toolboxes utilizing the power of R. 
+
+Geoprocessing script tools that use R can be used in the same way that python geoprocessing script tools can be used. They can
+
+- be ran from the ArcGIS Pro geoprocessing pane
+- can be imported and called by arcpy
+- can be used inside of modelbuilder 
+
+Geoprocessing script tools can be useful when there is a part of your workflow that you use R for and would like to be able to do that step from ArcGIS Pro. Or, alternatively, there may be a bespoke tool or process that you may have developed in R and want to have your GIS analysts use from their own ArcGIS Pro. 
+
+# Pre-requisites
+
+Using R geoprocessing script tools requires R to be installed. We recommend installing the latest version of R from CRAN. Additionally, the `{arcgisbinding}` package to be installed. For installing `{arcgisbinding}` see the [installation guide](/installation.qmd)
+
+
