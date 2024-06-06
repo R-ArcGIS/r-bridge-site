@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Updating features</title>
+<title>R-ArcGIS Bridge - Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/editing/overview.html">Editing</a></li><li class="breadcrumb-item"><a href="../../docs/editing/update-features.html">Updating features</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/places/overview.html">Places</a></li><li class="breadcrumb-item"><a href="../../docs/places/overview.html">Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -223,13 +223,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Editing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../docs/editing/overview.html" class="sidebar-item-text sidebar-link">
@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/editing/update-features.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../docs/editing/update-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Updating features</span></a>
   </div>
 </li>
@@ -299,16 +299,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Places</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/places/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/places/overview.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
@@ -320,14 +320,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#place-search" id="toc-place-search" class="nav-link" data-scroll-target="#place-search">Place search</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/places/overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/editing/overview.html">Editing</a></li><li class="breadcrumb-item"><a href="../../docs/editing/update-features.html">Updating features</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/places/overview.html">Places</a></li><li class="breadcrumb-item"><a href="../../docs/places/overview.html">Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Updating features</h1>
+<h1 class="title">Overview</h1>
 </div>
 
 
@@ -344,64 +353,150 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In the previous section we added a new feature that is the average of our numeric columns and stored the results in the variable <code>nc_avgs</code>. When looking at it, we can see that the <code>AREA</code> AND <code>PERIMETER</code> values are missing. These might be helpful at a later point.</p>
+<p><code>{arcgisplaces}</code> is an R package to interface with <a href="https://developers.arcgis.com/rest/places/">ArcGIS Places Service</a>.</p>
+<blockquote class="blockquote">
+<p>The places service is a ready-to-use location service that can search for businesses and geographic locations around the world. It allows you to find, locate, and discover detailed information about each place.</p>
+</blockquote>
+<p>In order to use <code>{arcgisplaces}</code> you will need an ArcGIS Developers account. <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/get-started/">Get started here.</a></p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p><code>{arcgisplaces}</code> can be installed directly from CRAN using</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"arcgisplaces"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<p>The Places service enables you to find points of interest (POI) based on a location or a bounding box as well as filter your results based on a category or search text.</p>
+<p>Finding places:</p>
+<ul>
+<li><code>near_point()</code>: search for places near a location.</li>
+<li><code>within_extent()</code>: search for places within an extent.</li>
+<li><code>place_details()</code>: get detailed information about the places returned from <code>near_point()</code> or <code>within_extent()</code>.
+<ul>
+<li>Note: see <code>fields</code> for the possible attributes to return for place details.</li>
+</ul></li>
+</ul>
+<p>Understanding categories:</p>
+<ul>
+<li><p><code>categories()</code>: find categories by name or ID.</p></li>
+<li><p><code>category_details()</code>: get detailed information about the categories returned from <code>categories()</code>.</p></li>
+<li><p>Find place attributes such as name, address, description, opening hours, price ratings, user ratings, and social links.</p></li>
+</ul>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p><code>arcgisutils</code> is needed for authentication. The Places API supports either using an API key via <code>auth_key()</code> or one generated via OAuth2 using either <code>auth_client()</code> or <code>auth_code()</code>. See <a href="https://developers.arcgis.com/rest/places/#authentication">API documentation</a> for more.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(<span class="fu">auth_code</span>())</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>nc_url <span class="ot">&lt;-</span> <span class="st">"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0"</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(nc_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisutils)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisplaces)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Authenticate with a Developer Account API Key</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_key</span>()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set_arc_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In this section we will use the function <code>update_features()</code> to modify these values. First, let’s create a new object called <code>to_update</code> that has the <code>AREA</code> and <code>PERIMETER</code> computed.</p>
+</section>
+<section id="place-search" class="level2">
+<h2 class="anchored" data-anchor-id="place-search">Place search</h2>
+<p>You can <strong>search for places near a location</strong> with <code>near_point()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nc_area_perim <span class="ot">&lt;-</span> nc_avgs <span class="sc">|&gt;</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">AREA =</span> <span class="fu">st_area</span>(geometry) <span class="sc">/</span> <span class="fl">1e10</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">PERIMETER =</span> s2<span class="sc">::</span><span class="fu">s2_perimeter</span>(geometry) <span class="sc">/</span> <span class="fl">1e5</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>nc_area_perim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>Simple feature collection with 1 feature and 15 fields
-Geometry type: MULTIPOLYGON
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>coffee <span class="ot">&lt;-</span> <span class="fu">near_point</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fl">122.334</span>, <span class="at">y =</span> <span class="fl">47.655</span>, <span class="at">search_text =</span> <span class="st">"Coffee"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>coffee</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 8 features and 5 fields
+Geometry type: POINT
 Dimension:     XY
-Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-Geodetic CRS:  NAD27
-  object_id           AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
-1       101 12.70259 [m^2]  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...</code></pre>
-<p>Like <code>add_features()</code>, we need to be able to match columns to their respective fields. The <code>match_on</code> argument is used to specify if the column names match the field name or field alias.</p>
-<p>In the case of <code>update_features()</code> we also need to be able to match the features in the <code>sf</code> dataset to the <em>exact</em> feature in the <code>FeatureLayer</code>. We do this by providing the object ID of the feature. This tells ArcGIS <em>which</em> features we are actually going to update.</p>
-<p>When using <code>update_features()</code> we should be aware that <em>every</em> column present in the <code>sf</code> object will be updated <em>including the geometry</em>. For this reason, we should select only those columns which we truly wish to update.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>to_update <span class="ot">&lt;-</span> nc_area_perim <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(object_id, AREA, PERIMETER)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>to_update</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+Bounding box:  xmin: -1122.334 ymin: -952.345 xmax: 877.666 ymax: 1047.655
+Geodetic CRS:  WGS 84
+                          place_id                                 name
+1 f6059fc575735b5e3f558c96ab69e6f6 Irwin's Neighborhood Bakery and Cafe
+2 88a10ccf031f02ef2697591f72e1e169                          Fuel Coffee
+3 5cc2d40bf37bff287382057c5fdf4978                            Young Tea
+4 a8c6da1aa0d08fe96e5d80d0f3b3de03                     Friday Afternoon
+5 906da2fe5164619199a2f2ba9c99a650                            Starbucks
+6 957c39de6e0a0eb8afeb841d456c72fc                   Mosaic Coffeehouse
+7 4bdfa82268e67a698d0b8ea3d2df3853                          A Muddy Cup
+8 090286b411e3337850ec8fff6b43569b                           The Bounty
+  distance   categories icon                   geometry
+1     97.0 c("13002.... &lt;NA&gt; POINT (-122.3328 47.65539)
+2    723.8 c("13035.... &lt;NA&gt; POINT (-122.3369 47.66122)
+3    727.6 c("13033.... &lt;NA&gt; POINT (-122.3331 47.66152)
+4    740.8 c("13036.... &lt;NA&gt;  POINT (-122.342 47.65895)
+5    767.3 13035, C.... &lt;NA&gt; POINT (-122.3361 47.66175)
+6    774.0 c("13034.... &lt;NA&gt; POINT (-122.3276 47.66048)
+7    964.2 c("13035.... &lt;NA&gt; POINT (-122.3255 47.66149)
+8    976.2 c("13034.... &lt;NA&gt; POINT (-122.3426 47.66162)</code></pre>
 </div>
-<p>Here we use <code>sf::st_drop_geometry()</code>to remove the geometry of our object since we do not want to update the geometry in our <code>FeatureLayer</code>. We also only select the <code>object_id</code>, <code>AREA</code>, and <code>PERIMETER</code> columns so that we do not make errant updates.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>update_res <span class="ot">&lt;-</span> <span class="fu">update_features</span>(nc, to_update)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>$updateResults
-  objectId uniqueId globalId success
-1      101      101       NA    TRUE</code></pre>
-<p>Our update process was successful! We can repeat our previous query to verify this.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> nc <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Locations are returned as an sf object with the place ID, the place name, distance from the search point, a character vector of categories.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<pre><code>Simple feature collection with 1 feature and 15 fields
-Geometry type: MULTIPOLYGON
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>arcgisplaces</code> will return an sf object, but the sf package is not required to work with the package. The <code>sf</code> print method will not be used unless the package is loaded. If package size is a consideration—i.e.&nbsp;deploying an app in a Docker container—consider using <code>wk</code> or <code>rsgeo</code>.</p>
+</div>
+</div>
+<p>Details for the places can be fetched using <code>place_details()</code>. The possible fields are <a href="https://developers.arcgis.com/rest/places/place-id-get/#requestedfields">documented online</a> as well as contained in the exported vector <code>fields</code>. Because pricing is dependent upon which fields are requested, it is a required argument.</p>
+<p>To get the add <code>requested_fields = "hours"</code>. Note, that the other possible fields will still be present in the result, but completely empty.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>details <span class="ot">&lt;-</span> <span class="fu">place_details</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  coffee<span class="sc">$</span>place_id,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">requested_fields =</span> <span class="st">"rating"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>details[<span class="fu">c</span>(<span class="st">"price"</span>, <span class="st">"user"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 8 features and 2 fields
+Geometry type: POINT
 Dimension:     XY
-Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-Geodetic CRS:  NAD27
-  object_id     AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
-1       101 12.70259  33.58819    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...</code></pre>
+Bounding box:  xmin: Inf ymin: Inf xmax: -Inf ymax: -Inf
+Geodetic CRS:  WGS 84
+     price user    location
+1    Cheap  4.1 POINT EMPTY
+2    Cheap  3.9 POINT EMPTY
+3     &lt;NA&gt;   NA POINT EMPTY
+4 Moderate   NA POINT EMPTY
+5    Cheap  3.4 POINT EMPTY
+6    Cheap  3.0 POINT EMPTY
+7    Cheap  4.0 POINT EMPTY
+8     &lt;NA&gt;   NA POINT EMPTY</code></pre>
+</div>
+</div>
+<p>Or, you can search for places within a bounding box using <code>within_extent()</code>. This could be quite handy for searching within current map bounds, for example.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bakeries <span class="ot">&lt;-</span> <span class="fu">within_extent</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fl">70.356</span>, <span class="fl">43.588</span>, <span class="sc">-</span><span class="fl">70.176</span>, <span class="fl">43.7182</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">category_id =</span> <span class="st">"13002"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>bakeries[<span class="fu">c</span>(<span class="st">"name"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 24 features and 1 field
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -70.356 ymin: 43.588 xmax: -70.176 ymax: 43.7182
+Geodetic CRS:  WGS 84
+First 10 features:
+                      name                   geometry
+1             Panera Bread POINT (-70.32966 43.67791)
+2           Crumbl Cookies POINT (-70.33067 43.67675)
+3       Electric Bike Cafe  POINT (-70.2864 43.63655)
+4     BenReuben’s Knishery POINT (-70.25299 43.63748)
+5      Two Fat Cats Bakery  POINT (-70.26101 43.6327)
+6            Auntie Anne's POINT (-70.33517 43.63372)
+7           Lolli and Pops POINT (-70.33512 43.63377)
+8             Panera Bread   POINT (-70.3303 43.6367)
+9   Cookie Jar Pastry Shop POINT (-70.22644 43.63367)
+10 Bake Maine Pottery Cafe POINT (-70.25334 43.66708)</code></pre>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -821,7 +916,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/editing/update-features.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/places/overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

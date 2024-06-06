@@ -352,151 +352,37 @@
     ]
   },
   {
-    "objectID": "docs/auth/index.html",
-    "href": "docs/auth/index.html",
-    "title": "Overview",
+    "objectID": "docs/auth/storing-credentials.html",
+    "href": "docs/auth/storing-credentials.html",
+    "title": "Storing credentials",
     "section": "",
-    "text": "There a number of times when you will need to verify who you say you are when using ArcGIS location services. This is done through a process called authentication. Authentication is required when you want to"
+    "text": "Authentication requires that you provide sensitive data to the R authentication R functions. These are used to verify your identity to the services that you are calling. These sensitive variables should never be written down in your code.\nThe packages in the R-ArcGIS Bridge rely heavily on environment variables. Environment variables are dynamic values that can be set to store sensitive or configuration information, allowing you to manage and control access to crucial data across various tools and applications, including R scripts.",
+    "crumbs": [
+      "Authentication",
+      "Storing credentials"
+    ]
   },
   {
-    "objectID": "docs/auth/index.html#sign-up-for-an-account",
-    "href": "docs/auth/index.html#sign-up-for-an-account",
-    "title": "Overview",
-    "section": "Sign up for an account",
-    "text": "Sign up for an account\nTo access certain content, services, or organizations, you will need to be signed in to eithe an ArcGIS Developer account, ArcGIS Online account, or ArcGIS Enterprise account. The type of account, user type, and role you need depends on the resource you need to access and the operations you wish to undertake.\nIf you do not have an account, select one of the options below:\n\nGet started for free with ArcGIS Platform\nGet a free trial of ArcGIS Online\n\n\n\n\n\n\n\nTip\n\n\n\nTo get an account for an existing ArcGIS organization contact your ArcGIS Online or ArcGIS Enterprise administrator."
+    "objectID": "docs/auth/storing-credentials.html#environment-variables",
+    "href": "docs/auth/storing-credentials.html#environment-variables",
+    "title": "Storing credentials",
+    "section": "Environment variables",
+    "text": "Environment variables\nThe package {arcgisutils} is responsible for handling authorization for all of the R packages. With it, there are a number of different mechanism for authorizing each requiring a different combination of environment variables.\nEnvironment variables are fetched using Sys.getenv(). They are key-value pairs. For example, to find the path of R run\n\nSys.getenv(\"R_HOME\")\n\n[1] \"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources\"\n\n\nOr to set a value use Sys.setenv()\n\nSys.setenv(\"ANSWER_TO_EVERYTHING\" = 42)\nSys.getenv(\"ANSWER_TO_EVERYTHING\")\n\n[1] \"42\"",
+    "crumbs": [
+      "Authentication",
+      "Storing credentials"
+    ]
   },
   {
-    "objectID": "docs/auth/index.html#authentication-functions",
-    "href": "docs/auth/index.html#authentication-functions",
-    "title": "Overview",
-    "section": "Authentication functions",
-    "text": "Authentication functions\nAt a high-level, the R package {arcgisutils} provides the following functions for authentication:\n\nauth_key(): uses a developer API key\nauth_user(): username and password\nauth_code(): OAuth2 Code flow\nauth_client(): OAuth2 client flow\nauth_binding(): inherits auth from ArcGIS Pro"
-  },
-  {
-    "objectID": "geoprocessing-tools.html",
-    "href": "geoprocessing-tools.html",
-    "title": "Geoprocessing Tools",
-    "section": "",
-    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nThe basic anatomy of an R-based GP script tool is like so:\n\n\nmy-geoprocessing-tool.R\n\n1tool_exec &lt;- function(in_params, out_params) {\n  # ... do things here.. \n2  out_params\n}\n\n\n1\n\nTwo arguments capture input and output parameters\n\n2\n\nOutput parameters are returned to be captured by ArcGIS Pro\n\n\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument."
-  },
-  {
-    "objectID": "geoprocessing-tools.html#overview",
-    "href": "geoprocessing-tools.html#overview",
-    "title": "Geoprocessing Tools",
-    "section": "",
-    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nThe basic anatomy of an R-based GP script tool is like so:\n\n\nmy-geoprocessing-tool.R\n\n1tool_exec &lt;- function(in_params, out_params) {\n  # ... do things here.. \n2  out_params\n}\n\n\n1\n\nTwo arguments capture input and output parameters\n\n2\n\nOutput parameters are returned to be captured by ArcGIS Pro\n\n\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument."
-  },
-  {
-    "objectID": "geoprocessing-tools.html#input-and-output-parameters",
-    "href": "geoprocessing-tools.html#input-and-output-parameters",
-    "title": "Geoprocessing Tools",
-    "section": "Input and Output Parameters",
-    "text": "Input and Output Parameters\nThere must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are in_params and out_params. The first argument will always refer to the input parameters and the second to the outputs.\nin_params and out_params are named lists. The elements of these lists are determined by the direction of a parameter.\n\nIf the direction is Input, it will be contained in in_params. Likewise, if the direction is Output, it will be contained in out_params."
-  },
-  {
-    "objectID": "geoprocessing-tools.html#using-parameters",
-    "href": "geoprocessing-tools.html#using-parameters",
-    "title": "Geoprocessing Tools",
-    "section": "Using parameters",
-    "text": "Using parameters\nValues can be extracted from the in_params and out_params lists by the name or position of the parameter. It is strongly recommended to use name-based indexing rather than position-based indexing for clarity.\n\n\n\n\n\n\nCaution\n\n\n\nThe name of the parameter must match the value in the Name (not Label) column in the Parameters tab of the Tool Properties.\n\n\nThis is an example of a function to parse a date parameter with the name date:\ntool_exec &lt;- function(in_params, out_params) {\n  # fetch the date parameter\n  date_str &lt;- in_params[[\"date\"]]\n  \n  # parse it using {anytime}\n  clean_date &lt;- anytime::anytime(date_str)\n  \n  # ... do additional things\n  \n  # return values to ArcGIS Pro\n  out_params\n}\n\nReturning values to ArcGIS Pro\nAt the end of the tool_exec() function above, the out_params object is returned. Returning the output parameters using this syntax allows ArcGIS Pro to capture and use the outputs of the script tool.\nNotably, the output parameters are useful in linking one tool to another, for example via use in ModelBuilder or in an arcpy script.\nSee Using R script tools with arcpy.\n\n\nParameter types\nThere are number of different parameter types that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: integer, double, character, logical, or NULL.\n\n\n\n\n\n\nTip\n\n\n\nA scalar value is a vector with only a single element.\n\n\nIt is incumbent upon the developer to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by arcgisbinding. Below are examples of common parameter types and how they are handled by arcgisbinding:\n\nData type mapping\n\n\n\n\n\n\nArcGIS Pro Parameter Type\nR Data Type\n\n\n\n\nString\ncharacter\n\n\nBoolean\nlogical\n\n\nDouble\nnumeric\n\n\nDate\ncharacter in the format of your system e.g. \"11/17/2023 4:35:57 PM\"\n\n\nField\ncharacter the field name of a feature class\n\n\nFolder\ncharacter absolute path e.g. \"C:\\\\Users\\username\\Documents\"\n\n\nFeature Class\ncharacterabsolute path e.g. \"C:\\\\Users\\username\\mydatabase.gdb\\\\feature_class\n\n\nSpatial Reference\ncharacter a string representation of the spatial reference e.g. \"PROJCS[\"....\"]\"\n\n\n\nFor a complete list of parameter data types, see Geoprocessing data types.\n\n\nMultiple Values\nWhen selecting the Multiple values check box in the parameter data type dialog box, users can then provide multiple inputs of that type.\n\nWhen the Multiple values option is enabled, the parameter returns a list containing each of the input values.\nNote that when multiple values are provided, they will be captured in R as a list of scalars. Take the below input, for example:\n\nIn R, this parameter value would be list(\"string 1\", \"string 2\") and not c(\"string 1\", \"string 2\").\n\n\n\n\n\n\nTip\n\n\n\nTo turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector, use unlist(). For example unlist(list(\"string 1\", \"string 2\")) returns c(\"string 1\", \"string 2\")."
-  },
-  {
-    "objectID": "geoprocessing-tools.html#common-patterns",
-    "href": "geoprocessing-tools.html#common-patterns",
-    "title": "Geoprocessing Tools",
-    "section": "Common Patterns",
-    "text": "Common Patterns\n\nReading a Feature Class\nReading a feature class using arcgisbinding and bringing the results into R as an sf object is a common pattern. To do this, use the functions arc.open(), arc.select(), and arc.data2sf().\ntool_exec &lt;- function(in_params, out_params) {\n\n  fclass &lt;- arcgisbinding::arc.open(in_params[[\"fc_path\"]])\n  \n  fclass_selected &lt;- arcgisbinding::arc.select(\n    fclass,\n    # fields = c(\"optional\", \"fields\", \"to\", \"read\"),\n    # where_clause = \"optional sql where clause to filter\"\n  )\n  \n  fclass_sf &lt;- arcgisbinding::arc.data2sf(fclass_selected)\n}\n\n\n\n\n\n\nNote\n\n\n\nTo filter or select columns from a dataset, consider using the fields and where_clause arguments of arc.select() to reduce the amount of data read into memory.\narc.select() returns a data.frame with fields and a special geometry column which is incompatible with sf. Use arc.data2sf() to convert it to an sf object.\n\n\n\n\nWriting a Feature Class\nIt is quite common to write the results of an analysis to a file geodatabase. This can be done with arc.write(). A Feature Class type parameter can be used in the out_params list object to capture a user-defined output path.\narc.write() requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are data.frame, sf, RasterLayer or RasterBrick.\n\n\n\n\n\n\nNote\n\n\n\nSupport for {terra} is planned to accompany the ArcGIS Pro 3.3 release.\n\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # extract the path to write to\n  out_fp &lt;- out_params[[\"output_fclass\"]]\n  \n  # write the `sf_object` to a geodatabase\n  arcgisbinding::arc.write(out_fp, sf_object)\n  \n}\n\n\nInstalling Required Packages\nWhen sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages can be automatically installed the first time the script tool is executed.\nThe script tool can check to see if the required package is installed and, if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:\ninstall_if_not &lt;- function(pkg) {\n  if (!requireNamespace(pkg)) {\n    message(\"Installing required package `{\", pkg, \"}`\")\n    install.packages(pkg)\n  }\n}\nThis function uses requireNamespace() which attempts to load the provided package. If it succeeds, it returns TRUE, and if not it returns FALSE. The function checks to see if FALSE is returned and, if so, installs the package and prints an informative message.\nFor example, if the script requires the package {spdep} and it is not installed, the function will print the message and install the package.\ntool_exec &lt;- function(in_params, out_params) {\n  # check for required packages \n  install_if_not(\"spdep\")\n  \n  # do other things with spdep\n  # ...\n}"
-  },
-  {
-    "objectID": "geoprocessing-tools.html#using-progressors",
-    "href": "geoprocessing-tools.html#using-progressors",
-    "title": "Geoprocessing Tools",
-    "section": "Using Progressors",
-    "text": "Using Progressors\nGeoprocessing tools have a progressor, which includes both a progress label and a progress bar. The default progressor continuously moves back and forth to indicate the script is running. Using arc.progress_label() and arc.progress_pos() allows fine control over the script progress. Updating the progressor isn’t necessary, but is useful in situations where solely outputting messages to the dialog is insufficient to communicate script progress.\n\n\n\n\n\n\n\n\n\nDefault Progressor\n\n\n\n\n\n\n\nStep Progressor\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nRead more in the Understanding the progressor in script tools article.\n\n\nUsing arc.progress_label() allows control over the label that is displayed at the top of the running script. For example, it might be used to display the current step of the analysis taking place. Using arc.progress_pos() allows control over the progressor position displayed at the top of the running script. The position is an integer percentage, 0 to 100, that the progress bar should be set to, with 100 indicating the script has completed (100%).\nlibrary(arcgisbinding)\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # read feature class \n  arc.progress_label(\"Reading Feature Class\")\n  fclass &lt;- arc.open(in_params[[\"input_fclass\"]])\n  \n  # convert to sf\n  arc.progress_label(\"Converting Feature Class to sf\")\n  sf_obj &lt;- arc.data2sf(arc.select(fclass))\n  \n  # do other things \n  arc.progress_label(\"Doing other computations\")\n  \n  return(out_params)\n}"
-  },
-  {
-    "objectID": "geoprocessing-tools.html#arcpy-integration",
-    "href": "geoprocessing-tools.html#arcpy-integration",
-    "title": "Geoprocessing Tools",
-    "section": "Using R script tools with arcpy",
-    "text": "Using R script tools with arcpy"
-  },
-  {
-    "objectID": "geoprocessing-tools.html#dependent-parameters",
-    "href": "geoprocessing-tools.html#dependent-parameters",
-    "title": "Geoprocessing Tools",
-    "section": "Dependent Parameters",
-    "text": "Dependent Parameters\n\nAutopopulate field drop-down using dependent parameter"
-  },
-  {
-    "objectID": "packages.html",
-    "href": "packages.html",
-    "title": "Packages",
-    "section": "",
-    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
-  },
-  {
-    "objectID": "packages.html#arcgisbinding",
-    "href": "packages.html#arcgisbinding",
-    "title": "Packages",
-    "section": "",
-    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
-  },
-  {
-    "objectID": "packages.html#arcgis",
-    "href": "packages.html#arcgis",
-    "title": "Packages",
-    "section": "{arcgis}",
-    "text": "{arcgis}\nFor analysts & data scientists\n\narcgis is a metapackage that loads all location services packages for you."
-  },
-  {
-    "objectID": "packages.html#arcgislayers",
-    "href": "packages.html#arcgislayers",
-    "title": "Packages",
-    "section": "{arcgislayers}",
-    "text": "{arcgislayers}\nFor analysts & data scientists\n\nInterfaces with Feature Services and Image Servers. Enables you to read and write to services directly from R."
-  },
-  {
-    "objectID": "packages.html#arcgisutils",
-    "href": "packages.html#arcgisutils",
-    "title": "Packages",
-    "section": "{arcgisutils}",
-    "text": "{arcgisutils}\nFor Package Developers\n\nA low-level package to handle authorization and conversion to and from Esri json formats."
-  },
-  {
-    "objectID": "packages.html#arcpbf",
-    "href": "packages.html#arcpbf",
-    "title": "Packages",
-    "section": "{arcpbf}",
-    "text": "{arcpbf}\nFor Package Developers \n\nRead ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests."
-  },
-  {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
-    "section": "",
-    "text": "{arcgisbinding} - documentation | vignette\n{arcgis} - documentation\n{arcgislayers} - documentation\n{arcgisutils} - documentation\n{arcpbf} - documentation\n\n\n\n\n\nUsing the R-ArcGIS Bridge with {arcgisbinding}\nArcGIS Learn Lesson: Get Started with R and ArcGIS\nArcGIS Technology for Spatial Data Science"
-  },
-  {
-    "objectID": "resources.html#learn-about-r-arcgis-bridge",
-    "href": "resources.html#learn-about-r-arcgis-bridge",
-    "title": "Resources",
-    "section": "",
-    "text": "{arcgisbinding} - documentation | vignette\n{arcgis} - documentation\n{arcgislayers} - documentation\n{arcgisutils} - documentation\n{arcpbf} - documentation\n\n\n\n\n\nUsing the R-ArcGIS Bridge with {arcgisbinding}\nArcGIS Learn Lesson: Get Started with R and ArcGIS\nArcGIS Technology for Spatial Data Science"
-  },
-  {
-    "objectID": "resources.html#learn-about-arcgis",
-    "href": "resources.html#learn-about-arcgis",
-    "title": "Resources",
-    "section": "Learn about ArcGIS",
-    "text": "Learn about ArcGIS\n\nArcGIS location services documentation\nArcGIS REST API documentation\nArcGIS Pro resources\nArcGIS Online resources\nArcGIS Enterprise resources\nArcGIS Tutorial Gallery\nEsri Training"
-  },
-  {
-    "objectID": "resources.html#learn-about-r",
-    "href": "resources.html#learn-about-r",
-    "title": "Resources",
-    "section": "Learn about R",
-    "text": "Learn about R\n\nR\nR for Data Science\nGeocomputation with R\nSpatial Data Science: With Applications in R\nCRAN"
+    "objectID": "docs/auth/storing-credentials.html#using-an-.renviron-file",
+    "href": "docs/auth/storing-credentials.html#using-an-.renviron-file",
+    "title": "Storing credentials",
+    "section": "Using an .Renviron file",
+    "text": "Using an .Renviron file\nEnvironment variables should never be included in your code. We recommend using an .Renviron file at minimum to store your credentials.\nYou can use the usethis to edit the file. Ensure it is installed and run the following in your text editor:\n\n\n\n\n\n\nWarning\n\n\n\nIf you modify environment variables you will need to restart your R session for the change to be registered.\n\n\nusethis::edit_r_environ()\n\n\n\n\n\n\n.Renviron scopes\n\n\n\n\n\n.Renviron files can be created at a user level or a project level. It is recommended to use project level .Renviron files when deploying scripts to production. If most of your work is interactive then a user level file is sufficient.\nProject scoped .Renviron files store environment variables that are available for the project only. The .Renviron is stored at the root folder level.\nUser scoped .Renviron files store environment variables in the user’s home directory. The environment variables will be available to you in any project you open. However, if you share your project, the environment variables will not be shared with it.\n\n\n\nThis will open your .Renviron file for you to edit.\n# used for OAuth Code & Client\nARCGIS_CLIENT=your-client-id\n# used for OAuth Client flow\nARCGIS_SECRET=your-super-secret-key\n# used for publishing and Username/Password auth\nARCGIS_USER=your-user-name\n# used for API Key auth\nARCGIS_API_KEY=your-developer-api-key\n# specify if not using ArcGIS Online\nARCGIS_HOST=https://your-portal.com/",
+    "crumbs": [
+      "Authentication",
+      "Storing credentials"
+    ]
   },
   {
     "objectID": "docs/installation.html",
@@ -559,36 +445,205 @@
     ]
   },
   {
-    "objectID": "docs/auth/storing-credentials.html",
-    "href": "docs/auth/storing-credentials.html",
-    "title": "Storing credentials",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "Authentication requires that you provide sensitive data to the R authentication R functions. These are used to verify your identity to the services that you are calling. These sensitive variables should never be written down in your code.\nThe packages in the R-ArcGIS Bridge rely heavily on environment variables. Environment variables are dynamic values that can be set to store sensitive or configuration information, allowing you to manage and control access to crucial data across various tools and applications, including R scripts.",
+    "text": "{arcgisbinding} - documentation | vignette\n{arcgis} - documentation\n{arcgislayers} - documentation\n{arcgisutils} - documentation\n{arcpbf} - documentation\n\n\n\n\n\nUsing the R-ArcGIS Bridge with {arcgisbinding}\nArcGIS Learn Lesson: Get Started with R and ArcGIS\nArcGIS Technology for Spatial Data Science"
+  },
+  {
+    "objectID": "resources.html#learn-about-r-arcgis-bridge",
+    "href": "resources.html#learn-about-r-arcgis-bridge",
+    "title": "Resources",
+    "section": "",
+    "text": "{arcgisbinding} - documentation | vignette\n{arcgis} - documentation\n{arcgislayers} - documentation\n{arcgisutils} - documentation\n{arcpbf} - documentation\n\n\n\n\n\nUsing the R-ArcGIS Bridge with {arcgisbinding}\nArcGIS Learn Lesson: Get Started with R and ArcGIS\nArcGIS Technology for Spatial Data Science"
+  },
+  {
+    "objectID": "resources.html#learn-about-arcgis",
+    "href": "resources.html#learn-about-arcgis",
+    "title": "Resources",
+    "section": "Learn about ArcGIS",
+    "text": "Learn about ArcGIS\n\nArcGIS location services documentation\nArcGIS REST API documentation\nArcGIS Pro resources\nArcGIS Online resources\nArcGIS Enterprise resources\nArcGIS Tutorial Gallery\nEsri Training"
+  },
+  {
+    "objectID": "resources.html#learn-about-r",
+    "href": "resources.html#learn-about-r",
+    "title": "Resources",
+    "section": "Learn about R",
+    "text": "Learn about R\n\nR\nR for Data Science\nGeocomputation with R\nSpatial Data Science: With Applications in R\nCRAN"
+  },
+  {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "Packages",
+    "section": "",
+    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
+  },
+  {
+    "objectID": "packages.html#arcgisbinding",
+    "href": "packages.html#arcgisbinding",
+    "title": "Packages",
+    "section": "",
+    "text": "For ArcGIS Pro users\n\nThe original R-ArcGIS Bridge package. arcgisbinding interacts with ArcGIS Pro to provide native reading and writing capabilities to local data sources as well as enables R based geoprocessing script tools."
+  },
+  {
+    "objectID": "packages.html#arcgis",
+    "href": "packages.html#arcgis",
+    "title": "Packages",
+    "section": "{arcgis}",
+    "text": "{arcgis}\nFor analysts & data scientists\n\narcgis is a metapackage that loads all location services packages for you."
+  },
+  {
+    "objectID": "packages.html#arcgislayers",
+    "href": "packages.html#arcgislayers",
+    "title": "Packages",
+    "section": "{arcgislayers}",
+    "text": "{arcgislayers}\nFor analysts & data scientists\n\nInterfaces with Feature Services and Image Servers. Enables you to read and write to services directly from R."
+  },
+  {
+    "objectID": "packages.html#arcgisutils",
+    "href": "packages.html#arcgisutils",
+    "title": "Packages",
+    "section": "{arcgisutils}",
+    "text": "{arcgisutils}\nFor Package Developers\n\nA low-level package to handle authorization and conversion to and from Esri json formats."
+  },
+  {
+    "objectID": "packages.html#arcpbf",
+    "href": "packages.html#arcpbf",
+    "title": "Packages",
+    "section": "{arcpbf}",
+    "text": "{arcpbf}\nFor Package Developers \n\nRead ArcGIS Protocol Buffer format (PBF) from R. Utilized in processing responses from REST API requests."
+  },
+  {
+    "objectID": "geoprocessing-tools.html",
+    "href": "geoprocessing-tools.html",
+    "title": "Geoprocessing Tools",
+    "section": "",
+    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nThe basic anatomy of an R-based GP script tool is like so:\n\n\nmy-geoprocessing-tool.R\n\n1tool_exec &lt;- function(in_params, out_params) {\n  # ... do things here.. \n2  out_params\n}\n\n\n1\n\nTwo arguments capture input and output parameters\n\n2\n\nOutput parameters are returned to be captured by ArcGIS Pro\n\n\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#overview",
+    "href": "geoprocessing-tools.html#overview",
+    "title": "Geoprocessing Tools",
+    "section": "",
+    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nThe basic anatomy of an R-based GP script tool is like so:\n\n\nmy-geoprocessing-tool.R\n\n1tool_exec &lt;- function(in_params, out_params) {\n  # ... do things here.. \n2  out_params\n}\n\n\n1\n\nTwo arguments capture input and output parameters\n\n2\n\nOutput parameters are returned to be captured by ArcGIS Pro\n\n\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#input-and-output-parameters",
+    "href": "geoprocessing-tools.html#input-and-output-parameters",
+    "title": "Geoprocessing Tools",
+    "section": "Input and Output Parameters",
+    "text": "Input and Output Parameters\nThere must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are in_params and out_params. The first argument will always refer to the input parameters and the second to the outputs.\nin_params and out_params are named lists. The elements of these lists are determined by the direction of a parameter.\n\nIf the direction is Input, it will be contained in in_params. Likewise, if the direction is Output, it will be contained in out_params."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#using-parameters",
+    "href": "geoprocessing-tools.html#using-parameters",
+    "title": "Geoprocessing Tools",
+    "section": "Using parameters",
+    "text": "Using parameters\nValues can be extracted from the in_params and out_params lists by the name or position of the parameter. It is strongly recommended to use name-based indexing rather than position-based indexing for clarity.\n\n\n\n\n\n\nCaution\n\n\n\nThe name of the parameter must match the value in the Name (not Label) column in the Parameters tab of the Tool Properties.\n\n\nThis is an example of a function to parse a date parameter with the name date:\ntool_exec &lt;- function(in_params, out_params) {\n  # fetch the date parameter\n  date_str &lt;- in_params[[\"date\"]]\n  \n  # parse it using {anytime}\n  clean_date &lt;- anytime::anytime(date_str)\n  \n  # ... do additional things\n  \n  # return values to ArcGIS Pro\n  out_params\n}\n\nReturning values to ArcGIS Pro\nAt the end of the tool_exec() function above, the out_params object is returned. Returning the output parameters using this syntax allows ArcGIS Pro to capture and use the outputs of the script tool.\nNotably, the output parameters are useful in linking one tool to another, for example via use in ModelBuilder or in an arcpy script.\nSee Using R script tools with arcpy.\n\n\nParameter types\nThere are number of different parameter types that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: integer, double, character, logical, or NULL.\n\n\n\n\n\n\nTip\n\n\n\nA scalar value is a vector with only a single element.\n\n\nIt is incumbent upon the developer to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by arcgisbinding. Below are examples of common parameter types and how they are handled by arcgisbinding:\n\nData type mapping\n\n\n\n\n\n\nArcGIS Pro Parameter Type\nR Data Type\n\n\n\n\nString\ncharacter\n\n\nBoolean\nlogical\n\n\nDouble\nnumeric\n\n\nDate\ncharacter in the format of your system e.g. \"11/17/2023 4:35:57 PM\"\n\n\nField\ncharacter the field name of a feature class\n\n\nFolder\ncharacter absolute path e.g. \"C:\\\\Users\\username\\Documents\"\n\n\nFeature Class\ncharacterabsolute path e.g. \"C:\\\\Users\\username\\mydatabase.gdb\\\\feature_class\n\n\nSpatial Reference\ncharacter a string representation of the spatial reference e.g. \"PROJCS[\"....\"]\"\n\n\n\nFor a complete list of parameter data types, see Geoprocessing data types.\n\n\nMultiple Values\nWhen selecting the Multiple values check box in the parameter data type dialog box, users can then provide multiple inputs of that type.\n\nWhen the Multiple values option is enabled, the parameter returns a list containing each of the input values.\nNote that when multiple values are provided, they will be captured in R as a list of scalars. Take the below input, for example:\n\nIn R, this parameter value would be list(\"string 1\", \"string 2\") and not c(\"string 1\", \"string 2\").\n\n\n\n\n\n\nTip\n\n\n\nTo turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector, use unlist(). For example unlist(list(\"string 1\", \"string 2\")) returns c(\"string 1\", \"string 2\")."
+  },
+  {
+    "objectID": "geoprocessing-tools.html#common-patterns",
+    "href": "geoprocessing-tools.html#common-patterns",
+    "title": "Geoprocessing Tools",
+    "section": "Common Patterns",
+    "text": "Common Patterns\n\nReading a Feature Class\nReading a feature class using arcgisbinding and bringing the results into R as an sf object is a common pattern. To do this, use the functions arc.open(), arc.select(), and arc.data2sf().\ntool_exec &lt;- function(in_params, out_params) {\n\n  fclass &lt;- arcgisbinding::arc.open(in_params[[\"fc_path\"]])\n  \n  fclass_selected &lt;- arcgisbinding::arc.select(\n    fclass,\n    # fields = c(\"optional\", \"fields\", \"to\", \"read\"),\n    # where_clause = \"optional sql where clause to filter\"\n  )\n  \n  fclass_sf &lt;- arcgisbinding::arc.data2sf(fclass_selected)\n}\n\n\n\n\n\n\nNote\n\n\n\nTo filter or select columns from a dataset, consider using the fields and where_clause arguments of arc.select() to reduce the amount of data read into memory.\narc.select() returns a data.frame with fields and a special geometry column which is incompatible with sf. Use arc.data2sf() to convert it to an sf object.\n\n\n\n\nWriting a Feature Class\nIt is quite common to write the results of an analysis to a file geodatabase. This can be done with arc.write(). A Feature Class type parameter can be used in the out_params list object to capture a user-defined output path.\narc.write() requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are data.frame, sf, RasterLayer or RasterBrick.\n\n\n\n\n\n\nNote\n\n\n\nSupport for {terra} is planned to accompany the ArcGIS Pro 3.3 release.\n\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # extract the path to write to\n  out_fp &lt;- out_params[[\"output_fclass\"]]\n  \n  # write the `sf_object` to a geodatabase\n  arcgisbinding::arc.write(out_fp, sf_object)\n  \n}\n\n\nInstalling Required Packages\nWhen sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages can be automatically installed the first time the script tool is executed.\nThe script tool can check to see if the required package is installed and, if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:\ninstall_if_not &lt;- function(pkg) {\n  if (!requireNamespace(pkg)) {\n    message(\"Installing required package `{\", pkg, \"}`\")\n    install.packages(pkg)\n  }\n}\nThis function uses requireNamespace() which attempts to load the provided package. If it succeeds, it returns TRUE, and if not it returns FALSE. The function checks to see if FALSE is returned and, if so, installs the package and prints an informative message.\nFor example, if the script requires the package {spdep} and it is not installed, the function will print the message and install the package.\ntool_exec &lt;- function(in_params, out_params) {\n  # check for required packages \n  install_if_not(\"spdep\")\n  \n  # do other things with spdep\n  # ...\n}"
+  },
+  {
+    "objectID": "geoprocessing-tools.html#using-progressors",
+    "href": "geoprocessing-tools.html#using-progressors",
+    "title": "Geoprocessing Tools",
+    "section": "Using Progressors",
+    "text": "Using Progressors\nGeoprocessing tools have a progressor, which includes both a progress label and a progress bar. The default progressor continuously moves back and forth to indicate the script is running. Using arc.progress_label() and arc.progress_pos() allows fine control over the script progress. Updating the progressor isn’t necessary, but is useful in situations where solely outputting messages to the dialog is insufficient to communicate script progress.\n\n\n\n\n\n\n\n\n\nDefault Progressor\n\n\n\n\n\n\n\nStep Progressor\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nRead more in the Understanding the progressor in script tools article.\n\n\nUsing arc.progress_label() allows control over the label that is displayed at the top of the running script. For example, it might be used to display the current step of the analysis taking place. Using arc.progress_pos() allows control over the progressor position displayed at the top of the running script. The position is an integer percentage, 0 to 100, that the progress bar should be set to, with 100 indicating the script has completed (100%).\nlibrary(arcgisbinding)\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # read feature class \n  arc.progress_label(\"Reading Feature Class\")\n  fclass &lt;- arc.open(in_params[[\"input_fclass\"]])\n  \n  # convert to sf\n  arc.progress_label(\"Converting Feature Class to sf\")\n  sf_obj &lt;- arc.data2sf(arc.select(fclass))\n  \n  # do other things \n  arc.progress_label(\"Doing other computations\")\n  \n  return(out_params)\n}"
+  },
+  {
+    "objectID": "geoprocessing-tools.html#arcpy-integration",
+    "href": "geoprocessing-tools.html#arcpy-integration",
+    "title": "Geoprocessing Tools",
+    "section": "Using R script tools with arcpy",
+    "text": "Using R script tools with arcpy"
+  },
+  {
+    "objectID": "geoprocessing-tools.html#dependent-parameters",
+    "href": "geoprocessing-tools.html#dependent-parameters",
+    "title": "Geoprocessing Tools",
+    "section": "Dependent Parameters",
+    "text": "Dependent Parameters\n\nAutopopulate field drop-down using dependent parameter"
+  },
+  {
+    "objectID": "docs/auth/index.html",
+    "href": "docs/auth/index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "There a number of times when you will need to verify who you say you are when using ArcGIS location services. This is done through a process called authentication. Authentication is required when you want to"
+  },
+  {
+    "objectID": "docs/auth/index.html#sign-up-for-an-account",
+    "href": "docs/auth/index.html#sign-up-for-an-account",
+    "title": "Overview",
+    "section": "Sign up for an account",
+    "text": "Sign up for an account\nTo access certain content, services, or organizations, you will need to be signed in to eithe an ArcGIS Developer account, ArcGIS Online account, or ArcGIS Enterprise account. The type of account, user type, and role you need depends on the resource you need to access and the operations you wish to undertake.\nIf you do not have an account, select one of the options below:\n\nGet started for free with ArcGIS Platform\nGet a free trial of ArcGIS Online\n\n\n\n\n\n\n\nTip\n\n\n\nTo get an account for an existing ArcGIS organization contact your ArcGIS Online or ArcGIS Enterprise administrator."
+  },
+  {
+    "objectID": "docs/auth/index.html#authentication-functions",
+    "href": "docs/auth/index.html#authentication-functions",
+    "title": "Overview",
+    "section": "Authentication functions",
+    "text": "Authentication functions\nAt a high-level, the R package {arcgisutils} provides the following functions for authentication:\n\nauth_key(): uses a developer API key\nauth_user(): username and password\nauth_code(): OAuth2 Code flow\nauth_client(): OAuth2 client flow\nauth_binding(): inherits auth from ArcGIS Pro"
+  },
+  {
+    "objectID": "docs/places/overview.html",
+    "href": "docs/places/overview.html",
+    "title": "Overview",
+    "section": "",
+    "text": "{arcgisplaces} is an R package to interface with ArcGIS Places Service.\nIn order to use {arcgisplaces} you will need an ArcGIS Developers account. Get started here.",
     "crumbs": [
-      "Authentication",
-      "Storing credentials"
+      "Places",
+      "Overview"
     ]
   },
   {
-    "objectID": "docs/auth/storing-credentials.html#environment-variables",
-    "href": "docs/auth/storing-credentials.html#environment-variables",
-    "title": "Storing credentials",
-    "section": "Environment variables",
-    "text": "Environment variables\nThe package {arcgisutils} is responsible for handling authorization for all of the R packages. With it, there are a number of different mechanism for authorizing each requiring a different combination of environment variables.\nEnvironment variables are fetched using Sys.getenv(). They are key-value pairs. For example, to find the path of R run\n\nSys.getenv(\"R_HOME\")\n\n[1] \"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources\"\n\n\nOr to set a value use Sys.setenv()\n\nSys.setenv(\"ANSWER_TO_EVERYTHING\" = 42)\nSys.getenv(\"ANSWER_TO_EVERYTHING\")\n\n[1] \"42\"",
+    "objectID": "docs/places/overview.html#installation",
+    "href": "docs/places/overview.html#installation",
+    "title": "Overview",
+    "section": "Installation",
+    "text": "Installation\n{arcgisplaces} can be installed directly from CRAN using\ninstall.packages(\"arcgisplaces\")",
     "crumbs": [
-      "Authentication",
-      "Storing credentials"
+      "Places",
+      "Overview"
     ]
   },
   {
-    "objectID": "docs/auth/storing-credentials.html#using-an-.renviron-file",
-    "href": "docs/auth/storing-credentials.html#using-an-.renviron-file",
-    "title": "Storing credentials",
-    "section": "Using an .Renviron file",
-    "text": "Using an .Renviron file\nEnvironment variables should never be included in your code. We recommend using an .Renviron file at minimum to store your credentials.\nYou can use the usethis to edit the file. Ensure it is installed and run the following in your text editor:\n\n\n\n\n\n\nWarning\n\n\n\nIf you modify environment variables you will need to restart your R session for the change to be registered.\n\n\nusethis::edit_r_environ()\n\n\n\n\n\n\n.Renviron scopes\n\n\n\n\n\n.Renviron files can be created at a user level or a project level. It is recommended to use project level .Renviron files when deploying scripts to production. If most of your work is interactive then a user level file is sufficient.\nProject scoped .Renviron files store environment variables that are available for the project only. The .Renviron is stored at the root folder level.\nUser scoped .Renviron files store environment variables in the user’s home directory. The environment variables will be available to you in any project you open. However, if you share your project, the environment variables will not be shared with it.\n\n\n\nThis will open your .Renviron file for you to edit.\n# used for OAuth Code & Client\nARCGIS_CLIENT=your-client-id\n# used for OAuth Client flow\nARCGIS_SECRET=your-super-secret-key\n# used for publishing and Username/Password auth\nARCGIS_USER=your-user-name\n# used for API Key auth\nARCGIS_API_KEY=your-developer-api-key\n# specify if not using ArcGIS Online\nARCGIS_HOST=https://your-portal.com/",
+    "objectID": "docs/places/overview.html#usage",
+    "href": "docs/places/overview.html#usage",
+    "title": "Overview",
+    "section": "Usage",
+    "text": "Usage\nThe Places service enables you to find points of interest (POI) based on a location or a bounding box as well as filter your results based on a category or search text.\nFinding places:\n\nnear_point(): search for places near a location.\nwithin_extent(): search for places within an extent.\nplace_details(): get detailed information about the places returned from near_point() or within_extent().\n\nNote: see fields for the possible attributes to return for place details.\n\n\nUnderstanding categories:\n\ncategories(): find categories by name or ID.\ncategory_details(): get detailed information about the categories returned from categories().\nFind place attributes such as name, address, description, opening hours, price ratings, user ratings, and social links.",
     "crumbs": [
-      "Authentication",
-      "Storing credentials"
+      "Places",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/places/overview.html#examples",
+    "href": "docs/places/overview.html#examples",
+    "title": "Overview",
+    "section": "Examples",
+    "text": "Examples\narcgisutils is needed for authentication. The Places API supports either using an API key via auth_key() or one generated via OAuth2 using either auth_client() or auth_code(). See API documentation for more.\n\nlibrary(arcgisutils)\nlibrary(arcgisplaces)\n\n# Authenticate with a Developer Account API Key\ntoken &lt;- auth_key()\nset_arc_token(token)",
+    "crumbs": [
+      "Places",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/places/overview.html#place-search",
+    "href": "docs/places/overview.html#place-search",
+    "title": "Overview",
+    "section": "Place search",
+    "text": "Place search\nYou can search for places near a location with near_point().\n\ncoffee &lt;- near_point(x = -122.334, y = 47.655, search_text = \"Coffee\")\ncoffee\n\nSimple feature collection with 8 features and 5 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: -1122.334 ymin: -952.345 xmax: 877.666 ymax: 1047.655\nGeodetic CRS:  WGS 84\n                          place_id                                 name\n1 f6059fc575735b5e3f558c96ab69e6f6 Irwin's Neighborhood Bakery and Cafe\n2 88a10ccf031f02ef2697591f72e1e169                          Fuel Coffee\n3 5cc2d40bf37bff287382057c5fdf4978                            Young Tea\n4 a8c6da1aa0d08fe96e5d80d0f3b3de03                     Friday Afternoon\n5 906da2fe5164619199a2f2ba9c99a650                            Starbucks\n6 957c39de6e0a0eb8afeb841d456c72fc                   Mosaic Coffeehouse\n7 4bdfa82268e67a698d0b8ea3d2df3853                          A Muddy Cup\n8 090286b411e3337850ec8fff6b43569b                           The Bounty\n  distance   categories icon                   geometry\n1     97.0 c(\"13002.... &lt;NA&gt; POINT (-122.3328 47.65539)\n2    723.8 c(\"13035.... &lt;NA&gt; POINT (-122.3369 47.66122)\n3    727.6 c(\"13033.... &lt;NA&gt; POINT (-122.3331 47.66152)\n4    740.8 c(\"13036.... &lt;NA&gt;  POINT (-122.342 47.65895)\n5    767.3 13035, C.... &lt;NA&gt; POINT (-122.3361 47.66175)\n6    774.0 c(\"13034.... &lt;NA&gt; POINT (-122.3276 47.66048)\n7    964.2 c(\"13035.... &lt;NA&gt; POINT (-122.3255 47.66149)\n8    976.2 c(\"13034.... &lt;NA&gt; POINT (-122.3426 47.66162)\n\n\nLocations are returned as an sf object with the place ID, the place name, distance from the search point, a character vector of categories.\n\n\n\n\n\n\nTip\n\n\n\narcgisplaces will return an sf object, but the sf package is not required to work with the package. The sf print method will not be used unless the package is loaded. If package size is a consideration—i.e. deploying an app in a Docker container—consider using wk or rsgeo.\n\n\nDetails for the places can be fetched using place_details(). The possible fields are documented online as well as contained in the exported vector fields. Because pricing is dependent upon which fields are requested, it is a required argument.\nTo get the add requested_fields = \"hours\". Note, that the other possible fields will still be present in the result, but completely empty.\n\ndetails &lt;- place_details(\n  coffee$place_id,\n  requested_fields = \"rating\"\n)\n\ndetails[c(\"price\", \"user\")]\n\nSimple feature collection with 8 features and 2 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: Inf ymin: Inf xmax: -Inf ymax: -Inf\nGeodetic CRS:  WGS 84\n     price user    location\n1    Cheap  4.1 POINT EMPTY\n2    Cheap  3.9 POINT EMPTY\n3     &lt;NA&gt;   NA POINT EMPTY\n4 Moderate   NA POINT EMPTY\n5    Cheap  3.4 POINT EMPTY\n6    Cheap  3.0 POINT EMPTY\n7    Cheap  4.0 POINT EMPTY\n8     &lt;NA&gt;   NA POINT EMPTY\n\n\nOr, you can search for places within a bounding box using within_extent(). This could be quite handy for searching within current map bounds, for example.\n\nbakeries &lt;- within_extent(\n  -70.356, 43.588, -70.176, 43.7182,\n  category_id = \"13002\"\n)\n\nbakeries[c(\"name\")]\n\nSimple feature collection with 24 features and 1 field\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: -70.356 ymin: 43.588 xmax: -70.176 ymax: 43.7182\nGeodetic CRS:  WGS 84\nFirst 10 features:\n                      name                   geometry\n1             Panera Bread POINT (-70.32966 43.67791)\n2           Crumbl Cookies POINT (-70.33067 43.67675)\n3       Electric Bike Cafe  POINT (-70.2864 43.63655)\n4     BenReuben’s Knishery POINT (-70.25299 43.63748)\n5      Two Fat Cats Bakery  POINT (-70.26101 43.6327)\n6            Auntie Anne's POINT (-70.33517 43.63372)\n7           Lolli and Pops POINT (-70.33512 43.63377)\n8             Panera Bread   POINT (-70.3303 43.6367)\n9   Cookie Jar Pastry Shop POINT (-70.22644 43.63367)\n10 Bake Maine Pottery Cafe POINT (-70.25334 43.66708)",
+    "crumbs": [
+      "Places",
+      "Overview"
     ]
   },
   {
