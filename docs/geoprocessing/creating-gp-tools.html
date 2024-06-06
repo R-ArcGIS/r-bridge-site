@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - Adding features</title>
+<title>R-ArcGIS Bridge - Making Geoprocessing Tools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/editing/overview.html">Editing</a></li><li class="breadcrumb-item"><a href="../../docs/editing/add-features.html">Adding features</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/geoprocessing/overview.html">Geoprocessing</a></li><li class="breadcrumb-item"><a href="../../docs/geoprocessing/creating-gp-tools.html">Making Geoprocessing Tools</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -223,13 +223,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Editing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../docs/editing/overview.html" class="sidebar-item-text sidebar-link">
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/editing/add-features.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../docs/editing/add-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Adding features</span></a>
   </div>
 </li>
@@ -316,13 +316,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
  <span class="menu-text">Geoprocessing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../docs/geoprocessing/overview.html" class="sidebar-item-text sidebar-link">
@@ -331,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/geoprocessing/creating-gp-tools.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/geoprocessing/creating-gp-tools.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Making Geoprocessing Tools</span></a>
   </div>
 </li>
@@ -347,17 +347,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link active" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
-  <li><a href="#adding-features" id="toc-adding-features" class="nav-link" data-scroll-target="#adding-features">Adding features</a></li>
+  <li><a href="#input-and-output-parameters" id="toc-input-and-output-parameters" class="nav-link active" data-scroll-target="#input-and-output-parameters">Input and Output Parameters</a></li>
+  <li><a href="#using-parameters" id="toc-using-parameters" class="nav-link" data-scroll-target="#using-parameters">Using parameters</a>
+  <ul class="collapse">
+  <li><a href="#returning-values-to-arcgis-pro" id="toc-returning-values-to-arcgis-pro" class="nav-link" data-scroll-target="#returning-values-to-arcgis-pro">Returning values to ArcGIS Pro</a></li>
+  <li><a href="#parameter-types" id="toc-parameter-types" class="nav-link" data-scroll-target="#parameter-types">Parameter types</a></li>
+  <li><a href="#multiple-values" id="toc-multiple-values" class="nav-link" data-scroll-target="#multiple-values">Multiple Values</a></li>
+  </ul></li>
+  <li><a href="#common-patterns" id="toc-common-patterns" class="nav-link" data-scroll-target="#common-patterns">Common Patterns</a>
+  <ul class="collapse">
+  <li><a href="#reading-a-feature-class" id="toc-reading-a-feature-class" class="nav-link" data-scroll-target="#reading-a-feature-class">Reading a Feature Class</a></li>
+  <li><a href="#writing-a-feature-class" id="toc-writing-a-feature-class" class="nav-link" data-scroll-target="#writing-a-feature-class">Writing a Feature Class</a></li>
+  <li><a href="#installing-required-packages" id="toc-installing-required-packages" class="nav-link" data-scroll-target="#installing-required-packages">Installing Required Packages</a></li>
+  </ul></li>
+  <li><a href="#using-progressors" id="toc-using-progressors" class="nav-link" data-scroll-target="#using-progressors">Using Progressors</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/editing/add-features.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/geoprocessing/creating-gp-tools.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/editing/overview.html">Editing</a></li><li class="breadcrumb-item"><a href="../../docs/editing/add-features.html">Adding features</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/geoprocessing/overview.html">Geoprocessing</a></li><li class="breadcrumb-item"><a href="../../docs/geoprocessing/creating-gp-tools.html">Making Geoprocessing Tools</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Adding features</h1>
+<h1 class="title">Making Geoprocessing Tools</h1>
 </div>
 
 
@@ -374,139 +386,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Programmatically, adding, deleting, or updating features using <code>{arcgis}</code> is a straightforward process. In this workflow, we illustrate how to add, update, or delete features from an existing hosted feature layer or table.</p>
-<p>We will go over the functions:</p>
-<ul>
-<li><code>add_features()</code></li>
-<li><code>update_features()</code></li>
-<li><code>delete_features()</code></li>
-</ul>
-<section id="pre-requisites" class="level2">
-<h2 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h2>
-<p>We will use the the <em>North Carolina SIDS</em> dataset we created in the <a href="../publishing.qmd"><strong>Publishing from R</strong></a> tutorial. To follow along, be sure that you have followed that tutorial and have a <code>FeatureLayer</code> that you can modify. If you have not yet configured your environment to authorize with an online portal, start at <a href="../connecting-to-a-portal.qmd"><strong>Connecting to your portal</strong></a>.</p>
-</section>
-<section id="adding-features" class="level2">
-<h2 class="anchored" data-anchor-id="adding-features">Adding features</h2>
-<p>For this example, we will add a single feature to the North Carolina SIDS dataset that is a summary over the entire state. Before we can begin, we must load the package and authorize ourselves as a user.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>token <span class="ot">&lt;-</span> <span class="fu">auth_code</span>()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_auth_token</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The basic anatomy of an R-based GP script tool is like so:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>my-geoprocessing-tool.R</strong></pre>
 </div>
-<p>Next, we will create the feature that we want to add using the <code>sf</code> package. We’ll read in the <code>nc.shp</code> file from the <code>sf</code> package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>nc_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nc_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 100 features and 14 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-Geodetic CRS:  NAD27
-# A tibble: 100 × 15
-    AREA PERIMETER CNTY_ CNTY_ID NAME  FIPS  FIPSNO CRESS_ID BIR74 SID74 NWBIR74
-   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
- 1 0.114      1.44  1825    1825 Ashe  37009  37009        5  1091     1      10
- 2 0.061      1.23  1827    1827 Alle… 37005  37005        3   487     0      10
- 3 0.143      1.63  1828    1828 Surry 37171  37171       86  3188     5     208
- 4 0.07       2.97  1831    1831 Curr… 37053  37053       27   508     1     123
- 5 0.153      2.21  1832    1832 Nort… 37131  37131       66  1421     9    1066
- 6 0.097      1.67  1833    1833 Hert… 37091  37091       46  1452     7     954
- 7 0.062      1.55  1834    1834 Camd… 37029  37029       15   286     0     115
- 8 0.091      1.28  1835    1835 Gates 37073  37073       37   420     0     254
- 9 0.118      1.42  1836    1836 Warr… 37185  37185       93   968     4     748
-10 0.124      1.43  1837    1837 Stok… 37169  37169       85  1612     1     160
-# ℹ 90 more rows
-# ℹ 4 more variables: BIR79 &lt;dbl&gt;, SID79 &lt;dbl&gt;, NWBIR79 &lt;dbl&gt;,
-#   geometry &lt;MULTIPOLYGON [°]&gt;</code></pre>
+<div class="sourceCode" id="annotated-cell-1" data-filename="my-geoprocessing-tool.R"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... do things here.. </span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>  out_params</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>Let’s calculate the average birth rate, SIDS rate, and the non-white birth rate and SIDS rate for the entire state. We will add this as a single feature to our existing feature layer. To do so, we will use the R package <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a> for manipulating our data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>nc_summary <span class="ot">&lt;-</span> nc_sf <span class="sc">|&gt;</span>  </span>
-<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-5" class="code-annotation-target"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">.cols =</span> <span class="fu">c</span>(<span class="fu">ends_with</span>(<span class="st">"74"</span>), <span class="fu">ends_with</span>(<span class="st">"79"</span>)),</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-7" class="code-annotation-target"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> mean</span>
-<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-9" class="code-annotation-target"><a href="#annotated-cell-3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">NAME =</span> <span class="st">"Total"</span></span>
-<span id="annotated-cell-3-10"><a href="#annotated-cell-3-10" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12" aria-hidden="true" tabindex="-1"></a>nc_summary</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="5" data-code-annotation="1">The <a href="https://dplyr.tidyverse.org/reference/across.html"><code>across()</code></a> function applies a function to multiple columns at once.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Two arguments capture input and output parameters</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="2">We specify the columns we will be applying a function to in <code>.cols</code>. We use the <code>tidyselect</code> helpers to catch any columns that end with <code>74</code> or <code>79</code>.</span>
-</dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="7" data-code-annotation="3">The <code>.fns</code> argument specifies which functions will be applied to the columns. In this case, we apply on the <code>mean()</code> function to calculate the average.</span>
-</dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="9" data-code-annotation="4">The <code>NAME</code> field is set manually to the value of <code>"Total"</code> to indicate that it is not a county.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">Output parameters are returned to be captured by ArcGIS Pro</span>
 </dd>
 </dl>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 1 feature and 7 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-Geodetic CRS:  NAD27
-# A tibble: 1 × 8
-  BIR74 SID74 NWBIR74 BIR79 SID79 NWBIR79 NAME                          geometry
-  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;MULTIPOLYGON [°]&gt;
-1 3300.  6.67   1051. 4224.  8.36   1353. Total (((-75.97629 36.51793, -75.9772…</code></pre>
-</div>
-</div>
-<p>In order to add this new aggregate feature to the <code>FeatureLayer</code> we must create a reference to the layer using <code>arc_open()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nc_url <span class="ot">&lt;-</span> <span class="st">"https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/North%20Carolina%20SIDS/FeatureServer/0"</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(nc_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>&lt;FeatureLayer&gt;
-Name: North Carolina SIDS
-Geometry Type: esriGeometryPolygon
-CRS: 4267
-Capabilities: Create,Delete,Query,Update,Editing</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
+<p>R-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called <code>tool_exec()</code>. <code>tool_exec()</code> takes exactly two arguments capturing input and output parameters. <code>tool_exec()</code> should always return the output parameter argument.</p>
+<section id="input-and-output-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="input-and-output-parameters">Input and Output Parameters</h2>
+<p>There must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are <code>in_params</code> and <code>out_params</code>. The first argument will <em>always</em> refer to the input parameters and the second to the outputs.</p>
+<p><code>in_params</code> and <code>out_params</code> are named lists. The elements of these lists are determined by the <strong>direction</strong> of a parameter.</p>
+<p><img src="images/gp-tool-properties.png" class="img-fluid" style="width:50.0%"></p>
+<p>If the direction is <code>Input</code>, it will be contained in <code>in_params</code>. Likewise, if the direction is <code>Output</code>, it will be contained in <code>out_params</code>.</p>
+</section>
+<section id="using-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="using-parameters">Using parameters</h2>
+<p>Values can be extracted from the <code>in_params</code> and <code>out_params</code> lists by the name or position of the parameter. It is strongly recommended to use name-based indexing rather than position-based indexing for clarity.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The url you use here will be different than the one you see. Be sure to grab the correct url from the content listing for your item.</p>
+<p>The name of the parameter must match the value in the <strong>Name</strong> (<em>not</em> Label) column in the <code>Parameters</code> tab of the Tool Properties.</p>
 </div>
 </div>
-<p>Now that we have a <code>FeatureLayer</code> object we can add features to it using <code>add_features()</code>. There are a few key arguments to the function:</p>
-<ul>
-<li><code>x</code> is the <code>FeatureLayer</code> object that we want to add features to</li>
-<li><code>.data</code> is an <code>sf</code> object that we want to add to the <code>FeatureLayer</code></li>
-<li><code>match_on</code> determines how to match sf columns to <code>FeatureLayer</code> fields</li>
-</ul>
-<p>By default, <code>add_features()</code> will compare the column names of the <code>sf</code> object to that of the <code>FeatureLayer</code>. We can find the field names and aliases for a <code>FeatureLayer</code> by using the <code>list_fields()</code> function. Pass the results to <code>tibble::as_tibble()</code> to make them more readable.</p>
-<p>Since we know that the column names match those of the <code>FeatureLayer</code>, we can pass <code>nc_summary</code> directly to <code>add_feature()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>add_res <span class="ot">&lt;-</span> <span class="fu">add_features</span>(nc, nc_summary)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>add_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>  objectId uniqueId globalId success
-1      101      101       NA    TRUE</code></pre>
+<p>This is an example of a function to parse a <code>date</code> parameter with the name <code>date</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fetch the date parameter</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  date_str <span class="ot">&lt;-</span> in_params[[<span class="st">"date"</span>]]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># parse it using {anytime}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  clean_date <span class="ot">&lt;-</span> anytime<span class="sc">::</span><span class="fu">anytime</span>(date_str)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... do additional things</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return values to ArcGIS Pro</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  out_params</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="returning-values-to-arcgis-pro" class="level3">
+<h3 class="anchored" data-anchor-id="returning-values-to-arcgis-pro">Returning values to ArcGIS Pro</h3>
+<p>At the end of the <code>tool_exec()</code> function above, the <code>out_params</code> object is returned. Returning the output parameters using this syntax allows ArcGIS Pro to capture and use the outputs of the script tool.</p>
+<p>Notably, the output parameters are useful in linking one tool to another, for example via use in <a href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/modelbuilder/modelbuilder-quick-tour.htm">ModelBuilder</a> or in an <a href="https://pro.arcgis.com/en/pro-app/latest/arcpy/main/arcgis-pro-arcpy-reference.htm"><strong><code>arcpy</code></strong></a> script.</p>
+<p>See <a href="#arcpy-integration">Using R script tools with <strong><code>arcpy</code></strong></a>.</p>
+</section>
+<section id="parameter-types" class="level3">
+<h3 class="anchored" data-anchor-id="parameter-types">Parameter types</h3>
+<p>There are number of different parameter types that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: <code>integer</code>, <code>double</code>, <code>character</code>, <code>logical</code>, or <code>NULL</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -517,33 +462,222 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you are adding many features at one time, consider changing the value of <code>chunk_size</code>. By default, <code>add_features()</code> will add up to 2000 features at a time and send the requests in parallel. Depending on the geometry type and precision, it may be worthwhile to make that number smaller. If the data are truly massive, consider breaking up the task into smaller manageable chunks.</p>
+<p>A scalar value is a vector with only a single element.</p>
 </div>
 </div>
-<p>Once we’ve added the results to the <code>FeatureLayer</code>, we may want to refresh the object to catch any important changes to the metadata.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">refresh_layer</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is incumbent upon the developer to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by <code>arcgisbinding</code>. Below are examples of common parameter types and how they are handled by <code>arcgisbinding</code>:</p>
+<table class="table-striped caption-top table">
+<caption>Data type mapping</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ArcGIS Pro Parameter Type</th>
+<th>R Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>String</td>
+<td><code>character</code></td>
+</tr>
+<tr class="even">
+<td>Boolean</td>
+<td><code>logical</code></td>
+</tr>
+<tr class="odd">
+<td>Double</td>
+<td><code>numeric</code></td>
+</tr>
+<tr class="even">
+<td>Date</td>
+<td><code>character</code> in the format of your system e.g.&nbsp;<code>"11/17/2023 4:35:57 PM"</code></td>
+</tr>
+<tr class="odd">
+<td>Field</td>
+<td><code>character</code> the field name of a feature class</td>
+</tr>
+<tr class="even">
+<td>Folder</td>
+<td><code>character</code> absolute path e.g.&nbsp;<code>"C:\\Users\username\Documents"</code></td>
+</tr>
+<tr class="odd">
+<td>Feature Class</td>
+<td><code>character</code>absolute path e.g.&nbsp;<code>"C:\\Users\username\mydatabase.gdb\\feature_class</code></td>
+</tr>
+<tr class="even">
+<td>Spatial Reference</td>
+<td><code>character</code> a string representation of the spatial reference e.g.&nbsp;<code>"PROJCS["...."]"</code></td>
+</tr>
+</tbody>
+</table>
+<p>For a complete list of parameter data types, see <a href="https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm">Geoprocessing data types</a>.</p>
+</section>
+<section id="multiple-values" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-values">Multiple Values</h3>
+<p>When selecting the <code>Multiple values</code> check box in the parameter data type dialog box, users can then provide multiple inputs of that type.</p>
+<p><img src="images/gp-parameter-type.png" class="img-fluid"></p>
+<p>When the <code>Multiple values</code> option is enabled, the parameter returns a list containing each of the input values.</p>
+<p>Note that when multiple values are provided, they will be captured in R as a list of scalars. Take the below input, for example:</p>
+<p><img src="images/gp-multiple-strings.png" class="img-fluid"></p>
+<p>In R, this parameter value would be <code>list("string 1", "string 2")</code> and <strong>not</strong> <code>c("string 1", "string 2")</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<pre><code>&lt;FeatureLayer&gt;
-Name: North Carolina SIDS
-Geometry Type: esriGeometryPolygon
-CRS: 4267
-Capabilities: Create,Delete,Query,Update,Editing</code></pre>
-<p>We can see that the <code>FeatureLayer</code> now has 101 features as opposed to the original 100. To sanity check, we can query <code>nc</code> to see how the value comes back.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nc_avgs <span class="ot">&lt;-</span> nc <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Total"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>nc_avgs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
-<pre><code>Simple feature collection with 1 feature and 15 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-Geodetic CRS:  NAD27
-  object_id AREA PERIMETER CNTY_ CNTY_ID  NAME FIPS FIPSNO CRESS_ID   BIR74 SID74 NWBIR74   BIR79 SID79 NWBIR79                       geometry
-1       101   NA        NA    NA      NA Total   NA     NA       NA 3299.62  6.67 1050.81 4223.92  8.36 1352.81 MULTIPOLYGON (((-75.9248 36...</code></pre>
+</div>
+<div class="callout-body-container callout-body">
+<p>To turn a list of scalars of the same type—e.g.&nbsp;double, integer, logical, or character—into a vector, use <code>unlist()</code>. For example <code>unlist(list("string 1", "string 2"))</code> returns <code>c("string 1", "string 2")</code>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="common-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="common-patterns">Common Patterns</h2>
+<section id="reading-a-feature-class" class="level3">
+<h3 class="anchored" data-anchor-id="reading-a-feature-class">Reading a Feature Class</h3>
+<p>Reading a feature class using <code>arcgisbinding</code> and bringing the results into R as an sf object is a common pattern. To do this, use the functions <code>arc.open()</code>, <code>arc.select()</code>, and <code>arc.data2sf()</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  fclass <span class="ot">&lt;-</span> arcgisbinding<span class="sc">::</span><span class="fu">arc.open</span>(in_params[[<span class="st">"fc_path"</span>]])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  fclass_selected <span class="ot">&lt;-</span> arcgisbinding<span class="sc">::</span><span class="fu">arc.select</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    fclass,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fields = c("optional", "fields", "to", "read"),</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># where_clause = "optional sql where clause to filter"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  fclass_sf <span class="ot">&lt;-</span> arcgisbinding<span class="sc">::</span><span class="fu">arc.data2sf</span>(fclass_selected)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To filter or select columns from a dataset, consider using the <code>fields</code> and <code>where_clause</code> arguments of <code>arc.select()</code> to reduce the amount of data read into memory.</p>
+<p><code>arc.select()</code> returns a <code>data.frame</code> with fields and a special geometry column which is incompatible with sf. Use <code>arc.data2sf()</code> to convert it to an sf object.</p>
+</div>
+</div>
+</section>
+<section id="writing-a-feature-class" class="level3">
+<h3 class="anchored" data-anchor-id="writing-a-feature-class">Writing a Feature Class</h3>
+<p>It is quite common to write the results of an analysis to a file geodatabase. This can be done with <code>arc.write()</code>. A Feature Class type parameter can be used in the <code>out_params</code> list object to capture a user-defined output path.</p>
+<p><code>arc.write()</code> requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are <code>data.frame</code>, <code>sf</code>, <code>RasterLayer</code> or <code>RasterBrick</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Support for <code>{terra}</code> is planned to accompany the ArcGIS Pro 3.3 release.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># extract the path to write to</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  out_fp <span class="ot">&lt;-</span> out_params[[<span class="st">"output_fclass"</span>]]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># write the `sf_object` to a geodatabase</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  arcgisbinding<span class="sc">::</span><span class="fu">arc.write</span>(out_fp, sf_object)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="installing-required-packages" class="level3">
+<h3 class="anchored" data-anchor-id="installing-required-packages">Installing Required Packages</h3>
+<p>When sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages can be automatically installed the first time the script tool is executed.</p>
+<p>The script tool can check to see if the required package is installed and, if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>install_if_not <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(pkg)) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Installing required package `{"</span>, pkg, <span class="st">"}`"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(pkg)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This function uses <code>requireNamespace()</code> which attempts to load the provided package. If it succeeds, it returns <code>TRUE</code>, and if not it returns <code>FALSE</code>. The function checks to see if <code>FALSE</code> is returned and, if so, installs the package and prints an informative message.</p>
+<p>For example, if the script requires the package <a href="https://r-spatial.github.io/spdep/"><code>{spdep}</code></a> and it is not installed, the function will print the message and install the package.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># check for required packages </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install_if_not</span>(<span class="st">"spdep"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do other things with spdep</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="using-progressors" class="level2">
+<h2 class="anchored" data-anchor-id="using-progressors">Using Progressors</h2>
+<p>Geoprocessing tools have a progressor, which includes both a progress label and a progress bar. The default progressor continuously moves back and forth to indicate the script is running. Using <code>arc.progress_label()</code> and <code>arc.progress_pos()</code> allows fine control over the script progress. Updating the progressor isn’t necessary, but is useful in situations where solely outputting messages to the dialog is insufficient to communicate script progress.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/GUID-CEF2B5E9-DC07-4E63-8377-395F7F4AAC79-web.png" class="img-fluid figure-img"></p>
+<figcaption>Default Progressor</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/GUID-2719B74D-3AE1-4D3D-8CA8-EB495492635D-web.png" class="img-fluid figure-img"></p>
+<figcaption>Step Progressor</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Read more in the <a href="https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/understanding-the-progress-dialog-in-script-tools.htm">Understanding the progressor in script tools</a> article.</p>
+</div>
+</div>
+<p>Using <code>arc.progress_label()</code> allows control over the label that is displayed at the top of the running script. For example, it might be used to display the current step of the analysis taking place. Using <code>arc.progress_pos()</code> allows control over the progressor position displayed at the top of the running script. The position is an integer percentage, 0 to 100, that the progress bar should be set to, with 100 indicating the script has completed (100%).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisbinding)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>tool_exec <span class="ot">&lt;-</span> <span class="cf">function</span>(in_params, out_params) {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># read feature class </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arc.progress_label</span>(<span class="st">"Reading Feature Class"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  fclass <span class="ot">&lt;-</span> <span class="fu">arc.open</span>(in_params[[<span class="st">"input_fclass"</span>]])</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert to sf</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arc.progress_label</span>(<span class="st">"Converting Feature Class to sf"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  sf_obj <span class="ot">&lt;-</span> <span class="fu">arc.data2sf</span>(<span class="fu">arc.select</span>(fclass))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do other things </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arc.progress_label</span>(<span class="st">"Doing other computations"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_params)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- ## Using R script tools with **`arcpy`** {#arcpy-integration} -->
+<!-- ## Dependent Parameters  -->
+<!-- - Autopopulate field drop-down using dependent parameter -->
 
 
 </section>
@@ -966,7 +1100,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/editing/add-features.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/geoprocessing/creating-gp-tools.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

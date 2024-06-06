@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge - arcgislayers: an open source package for ArcGIS Location Services</title>
+<title>R-ArcGIS Bridge - Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,59 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -114,9 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      R-ArcGIS Bridge
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/geoprocessing/overview.html">Geoprocessing</a></li><li class="breadcrumb-item"><a href="../../docs/geoprocessing/overview.html">Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -131,7 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">R-ArcGIS Bridge</a> 
+      <a href="../../">R-ArcGIS Bridge</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -143,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
@@ -152,13 +116,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/get-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/get-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/installation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/installation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
@@ -173,19 +137,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/auth" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Storing credentials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
@@ -202,13 +166,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/layers/read-layers.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/layers/read-layers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Feature Services</span></a>
   </div>
 </li>
@@ -217,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/layers/publishing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/layers/publishing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Publishing layers</span></a>
   </div>
 </li>
@@ -234,31 +198,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/editing/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/editing/add-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/add-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Adding features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/editing/update-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/update-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Updating features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/editing/delete-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/delete-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deleting features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/editing/overwrite-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/editing/overwrite-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Truncate and append features</span></a>
   </div>
 </li>
@@ -275,25 +239,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/geocode/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/geocode/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/geocode/forward-geocoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/geocode/forward-geocoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Forward Geocoding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/geocode/bulk-geocoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/geocode/bulk-geocoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bulk Geocoding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/geocode/reverse-geocoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/geocode/reverse-geocoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reverse Geocoding</span></a>
   </div>
 </li>
@@ -310,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/places/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/places/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
@@ -318,22 +282,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
  <span class="menu-text">Geoprocessing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/geoprocessing/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/geoprocessing/overview.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/geoprocessing/creating-gp-tools.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/geoprocessing/creating-gp-tools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Making Geoprocessing Tools</span></a>
   </div>
 </li>
@@ -349,41 +313,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#statement-of-need" id="toc-statement-of-need" class="nav-link" data-scroll-target="#statement-of-need">Statement of need</a></li>
-  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a>
-  <ul class="collapse">
-  <li><a href="#example-usage" id="toc-example-usage" class="nav-link" data-scroll-target="#example-usage">Example usage</a></li>
-  </ul></li>
+  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link active" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/location-services/paper.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/geoprocessing/overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/geoprocessing/overview.html">Geoprocessing</a></li><li class="breadcrumb-item"><a href="../../docs/geoprocessing/overview.html">Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><code>arcgislayers</code>: an open source package for ArcGIS Location Services</h1>
+<h1 class="title">Overview</h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Josiah Parry </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Environmental Systems Research Institute, Redlands, CA, USA
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -393,71 +339,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>arcgislayers is an open source package as part of Environmental Systems Research Institute’s (Esri) R-ArcGIS Bridge project. arcgislayers enables developers to interact with ArcGIS data services directly from R. With arcgislayers, users can read, write, and administer remotely hosted data directly from R using native objects.</p>
-</section>
-<section id="statement-of-need" class="level2">
-<h2 class="anchored" data-anchor-id="statement-of-need">Statement of need</h2>
-<p>In the evolving landscape of geospatial analysis, a critical shift towards cloud-native infrastructure has emerged, characterized by the exposure of data via REST APIs. Esri’s ArcGIS Location Services characterized by ArcGIS Platform embody this transition. Location services are accessible via REST API endpoints which which are language agnostic.</p>
-<p>While existing solutions like arcgisbinding enable reading and writing of ArcGIS hosted data, they present limitations (Aydin et al.). Notably, arcgisbinding relies on an ArcGIS Pro license which is confined to a Windows operating system, and does not support any additional administration of hosted data services.</p>
-<p>Moreover, the community-driven endeavors such as esri2sf, arcpullr, among others, strive to bridge this gap (CITE). However, these efforts fall short in delivering comprehensive, officially supported, and high-performance alternatives.</p>
-<p>arcgislayers is an official, Esri-backed, open-source R package designed to interact with ArcGIS Image Servers and Feature Services. Leveraging the REST services offered by ArcGIS, arcgislayers empowers developers to seamlessly administer, read, and write data without the constraints of proprietary licenses or operating systems.</p>
-</section>
-<section id="implementation" class="level1">
-<h1>Implementation</h1>
-<p>arcgislayers supports both Image Servers and Feature Services. When reading raster imagery, arcgislayers returns objects of class <code>SpatRaster</code> from the terra package. arcgislayers’ vector capabilities are much more sophisticated, however.</p>
-<p>In the r-spatial ecosystem, sf objects are the de facto representation of geometric objects with associated attributes. As such, arcgislayers utilizes sf objects and data.frames to represent spatial and a-spatial data respectively. Due to the ubiquity of sf objects additional geometry types are not supported directly but can be via wk (edzer, probably bivand somewhere inhere dunnington).</p>
-<p>The ArcGIS REST API defines a number of JSON objects that are understood by the endpoints. Notably, the REST APIs have their own definitions for geometries objects. Underpinning arcgislayers is the R package arcgisutils which is used for serializing data.frame and sf objects into Esri JSON formats. arcgisutils also provides utilities for deserializing Esri JSON returned from the REST APIs into sf or data.frame objects.</p>
-<p>The de/serialization provided by arcgisutils enables seamless reading and writing of geospatial data with ArcGIS Location Services.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">3.0</span>, <span class="fl">0.14</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  arcgisutils<span class="sc">::</span><span class="fu">as_esri_geometry</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  jsonify<span class="sc">::</span><span class="fu">pretty_json</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>{
-    "hasZ": false,
-    "hasM": false,
-    "x": 3.0,
-    "y": 0.14,
-    "spatialReference": {
-        "wkid": 4326
-    }
-}</code></pre>
-</div>
-</div>
-<section id="example-usage" class="level2">
-<h2 class="anchored" data-anchor-id="example-usage">Example usage</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgislayers)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer/0"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>flayer <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(url)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>flayer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;FeatureLayer &lt;28484 features, 154 fields&gt;&gt;
-Name: PlacePoints
-Geometry Type: esriGeometryPoint
-CRS: 3785
-Capabilities: Query,Extract</code></pre>
-</div>
-</div>
-<hr>
-<p>Notes</p>
+<p>Much like a Python geoprocessing (GP) <a href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/geoprocessing/basics/create-a-python-script-tool.htm">script tool</a>, you can also create R-based GP script tools and toolboxes utilizing the power of R.</p>
+<p>Geoprocessing script tools that use R can be used in the same way that python geoprocessing script tools can be used. They can</p>
 <ul>
-<li><p>Aydin et al introduce arcgisbinding which provides a binding to ArcGIS pro enabling the reading and writing of ArcGIS Proprietary data formats and on the fly geospatial transformations using the transformation engine</p></li>
-<li><p>We’re seeing a shift towards cloud-native geospatial analysisdata infrastructure which are exposed via rest apis</p></li>
-<li><p>Esri provides very useful technology via ArcGIS Location Services. Location services are exposed via rest APIs which are well documented. Endpoints can be both public or private depending on the hosting solution and authentication used.</p></li>
-<li><p>REST services provide a language agnostic interface to proprietary code allowing the development of completely open source bindings to the services</p></li>
-<li><p>While arcgisbinding provides a way for users of R <em>and</em> ArcGIS Pro to read image and feature services it is fairly limited. Noteably, the use of arcgisbinding requires an ArcGIS Pro license which itself requires a window machine. Further, arcgisbinding does not provide further capabilities for hosted data management.</p></li>
-<li><p>arcgislayers builds upon the REST service provided by ArcGIS. arcgislayers is an open source R package for interacting with ArcGIS image servers and Feature services.</p></li>
-<li><p>there are a number of community driven efforts to address this gap which are notably esri2sf, arcpullr, among others.</p></li>
-<li><p>arcgislayers is an official, esri supported, and highly performant alternative to these packages</p></li>
+<li>be ran from the ArcGIS Pro geoprocessing pane</li>
+<li>can be imported and called by arcpy</li>
+<li>can be used inside of modelbuilder</li>
 </ul>
+<p>Geoprocessing script tools can be useful when there is a part of your workflow that you use R for and would like to be able to do that step from ArcGIS Pro. Or, alternatively, there may be a bespoke tool or process that you may have developed in R and want to have your GIS analysts use from their own ArcGIS Pro.</p>
+<section id="pre-requisites" class="level1">
+<h1>Pre-requisites</h1>
+<p>Using R geoprocessing script tools requires R to be installed. We recommend installing the latest version of R from CRAN. Additionally, the <code>{arcgisbinding}</code> package to be installed. For installing <code>{arcgisbinding}</code> see the <a href="../../installation.qmd">installation guide</a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -878,7 +772,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/location-services/paper.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/geoprocessing/overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

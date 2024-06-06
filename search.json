@@ -220,6 +220,61 @@
     ]
   },
   {
+    "objectID": "docs/geoprocessing/creating-gp-tools.html",
+    "href": "docs/geoprocessing/creating-gp-tools.html",
+    "title": "Making Geoprocessing Tools",
+    "section": "",
+    "text": "The basic anatomy of an R-based GP script tool is like so:\nR-based GP script tools are defined in a standalone R script. The GP tool is defined by a function called tool_exec(). tool_exec() takes exactly two arguments capturing input and output parameters. tool_exec() should always return the output parameter argument.",
+    "crumbs": [
+      "Geoprocessing",
+      "Making Geoprocessing Tools"
+    ]
+  },
+  {
+    "objectID": "docs/geoprocessing/creating-gp-tools.html#input-and-output-parameters",
+    "href": "docs/geoprocessing/creating-gp-tools.html#input-and-output-parameters",
+    "title": "Making Geoprocessing Tools",
+    "section": "Input and Output Parameters",
+    "text": "Input and Output Parameters\nThere must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are in_params and out_params. The first argument will always refer to the input parameters and the second to the outputs.\nin_params and out_params are named lists. The elements of these lists are determined by the direction of a parameter.\n\nIf the direction is Input, it will be contained in in_params. Likewise, if the direction is Output, it will be contained in out_params.",
+    "crumbs": [
+      "Geoprocessing",
+      "Making Geoprocessing Tools"
+    ]
+  },
+  {
+    "objectID": "docs/geoprocessing/creating-gp-tools.html#using-parameters",
+    "href": "docs/geoprocessing/creating-gp-tools.html#using-parameters",
+    "title": "Making Geoprocessing Tools",
+    "section": "Using parameters",
+    "text": "Using parameters\nValues can be extracted from the in_params and out_params lists by the name or position of the parameter. It is strongly recommended to use name-based indexing rather than position-based indexing for clarity.\n\n\n\n\n\n\nCaution\n\n\n\nThe name of the parameter must match the value in the Name (not Label) column in the Parameters tab of the Tool Properties.\n\n\nThis is an example of a function to parse a date parameter with the name date:\ntool_exec &lt;- function(in_params, out_params) {\n  # fetch the date parameter\n  date_str &lt;- in_params[[\"date\"]]\n  \n  # parse it using {anytime}\n  clean_date &lt;- anytime::anytime(date_str)\n  \n  # ... do additional things\n  \n  # return values to ArcGIS Pro\n  out_params\n}\n\nReturning values to ArcGIS Pro\nAt the end of the tool_exec() function above, the out_params object is returned. Returning the output parameters using this syntax allows ArcGIS Pro to capture and use the outputs of the script tool.\nNotably, the output parameters are useful in linking one tool to another, for example via use in ModelBuilder or in an arcpy script.\nSee Using R script tools with arcpy.\n\n\nParameter types\nThere are number of different parameter types that can be provided to a geoprocessing (GP) tool. The type of parameter that is chosen determines how that parameter will appear in the Geoprocessing pane. Each ArcGIS Pro parameter type can be represented by a basic scalar R type: integer, double, character, logical, or NULL.\n\n\n\n\n\n\nTip\n\n\n\nA scalar value is a vector with only a single element.\n\n\nIt is incumbent upon the developer to take these parameter inputs and use them appropriately in R. Not every type of parameter can be processed correctly by arcgisbinding. Below are examples of common parameter types and how they are handled by arcgisbinding:\n\nData type mapping\n\n\n\n\n\n\nArcGIS Pro Parameter Type\nR Data Type\n\n\n\n\nString\ncharacter\n\n\nBoolean\nlogical\n\n\nDouble\nnumeric\n\n\nDate\ncharacter in the format of your system e.g. \"11/17/2023 4:35:57 PM\"\n\n\nField\ncharacter the field name of a feature class\n\n\nFolder\ncharacter absolute path e.g. \"C:\\\\Users\\username\\Documents\"\n\n\nFeature Class\ncharacterabsolute path e.g. \"C:\\\\Users\\username\\mydatabase.gdb\\\\feature_class\n\n\nSpatial Reference\ncharacter a string representation of the spatial reference e.g. \"PROJCS[\"....\"]\"\n\n\n\nFor a complete list of parameter data types, see Geoprocessing data types.\n\n\nMultiple Values\nWhen selecting the Multiple values check box in the parameter data type dialog box, users can then provide multiple inputs of that type.\n\nWhen the Multiple values option is enabled, the parameter returns a list containing each of the input values.\nNote that when multiple values are provided, they will be captured in R as a list of scalars. Take the below input, for example:\n\nIn R, this parameter value would be list(\"string 1\", \"string 2\") and not c(\"string 1\", \"string 2\").\n\n\n\n\n\n\nTip\n\n\n\nTo turn a list of scalars of the same type—e.g. double, integer, logical, or character—into a vector, use unlist(). For example unlist(list(\"string 1\", \"string 2\")) returns c(\"string 1\", \"string 2\").",
+    "crumbs": [
+      "Geoprocessing",
+      "Making Geoprocessing Tools"
+    ]
+  },
+  {
+    "objectID": "docs/geoprocessing/creating-gp-tools.html#common-patterns",
+    "href": "docs/geoprocessing/creating-gp-tools.html#common-patterns",
+    "title": "Making Geoprocessing Tools",
+    "section": "Common Patterns",
+    "text": "Common Patterns\n\nReading a Feature Class\nReading a feature class using arcgisbinding and bringing the results into R as an sf object is a common pattern. To do this, use the functions arc.open(), arc.select(), and arc.data2sf().\ntool_exec &lt;- function(in_params, out_params) {\n\n  fclass &lt;- arcgisbinding::arc.open(in_params[[\"fc_path\"]])\n  \n  fclass_selected &lt;- arcgisbinding::arc.select(\n    fclass,\n    # fields = c(\"optional\", \"fields\", \"to\", \"read\"),\n    # where_clause = \"optional sql where clause to filter\"\n  )\n  \n  fclass_sf &lt;- arcgisbinding::arc.data2sf(fclass_selected)\n}\n\n\n\n\n\n\nNote\n\n\n\nTo filter or select columns from a dataset, consider using the fields and where_clause arguments of arc.select() to reduce the amount of data read into memory.\narc.select() returns a data.frame with fields and a special geometry column which is incompatible with sf. Use arc.data2sf() to convert it to an sf object.\n\n\n\n\nWriting a Feature Class\nIt is quite common to write the results of an analysis to a file geodatabase. This can be done with arc.write(). A Feature Class type parameter can be used in the out_params list object to capture a user-defined output path.\narc.write() requires two arguments. The first is the output path to write to and the second is the object to write. The accepted types of objects are data.frame, sf, RasterLayer or RasterBrick.\n\n\n\n\n\n\nNote\n\n\n\nSupport for {terra} is planned to accompany the ArcGIS Pro 3.3 release.\n\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # extract the path to write to\n  out_fp &lt;- out_params[[\"output_fclass\"]]\n  \n  # write the `sf_object` to a geodatabase\n  arcgisbinding::arc.write(out_fp, sf_object)\n  \n}\n\n\nInstalling Required Packages\nWhen sharing R-based GP tools with other users, they may not have the packages that the script tool needs to execute code. In this case, required packages can be automatically installed the first time the script tool is executed.\nThe script tool can check to see if the required package is installed and, if not, install it. Below is a helper function to include at the top of the script if there are multiple packages to check:\ninstall_if_not &lt;- function(pkg) {\n  if (!requireNamespace(pkg)) {\n    message(\"Installing required package `{\", pkg, \"}`\")\n    install.packages(pkg)\n  }\n}\nThis function uses requireNamespace() which attempts to load the provided package. If it succeeds, it returns TRUE, and if not it returns FALSE. The function checks to see if FALSE is returned and, if so, installs the package and prints an informative message.\nFor example, if the script requires the package {spdep} and it is not installed, the function will print the message and install the package.\ntool_exec &lt;- function(in_params, out_params) {\n  # check for required packages \n  install_if_not(\"spdep\")\n  \n  # do other things with spdep\n  # ...\n}",
+    "crumbs": [
+      "Geoprocessing",
+      "Making Geoprocessing Tools"
+    ]
+  },
+  {
+    "objectID": "docs/geoprocessing/creating-gp-tools.html#using-progressors",
+    "href": "docs/geoprocessing/creating-gp-tools.html#using-progressors",
+    "title": "Making Geoprocessing Tools",
+    "section": "Using Progressors",
+    "text": "Using Progressors\nGeoprocessing tools have a progressor, which includes both a progress label and a progress bar. The default progressor continuously moves back and forth to indicate the script is running. Using arc.progress_label() and arc.progress_pos() allows fine control over the script progress. Updating the progressor isn’t necessary, but is useful in situations where solely outputting messages to the dialog is insufficient to communicate script progress.\n\n\n\n\n\n\n\n\n\nDefault Progressor\n\n\n\n\n\n\n\nStep Progressor\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nRead more in the Understanding the progressor in script tools article.\n\n\nUsing arc.progress_label() allows control over the label that is displayed at the top of the running script. For example, it might be used to display the current step of the analysis taking place. Using arc.progress_pos() allows control over the progressor position displayed at the top of the running script. The position is an integer percentage, 0 to 100, that the progress bar should be set to, with 100 indicating the script has completed (100%).\nlibrary(arcgisbinding)\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # read feature class \n  arc.progress_label(\"Reading Feature Class\")\n  fclass &lt;- arc.open(in_params[[\"input_fclass\"]])\n  \n  # convert to sf\n  arc.progress_label(\"Converting Feature Class to sf\")\n  sf_obj &lt;- arc.data2sf(arc.select(fclass))\n  \n  # do other things \n  arc.progress_label(\"Doing other computations\")\n  \n  return(out_params)\n}",
+    "crumbs": [
+      "Geoprocessing",
+      "Making Geoprocessing Tools"
+    ]
+  },
+  {
     "objectID": "docs/layers/read-layers.html",
     "href": "docs/layers/read-layers.html",
     "title": "Reading Feature Services",
@@ -557,20 +612,6 @@
     "text": "Using Progressors\nGeoprocessing tools have a progressor, which includes both a progress label and a progress bar. The default progressor continuously moves back and forth to indicate the script is running. Using arc.progress_label() and arc.progress_pos() allows fine control over the script progress. Updating the progressor isn’t necessary, but is useful in situations where solely outputting messages to the dialog is insufficient to communicate script progress.\n\n\n\n\n\n\n\n\n\nDefault Progressor\n\n\n\n\n\n\n\nStep Progressor\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nRead more in the Understanding the progressor in script tools article.\n\n\nUsing arc.progress_label() allows control over the label that is displayed at the top of the running script. For example, it might be used to display the current step of the analysis taking place. Using arc.progress_pos() allows control over the progressor position displayed at the top of the running script. The position is an integer percentage, 0 to 100, that the progress bar should be set to, with 100 indicating the script has completed (100%).\nlibrary(arcgisbinding)\n\ntool_exec &lt;- function(in_params, out_params) {\n  \n  # read feature class \n  arc.progress_label(\"Reading Feature Class\")\n  fclass &lt;- arc.open(in_params[[\"input_fclass\"]])\n  \n  # convert to sf\n  arc.progress_label(\"Converting Feature Class to sf\")\n  sf_obj &lt;- arc.data2sf(arc.select(fclass))\n  \n  # do other things \n  arc.progress_label(\"Doing other computations\")\n  \n  return(out_params)\n}"
   },
   {
-    "objectID": "geoprocessing-tools.html#arcpy-integration",
-    "href": "geoprocessing-tools.html#arcpy-integration",
-    "title": "Geoprocessing Tools",
-    "section": "Using R script tools with arcpy",
-    "text": "Using R script tools with arcpy"
-  },
-  {
-    "objectID": "geoprocessing-tools.html#dependent-parameters",
-    "href": "geoprocessing-tools.html#dependent-parameters",
-    "title": "Geoprocessing Tools",
-    "section": "Dependent Parameters",
-    "text": "Dependent Parameters\n\nAutopopulate field drop-down using dependent parameter"
-  },
-  {
     "objectID": "docs/auth/index.html",
     "href": "docs/auth/index.html",
     "title": "Overview",
@@ -676,6 +717,17 @@
     "text": "Querying feature services\nTo bring data from the service into memory in R, you must use arc_select().\n\n\n\n\n\n\nTip\n\n\n\nAlways bring as little data as possible into memory. Utilize the fields and where arguments.\n\n\n\narc_select(\n  flayer,\n  where = \"TotalPopulation &gt; 100000\",\n  fields = c(\"objectid\", \"totalpopulation\", \"zcta5\")\n)\n\nSimple feature collection with 9 features and 3 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -13185850 ymin: 3724192 xmax: -8218971 ymax: 5130142\nProjected CRS: WGS 84 / Pseudo-Mercator\n  OBJECTID TotalPopulation ZCTA5                       geometry\n1     1665          111086 79936 MULTIPOLYGON (((-11831249 3...\n2     2387          103892 90011 MULTIPOLYGON (((-13164358 4...\n3     2669          101279 90201 MULTIPOLYGON (((-13157079 4...\n4     2732          105549 90650 MULTIPOLYGON (((-13141865 4...\n5     3027          103689 91331 MULTIPOLYGON (((-13178819 4...\n6    19391          113916 60629 MULTIPOLYGON (((-9767482 51...\n7    25238          109931 11368 MULTIPOLYGON (((-8219675 49...\n8    25242          100820 11373 MULTIPOLYGON (((-8222572 49...\n9    26364          101572 11226 MULTIPOLYGON (((-8231772 49...",
     "crumbs": [
       "Layers",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "docs/geoprocessing/overview.html",
+    "href": "docs/geoprocessing/overview.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Much like a Python geoprocessing (GP) script tool, you can also create R-based GP script tools and toolboxes utilizing the power of R.\nGeoprocessing script tools that use R can be used in the same way that python geoprocessing script tools can be used. They can\n\nbe ran from the ArcGIS Pro geoprocessing pane\ncan be imported and called by arcpy\ncan be used inside of modelbuilder\n\nGeoprocessing script tools can be useful when there is a part of your workflow that you use R for and would like to be able to do that step from ArcGIS Pro. Or, alternatively, there may be a bespoke tool or process that you may have developed in R and want to have your GIS analysts use from their own ArcGIS Pro.\n\nPre-requisites\nUsing R geoprocessing script tools requires R to be installed. We recommend installing the latest version of R from CRAN. Additionally, the {arcgisbinding} package to be installed. For installing {arcgisbinding} see the installation guide",
+    "crumbs": [
+      "Geoprocessing",
       "Overview"
     ]
   },
