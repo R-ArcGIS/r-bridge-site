@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R-ArcGIS Bridge</title>
+<title>R-ArcGIS Bridge - Reverse Geocoding</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -80,9 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      R-ArcGIS Bridge
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/geocode/overview.html">Geocoding</a></li><li class="breadcrumb-item"><a href="../../docs/geocode/reverse-geocoding.html">Reverse Geocoding</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -232,13 +264,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">Geocoding</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../docs/geocode/overview.html" class="sidebar-item-text sidebar-link">
@@ -257,6 +289,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Bulk Geocoding</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/geocode/reverse-geocoding.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Reverse Geocoding</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -269,16 +307,294 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reverse-geocode-a-single-point" id="toc-reverse-geocode-a-single-point" class="nav-link active" data-scroll-target="#reverse-geocode-a-single-point">Reverse geocode a single point</a></li>
+  <li><a href="#reverse-geocode-from-an-sf-object" id="toc-reverse-geocode-from-an-sf-object" class="nav-link" data-scroll-target="#reverse-geocode-from-an-sf-object">Reverse geocode from an sf object</a></li>
+  <li><a href="#reverse-geocoding-a-matrix-of-coordinates" id="toc-reverse-geocoding-a-matrix-of-coordinates" class="nav-link" data-scroll-target="#reverse-geocoding-a-matrix-of-coordinates">Reverse geocoding a matrix of coordinates</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/geocode/reverse-geocoding.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/geocode/overview.html">Geocoding</a></li><li class="breadcrumb-item"><a href="../../docs/geocode/reverse-geocoding.html">Reverse Geocoding</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Reverse Geocoding</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p>Often you may coordinates of locations but need their addresses as well. <strong>Reverse geocoding</strong> finds an address associated with a location on earth.</p>
+<p>Use <code>arcgisgeocode::reverse_geocode()</code> to perform reverse geocoding. Using this fuction you can</p>
+<ul>
+<li>reverse geocode an <code>sfc_POINT</code> geometry column from the <code>{sf}</code> package</li>
+<li>reverse geocode a matrix of coordinates</li>
+<li>reverse geocode a single location as a length 2 vector e.g.&nbsp;<code>c(-117, 34)</code></li>
+</ul>
+<section id="reverse-geocode-a-single-point" class="level1">
+<h1>Reverse geocode a single point</h1>
+<p>First, load the R package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisgeocode)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can reverse geocode a single longitude/latitude pair as a length 2 vector with <code>reverse_geocode()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find addresses from locations</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">reverse_geocode</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">117.172</span>, <span class="fl">34.052</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 23
+$ match_addr   &lt;chr&gt; "600-620 Home Pl, Redlands, California, 92374"
+$ long_label   &lt;chr&gt; "600-620 Home Pl, Redlands, CA, 92374, USA"
+$ short_label  &lt;chr&gt; "600-620 Home Pl"
+$ addr_type    &lt;chr&gt; "StreetAddress"
+$ type_field   &lt;chr&gt; ""
+$ place_name   &lt;chr&gt; ""
+$ add_num      &lt;chr&gt; "608"
+$ address      &lt;chr&gt; "608 Home Pl"
+$ block        &lt;chr&gt; ""
+$ sector       &lt;chr&gt; ""
+$ neighborhood &lt;chr&gt; "South Redlands"
+$ district     &lt;chr&gt; ""
+$ city         &lt;chr&gt; "Redlands"
+$ metro_area   &lt;chr&gt; ""
+$ subregion    &lt;chr&gt; "San Bernardino County"
+$ region       &lt;chr&gt; "California"
+$ region_abbr  &lt;chr&gt; "CA"
+$ territory    &lt;chr&gt; ""
+$ postal       &lt;chr&gt; "92374"
+$ postal_ext   &lt;chr&gt; ""
+$ country_name &lt;chr&gt; "United States"
+$ country_code &lt;chr&gt; "USA"
+$ geometry     &lt;POINT [°]&gt; POINT (-117.172 34.05204)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is important to note that when you are not using an <code>sfc_POINT</code> object, the coordinate reference system is not known. So it is assumed to be <code>EPSG:4326</code>. If you provide values outside of [-180, 180] and [-90, 90] for longitude or latitude, an error will occur.</p>
+</div>
+</div>
+</section>
+<section id="reverse-geocode-from-an-sf-object" class="level1">
+<h1>Reverse geocode from an sf object</h1>
+<p>More commonly, you may have an sf object that you want to reverse geocode their locations. To demonstrate this, you will reverse geocode a csv of state capitals.</p>
+<p>First, read the csv file into a data.frame and convert it to an sf object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># USA State Capitals</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="st">"https://analysis-1.maps.arcgis.com/sharing/rest/content/items/85bcfca158d641b99e7579b47cfee91e/data"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># read the csv</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>capitals <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(fp) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert to an sf object with EPSG:4326</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> <span class="dv">4326</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>capitals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 50 features and 2 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -157.8574 ymin: 21.30744 xmax: -69.78169 ymax: 58.3016
+Geodetic CRS:  WGS 84
+# A tibble: 50 × 3
+   name        description              geometry
+ * &lt;chr&gt;       &lt;chr&gt;                 &lt;POINT [°]&gt;
+ 1 Alabama     Montgomery   (-86.30057 32.37772)
+ 2 Alaska      Juneau        (-134.4202 58.3016)
+ 3 Arizona     Phoenix       (-112.097 33.44814)
+ 4 Arkansas    Little Rock  (-92.28899 34.74661)
+ 5 California  Sacramento   (-121.4936 38.57667)
+ 6 Colorado    Denver       (-104.9849 39.73923)
+ 7 Connecticut Hartford&lt;br&gt;  (-72.6822 41.76405)
+ 8 Delaware    Dover        (-75.51972 39.15731)
+ 9 Hawaii      Honolulu     (-157.8574 21.30744)
+10 Florida     Tallahassee   (-84.2813 30.43812)
+# ℹ 40 more rows</code></pre>
+</div>
+</div>
+<p>Use <code>reverse_geocode()</code> with the geometry column from the capitals to create a new sf object with the address information.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>geocoded <span class="ot">&lt;-</span> <span class="fu">reverse_geocode</span>(<span class="fu">st_geometry</span>(capitals))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(geocoded)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50
+Columns: 23
+$ match_addr   &lt;chr&gt; "Alabama State Capitol", "Juneau Post Office - Federal St…
+$ long_label   &lt;chr&gt; "Alabama State Capitol, Montgomery, AL, USA", "Juneau Pos…
+$ short_label  &lt;chr&gt; "Alabama State Capitol", "Juneau Post Office - Federal St…
+$ addr_type    &lt;chr&gt; "POI", "POI", "POI", "POI", "POI", "POI", "POI", "POI", "…
+$ type_field   &lt;chr&gt; "Building", "Post Office", "Museum", "Government Office",…
+$ place_name   &lt;chr&gt; "Alabama State Capitol", "Juneau Post Office - Federal St…
+$ add_num      &lt;chr&gt; "", "", "1700", "500", "1315", "101", "210", "411", "304"…
+$ address      &lt;chr&gt; "", "", "1700 W Washington St", "500 Woodlane Ave", "1315…
+$ block        &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ sector       &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ neighborhood &lt;chr&gt; "", "", "Central City", "", "Downtown Sacramento", "", "D…
+$ district     &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ city         &lt;chr&gt; "Montgomery", "Juneau", "Phoenix", "Little Rock", "Sacram…
+$ metro_area   &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ subregion    &lt;chr&gt; "Montgomery County", "Juneau City and Borough", "Maricopa…
+$ region       &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "California",…
+$ region_abbr  &lt;chr&gt; "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "HI", "FL…
+$ territory    &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ postal       &lt;chr&gt; "", "", "85007", "72201", "95814", "80203", "06105", "199…
+$ postal_ext   &lt;chr&gt; "", "", "", "", "4801", "", "", "", "2420", "", "", "", "…
+$ country_name &lt;chr&gt; "United States", "United States", "United States", "Unite…
+$ country_code &lt;chr&gt; "USA", "USA", "USA", "USA", "USA", "USA", "USA", "USA", "…
+$ geometry     &lt;POINT [°]&gt; POINT (-86.30049 32.37775), POINT (-134.4203 58.301…</code></pre>
+</div>
+</div>
+<p>Then, you can use dplyr (or base R via <code>cbind()</code>) to combine the two datasets. In this example, the geometry column from the reverse geocoding results is drops. This prevents dplyr from renaming the duplicate columns and preserves the sf class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  capitals,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>(geocoded)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 50 features and 24 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -157.8574 ymin: 21.30744 xmax: -69.78169 ymax: 58.3016
+Geodetic CRS:  WGS 84
+# A tibble: 50 × 25
+   name  description             geometry match_addr      long_label short_label
+ * &lt;chr&gt; &lt;chr&gt;                &lt;POINT [°]&gt; &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;      
+ 1 Alab… Montgomery  (-86.30057 32.37772) Alabama State … Alabama S… Alabama St…
+ 2 Alas… Juneau       (-134.4202 58.3016) Juneau Post Of… Juneau Po… Juneau Pos…
+ 3 Ariz… Phoenix      (-112.097 33.44814) Arizona Capito… Arizona C… Arizona Ca…
+ 4 Arka… Little Rock (-92.28899 34.74661) Arkansas State… Arkansas … Arkansas S…
+ 5 Cali… Sacramento  (-121.4936 38.57667) California Sta… Californi… California…
+ 6 Colo… Denver      (-104.9849 39.73923) Credit Repair   Credit Re… Credit Rep…
+ 7 Conn… Hartford&lt;b…  (-72.6822 41.76405) Connecticut St… Connectic… Connecticu…
+ 8 Dela… Dover       (-75.51972 39.15731) Delaware Senat… Delaware … Delaware S…
+ 9 Hawa… Honolulu    (-157.8574 21.30744) Eternal Flame … Eternal F… Eternal Fl…
+10 Flor… Tallahassee  (-84.2813 30.43812) Florida Capito… Florida C… Florida Ca…
+# ℹ 40 more rows
+# ℹ 19 more variables: addr_type &lt;chr&gt;, type_field &lt;chr&gt;, place_name &lt;chr&gt;,
+#   add_num &lt;chr&gt;, address &lt;chr&gt;, block &lt;chr&gt;, sector &lt;chr&gt;,
+#   neighborhood &lt;chr&gt;, district &lt;chr&gt;, city &lt;chr&gt;, metro_area &lt;chr&gt;,
+#   subregion &lt;chr&gt;, region &lt;chr&gt;, region_abbr &lt;chr&gt;, territory &lt;chr&gt;,
+#   postal &lt;chr&gt;, postal_ext &lt;chr&gt;, country_name &lt;chr&gt;, country_code &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Alternatively, you can accomplish this using a more esoteric and tidyverse-centric approach. The below is an option that uses <code>mutate()</code> to create a new column which is an sf object. Then, it uses <code>tidyr::unnest()</code> to unnest the newly created sf column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>capitals <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">address_info =</span> <span class="fu">st_drop_geometry</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">reverse_geocode</span>(geometry)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">unnest</span>(address_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 50 features and 24 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -157.8574 ymin: 21.30744 xmax: -69.78169 ymax: 58.3016
+Geodetic CRS:  WGS 84
+# A tibble: 50 × 25
+   name  description             geometry match_addr      long_label short_label
+   &lt;chr&gt; &lt;chr&gt;                &lt;POINT [°]&gt; &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;      
+ 1 Alab… Montgomery  (-86.30057 32.37772) Alabama State … Alabama S… Alabama St…
+ 2 Alas… Juneau       (-134.4202 58.3016) Juneau Post Of… Juneau Po… Juneau Pos…
+ 3 Ariz… Phoenix      (-112.097 33.44814) Arizona Capito… Arizona C… Arizona Ca…
+ 4 Arka… Little Rock (-92.28899 34.74661) Arkansas State… Arkansas … Arkansas S…
+ 5 Cali… Sacramento  (-121.4936 38.57667) California Sta… Californi… California…
+ 6 Colo… Denver      (-104.9849 39.73923) Credit Repair   Credit Re… Credit Rep…
+ 7 Conn… Hartford&lt;b…  (-72.6822 41.76405) Connecticut St… Connectic… Connecticu…
+ 8 Dela… Dover       (-75.51972 39.15731) Delaware Senat… Delaware … Delaware S…
+ 9 Hawa… Honolulu    (-157.8574 21.30744) Eternal Flame … Eternal F… Eternal Fl…
+10 Flor… Tallahassee  (-84.2813 30.43812) Florida Capito… Florida C… Florida Ca…
+# ℹ 40 more rows
+# ℹ 19 more variables: addr_type &lt;chr&gt;, type_field &lt;chr&gt;, place_name &lt;chr&gt;,
+#   add_num &lt;chr&gt;, address &lt;chr&gt;, block &lt;chr&gt;, sector &lt;chr&gt;,
+#   neighborhood &lt;chr&gt;, district &lt;chr&gt;, city &lt;chr&gt;, metro_area &lt;chr&gt;,
+#   subregion &lt;chr&gt;, region &lt;chr&gt;, region_abbr &lt;chr&gt;, territory &lt;chr&gt;,
+#   postal &lt;chr&gt;, postal_ext &lt;chr&gt;, country_name &lt;chr&gt;, country_code &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="reverse-geocoding-a-matrix-of-coordinates" class="level1">
+<h1>Reverse geocoding a matrix of coordinates</h1>
+<p>There are other times where you may have your coordinates stored as a matrix with two columns. <code>reverse_geocode()</code> accepts a 2 column numeric matrix as an input to its <code>location</code> argument.</p>
+<p>For the sake of example, the coordinates are extracted as a matrix using <code>sf::st_coordinates()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(capitals)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              X        Y
+[1,]  -86.30057 32.37772
+[2,] -134.42021 58.30160
+[3,] -112.09696 33.44814
+[4,]  -92.28899 34.74661
+[5,] -121.49363 38.57667
+[6,] -104.98486 39.73923</code></pre>
+</div>
+</div>
+<p>Pass this matrix directly into <code>reverse_geocode()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>geocoded <span class="ot">&lt;-</span> <span class="fu">reverse_geocode</span>(coords)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(geocoded)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50
+Columns: 23
+$ match_addr   &lt;chr&gt; "Alabama State Capitol", "Juneau Post Office - Federal St…
+$ long_label   &lt;chr&gt; "Alabama State Capitol, Montgomery, AL, USA", "Juneau Pos…
+$ short_label  &lt;chr&gt; "Alabama State Capitol", "Juneau Post Office - Federal St…
+$ addr_type    &lt;chr&gt; "POI", "POI", "POI", "POI", "POI", "POI", "POI", "POI", "…
+$ type_field   &lt;chr&gt; "Building", "Post Office", "Museum", "Government Office",…
+$ place_name   &lt;chr&gt; "Alabama State Capitol", "Juneau Post Office - Federal St…
+$ add_num      &lt;chr&gt; "", "", "1700", "500", "1315", "101", "210", "411", "304"…
+$ address      &lt;chr&gt; "", "", "1700 W Washington St", "500 Woodlane Ave", "1315…
+$ block        &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ sector       &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ neighborhood &lt;chr&gt; "", "", "Central City", "", "Downtown Sacramento", "", "D…
+$ district     &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ city         &lt;chr&gt; "Montgomery", "Juneau", "Phoenix", "Little Rock", "Sacram…
+$ metro_area   &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ subregion    &lt;chr&gt; "Montgomery County", "Juneau City and Borough", "Maricopa…
+$ region       &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "California",…
+$ region_abbr  &lt;chr&gt; "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "HI", "FL…
+$ territory    &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ postal       &lt;chr&gt; "", "", "85007", "72201", "95814", "80203", "06105", "199…
+$ postal_ext   &lt;chr&gt; "", "", "", "", "4801", "", "", "", "2420", "", "", "", "…
+$ country_name &lt;chr&gt; "United States", "United States", "United States", "Unite…
+$ country_code &lt;chr&gt; "USA", "USA", "USA", "USA", "USA", "USA", "USA", "USA", "…
+$ geometry     &lt;POINT [°]&gt; POINT (-86.30049 32.37775), POINT (-134.4203 58.301…</code></pre>
+</div>
+</div>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -698,7 +1014,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/geocode/reverse-geocoding.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/geocode/reverse-geocoding.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

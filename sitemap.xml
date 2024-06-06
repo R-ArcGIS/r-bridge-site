@@ -2,126 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/tutorials.html</loc>
-    <lastmod>2024-06-05T21:12:17.850Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.760Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/location-services/paper.html</loc>
-    <lastmod>2024-06-05T21:12:17.782Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.696Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/location-services/workflows/using-arcgis-arcgisbinding.html</loc>
-    <lastmod>2024-06-05T21:12:17.850Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.760Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/location-services/overview.html</loc>
-    <lastmod>2024-06-05T21:12:17.782Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.696Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/location-services/publishing.html</loc>
-    <lastmod>2024-06-05T21:12:17.782Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.696Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/index.html</loc>
-    <lastmod>2024-06-05T21:12:17.766Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.676Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/geocode/reverse-geocoding.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/geocode/custom-locators.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/geocode/overview.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/editing/delete-features.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/editing/add-features.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/layers/read-layers.html</loc>
-    <lastmod>2024-06-05T21:12:17.766Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.676Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/layers/publishing.html</loc>
-    <lastmod>2024-06-05T21:12:17.766Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.676Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/auth/index.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/geoprocessing-tools.html</loc>
-    <lastmod>2024-06-05T21:12:17.766Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.676Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/packages.html</loc>
-    <lastmod>2024-06-05T21:12:17.850Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.760Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/resources.html</loc>
-    <lastmod>2024-06-05T21:12:17.850Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.760Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/installation.html</loc>
-    <lastmod>2024-06-05T21:12:17.766Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.676Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/auth/storing-credentials.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/layers/overview.html</loc>
-    <lastmod>2024-06-05T21:12:17.766Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.676Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/editing/overview.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/editing/update-features.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/editing/overwrite-features.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/geocode/forward-geocoding.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/geocode/bulk-geocoding.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/docs/get-started.html</loc>
-    <lastmod>2024-06-05T21:12:17.758Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.668Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/workflows.html</loc>
-    <lastmod>2024-06-05T21:12:17.850Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.760Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/location-services/tutorials/shiny-dash/index.html</loc>
-    <lastmod>2024-06-05T21:12:17.834Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.744Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/location-services/workflows/add-delete-update.html</loc>
-    <lastmod>2024-06-05T21:12:17.834Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.744Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/location-services/workflows/overwrite-feature-service.html</loc>
-    <lastmod>2024-06-05T21:12:17.846Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.760Z</lastmod>
   </url>
   <url>
     <loc>https://R-ArcGIS.github.io/r-bridge-site/location-services/connecting-to-a-portal.html</loc>
-    <lastmod>2024-06-05T21:12:17.766Z</lastmod>
+    <lastmod>2024-06-06T14:04:29.676Z</lastmod>
   </url>
 </urlset>
