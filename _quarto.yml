@@ -17,18 +17,20 @@ website:
     collapse-level: 1
     style: "floating"
     contents:
-      - href: index.qmd
-        text: Overview
-      - text: Key Features
-      - docs/get-started.qmd
-      - docs/installation.qmd
+      - text: "Overview"
+        href: index.qmd
+      - text: "Get started"
+        href: docs/get-started.qmd
+      - text: "Install and set up"
+        href: docs/installation.qmd
       - section: Authentication
         contents:
           - text: "Overview"
             href: docs/auth
-          - docs/auth/storing-credentials.qmd
-          - href: location-services/connecting-to-a-portal.qmd
-            text: "Authenticating with R"
+          - text: "Storing credentials"
+            href: docs/auth/storing-credentials.qmd
+          - text: "Authenticating with R"
+            href: location-services/connecting-to-a-portal.qmd
       - section: Layers
         contents:
         - text: "Overview"
@@ -45,24 +47,30 @@ website:
           href: docs/editing/overview.qmd
         - text: "Adding features"
           href: docs/editing/add-features.qmd
-        - docs/editing/update-features.qmd
-        - docs/editing/delete-features.qmd
-        - text: "Truncate and append features"
+        - text: "Updating features"
+          href: docs/editing/update-features.qmd
+        - text: "Deleting features"
+          href: docs/editing/delete-features.qmd
+        - text: "Truncating and appending features"
           href: docs/editing/overwrite-features.qmd
       - section: Geocoding
         contents:
-        - docs/geocode/overview.qmd
-        - docs/geocode/forward-geocoding.qmd
-        - href: docs/geocode/bulk-geocoding.qmd
-          text: "Bulk Geocoding"
-        - href: docs/geocode/reverse-geocoding.qmd
-          text: "Reverse Geocoding"
+        - text: "Overview"
+          href: docs/geocode/overview.qmd
+        - text: "Forward geocoding"
+          href: docs/geocode/forward-geocoding.qmd
+        - text: "Bulk Geocoding"
+          href: docs/geocode/bulk-geocoding.qmd
+        - text: "Reverse Geocoding"
+          href: docs/geocode/reverse-geocoding.qmd
       - section: Places
         contents:
-        - docs/places/overview.qmd
+        - text: "Overview"
+          href: docs/places/overview.qmd
       - section: Geoprocessing
         contents:
-        - docs/geoprocessing/overview.qmd
+        - text: "Overview"
+          href: docs/geoprocessing/overview.qmd
         - text: "Making Geoprocessing Tools"
           href: docs/geoprocessing/creating-gp-tools.qmd
 
