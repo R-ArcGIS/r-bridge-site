@@ -27,7 +27,8 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
     in_path,
     rmarkdown::github_document(),
     output_file = tmp,
-    knit_root_dir = fs::path_abs(work_dir)
+    knit_root_dir = fs::path_abs(work_dir),
+    quiet = TRUE
   )
 
   # create the output markdown file so that downlit can write to it
@@ -41,29 +42,48 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
 }
 
 
-in_fps <- list.files(pattern = "*.qmd", recursive = TRUE)
-out_fps <- paste0(tools::file_path_sans_ext(file.path("_arcgis", in_fps)), ".md")
+all_files <- list.files(
+  c("images", "docs"),
+  full.names = TRUE,
+  all.files = TRUE,
+  recursive = TRUE,
+)
 
+# all quarto docs
+in_fps <- list.files(pattern = "*.qmd", recursive = TRUE)
+
+# remove quarto docs from all_files
+to_copy <- setdiff(all_files, in_fps)
+copy_dest <- file.path("_arcgis", to_copy)
+
+# remove the overview.qmd files
+in_fps <- in_fps[!basename(in_fps) == "overview.qmd"]
+
+# define the output paths 
+out_fps <- paste0(
+  tools::file_path_sans_ext(file.path("_arcgis", in_fps)),
+  ".md"
+)
 
 # create directories
-for (dirp in unique(dirname(out_fps))) {
+for (dirp in unique(dirname(c(out_fps, copy_dest)))) {
   if (!dir.exists(dirp)) {
     dir.create(dirp, recursive = TRUE)
   }
 }
 
-# failed at 11 (docs)"_arcgis/docs/geocode/overview.md"
+# copy all of the non-quarto files
+file.copy(
+  to_copy,
+  copy_dest,
+  overwrite = TRUE
+)
+
+# render all of the files
 for (i in 1:length(in_fps)) {
   ip <- in_fps[[i]]
   op <- out_fps[[i]]
   cli::cli_alert_info("Rendering # file {i}: {.file {ip}} to {.file {op}}")
   render_qmd_to_md(ip, op)
 }
-
-render_qmd_to_md(in_fps[20], out_fps[20])
-# Example
-# render_qmd_to_md(
-#   "location-services/publishing.qmd",
-#   "markdown/publishing.md"
-# )
 
