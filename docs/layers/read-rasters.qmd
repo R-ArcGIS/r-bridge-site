@@ -56,6 +56,10 @@ First, load the `arcgis` R package. If you do not have `arcgis` installed, insta
 library(arcgis)
 ```
 
+```{r include=FALSE}
+unset_arc_token()
+```
+
 Use the below code to store the image service url in an object called `url`.
 
 ```{r}
@@ -104,12 +108,12 @@ The result is a `SpatRaster` object that you can now work with using **`terra`**
 From here, you can pursue your own raster and imagery workflows using `terra`. For some simple examples, consider plotting the image:
 
 ```{r, message = FALSE}
-terra::plotRGB(img, stretch = "lin")
+terra::plotRGB(crater, stretch = "lin")
 ```
 
 or saving the image locally:
 
 ```{r, message = FALSE}
-terra::writeRaster(crater, "ouarkziz-crater-RGB.tif", overwrite=TRUE)
+terra::writeRaster(crater, "ouarkziz-crater-RGB.tif", overwrite = TRUE)
 ```
 

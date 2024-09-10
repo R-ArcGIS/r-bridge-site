@@ -86,4 +86,5 @@ format:
 highlight-style: pygments
 
 execute:
+  keep-md: true
   freeze: true

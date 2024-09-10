@@ -168,59 +168,6 @@ arc_select(
 )
 ```
 
-## Using `dplyr`
-
-If writing the field names out by hand and coming up with SQL where clauses isn't your thing, that's okay. We also provide `dplyr::select()` and `dplyr::filter()` methods for `FeatureLayer` objects.
-
-The dplyr functionality is modeled off of [`dbplyr`](https://dbplyr.tidyverse.org/). The general concept is that you have a connection object that specifies what you will be querying against. Then you build up queries using dplyr functions. Unlike using dplyr on `data.frame`s, the results aren't fetched eagerly. Instead they are _lazy_. With `dbplyr`, you use the `collect()` function to execute a query and bring it into memory. The same is true with `FeatureLayer` objects. 
-
-Let's build up a query and see it in action! First, load dplyr to bring the functions into scope.
-
-```{r, message = FALSE}
-library(dplyr)
-
-fl_query <- flayer |> 
-  select(STATE_ABBR, POPULATION, NAME)
-
-fl_query
-```
-
-After doing this, your `FeatureLayer` object now prints out a `Query` field with the `outFields` parameter set to the result of your `select()` function.
-
-:::{.callout-note collapse="true" title="A note for advanced useRs"}
-You build up and store the query in the `query` attribute of a `FeatureLayer` object. It is a named list that will be passed directly to the API endpoint. The names match endpoint parameters. 
-
-```{r}
-attr(fl_query, "query")
-```
-
-You can also manually specify parameters using the `update_params()` function. Note that there is _no_ parameter validation.
-
-```{r}
-update_params(fl_query, key = "value")
-```
-
-:::
-
-You can continue to build up your query using `filter()` 
-
-:::{.callout-tip}
-Only very basic filter statements are supported such as `==`, `<`, `>`, etc.
-:::
-
-```{r, message = FALSE}
-fl_query |> 
-  filter(POPULATION > 1000000, STATE_ABBR == "CA")
-```
-
-The query is stored in the `FeatureLayer` object and will not be executed until you request it with `collect()`. 
-
-```{r}
-fl_query |> 
-  filter(POPULATION > 1000000, STATE_ABBR == "CA") |> 
-  collect()
-```
-
 ## Map and Feature Servers
 
 This example has only illustrated how to work with `FeatureLayer` objects. However, often times you may wish to work with a collection of layers in a `FeatureServer`, `MapServer`, or `GroupLayer`. All of these are collections of multiple layers. Like a `FeatureLayer`, these are accessed with `arc_open()`.

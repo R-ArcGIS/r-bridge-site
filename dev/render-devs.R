@@ -34,11 +34,36 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   file.create(out_path)
 
   # add autolinking and syntax highlighting (we will have to choose colors manually later)
-  downlit::downlit_md_path(tmp, out_path = out_path)
+  tryCatch(downlit::downlit_md_path(tmp, out_path = out_path), error = function(e) {
+    cli::cli_alert_danger("Failed apply downlit to {.file {in_path}}")
+    file.copy(tmp, out_path, TRUE)
+  })
 }
 
+
+in_fps <- list.files(pattern = "*.qmd", recursive = TRUE)
+out_fps <- paste0(tools::file_path_sans_ext(file.path("_arcgis", in_fps)), ".md")
+
+
+# create directories
+for (dirp in unique(dirname(out_fps))) {
+  if (!dir.exists(dirp)) {
+    dir.create(dirp, recursive = TRUE)
+  }
+}
+
+# failed at 11 (docs)"_arcgis/docs/geocode/overview.md"
+for (i in 1:length(in_fps)) {
+  ip <- in_fps[[i]]
+  op <- out_fps[[i]]
+  cli::cli_alert_info("Rendering # file {i}: {.file {ip}} to {.file {op}}")
+  render_qmd_to_md(ip, op)
+}
+
+render_qmd_to_md(in_fps[20], out_fps[20])
 # Example
 # render_qmd_to_md(
 #   "location-services/publishing.qmd",
 #   "markdown/publishing.md"
 # )
+
