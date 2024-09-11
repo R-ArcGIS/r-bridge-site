@@ -23,6 +23,8 @@ website:
         href: docs/get-started.qmd
       - text: "Install and set up"
         href: docs/installation.qmd
+      - text: "Release notes"
+        href: docs/release-notes.qmd
       - section: Authentication
         contents:
           - text: "Overview"
@@ -73,7 +75,8 @@ website:
           href: docs/geoprocessing/overview.qmd
         - text: "Making Geoprocessing Tools"
           href: docs/geoprocessing/creating-gp-tools.qmd
-
+      - text: "System requirements"
+        href: docs/system-requirements.qmd
 
 format:
   html:
