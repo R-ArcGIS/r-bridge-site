@@ -16,7 +16,7 @@ We will go over the functions:
   
 ## Pre-requisites
 
-We will use the the *North Carolina SIDS* dataset we created in the [**Publishing from R**](../publishing.qmd) tutorial. To follow along, be sure that you have followed that tutorial and have a `FeatureLayer` that you can modify. If you have not yet configured your environment to authorize with an online portal, start at [**Connecting to your portal**](../connecting-to-a-portal.qmd).
+We will use the the *North Carolina SIDS* dataset we created in the [**Publishing from R**](/docs/layers/publishing.qmd) tutorial. To follow along, be sure that you have followed that tutorial and have a `FeatureLayer` that you can modify. If you have not yet configured your environment to authorize with an online portal, start at [**Connecting to your portal**](/docs/auth/connecting-to-a-portal.qmd).
 
 ## Adding features
 

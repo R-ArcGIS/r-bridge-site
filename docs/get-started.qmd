@@ -6,7 +6,7 @@ The R-ArcGIS Bridge supports working with both ArcGIS Pro as well as ArcGIS loca
 
 # Using ArcGIS location services
 
-The R-ArcGIS Bridge R packages that interact with location services are contained in the metapackage ['{arcgis}'](https://github.com/R-ArcGIS/arcgis/). It contains: 
+The R-ArcGIS Bridge R packages that interact with location services are contained in the metapackage [{arcgis}](https://github.com/R-ArcGIS/arcgis/). It contains: 
 
 - [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils): manages authorization for all location service R packages and other utilities
 - [`{arcgislayers}`](https://github.com/R-ArcGIS/arcgislayers): provides read and write access to layers on ArcGIS Online, Enterprise, and Platform

@@ -57,7 +57,7 @@ to_copy <- setdiff(all_files, in_fps)
 copy_dest <- file.path("_arcgis", to_copy)
 
 # remove the overview.qmd files
-in_fps <- in_fps[!basename(in_fps) == "overview.qmd"]
+# in_fps <- in_fps[!basename(in_fps) == "overview.qmd"]
 
 # define the output paths 
 out_fps <- paste0(
