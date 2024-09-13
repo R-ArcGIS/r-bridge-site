@@ -1,5 +1,7 @@
 ---
 title: Releases
+uid: releases
+freeze: true
 ---
 
   - [`{arcgislayers}`](https://github.com/R-ArcGIS/arcgislayers/blob/main/NEWS.md)
