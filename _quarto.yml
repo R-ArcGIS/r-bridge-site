@@ -24,7 +24,7 @@ website:
       - text: "Install and set up"
         href: docs/installation.qmd
       - text: "Release notes"
-        href: docs/release-notes.qmd
+        href: docs/releases.qmd
       - section: Authentication
         contents:
           - text: "Overview"
@@ -32,7 +32,7 @@ website:
           - text: "Storing credentials"
             href: docs/auth/storing-credentials.qmd
           - text: "Authenticating with R"
-            href: location-services/connecting-to-a-portal.qmd
+            href: docs/auth/connecting-to-a-portal.qmd
       - section: Layers
         contents:
         - text: "Overview"
@@ -89,5 +89,4 @@ format:
 highlight-style: pygments
 
 execute:
-  keep-md: true
-  freeze: true
+  freeze: auto

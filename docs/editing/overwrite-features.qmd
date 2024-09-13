@@ -1,6 +1,6 @@
 ---
 title: "Overwrite Hosted Feature Layer"
-freeze: true
+freeze: auto
 --- 
 
 ```{r include = FALSE}
@@ -15,7 +15,7 @@ For this example, we need to be the owner of a Feature Service. As such, we will
 
 Truncating a Feature Layer deletes every single record in the service and resets the auto-increment of the object ID. Truncating a service does not change the field definitions or permit us to add or remove fields. If you wish to do so, publish a new layer instead. 
 
-Before we can modify a service, we must first authorize ourselves with the portal. To do so we will use the `auth_code()` authorization flow. If you have not yet configured you environment to authorize with your portal, follow the [**Connecting to your Portal**](../connecting-to-a-portal.qmd) tutorial. 
+Before we can modify a service, we must first authorize ourselves with the portal. To do so we will use the `auth_code()` authorization flow. If you have not yet configured you environment to authorize with your portal, follow the [**Connecting to your Portal**](/docs/auth/connecting-to-a-portal.qmd) tutorial. 
 
 First load `arcgis`.
 
@@ -41,7 +41,7 @@ Token set to environment variable `ARCGIS_TOKEN`
 Now that we have verified our identity with our portal we can create a `FeatureLayer` object in R from our hosted service. From your [content listing](https://arcgis.com/home/content.html) find the Feature Layer url. 
 
 :::{.callout-tip}
-Revisit the "Obtaining a feature layer url" section of the [**Read hosted data**](../read-data.qmd#obtaining-a-feature-layer-url) tutorial if you forgot how to retrieve the service url.
+Revisit the "Obtaining a feature layer url" section of the [**Read hosted data**](/docs/layers/read-layers.qmd#obtaining-a-feature-layer-url) tutorial if you forgot how to retrieve the service url.
 :::
 
 ```{r}
