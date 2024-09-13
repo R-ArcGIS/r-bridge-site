@@ -23,7 +23,7 @@ Or, you can install the packages individually as well by running:
 ```r
 pkgs <- c("arcgisutils", "arcgislayers", "arcgisgeocode", "arcgisplaces")
 
-install.packages(pkgs)
+install.packages(pkgs, repos = c("https://r-arcgis.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 # Installing `{arcgisbinding}`
