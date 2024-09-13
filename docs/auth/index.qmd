@@ -2,7 +2,7 @@
 title: Overview
 ---
 
-There a number of times when you will need to verify who you say you are when using ArcGIS location services. This is done through a process called **authentication**. Authentication is required when you want to
+There a number of times when you will need to verify who you say you are when using ArcGIS location services. This is done through a process called **authentication**. Authentication is required when you want to:
 
 - access private content
 - publish your own layers
@@ -12,12 +12,12 @@ There a number of times when you will need to verify who you say you are when us
 
 ## Sign up for an account 
 
-To access certain content, services, or organizations, you will need to be signed in to eithe an ArcGIS Developer account, ArcGIS Online account, or ArcGIS Enterprise account. The type of account, user type, and role you need depends on the resource you need to access and the operations you wish to undertake.
+To access certain content, services, or organizations, you will need to be signed in to either an ArcGIS Developer account, ArcGIS Online account, or ArcGIS Enterprise account. The type of account, user type, and role you need depends on the resource you need to access and the operations you wish to undertake.
 
 If you do not have an account, select one of the options below: 
 
-- Get started for free with ArcGIS Platform
-- Get a free trial of ArcGIS Online
+- [Get started for free with ArcGIS Platform](https://www.esri.com/en-us/arcgis/products/arcgis-location-platform/overview)
+- [Get a free trial of ArcGIS Online](https://www.esri.com/en-us/arcgis/products/arcgis-online/overview)
 
 :::{.callout-tip}
 To get an account for an existing ArcGIS organization contact your ArcGIS Online or ArcGIS Enterprise administrator.
