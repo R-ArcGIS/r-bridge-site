@@ -157,6 +157,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/releases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Release notes</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
@@ -180,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/auth/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
@@ -337,6 +343,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/system-requirements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">System requirements</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -390,6 +402,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Installing <code>{arcgis}</code></h1>
 <p>To install the <code>{arcgis}</code> location service metapackage, run the following from your console:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"arcgis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once the installation has finished you can load all of the packages using:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or, you can install the packages individually as well by running:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"arcgisutils"</span>, <span class="st">"arcgislayers"</span>, <span class="st">"arcgisgeocode"</span>, <span class="st">"arcgisplaces"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(pkgs, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">"https://r-arcgis.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="installing-arcgisbinding" class="level1">
 <h1>Installing <code>{arcgisbinding}</code></h1>
@@ -417,7 +435,7 @@ Note
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/arcgisbinding-installer-homedir.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the Detected R home directories drop-down in the R-ArcGIS Support section highlighted."></p>
+<p><img src="./images/arcgisbinding-installer-homedir.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the Detected R home directories drop-down in the R-ArcGIS Support section highlighted."></p>
 </figure>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -441,7 +459,7 @@ Warning
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/arcgisbinding-installer-internet.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the ArcGIS R integration package installation drop-down in the R-ArcGIS Support section highlighted, showing the Install package from the internet option."></p>
+<p><img src="./images/arcgisbinding-installer-internet.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the ArcGIS R integration package installation drop-down in the R-ArcGIS Support section highlighted, showing the Install package from the internet option."></p>
 </figure>
 </div>
 <ul>
@@ -450,18 +468,18 @@ Warning
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/arcgisbinding-installer-complete.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the completed installation message highlighted, reading Installed arcgisbinding package version 1.0.1.306."></p>
+<p><img src="./images/arcgisbinding-installer-complete.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="A screenshot of the Options window with the completed installation message highlighted, reading Installed arcgisbinding package version 1.0.1.306."></p>
 </figure>
 </div>
 </section>
 <section id="from-r" class="level2">
 <h2 class="anchored" data-anchor-id="from-r">Install from R</h2>
 <p>Alternatively, you can install <strong>arcgisbinding</strong> directly from R. Open RStudio, VS Code, or your favorite text editor and run the following from the console:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"arcgisbinding"</span>, </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">"https://r.esri.com"</span>, </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"win.binary"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"arcgisbinding"</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="st">"https://r.esri.com"</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"win.binary"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will install the package binary directly from the <a href="https://github.com/R-ArcGIS/r-arcgis.github.io/tree/master/bin/windows/contrib">R-ArcGIS GitHub repository</a>, which stores the builds of the package. Note that installing this way still has the same requirements. The package is a Windows binary and must be installed on a Windows computer.</p>
 </section>
 <section id="offline" class="level2">
@@ -470,7 +488,7 @@ Warning
 <p>In order to install <strong>arcgisbinding</strong> in an air-gapped environment you must first download the package on a machine with internet access and transfer it into your offline environment.</p>
 <p>To download the package, go to https://r.esri.com/bin/ and choose the version of <strong>arcgisbinding</strong> that matches your version of R.</p>
 <p>Once you have downloaded and moved the zip file onto your air-gapped machine, you can install it using the <code>install.packages()</code> command.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"path/to/arcgisbinding_1.0.1.306.zip"</span>, <span class="at">repos =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"path/to/arcgisbinding_1.0.1.306.zip"</span>, <span class="at">repos =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -488,8 +506,8 @@ Warning
 <section id="verify-your-installation" class="level2">
 <h2 class="anchored" data-anchor-id="verify-your-installation">Verify your installation</h2>
 <p>Once you have <strong>arcgisbinding</strong> installed, you can check if your installation was successful by loading the package.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisbinding)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arc.check_product</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisbinding)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arc.check_product</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will print a message informing you of the version of ArcGIS Pro you are using. You do not need to install <strong>arcgisbinding</strong> again until you download a new version of R or wish to upgrade the package.</p>
 </section>
 <section id="upgrading-arcgisbinding" class="level2">

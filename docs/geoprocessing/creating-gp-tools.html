@@ -157,6 +157,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/releases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Release notes</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
@@ -180,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
@@ -337,6 +343,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/system-requirements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">System requirements</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -411,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="input-and-output-parameters">Input and Output Parameters</h2>
 <p>There must be two arguments that correspond to input parameters and output parameters. The conventional names of these arguments are <code>in_params</code> and <code>out_params</code>. The first argument will <em>always</em> refer to the input parameters and the second to the outputs.</p>
 <p><code>in_params</code> and <code>out_params</code> are named lists. The elements of these lists are determined by the <strong>direction</strong> of a parameter.</p>
-<p><img src="images/gp-tool-properties.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="../../images/gp-tool-properties.png" class="img-fluid" style="width:50.0%"></p>
 <p>If the direction is <code>Input</code>, it will be contained in <code>in_params</code>. Likewise, if the direction is <code>Output</code>, it will be contained in <code>out_params</code>.</p>
 </section>
 <section id="using-parameters" class="level2">
@@ -518,10 +530,10 @@ Tip
 <section id="multiple-values" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-values">Multiple Values</h3>
 <p>When selecting the <code>Multiple values</code> check box in the parameter data type dialog box, users can then provide multiple inputs of that type.</p>
-<p><img src="images/gp-parameter-type.png" class="img-fluid"></p>
+<p><img src="../../images/gp-parameter-type.png" class="img-fluid"></p>
 <p>When the <code>Multiple values</code> option is enabled, the parameter returns a list containing each of the input values.</p>
 <p>Note that when multiple values are provided, they will be captured in R as a list of scalars. Take the below input, for example:</p>
-<p><img src="images/gp-multiple-strings.png" class="img-fluid"></p>
+<p><img src="../../images/gp-multiple-strings.png" class="img-fluid"></p>
 <p>In R, this parameter value would be <code>list("string 1", "string 2")</code> and <strong>not</strong> <code>c("string 1", "string 2")</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">

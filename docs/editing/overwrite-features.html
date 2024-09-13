@@ -157,6 +157,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/releases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Release notes</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
@@ -180,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
@@ -337,6 +343,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/system-requirements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">System requirements</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -379,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="truncating-a-feature-layer" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="truncating-a-feature-layer">Truncating a Feature Layer</h2>
 <p>Truncating a Feature Layer deletes every single record in the service and resets the auto-increment of the object ID. Truncating a service does not change the field definitions or permit us to add or remove fields. If you wish to do so, publish a new layer instead.</p>
-<p>Before we can modify a service, we must first authorize ourselves with the portal. To do so we will use the <code>auth_code()</code> authorization flow. If you have not yet configured you environment to authorize with your portal, follow the <a href="../connecting-to-a-portal.qmd"><strong>Connecting to your Portal</strong></a> tutorial.</p>
+<p>Before we can modify a service, we must first authorize ourselves with the portal. To do so we will use the <code>auth_code()</code> authorization flow. If you have not yet configured you environment to authorize with your portal, follow the <a href="../../docs/auth/connecting-to-a-portal.html"><strong>Connecting to your Portal</strong></a> tutorial.</p>
 <p>First load <code>arcgis</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -404,7 +416,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Revisit the “Obtaining a feature layer url” section of the <a href="../read-data.qmd#obtaining-a-feature-layer-url"><strong>Read hosted data</strong></a> tutorial if you forgot how to retrieve the service url.</p>
+<p>Revisit the “Obtaining a feature layer url” section of the <a href="../../docs/layers/read-layers.html#obtaining-a-feature-layer-url"><strong>Read hosted data</strong></a> tutorial if you forgot how to retrieve the service url.</p>
 </div>
 </div>
 <div class="cell">

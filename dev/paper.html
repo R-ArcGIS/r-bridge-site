@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reading Image Services – R-ArcGIS Bridge</title>
+<title>arcgislayers: an open source package for ArcGIS Location Services – R-ArcGIS Bridge</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,10 +102,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating slimcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -114,7 +114,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/layers/overview.html">Layers</a></li><li class="breadcrumb-item"><a href="../../docs/layers/read-rasters.html">Reading Image Services</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      R-ArcGIS Bridge
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -129,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">R-ArcGIS Bridge</a> 
+      <a href="../">R-ArcGIS Bridge</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -141,25 +143,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/get-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/get-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/installation.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/installation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/releases.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/releases.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Release notes</span></a>
   </div>
 </li>
@@ -174,19 +176,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/auth" class="sidebar-item-text sidebar-link">
+  <a href="../docs/auth" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/auth/storing-credentials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Storing credentials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/auth/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/auth/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
@@ -194,34 +196,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Layers</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/layers/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/layers/read-layers.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/layers/read-layers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Feature Services</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/layers/read-rasters.html" class="sidebar-item-text sidebar-link active">
+  <a href="../docs/layers/read-rasters.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Image Services</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/layers/publishing.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/layers/publishing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Publishing layers</span></a>
   </div>
 </li>
@@ -238,31 +240,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/editing/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/editing/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/editing/add-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/editing/add-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Adding features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/editing/update-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/editing/update-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Updating features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/editing/delete-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/editing/delete-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deleting features</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/editing/overwrite-features.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/editing/overwrite-features.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Truncating and appending features</span></a>
   </div>
 </li>
@@ -279,25 +281,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/geocode/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/geocode/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/geocode/forward-geocoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/geocode/forward-geocoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Forward geocoding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/geocode/bulk-geocoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/geocode/bulk-geocoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bulk Geocoding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/geocode/reverse-geocoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/geocode/reverse-geocoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reverse Geocoding</span></a>
   </div>
 </li>
@@ -314,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/places/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/places/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
@@ -331,13 +333,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/geoprocessing/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/geoprocessing/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/geoprocessing/creating-gp-tools.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/geoprocessing/creating-gp-tools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Making Geoprocessing Tools</span></a>
   </div>
 </li>
@@ -345,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/system-requirements.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/system-requirements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">System requirements</span></a>
   </div>
 </li>
@@ -359,29 +361,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective">Objective</a></li>
-  <li><a href="#obtaining-an-image-service-url" id="toc-obtaining-an-image-service-url" class="nav-link" data-scroll-target="#obtaining-an-image-service-url">Obtaining an image service url</a></li>
-  <li><a href="#opening-an-image-service" id="toc-opening-an-image-service" class="nav-link" data-scroll-target="#opening-an-image-service">Opening an Image Service</a></li>
-  <li><a href="#reading-from-a-image-service" id="toc-reading-from-a-image-service" class="nav-link" data-scroll-target="#reading-from-a-image-service">Reading from a Image Service</a>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#statement-of-need" id="toc-statement-of-need" class="nav-link" data-scroll-target="#statement-of-need">Statement of need</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a>
   <ul class="collapse">
-  <li><a href="#using-terra" id="toc-using-terra" class="nav-link" data-scroll-target="#using-terra">Using <code>terra</code></a></li>
+  <li><a href="#example-usage" id="toc-example-usage" class="nav-link" data-scroll-target="#example-usage">Example usage</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/layers/read-rasters.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/dev/paper.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/layers/overview.html">Layers</a></li><li class="breadcrumb-item"><a href="../../docs/layers/read-rasters.html">Reading Image Services</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Reading Image Services</h1>
+<h1 class="title"><code>arcgislayers</code>: an open source package for ArcGIS Location Services</h1>
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Josiah Parry </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Environmental Systems Research Institute, Redlands, CA, USA
+          </p>
+      </div>
+  </div>
 
 <div class="quarto-title-meta">
 
-    
+      
   
     
   </div>
@@ -391,146 +405,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>ArcGIS Online and Enterprise web services can easily be read into R using<code>{arcgislayers}</code>. Supported service types include:</p>
-<ul>
-<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/feature-service.htm">FeatureServer</a>
-<ul>
-<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm">FeatureLayer</a></li>
-<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm">Table</a></li>
-</ul></li>
-<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/map-service.htm">MapServer</a>
-<ul>
-<li><a href="https://developers.arcgis.com/web-map-specification/objects/groupLayer/">GroupLayer</a></li>
-</ul></li>
-<li><a href="https://developers.arcgis.com/rest/services-reference/enterprise/image-service.htm">ImageServer</a></li>
-</ul>
-<p>Metadata for all of the above service types can be accessed using <code>arc_open()</code>. Feature data can be read in using <code>arc_select()</code> for FeatureLayer, Table, and ImageServer.</p>
-<p>This tutorial will teach you the basics of reading data from hosted image services into R as <a href="https://rspatial.github.io/terra/reference/rast.html"><code>{terra} SpatRaster</code></a> objects using<code>{arcgislayers}</code>. The source for an image service is published raster or imagery data. To learn more about image services, see the <a href="https://enterprise.arcgis.com/en/server/latest/publish-services/windows/key-concepts-for-image-services.htm">Image services documentation</a>.</p>
-<section id="objective" class="level2">
-<h2 class="anchored" data-anchor-id="objective">Objective</h2>
-<p>The objective of this tutorial is to teach you how to:</p>
-<ul>
-<li>find a image service url from ArcGIS Online</li>
-<li>read in the data from the image service</li>
-<li>filter the image service by a bounding box</li>
-<li>use <code>terra</code> for viewing and writing</li>
-</ul>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>arcgislayers is an open source package as part of Environmental Systems Research Institute’s (Esri) R-ArcGIS Bridge project. arcgislayers enables developers to interact with ArcGIS data services directly from R. With arcgislayers, users can read, write, and administer remotely hosted data directly from R using native objects.</p>
 </section>
-<section id="obtaining-an-image-service-url" class="level2">
-<h2 class="anchored" data-anchor-id="obtaining-an-image-service-url">Obtaining an image service url</h2>
-<p>For this example, you will read in multispectral Landsat imagery of the Ouarkziz Crater from ArcGIS Online.</p>
-<p>You will use the functions <code>arc_open()</code> and <code>arc_raster()</code> to read image data from ArcGIS Online into R. However, these functions require the url of the hosted image service. To find this, navigate to the <a href="https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b">item</a> in ArcGIS Online.</p>
-<p><img src="../images/read-data/multispectral-landsat.png" class="img-fluid"> When you scroll down, on the right hand side, you will see a button to view the service itself.</p>
-<p><img src="../images/read-data/view-url-imagery.png" class="img-fluid" style="width:45.0%"></p>
-<p>Clicking this will bring you to the Image Service, where you can more closely investigate the metadata and supported operations for this service. Navigate to your browser’s search bar and copy the url.</p>
-<pre><code>https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer</code></pre>
+<section id="statement-of-need" class="level2">
+<h2 class="anchored" data-anchor-id="statement-of-need">Statement of need</h2>
+<p>In the evolving landscape of geospatial analysis, a critical shift towards cloud-native infrastructure has emerged, characterized by the exposure of data via REST APIs. Esri’s ArcGIS Location Services characterized by ArcGIS Platform embody this transition. Location services are accessible via REST API endpoints which which are language agnostic.</p>
+<p>While existing solutions like arcgisbinding enable reading and writing of ArcGIS hosted data, they present limitations (Aydin et al.). Notably, arcgisbinding relies on an ArcGIS Pro license which is confined to a Windows operating system, and does not support any additional administration of hosted data services.</p>
+<p>Moreover, the community-driven endeavors such as esri2sf, arcpullr, among others, strive to bridge this gap (CITE). However, these efforts fall short in delivering comprehensive, officially supported, and high-performance alternatives.</p>
+<p>arcgislayers is an official, Esri-backed, open-source R package designed to interact with ArcGIS Image Servers and Feature Services. Leveraging the REST services offered by ArcGIS, arcgislayers empowers developers to seamlessly administer, read, and write data without the constraints of proprietary licenses or operating systems.</p>
 </section>
-<section id="opening-an-image-service" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="opening-an-image-service">Opening an Image Service</h2>
-<p>First, load the <code>arcgis</code> R package. If you do not have <code>arcgis</code> installed, install it with <code>pak::pak("r-arcgis/arcgis")</code> or <code>install.packages("arcgis")</code>.</p>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p><code>{pak}</code> is an R package that makes it faster and easier to install R packages. If you do not have it installed, run <code>install.packages("pak")</code> first.</p>
-</div></div><div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Attaching core arcgis packages:
-→ arcgisutils v0.3.0
-→ arcgislayers v0.3.0
-→ arcgisgeocode v0.1.3
-→ arcgisplaces v0.1.0</code></pre>
-</div>
-</div>
-<p>Use the below code to store the image service url in an object called <code>url</code>.</p>
+<section id="implementation" class="level1">
+<h1>Implementation</h1>
+<p>arcgislayers supports both Image Servers and Feature Services. When reading raster imagery, arcgislayers returns objects of class <code>SpatRaster</code> from the terra package. arcgislayers’ vector capabilities are much more sophisticated, however.</p>
+<p>In the r-spatial ecosystem, sf objects are the de facto representation of geometric objects with associated attributes. As such, arcgislayers utilizes sf objects and data.frames to represent spatial and a-spatial data respectively. Due to the ubiquity of sf objects additional geometry types are not supported directly but can be via wk (edzer, probably bivand somewhere inhere dunnington).</p>
+<p>The ArcGIS REST API defines a number of JSON objects that are understood by the endpoints. Notably, the REST APIs have their own definitions for geometries objects. Underpinning arcgislayers is the R package arcgisutils which is used for serializing data.frame and sf objects into Esri JSON formats. arcgisutils also provides utilities for deserializing Esri JSON returned from the REST APIs into sf or data.frame objects.</p>
+<p>The de/serialization provided by arcgisutils enables seamless reading and writing of geospatial data with ArcGIS Location Services.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Then pass this variable to <code>arc_open()</code> and save it to <code>imgsrv</code> (image service).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>imgsrv <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(url)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>imgsrv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">3.0</span>, <span class="fl">0.14</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  arcgisutils<span class="sc">::</span><span class="fu">as_esri_geometry</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  jsonify<span class="sc">::</span><span class="fu">pretty_json</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;ImageServer &lt;11 bands, 26 fields&gt;&gt;
-Name: Landsat/MS
-Description: Multispectral Landsat image service covering the landmass of the W
-Extent: -20037507.07 20037507.84 -9694091.07 9691188.93 (xmin, xmax, ymin, ymax)
-Resolution: 30 x 30
-CRS: 3857
-Capabilities: Catalog,Image,Metadata</code></pre>
+<pre><code>{
+    "x": 3.0,
+    "y": 0.14
+}</code></pre>
 </div>
 </div>
-<p><code>arc_open()</code> will create a <code>ImageServer</code> object. Under the hood, this is really just a list containing the image service’s metadata.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="ImageServer details for the curious">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-ImageServer details for the curious
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The <code>ImageServer</code> object is obtained by adding <code>?f=json</code> to the image server url and processing the json. All of the metadata is stored in the <code>ImageServer</code> object. You can see this by running <code>unclass(imgsrv)</code>. Be warned! It gets messy.</p>
-</div>
-</div>
-</div>
-<p>With this <code>ImageServer</code> object, you can read data from the service into R!</p>
-</section>
-<section id="reading-from-a-image-service" class="level2">
-<h2 class="anchored" data-anchor-id="reading-from-a-image-service">Reading from a Image Service</h2>
-<p>Once you have a <code>ImageServer</code> object, you can access the image data using the <code>arc_raster()</code> function. Pass the coordinates for a bounding box into the function using the <code>xmin</code>, <code>ymin</code>, <code>xmax</code>, and <code>ymax</code> arguments. Store the results of <code>arc_raster()</code> in the object <code>crater</code>.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Avoid reading in more data than you need! When extracting data from an image service, it is best practice to include a bounding box to limit the extraction to just the area that you need. Make sure to provide the bounding box coordinates in the Coordinate Reference System (CRS) of the image service or use the <code>bbox_crs</code> argument to specify another CRS for these coordinates.</p>
-</div>
-</div>
+<section id="example-usage" class="level2">
+<h2 class="anchored" data-anchor-id="example-usage">Example usage</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>crater <span class="ot">&lt;-</span> <span class="fu">arc_raster</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  imgsrv,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmin =</span> <span class="st">"-846028"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ymin =</span> <span class="st">"3373101"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmax =</span> <span class="st">"-833783"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ymax =</span> <span class="st">"3380738"</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>crater</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgislayers)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer/0"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>flayer <span class="ot">&lt;-</span> <span class="fu">arc_open</span>(url)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>flayer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>class       : SpatRaster 
-dimensions  : 400, 400, 11  (nrow, ncol, nlyr)
-resolution  : 30.6125, 30.6125  (x, y)
-extent      : -846028, -833783, 3370797, 3383042  (xmin, xmax, ymin, ymax)
-coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) 
-source      : file13b4a2cd01c61.tiff 
-names       : Coast~rosol, Blue, Green, Red, NearInfrared, Short~red_1, ... </code></pre>
+<pre><code>&lt;FeatureLayer&gt;
+Name: PlacePoints
+Geometry Type: esriGeometryPoint
+CRS: 3785
+Capabilities: Query,Extract</code></pre>
 </div>
 </div>
-<p>The result is a <code>SpatRaster</code> object that you can now work with using <strong><code>terra</code></strong> and any other R packages.</p>
-<section id="using-terra" class="level3">
-<h3 class="anchored" data-anchor-id="using-terra">Using <code>terra</code></h3>
-<p>From here, you can pursue your own raster and imagery workflows using <code>terra</code>. For some simple examples, consider plotting the image:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">plotRGB</span>(crater, <span class="at">stretch =</span> <span class="st">"lin"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="read-rasters_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>or saving the image locally:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">writeRaster</span>(crater, <span class="st">"ouarkziz-crater-RGB.tif"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<hr>
+<p>Notes</p>
+<ul>
+<li><p>Aydin et al introduce arcgisbinding which provides a binding to ArcGIS pro enabling the reading and writing of ArcGIS Proprietary data formats and on the fly geospatial transformations using the transformation engine</p></li>
+<li><p>We’re seeing a shift towards cloud-native geospatial analysis data infrastructure which are exposed via rest apis</p></li>
+<li><p>Esri provides very useful technology via ArcGIS Location Services. Location services are exposed via rest APIs which are well documented. Endpoints can be both public or private depending on the hosting solution and authentication used.</p></li>
+<li><p>REST services provide a language agnostic interface to proprietary code allowing the development of completely open source bindings to the services</p></li>
+<li><p>While arcgisbinding provides a way for users of R <em>and</em> ArcGIS Pro to read image and feature services it is fairly limited. Noteably, the use of arcgisbinding requires an ArcGIS Pro license which itself requires a window machine. Further, arcgisbinding does not provide further capabilities for hosted data management.</p></li>
+<li><p>arcgislayers builds upon the REST service provided by ArcGIS. arcgislayers is an open source R package for interacting with ArcGIS image servers and Feature services.</p></li>
+<li><p>there are a number of community driven efforts to address this gap which are notably esri2sf, arcpullr, among others.</p></li>
+<li><p>arcgislayers is an official, esri supported, and highly performant alternative to these packages</p></li>
+</ul>
 
 
 </section>
@@ -965,7 +896,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>As a member of the R Consortium, Esri is part of the R community and supports the R project.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/docs/layers/read-rasters.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/r-arcgis/r-bridge-site/edit/main/dev/paper.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/r-arcgis/r-bridge-site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

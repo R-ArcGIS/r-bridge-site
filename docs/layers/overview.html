@@ -157,6 +157,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Install and set up</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/releases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Release notes</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
@@ -180,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../location-services/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/auth/connecting-to-a-portal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Authenticating with R</span></a>
   </div>
 </li>
@@ -337,6 +343,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/system-requirements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">System requirements</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -436,8 +448,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Attaching core arcgis packages:
-→ arcgisutils v0.3.0
-→ arcgislayers v0.2.0</code></pre>
+→ arcgisutils v0.3.0.9000
+→ arcgislayers v0.3.0.9000
+→ arcgisgeocode v0.2.0
+→ arcgisplaces v0.1.0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># feature service url</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>furl <span class="ot">&lt;-</span> <span class="st">"https://services3.arcgis.com/ZvidGQkLaDJxRSJ2/arcgis/rest/services/PLACES_LocalData_for_BetterHealth/FeatureServer/4"</span></span>
@@ -477,21 +491,23 @@ Tip
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">"objectid"</span>, <span class="st">"totalpopulation"</span>, <span class="st">"zcta5"</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 9 features and 3 fields
-Geometry type: MULTIPOLYGON
+<pre><code>Simple feature collection with 23 features and 3 fields
+Geometry type: POLYGON
 Dimension:     XY
-Bounding box:  xmin: -13185850 ymin: 3724192 xmax: -8218971 ymax: 5130142
+Bounding box:  xmin: -13584740 ymin: 3464366 xmax: -8218961 ymax: 5130153
 Projected CRS: WGS 84 / Pseudo-Mercator
-  OBJECTID TotalPopulation ZCTA5                       geometry
-1     1665          111086 79936 MULTIPOLYGON (((-11831249 3...
-2     2387          103892 90011 MULTIPOLYGON (((-13164358 4...
-3     2669          101279 90201 MULTIPOLYGON (((-13157079 4...
-4     2732          105549 90650 MULTIPOLYGON (((-13141865 4...
-5     3027          103689 91331 MULTIPOLYGON (((-13178819 4...
-6    19391          113916 60629 MULTIPOLYGON (((-9767482 51...
-7    25238          109931 11368 MULTIPOLYGON (((-8219675 49...
-8    25242          100820 11373 MULTIPOLYGON (((-8222572 49...
-9    26364          101572 11226 MULTIPOLYGON (((-8231772 49...</code></pre>
+First 10 features:
+   OBJECTID TotalPopulation ZCTA5                       geometry
+1      2360          135256 08701 POLYGON ((-8266867 4879637,...
+2      2529          103660 10467 POLYGON ((-8225100 4995955,...
+3      2705          100330 11207 POLYGON ((-8228297 4966147,...
+4      2706          101958 11208 POLYGON ((-8225296 4965937,...
+5      2717          103447 11219 POLYGON ((-8239056 4957776,...
+6      2718          105797 11220 POLYGON ((-8241925 4958752,...
+7      2724          101727 11226 POLYGON ((-8234030 4960513,...
+8      2733          100687 11236 POLYGON ((-8228926 4961495,...
+9      2751          117110 11368 POLYGON ((-8223473 4976473,...
+10     2755          105712 11373 POLYGON ((-8225601 4975030,...</code></pre>
 </div>
 </div>
 
