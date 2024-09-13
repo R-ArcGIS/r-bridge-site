@@ -8,3 +8,6 @@ _site/
 .quarto
 ./quarto/*
 /.quarto/
+.RData
+.Rhistory
+.Rproj

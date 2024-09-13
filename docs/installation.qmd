@@ -12,6 +12,20 @@ To install the `{arcgis}` location service metapackage, run the following from y
 install.packages("arcgis")
 ```
 
+Once the installation has finished you can load all of the packages using:
+
+```r
+library(arcgis)
+```
+
+Or, you can install the packages individually as well by running: 
+
+```r
+pkgs <- c("arcgisutils", "arcgislayers", "arcgisgeocode", "arcgisplaces")
+
+install.packages(pkgs, repos = c("https://r-arcgis.r-universe.dev", "https://cloud.r-project.org"))
+```
+
 # Installing `{arcgisbinding}`
 
 **`arcgisbinding`** is an R package that enables communication between ArcGIS Pro

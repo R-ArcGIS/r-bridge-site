@@ -13,29 +13,6 @@ The R-ArcGIS Bridge R packages that interact with location services are containe
 - [`{arcgisgeocode}`](https://github.com/R-ArcGIS/arcgisgeocode): geocode addresses and reverse geocode point data
 - [`{arcgisplaces}`](https://github.com/R-ArcGIS/arcgisplaces): access rich point-of-interest data from the ArcGIS Places Service
 
-
-## Install the R packages 
-
-To install the packages run: 
-
-```r
-install.packages("arcgis")
-```
-
-Once the installation has finished you can load all of the packages using
-
-```r
-library(arcgis)
-```
-
-Or, you can install the packages individually as well by running: 
-
-```r
-pkgs <- c("arcgisutils", "arcgislayers", "arcgisgeocode", "arcgisplaces")
-
-install.packages(pkgs)
-```
-
 ## Learn more
 
 - Reading Data

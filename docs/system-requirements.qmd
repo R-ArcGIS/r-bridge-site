@@ -1,6 +1,8 @@
 ---
 title: System requirements
----
+uid: system-requirements
+freeze: true
+--- 
 
 # Operating System
 The R-ArcGIS Bridge’s `{arcgis}` meta-package for location services supports Mac OS, Windows, and most Linux distributions.
