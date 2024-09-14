@@ -64,13 +64,13 @@ If you encounter errors while publishing, try using a feature layer title that d
 
 Now from your Portal's [Content page](https://arcgis.com/home/content.html) you should see two items associated with your feature service:
 
-![](../images/publish/published-items.png){width=70%}
+![](../shared/images/publish/published-items.png){width=70%}
 
 Behind the scenes, `publish_layer()` added the `sf` object as a *Feature Layer* item first and then published this item as a *Feature Layer (hosted)*. After publishing, you will typically only interact with the hosted feature layer. (Note that the dependency between these two items prevents you from deleting the underlying feature layer while the hosted feature layer still exists.)
 
 Click **View details** on the hosted feature layer item and you should see something like the below:
 
-![](../images/publish/nc-sids.png){width=70%}
+![](../shared/images/publish/nc-sids.png){width=70%}
 
 ## Reading the published Feature Layer
 

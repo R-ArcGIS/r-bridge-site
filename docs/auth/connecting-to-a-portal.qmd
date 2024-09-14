@@ -5,7 +5,7 @@ title: "Connect to your Portal"
 In order to create content, interact with non-public items, save geocoding results, or use POI data with the Places Service, you will need to authenticate through ArcGIS Online, ArcGIS Enterprise, or Platform. 
 
 :::{.callout-tip title="ArcGIS Sharing model" collapse="true"}
-Items in ArcGIS Online and ArcGIS Enterprise can be unshared (accessible only to the item owner) or shared to groups, your organization, or everyone (![](./images/sharing-public.png){width=30%}). [Learn more about Sharing here.](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm) Read and write access to an item is controlled by the owner-specified sharing level, organizational security settings, and the accessing user's [privileges](https://doc.arcgis.com/en/arcgis-online/administer/roles.htm).
+Items in ArcGIS Online and ArcGIS Enterprise can be unshared (accessible only to the item owner) or shared to groups, your organization, or everyone (![](../shared/images/sharing-public.png){width=30%}). [Learn more about Sharing here.](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm) Read and write access to an item is controlled by the owner-specified sharing level, organizational security settings, and the accessing user's [privileges](https://doc.arcgis.com/en/arcgis-online/administer/roles.htm).
 :::
 
 
@@ -26,17 +26,17 @@ You can do so by creating an application item.
 - Click `New Item`
 - Select `Application` 
 
-![](/images/content-app.png){width=50%}
+![](../shared/images/content-app.png){width=50%}
 
 - Choose `Other application` as your `Application Type`
 - Give the item an informative name such as `r-arcgis`
     - Optionally, specify the folder, tags, and summary as well.
 
-![](/images/new-item.png){width=50%}
+![](../shared/images/new-item.png){width=50%}
 
 - You will be directed to the item details page of the newly created application where you can see your credentials. **Do not share these**.
 
-![](/images/credentials.png){width=50%}
+![](../shared/images/credentials.png){width=50%}
 
 
 ## Authorizing
@@ -61,11 +61,11 @@ token <- auth_code()
 ```
 You will be prompted to sign in to your portal. 
 
-![](/images/oauth-sign-in.png){width=50%}
+![](../shared/images/oauth-sign-in.png){width=50%}
 
 Once you've signed in, copy the code that appears, and return to R. Enter the code into the console without any modifications and press enter. 
 
-![](/images/oauth-code.png){width=70%}
+![](../shared/images/oauth-code.png){width=70%}
 
 Your authorization will have completed. 
 

@@ -33,10 +33,10 @@ For this example, you will read in multispectral Landsat imagery of the Ouarkziz
 You will use the functions `arc_open()` and `arc_raster()` to read image data from ArcGIS Online into R. However, these functions require the url of the hosted image service. To find this, navigate to the [item](https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b) in ArcGIS Online. 
 
 
-![](../images/read-data/multispectral-landsat.png)
+![](../shared/images/read-data/multispectral-landsat.png)
 When you scroll down, on the right hand side, you will see a button to view the service itself. 
 
-![](../images/read-data/view-url-imagery.png){width=45%}
+![](../shared/images/read-data/view-url-imagery.png){width=45%}
 
 Clicking this will bring you to the Image Service, where you can more closely investigate the metadata and supported operations for this service. Navigate to your browser's search bar and copy the url.
 
