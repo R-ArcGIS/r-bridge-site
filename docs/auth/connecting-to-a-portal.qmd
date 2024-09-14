@@ -1,5 +1,6 @@
 ---
 title: "Connect to your Portal"
+uid: authenticating-with-r
 ---
 
 In order to create content, interact with non-public items, save geocoding results, or use POI data with the Places Service, you will need to authenticate through ArcGIS Online, ArcGIS Enterprise, or Platform. 

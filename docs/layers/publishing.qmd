@@ -1,6 +1,8 @@
 ---
 title: "Publishing from R"
+uid: publishing-from-r
 subtitle: "Create Hosted ArcGIS Online or Enterprise Feature Services from R"
+freeze: true
 ---
 
 In addition to consuming data as an R user, you may also want to publish data as a hosted feature service. In this tutorial, you will learn how to publish an `sf` object <!-- or a `data.frame`--> to ArcGIS Online or Enterprise. 

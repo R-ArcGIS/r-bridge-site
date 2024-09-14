@@ -1,5 +1,6 @@
 ---
 title: Editing layers
+uid: editing-overview
 ---
 
 Published feature layers often are living datasets. There may be new features that need to be added. Or, sometimes features may be need to be deleted as they are no longer present. Or maybe, the attributes of the feature have become obsolete and need to be updated. 
