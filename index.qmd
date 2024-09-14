@@ -7,6 +7,8 @@ The R-ArcGIS Bridge is a collection of R packages designed to integrate the R la
 - Geocode addresses at scale
 - Access detailed point of interest (POI) data 
 
+![](https://raw.githubusercontent.com/R-ArcGIS/arcgislayers/main/man/figures/logo.svg){width=70%}
+
 ## Where to start
 
 1. Discover key features of the R-ArcGIS Bridge.
