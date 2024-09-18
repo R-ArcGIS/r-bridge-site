@@ -7,7 +7,7 @@ Layers represent represent a data service hosted by ArcGIS Online, ArcGIS Enterp
 The `{arcgis}` R metapackage is able to work with the most common types of data services: feature services and image servers. The types of layers that the R-ArcGIS Bridge does not yet support are vector and map tile services. 
 
 
-# Types of services 
+## Types of services 
 
 When working with these data services, each service type is assigned their own S3 class. 
 
@@ -21,14 +21,14 @@ When working with these data services, each service type is assigned their own S
 | `GroupLayer` | A collection of FeatureLayer and Tables. | 
 | `MapServer` | A collection arbitrary data service types. | 
 
-# Accessing data services
+## Accessing data services
 
 The R package `{arcgislayers}` provides access to services. Working with data services follows a pattern:
 
 - first, create a reference to a remote data service
 - query the data service and bring the results back into R
 
-## Creating data service objects
+### Creating data service objects
 
 Using `{arcgislayers}`, the function `arc_open()` will create a reference to a service based on its url. 
 
@@ -43,7 +43,7 @@ flayer <- arc_open(furl)
 flayer
 ```
 
-## Querying feature services 
+### Querying feature services 
 
 To bring data from the service into memory in R, you must use `arc_select()`. 
 
