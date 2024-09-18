@@ -4,7 +4,7 @@ uid: releases
 freeze: true
 ---
 
-Release notes for the R-ArcGIS Bridge R packages are available on GitHub:
+Release notes for the R-ArcGIS Bridge packages are available on GitHub:
 
   - [`{arcgislayers}`](https://github.com/R-ArcGIS/arcgislayers/blob/main/NEWS.md)
   - [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils/blob/main/NEWS.md)

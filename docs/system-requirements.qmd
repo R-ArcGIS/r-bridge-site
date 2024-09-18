@@ -4,14 +4,14 @@ uid: system-requirements
 freeze: true
 --- 
 
-# Operating System
+## Operating System
 The R-ArcGIS Bridge’s `{arcgis}` meta-package for location services supports Mac OS, Windows, and most Linux distributions.
 In order to use the `{arcgisbinding}` package, you must have ArcGIS Pro ≥ 3.1 installed and licensed on a 64-bit Windows machine.
 
-# R Version
+## R Version
 The minimum of version of R supported is 4.1.0. However, we recommend updating your R version whenever possible to keep up with enhancements, features, and any security updates.
 
-# Dependencies
+## Dependencies
 The `{arcgis}` meta-package consists of many smaller R packages, each of these with different R package dependencies. However, all of them share a dependency on `{arcgisutils}`.
 
 `{arcgisutils}` is built in part using Rust via [extendr](https://extendr.github.io/). We recommend installing a binary from the [R-universe](https://r-arcgis.r-universe.dev/) or CRAN.
