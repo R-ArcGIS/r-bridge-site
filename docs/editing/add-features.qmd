@@ -26,7 +26,7 @@ For this example, we will add a single feature to the North Carolina SIDS datase
 library(arcgis)
 
 token <- auth_code()
-set_auth_token(token)
+set_arc_token(token)
 ```
 
 Next, we will create the feature that we want to add using the `sf` package. We'll read in the `nc.shp` file from the `sf` package.
