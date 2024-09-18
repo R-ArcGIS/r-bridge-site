@@ -1,6 +1,8 @@
 ---
 title: "Bulk geocoding"
+uid: geocoding-bulk
 ---
+
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(message = FALSE)

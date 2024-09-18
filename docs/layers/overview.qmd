@@ -1,5 +1,6 @@
 ---
 title: Overview
+uid: layers-overview
 ---
 
 Layers represent represent a data service hosted by ArcGIS Online, ArcGIS Enterprise, Platform, or even an ArcGIS Hub site. Layers are how you will interact with your remotely hosted data. 

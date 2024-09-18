@@ -1,5 +1,6 @@
 ---
 title: "Making Geoprocessing Tools"
+uid: creating-gp-tools
 ---
 
 The basic anatomy of an R-based GP script tool is like so:

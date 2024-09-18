@@ -1,5 +1,6 @@
 ---
 title: "Install and set up"
+uid: installation
 ---
 
 Before installing, we recommend that you have the newest version of R installed. At minimum, we sugest you use R version 4.3 or higher. 

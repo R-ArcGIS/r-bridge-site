@@ -1,8 +1,8 @@
 ---
 title: "Reading Feature Services"
+uid: reading-feature-services
 freeze: true
 ---
-
 ArcGIS Online and Enterprise web services can easily be read into R using`{arcgislayers}`. Supported service types include:
 
  - [FeatureServer](https://developers.arcgis.com/rest/services-reference/enterprise/feature-service.htm)
