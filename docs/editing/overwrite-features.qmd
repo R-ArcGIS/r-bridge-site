@@ -151,6 +151,6 @@ Capabilities: Create,Delete,Query,Update,Editing
 
 If you view the hosted Feature Layer in the map viewer, you should now see the convex hulls.
 
-![](images/nc-convex-hulls.png)
+![](../shared/images/nc-convex-hulls.png)
 
 
