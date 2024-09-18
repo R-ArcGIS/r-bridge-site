@@ -32,7 +32,7 @@ Next, authorize with the portal and set the access token.
 
 ```{r eval = FALSE}
 token <- auth_code()
-set_auth_token(token)
+set_arc_token(token)
 ```
 ```
 Token set to environment variable `ARCGIS_TOKEN`

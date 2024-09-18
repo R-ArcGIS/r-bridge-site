@@ -11,7 +11,7 @@ The package `{arcgisgeocode}` enables you to search for an address (geocode), re
 - **Reverse geocoding** is the process of converting a point to an address or place.
 - **Batch geocoding**, also known as bulk geocoding, is the process of converting a list of addresses or place names to a set of complete addresses with locations.
 
-# Licensing considerations
+## Licensing considerations
 
 Many features of the ArcGIS World Geocoder are provided for free such as forward geocoding, reverse geocoding, and place search. However, **storing results is not free**. Additionally, the bulk geocoding functionality requires a developer account or available credits. 
 
@@ -27,7 +27,7 @@ To learn more about free and paid geocoding operations refer to the [storage par
 | `geocoded_addresses()` | Bulk geocodes addresses returning a single location per address. Use this for highly performant and scalable address geocoding. | ❌ |
 
 
-# Get started
+## Get started
 
 To start geocoding with the R-ArcGIS Bridge, install the R package from CRAN. 
 
@@ -44,7 +44,7 @@ install.packages("arcgisgeocode")
 library(arcgisgeocode)
 ```
 
-## Geocode an address
+### Geocode an address
 
 Perform single address geocoding using the `find_address_candidates()` function. Limit the number of results using the `max_locations` argument. 
 
@@ -56,7 +56,7 @@ loc <- find_address_candidates(
 loc[, 1:8]
 ```
 
-## Reverse geocode 
+### Reverse geocode 
 
 From a location, find its corresponding address using `reverse_geocode()`. 
 
