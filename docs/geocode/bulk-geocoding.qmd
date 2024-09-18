@@ -13,7 +13,7 @@ Using the bulk geocoding capabilities can result in incurring a cost. See more a
 
 In this example, you will geocode restaurant addresses in Boston, MA collected by the [Boston Area Research Initiative (BARI)](https://cssh.northeastern.edu/bari/). The data is originally from their [data portal](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DMWCBT).
 
-# Step 1. Authenticate
+## Step 1. Authenticate
 
 In order to utilize the bulk geocoding capabilities of the ArcGIS World Geocoder, you must first authenticate using `{arcgisutils}`. In this example, we are using user-based authentication via `auth_user()`. You may choose a different authentication function if it works better for you. 
 
@@ -25,7 +25,7 @@ library(arcgisgeocode)
 set_arc_token(auth_user())
 ```
 
-# Step 2. Prepare the data 
+## Step 2. Prepare the data 
 
 Similar to using `find_address_candidates()` the geocoding results return an ID that can be used to join back onto the original dataset. First, you will read in the dataset from a filepath using `readr::read_csv()` and then create a unique identifier with `dplyr::mutate()` and `dplyr::row_number()`. 
 
@@ -41,7 +41,7 @@ restaurants <- readr::read_csv(fp) |>
 restaurants
 ```
 
-# Step 3. Geocode addresses
+## Step 3. Geocode addresses
 
 The restaurant addresses are contained in the `restaurant_address` column. Pass this column into the `single_line` argument of `geocode_addresses()` and store the results in `geocoded`.
 
@@ -58,7 +58,7 @@ glimpse(geocoded[, 1:10])
 You can use `dplyr::reframe()` to geocode these addresses in a dplyr-friendly way. 
 :::
 
-# Step 4. Join the results
+## Step 4. Join the results
 
 In the previous step you geocoded the addresses and returned a data frame containing the location information. More likely than not, it would be helpful to have the locations joined onto the original dataset. You can do this by using `dplyr::left_join()` and joining on the `id` column you created and the `result_id` from the geocoding results. 
 

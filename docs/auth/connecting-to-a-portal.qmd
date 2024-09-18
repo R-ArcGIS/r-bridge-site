@@ -9,7 +9,7 @@ Items in ArcGIS Online and ArcGIS Enterprise can be unshared (accessible only to
 :::
 
 
-# Using OAuth2
+## Using OAuth2
 
 There are two ways to authorize with [OAuth2](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2.0/): either by using a a `code` or a `client` flow. Code-based authorization is interactive, requiring you to copy an authorization code from a browser window into the R console during the execution of your code. Client authorization allows for non-interactive scripting, but cannot be used for creating or modifying content. In most cases, code-based authorization is recommended. These two methods are explained below. 
 
@@ -39,7 +39,7 @@ You can do so by creating an application item.
 ![](/images/credentials.png){width=50%}
 
 
-## Authorizing
+### Authorizing
 
 First, load the library. 
 
@@ -50,7 +50,7 @@ library(arcgis)
 #>   - {arcgislayers} v0.1.0
 ```
 
-### Code flow
+#### Code flow
 
 The OAuth2 Code Flow is a process where a user authorizes an application to act on their behalf by granting a temporary access token. This type of authorization permits the application to take actions on the user's behalf for the duration of the access token. Learn more about how [ArcGIS uses OAuth2.0](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/oauth-2/).
 
@@ -92,7 +92,7 @@ set_arc_token(token)
 ```
 
 
-### Client flow
+#### Client flow
 
 Alternatively, you can authorize using the client OAuth2 flow. This will authorize the application you created and not ourselves. Because of this, you cannot use the client flow to create or modify content. 
 
@@ -103,7 +103,7 @@ token <- auth_client()
 set_arc_token(token)
 ```
 
-# Using a Named User
+## Using a Named User
 
 Authorizing using an ArcGIS Online or ArcGIS Enterprise [username and password](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/user-authentication/direct-username-password/) is a legacy method that is supported for cases where OAuth2 is not implemented. As a reminder, credentials should never be stored in plaintext in code.
 
@@ -121,7 +121,7 @@ token <- auth_user(
 set_arc_token(token)
 ```
 
-# Using `{arcgisbinding}`
+## Using `{arcgisbinding}`
 
 If you are a user of ArcGIS Pro and have **arcgisbinding** installed, you can use `auth_binding()` to utilize the tokens that result from `arc.check_portal()`. `auth_binding()` has the benefit of being non-interactive _and_ authorizes you as a user. You can use `auth_binding()` for non-interactive work that creates or modifies existing content.
 
@@ -133,7 +133,7 @@ set_arc_token(token)
 This method retrieves the token from the *active* portal in ArcGIS Pro. Make sure that you are logged into the intended portal and that it is set as active. If you switch which portal is active in ArcGIS Pro, you will need to restart your R session for the new portal to be recognized by `auth_binding()`.
 
 
-# Using an API Key 
+## Using an API Key 
 
 If you are using ArcGIS Platform or using the ArcGIS Places Service, you will need to authorize via API key. Create an API key via the following instructions: 
 

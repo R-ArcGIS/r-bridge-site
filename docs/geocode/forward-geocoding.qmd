@@ -11,7 +11,7 @@ There are two ways in which you can provide address information:
 1. Provide the entire address as a string via the `single_line` argument
 2. Provide parts of the address using the arguments `address`, `city`, `region`, `postal` etc. 
 
-# Single line address geocoding 
+## Single line address geocoding 
 
 It can be tough to parse out addresses into their components. Using the `single_line` argument is a very flexible way of geocoding addresses. Doing utilizes the ArcGIS World Geocoder's address parsing capabilities. 
 
@@ -36,7 +36,7 @@ locs$geometry
 
 In each case, it finds the correct address! 
 
-# Geocoding from a dataframe 
+## Geocoding from a dataframe 
 
 Most commonly, you will need to geocode addresses from a column in a data.frame. It is important to note that the `find_address_candidates()` function does not work well in a `dplyr::mutate()` function call. Particularly because it is possible to return more than 1 address at a time. 
 
