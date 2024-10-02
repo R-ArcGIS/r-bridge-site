@@ -101,7 +101,88 @@ generate_api_ref <- function(pkg) {
   
 }
 
+# create the API references
+pkgs <- c("arcgislayers", "arcgisutils", "arcgisgeocode", "arcgisplaces", "arcpbf", "arcgis")
 
-for (pkg in arcgis::arcgis_packages()) {
+for (pkg in pkgs) {
   generate_api_ref(pkg)
 }
+
+# NOTE url paths are adjusted manually using find and replace all w/ regex in vs code
+# search: https://r\.esri\.com/([^/]+)/reference/([^/]+)\.html
+# replace: /api-reference/$1/$2.html
+
+
+# Topic Nav --------------------------------------------------------------
+
+
+pkg_indices <- file.path("_api_ref", pkgs, "index.html")
+
+as_yaml_sub_section <- function(.title, .items, .urls) {
+  list(
+    title = .title,
+    items = unname(Map(
+      function(.title, .url) list(title = .title, url = .url),
+      .items,
+      .urls
+    ))
+  ) 
+}
+
+as_yaml_section <- function(pkg_index) {
+  pkg_dir <- basename(dirname(pkg_index))
+  index_html <- rvest::read_html(pkg_index)
+
+  section_titles <- index_html |> 
+    rvest::html_nodes(".section.level2 h2") |> 
+    rvest::html_text(trim = TRUE)
+
+  sections <- index_html |>
+    rvest::html_nodes(".section.level2")
+
+  section_titles <- sections |> 
+    rvest::html_nodes("h2") |> 
+    rvest::html_text(TRUE)
+
+  # odds contain the headers
+  # evens contain the items
+  section_items_html <- sections[1:length(sections) %% 2 == 0]
+
+  section_items <- lapply(section_items_html, function(.x) {
+    rvest::html_nodes(.x, "dd") |> 
+    rvest::html_text(TRUE)
+  })
+
+  section_urls <- lapply(
+    section_items_html,
+    function(.x, .pkg) {
+      url <- rvest::html_nodes(.x, "code:first-child") |> 
+        rvest::html_nodes("a:first-child") |> 
+        rvest::html_attr("href")
+      file.path("/api-reference", .pkg, url)
+    },
+    pkg_dir
+  )
+  unname(Map(as_yaml_sub_section, section_titles, section_items, section_urls)) 
+}
+
+
+as_topic_nav <- function(pkg_indices) {
+  all_items <- lapply(pkg_indices, function(.x) {
+    idx <- list(
+      title = "Package index",
+      url = gsub("_api_ref/", "/api-reference/", .x)
+    )
+
+    list(
+      title = basename(dirname(.x)),
+      items = c(list(idx), as_yaml_section(.x))
+    )
+  }) 
+
+  list(title = "api-reference", items = all_items) |> 
+    yaml::as.yaml(indent.mapping.sequence = TRUE)
+}
+
+as_topic_nav(pkg_indices) |>
+  brio::write_file("_api_ref/nav.yml")
