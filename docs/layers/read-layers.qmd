@@ -25,7 +25,6 @@ The objective of this tutorial is to teach you how to:
 - read in the data from the Feature Layer
 - select the Feature Layer data by column
 - filter the Feature Layer data by attributes
-- use `dplyr` for selecting and filtering
 
 ## Obtaining a feature layer url
 

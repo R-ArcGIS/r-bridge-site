@@ -8,14 +8,16 @@ uid: places-overview
 
 > The places service is a ready-to-use location service that can search for businesses and geographic locations around the world. It allows you to find, locate, and discover detailed information about each place.
 
-In order to use `{arcgisplaces}` you will need an ArcGIS Developers account. [Get started here.](https://developers.arcgis.com/documentation/mapping-apis-and-services/get-started/)
+
+In order to use `{arcgisplaces}` you will need an ArcGIS Developers account. [Get started here](https://developers.arcgis.com/documentation/mapping-apis-and-services/get-started/).
+
 
 ## Installation
 
-`{arcgisplaces}` can be installed directly from CRAN using 
+`{arcgisplaces}` can be installed directly from R-universe using 
 
 ```r
-install.packages("arcgisplaces")
+install.packages("arcgisplaces", repos = c("https://r-arcgis.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## Usage

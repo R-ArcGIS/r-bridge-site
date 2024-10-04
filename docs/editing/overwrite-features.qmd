@@ -10,13 +10,13 @@ knitr::opts_chunk$set(eval = FALSE)
 
 From time to time as the owner of a Feature Layer, you may need to completely overwrite the data in the service. Overwriting a web layer from ArcGIS Pro may lead to a loss of associated pop-ups and symbology. One way to get around this is to truncate the feature service and append new data to the same service. 
 
-For this example, we need to be the owner of a Feature Service. As such, we will use the North Carolina SIDS dataset we created in the [**Publishing from R**](../layers/publishing.qmd) tutorial. If you have not done that tutorial, complete it first.  
+For this example, we need to be the owner of a Feature Service. As such, we will use the North Carolina SIDS dataset we created in the [**Publishing from R**](/layers/publishing) tutorial. If you have not done that tutorial, complete it first.  
 
 ## Truncating a Feature Layer
 
 Truncating a Feature Layer deletes every single record in the service and resets the auto-increment of the object ID. Truncating a service does not change the field definitions or permit us to add or remove fields. If you wish to do so, publish a new layer instead. 
 
-Before we can modify a service, we must first authorize ourselves with the portal. To do so we will use the `auth_code()` authorization flow. If you have not yet configured you environment to authorize with your portal, follow the [**Connecting to your Portal**](/docs/auth/connecting-to-a-portal.qmd) tutorial. 
+Before we can modify a service, we must first authorize ourselves with the portal. To do so we will use the `auth_code()` authorization flow. If you have not yet configured you environment to authorize with your portal, follow the [**Connecting to your Portal**](/authentication/connecting-to-a-portal) tutorial. 
 
 First load `arcgis`.
 
@@ -42,7 +42,7 @@ Token set to environment variable `ARCGIS_TOKEN`
 Now that we have verified our identity with our portal we can create a `FeatureLayer` object in R from our hosted service. From your [content listing](https://arcgis.com/home/content.html) find the Feature Layer url. 
 
 :::{.callout-tip}
-Revisit the "Obtaining a feature layer url" section of the [**Read hosted data**](/docs/layers/read-layers.qmd#obtaining-a-feature-layer-url) tutorial if you forgot how to retrieve the service url.
+Revisit the "Obtaining a feature layer url" section of the [**Read hosted data**](/layers/read-layers) tutorial if you forgot how to retrieve the service url.
 :::
 
 ```{r}
@@ -152,6 +152,8 @@ Capabilities: Create,Delete,Query,Update,Editing
 
 If you view the hosted Feature Layer in the map viewer, you should now see the convex hulls.
 
-![](../shared/images/nc-convex-hulls.png)
+![](../shared/images/nc-sids.png)
 
 
+
+![](../shared/images/nc-sids.png){width="10px"}

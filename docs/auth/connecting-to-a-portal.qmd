@@ -3,10 +3,14 @@ title: "Connect to your Portal"
 uid: authenticating-with-r
 ---
 
+```{r}
+
+```
+
 In order to create content, interact with non-public items, save geocoding results, or use POI data with the Places Service, you will need to authenticate through ArcGIS Online, ArcGIS Enterprise, or Platform. 
 
 :::{.callout-tip title="ArcGIS Sharing model" collapse="true"}
-Items in ArcGIS Online and ArcGIS Enterprise can be unshared (accessible only to the item owner) or shared to groups, your organization, or everyone (![](../shared/images/sharing-public.png){width=30%}). [Learn more about Sharing here.](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm) Read and write access to an item is controlled by the owner-specified sharing level, organizational security settings, and the accessing user's [privileges](https://doc.arcgis.com/en/arcgis-online/administer/roles.htm).
+Items in ArcGIS Online and ArcGIS Enterprise can be unshared (accessible only to the item owner) or shared to groups, your organization, or everyone (`r img("../shared/images/sharing-public.png", 50)`). [Learn more about Sharing here.](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm) Read and write access to an item is controlled by the owner-specified sharing level, organizational security settings, and the accessing user's [privileges](https://doc.arcgis.com/en/arcgis-online/administer/roles.htm).
 :::
 
 

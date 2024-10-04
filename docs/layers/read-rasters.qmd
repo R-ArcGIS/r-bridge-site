@@ -93,10 +93,10 @@ Avoid reading in more data than you need! When extracting data from an image ser
 ```{r, message = FALSE}
 crater <- arc_raster(
   imgsrv,
-  xmin = "-846028",
-  ymin = "3373101",
-  xmax = "-833783",
-  ymax = "3380738"
+  xmin = -846028,
+  ymin = 3373101,
+  xmax = -833783,
+  ymax = 3380738
 )
 crater
 ```

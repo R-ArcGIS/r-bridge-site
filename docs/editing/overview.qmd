@@ -9,7 +9,7 @@ The `{arcgislayers}` R package provides capabilities to add features, update the
 
 ## Important considerations
 
-It is important to note that not everyone can edit an existing feature service. You must be an admin or an owner of the service that you want to edit. This requires that you have an account and can authorized yourself as a user. 
+It is important to note that not everyone can edit an existing feature service. You must be an admin or an owner of the service that you want to edit. This requires that you have an account and can authorize yourself as a user. 
 
-Additionally, fields cannot be added or deleted to an already existing feature service. If you wish to add or delete fields, you will need to publish a new layer. 
+Additionally, fields cannot be added or deleted to an already existing feature service. If you wish to add or delete fields, you will need to publish a new feature service. 
 

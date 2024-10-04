@@ -12,7 +12,7 @@ In addition to consuming data as an R user, you may also want to publish data as
 In order to publish content to ArcGIS Online or Enterprise, you must first obtain an access token permitting you to do so. 
 
 :::{.callout-caution}
-If you have not yet set up your R environment for authorization, see [**Authorize with your Portal**](..//auth/connecting-to-a-portal.qmd). Ensure that the environment variables `ARCGIS_CLIENT` and `ARCGIS_USER` are set at minimum. If you are using ArcGIS Enterprise, ensure that `ARCGIS_HOST` is properly set as well.
+If you have not yet set up your R environment for authorization, see [**Authorize with your Portal**](/authentication/connecting-to-a-portal). Ensure that the environment variables `ARCGIS_CLIENT` and `ARCGIS_USER` are set at minimum. If you are using ArcGIS Enterprise, ensure that `ARCGIS_HOST` is properly set as well.
 :::
 
 Go through the following code flow to set your credentials.

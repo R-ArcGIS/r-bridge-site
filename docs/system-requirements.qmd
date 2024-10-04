@@ -16,9 +16,9 @@ The `{arcgis}` meta-package consists of many smaller R packages, each of these w
 
 `{arcgisutils}` is built in part using Rust via [extendr](https://extendr.github.io/). We recommend installing a binary from the [R-universe](https://r-arcgis.r-universe.dev/) or CRAN.
 ```{r eval = FALSE}
-install.packages("arcgis", repos = "https://r-arcgis.r-universe.dev")
+install.packages("arcgis", repos = c("https://r-arcgis.r-universe.dev", "https://cloud.r-project.org"))
 ```
-If you need to install from source, `rustc` must be available with a minimum version of 1.69. We encourage using the most recent version of `rustc`.
+If you need to install from source, `rustc` must be available with a minimum version of 1.70. We encourage using the most recent version of rust.
 
 :::{.callout-tip}
 We recommend installing Rust via [`rustup`](https://rustup.rs/). If you are on Windows, you must add the Windows GNU target via `rustup target add x86_64-pc-windows-gnu`.

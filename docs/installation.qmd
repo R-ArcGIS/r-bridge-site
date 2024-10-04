@@ -3,14 +3,14 @@ title: "Install and set up"
 uid: installation
 ---
 
-Before installing, we recommend that you have the newest version of R installed. At minimum, we sugest you use R version 4.3 or higher. 
+Before installing, we recommend that you have the newest version of R installed. At minimum, we sugest you use R version 4.3 or higher. You can install the latest version of R from [CRAN](https://cloud.r-project.org/).
 
 ## Installing `{arcgis}`
 
 To install the `{arcgis}` location service metapackage, run the following from your console: 
 
 ```r
-install.packages("arcgis")
+install.packages("arcgis", repos = c("https://r-arcgis.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 Once the installation has finished you can load all of the packages using:
@@ -49,7 +49,7 @@ If you are working in ArcGIS Pro 2.0 or beyond, you have access to the built-in 
 
 :::{.callout-warning collapse="false"}
 
-Note: All versions of R installed on your computer will appear in the drop-down menu. Make sure the version you select is R 3.2.2 or later. However, if you have installed R to a location other than the default, you might need to navigate to that location using the browse button.
+Note: All versions of R installed on your computer will appear in the drop-down menu. It is recommended to use the newest vresion of R. If you have installed R to a location other than the default, you might need to navigate to that location using the browse button.
 
 :::
 
