@@ -49,7 +49,7 @@ If you are working in ArcGIS Pro 2.0 or beyond, you have access to the built-in 
 
 :::{.callout-warning collapse="false"}
 
-Note: All versions of R installed on your computer will appear in the drop-down menu. It is recommended to use the newest vresion of R. If you have installed R to a location other than the default, you might need to navigate to that location using the browse button.
+Note: All versions of R installed on your computer will appear in the drop-down menu. It is recommended to use the newest version of R. If you have installed R to a location other than the default, you might need to navigate to that location using the browse button.
 
 :::
 
