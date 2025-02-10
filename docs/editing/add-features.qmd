@@ -117,7 +117,6 @@ We can see that the `FeatureLayer` now has 101 features as opposed to the origin
 
 ```{r}
 nc_avgs <- arc_select(nc, where = 'NAME = "Total"')
-
 nc_avgs
 ```
 ```
