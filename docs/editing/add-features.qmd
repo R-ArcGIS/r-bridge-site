@@ -116,10 +116,7 @@ Capabilities: Create,Delete,Query,Update,Editing
 We can see that the `FeatureLayer` now has 101 features as opposed to the original 100. To sanity check, we can query `nc` to see how the value comes back.
 
 ```{r}
-nc_avgs <- nc |> 
-  filter(NAME == "Total") |> 
-  collect()
-
+nc_avgs <- arc_select(nc, where = 'NAME = "Total"')
 nc_avgs
 ```
 ```
