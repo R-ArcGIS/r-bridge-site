@@ -18,6 +18,11 @@ Metadata for all of the above service types can be accessed using `arc_open()`. 
 
 This tutorial will teach you the basics of reading data from hosted image services into R as [`{terra} SpatRaster`](https://rspatial.github.io/terra/reference/rast.html) objects using`{arcgislayers}`. The source for an image service is published raster or imagery data. To learn more about image services, see the [Image services documentation](https://enterprise.arcgis.com/en/server/latest/publish-services/windows/key-concepts-for-image-services.htm).
 
+:::{.callout-note}
+When leveraging Esri hosted content, organizations should review the [ArcGIS Online terms of use](https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm), as well as the terms of use for the data layer to ensure they are in compliance with extracting data and/or making it available in other systems.
+:::
+
+
 ## Objective
 
 The objective of this tutorial is to teach you how to:
@@ -29,13 +34,13 @@ The objective of this tutorial is to teach you how to:
 
 ## Obtaining an image service url
 
-For this example, you will read in multispectral Landsat imagery of the Ouarkziz Crater from ArcGIS Online. 
+For this example, you will read in multispectral Landsat imagery of the Ouarkziz Crater from ArcGIS Online.
 
-You will use the functions `arc_open()` and `arc_raster()` to read image data from ArcGIS Online into R. However, these functions require the url of the hosted image service. To find this, navigate to the [item](https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b) in ArcGIS Online. 
+You will use the functions `arc_open()` and `arc_raster()` to read image data from ArcGIS Online into R. However, these functions require the url of the hosted image service. To find this, navigate to the [item](https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b) in ArcGIS Online.
 
 
 ![](../shared/images/multispectral-landsat.png)
-When you scroll down, on the right hand side, you will see a button to view the service itself. 
+When you scroll down, on the right hand side, you will see a button to view the service itself.
 
 ![](../shared/images/view-url-imagery.png){width=45%}
 
@@ -50,7 +55,7 @@ https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer
 First, load the `arcgis` R package. If you do not have `arcgis` installed, install it with `pak::pak("r-arcgis/arcgis")` or `install.packages("arcgis")`.
 
 :::{.aside}
-`{pak}` is an R package that makes it faster and easier to install R packages. If you do not have it installed, run `install.packages("pak")` first. 
+`{pak}` is an R package that makes it faster and easier to install R packages. If you do not have it installed, run `install.packages("pak")` first.
 :::
 
 ```{r}
@@ -74,17 +79,17 @@ imgsrv <- arc_open(url)
 imgsrv
 ```
 
-`arc_open()` will create a `ImageServer` object. Under the hood, this is really just a list containing the image service's metadata. 
+`arc_open()` will create a `ImageServer` object. Under the hood, this is really just a list containing the image service's metadata.
 
 :::{.callout-note collapse="true" title="ImageServer details for the curious"}
-The `ImageServer` object is obtained by adding `?f=json` to the image server url and processing the json. All of the metadata is stored in the `ImageServer` object. You can see this by running `unclass(imgsrv)`. Be warned! It gets messy. 
+The `ImageServer` object is obtained by adding `?f=json` to the image server url and processing the json. All of the metadata is stored in the `ImageServer` object. You can see this by running `unclass(imgsrv)`. Be warned! It gets messy.
 :::
 
-With this `ImageServer` object, you can read data from the service into R! 
+With this `ImageServer` object, you can read data from the service into R!
 
 ## Reading from a Image Service
 
-Once you have a `ImageServer` object, you can access the image data using the `arc_raster()` function. Pass the coordinates for a bounding box into the function using the `xmin`, `ymin`, `xmax`, and `ymax` arguments. Store the results of `arc_raster()` in the object `crater`. 
+Once you have a `ImageServer` object, you can access the image data using the `arc_raster()` function. Pass the coordinates for a bounding box into the function using the `xmin`, `ymin`, `xmax`, and `ymax` arguments. Store the results of `arc_raster()` in the object `crater`.
 
 :::{.callout-warning}
 Avoid reading in more data than you need! When extracting data from an image service, it is best practice to include a bounding box to limit the extraction to just the area that you need. Make sure to provide the bounding box coordinates in the Coordinate Reference System (CRS) of the image service or use the `bbox_crs` argument to specify another CRS for these coordinates.
@@ -101,7 +106,7 @@ crater <- arc_raster(
 crater
 ```
 
-The result is a `SpatRaster` object that you can now work with using **`terra`** and any other R packages. 
+The result is a `SpatRaster` object that you can now work with using **`terra`** and any other R packages.
 
 
 ### Using `terra`
@@ -117,4 +122,3 @@ or saving the image locally:
 ```{r, message = FALSE}
 terra::writeRaster(crater, "ouarkziz-crater-RGB.tif", overwrite = TRUE)
 ```
-
