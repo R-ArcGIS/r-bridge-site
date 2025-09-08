@@ -1,0 +1,98 @@
+---
+title: "Using Geoprocessing Services"
+uid: using-gp-services
+---
+
+Geoprocessing (GP) is the fundamental framework that powers the ArcGIS System. Many of the tools and APIs available in ArcGIS Online, ArcGIS Enterprise, and ArcGIS Location Platform are exposed using the [Geoprocessing Service Framework](https://developers.arcgis.com/rest/services-reference/enterprise/gp-overview/).
+
+Geoprocessing services are used as the backbone of analysis services, routing, and can even be used to deploy custom tools in a scalable and asynchronous manner.
+
+`{arcgisutils}` provides a structured and unified interface to interacting with GP Services directly from R. 
+
+
+## Georpocessing Jobs
+
+We interact with geoprocessing services through a [GP job](https://developers.arcgis.com/rest/services-reference/enterprise/gp-job/) represented by the `arc_gp_job` R6 class. 
+
+A new geoprocessing job can be created with `arc_gp_job$new()` with the following structure: 
+
+```{r, message=FALSE}
+library(arcgisutils)
+
+arc_gp_job$new(
+  base_url = "https://your-service-url.com",
+  params = list(),
+  result_fn = NULL
+)
+```
+
+::: callout-tip
+## Custom packages
+
+If you are creating a new package or wrapper for a specific service it is recommended to create a new class for it with `R6::R6Class("myclass", inherit = arc_gp_job)`.
+
+:::
+
+An `arc_gp_job` has the following methods:
+
+- `new()`: creates a new job from the given url and parameters
+- `start()`: starts the job by submitting to the [`/submitJob`](https://developers.arcgis.com/rest/services-reference/enterprise/submit-gp-job/) endpoint
+- `cancel()`: cancels the running job by submitting to the [`/cancel`](https://developers.arcgis.com/rest/services-reference/enterprise/cancel-gp-job/) endpoint
+
+In addition to the above methods, the following active bindings are provided: 
+
+- `params`: returns the input parameters as an `arc_form_params` S7 object (access the underlying list with `job$params@params`)
+- `status`: returns the status of the job as an `arc_job_status` S7 object 
+- `results`: fetches the results of the job and applies the `result_fn` to the results by calling the [`/results`](https://developers.arcgis.com/rest/services-reference/enterprise/results/) endpoint
+
+
+## Parameters
+
+
+The geoprocessing framework has [service data types](https://developers.arcgis.com/rest/services-reference/enterprise/gp-data-types/) that can be provided to a geoprocessing job.
+
+Parameters must be provided as a named list where the name is the exact name of the parameter and the value is a string of the json that must be provided as the parameter. Most geoprocessing parameters can be created and parsed using arcgisutils. 
+
+| Parameter Type | Write | Read |
+|---|---|---|
+| GPFeatureRecordSetLayer | `as_esri_featureset()` | `parse_gp_feature_record_set()` |
+| GPRecordSet | `as_record_set()` | `parse_gp_record_set()` |
+| GPRasterDataLayer | `as_gp_raster_layer()` | `yyjsonr::read_json_str()` |
+| Field | `as_fields()` creates a list of fields. Convert to json with  `yyjsonr::write_json_str(x, auto_unbox = TRUE)`.| `yyjsonr::read_json_str()` |
+| GPBoolean, GPDouble, GPLong, GPString | `yyjsonr::write_json_str(x, auto_unbox = TRUE)` | `yyjsonr::read_json_str()` |
+| GPLinearUnit | `as_gp_linear_unit()` | `parse_gp_linear_unit()` |
+| GPArealUnit | `as_gp_areal_unit()` | `parse_gp_areal_unit()` |
+| GPDate | `as_gp_date()` | `parse_gp_date()` |
+| GPSpatialReference | `as_spatial_reference()` | `parse_spatial_reference()` |
+
+Most geoprocessing services require a **feature set** which can be created with `as_esri_featureset()`.
+
+### Unsupported parameter types ❌
+
+The following parameter types are not yet supported. 
+
+- `GPValueTable`
+- `GPComposite`
+- `GPMultiValue`
+- `GPDataFile`
+- `GPEnvelope`
+- `GPCoordinateSystem`
+- `GPStringHidden`
+- `GPSQLExpression`
+
+::: callout-note
+
+Please [create an issue](https://github.com/R-ArcGIS/arcgisutils/issues/new) if you have a use case for an unsupported parameter type
+
+:::
+
+## Processing Outputs
+
+An `arc_gp_job` has a `result_fn` which is 
+
+
+For an example we will work with the [Trace Downstream](https://developers.arcgis.com/rest/elevation-analysis/trace-downstream/) elevation service. 
+
+Links: 
+
+https://developers.arcgis.com/rest/services-reference/enterprise/gp-overview/
