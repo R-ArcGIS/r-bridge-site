@@ -1,6 +1,7 @@
 ---
 title: "Using Geoprocessing Services"
 uid: using-gp-services
+
 ---
 
 Geoprocessing (GP) is the fundamental framework that powers the ArcGIS System. Many of the tools and APIs available in ArcGIS Online, ArcGIS Enterprise, and ArcGIS Location Platform are exposed using the [Geoprocessing Service Framework](https://developers.arcgis.com/rest/services-reference/enterprise/gp-overview/).
@@ -12,9 +13,7 @@ Geoprocessing services are used as the backbone of analysis services, routing, a
 
 ## Georpocessing Jobs
 
-We interact with geoprocessing services through a [GP job](https://developers.arcgis.com/rest/services-reference/enterprise/gp-job/) represented by the `arc_gp_job` R6 class. 
-
-A new geoprocessing job can be created with `arc_gp_job$new()` with the following structure: 
+We interact with geoprocessing services through a [GP job](https://developers.arcgis.com/rest/services-reference/enterprise/gp-job/) represented by the `arc_gp_job` R6 class. A new geoprocessing job can be created with `arc_gp_job$new()` with the following structure: 
 
 ```{r, message=FALSE}
 library(arcgisutils)
@@ -49,9 +48,7 @@ In addition to the above methods, the following active bindings are provided:
 ## Parameters
 
 
-The geoprocessing framework has [service data types](https://developers.arcgis.com/rest/services-reference/enterprise/gp-data-types/) that can be provided to a geoprocessing job.
-
-Parameters must be provided as a named list where the name is the exact name of the parameter and the value is a string of the json that must be provided as the parameter. Most geoprocessing parameters can be created and parsed using arcgisutils. 
+The geoprocessing framework has [service data types](https://developers.arcgis.com/rest/services-reference/enterprise/gp-data-types/) that can be provided to a geoprocessing job. Most geoprocessing parameters can be created and parsed using arcgisutils. 
 
 | Parameter Type | Write | Read |
 |---|---|---|
@@ -65,7 +62,7 @@ Parameters must be provided as a named list where the name is the exact name of 
 | GPDate | `as_gp_date()` | `parse_gp_date()` |
 | GPSpatialReference | `as_spatial_reference()` | `parse_spatial_reference()` |
 
-Most geoprocessing services require a **feature set** which can be created with `as_esri_featureset()`.
+Many geoprocessing services require a **feature set** which can be created with `as_esri_featureset()`.
 
 ### Unsupported parameter types ❌
 
@@ -82,17 +79,69 @@ The following parameter types are not yet supported.
 
 ::: callout-note
 
-Please [create an issue](https://github.com/R-ArcGIS/arcgisutils/issues/new) if you have a use case for an unsupported parameter type
+Please [create an issue](https://github.com/R-ArcGIS/arcgisutils/issues/new) if you have a use case for an unsupported parameter type.
 
 :::
 
 ## Processing Outputs
 
-An `arc_gp_job` has a `result_fn` which is 
+An `arc_gp_job` has a `result_fn` which is applied to the raw json string that that is returned from the `$result` active binding. 
+
+In many cases, the result from a GP service is a feature set output. To convert that into an `{sf}` object use the `parse_gp_feature_record_set()` function. Otherwise, the result is parsed using `RcppSimdJson::fparse()` to convert the result into a list. 
 
 
-For an example we will work with the [Trace Downstream](https://developers.arcgis.com/rest/elevation-analysis/trace-downstream/) elevation service. 
+## Example: Trace Downstream service
 
-Links: 
+As a complete example we will call the [Trace Downstream](https://developers.arcgis.com/rest/elevation-analysis/trace-downstream/) elevation service. This example will return a linestring of the downstream flowpath from the provided point. 
 
-https://developers.arcgis.com/rest/services-reference/enterprise/gp-overview/
+Here we create a single point as an `sfc` object which will be provided to the `InputPoints` parameter as a FeatureSet. 
+
+```{r message=FALSE}
+library(sf)
+
+# create input points
+input_points <- st_sfc(
+  st_point(c(-159.548936, 21.955888)),
+  crs = 4326
+)
+```
+
+
+
+```{r}
+library(arcgisutils)
+
+# authenticate
+set_arc_token(auth_user())
+
+# store the service url
+service_url <- "https://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/TraceDownstream"
+
+# create a new job
+downstream_job <- arc_gp_job$new(
+  base_url = service_url,
+  params = list(InputPoints = as_esri_featureset(input_points), f = "json"),
+  # the result is a GPRecordFeatureSet
+  result_fn = parse_gp_feature_record_set,
+  token = arc_token(),
+)
+
+# print the job
+downstream_job
+```
+
+
+This creates a new `arc_gp_job` object. The object stores the logic of the job but it has not yet been instantiated. To start the job we need to explicitly call `$start()`.
+
+```{r}
+downstream_job$start()
+```
+
+This starts the job asynchronously. You can let this job run to completion without having to worry about it. Or, if you want to wait for it to complete and bring the result in to memory, use the `$await()` method on the job.
+
+```{r}
+downstream_job$await()
+```
+
+This returns a `GPFeatureRecordSetLayer` result which is a list containing the parameter name, data type, and the geometry associated with the result. 
+
