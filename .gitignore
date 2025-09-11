@@ -1,3 +1,4 @@
+*.html
 _api_ref.*
 _api_ref/
 _arcgis/
@@ -11,3 +12,4 @@ _site/
 .RData
 .Rhistory
 .Rproj
+**/*_files/

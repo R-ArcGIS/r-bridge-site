@@ -1,0 +1,64 @@
+---
+title: "Using Raster Functions"
+uid: raster-fns
+---
+
+Raster functions are server-side operations that can be applied to imagery and raster data to perform analysis, visualization, and data transformation. These functions are made available through ArcGIS ImageServers and allow you to process raster data dynamically without downloading large datasets to your local machine.
+
+In this tutorial, we'll demonstrate how to discover and apply raster functions using the [Forest Service FIA BIGMAP Tree Species Aboveground Biomass](https://data.fs.usda.gov/geodata/rastergateway/bigmap/index.php) dataset, which represents estimates in tons per acre for total aboveground biomass as well as that of 327 individual tree species at a 30 meter pixel spatial resolution within the coterminous United States.
+
+```{r include = FALSE}
+library(pillar)
+```
+
+## Connecting to an ImageServer
+
+First, we'll establish a connection to the ImageServer containing our biomass data:
+
+```{r, message =FALSE}
+library(arcgis)
+
+# Store the ImageServer URL
+tree_species_biomass <- "https://di-usfsdata.img.arcgis.com/arcgis/rest/services/FIA_BIGMAP_2018_Tree_Species_Aboveground_Biomass/ImageServer"
+
+# Create a connection to the ImageServer
+srvr <- arc_open(tree_species_biomass)
+srvr
+```
+
+## Discovering Available Raster Functions
+
+Once connected, we can explore what raster functions are available on this ImageServer:
+
+```{r}
+# List all raster functions available in the ImageServer
+raster_fns <- list_raster_fns(srvr)
+raster_fns 
+```
+
+The `list_raster_fns()` function returns a data frame containing all available raster functions. Each function corresponds to a different tree species or analysis type available in the dataset.
+
+## Applying Raster Functions
+
+To apply a raster function, specify its name in the `raster_fn` argument when calling `arc_raster()`. Here we'll extract biomass data for Balsam Fir trees in a specific geographic area:
+
+```{r}
+# Fetch data with the Balsam Fir raster function applied
+res <- arc_raster(
+  srvr,
+  xmin = -71,
+  xmax = -67,
+  ymin = 43,
+  ymax = 47.5,
+  bbox_crs = 4326,
+  width = 1000,
+  height = 1000,
+  raster_fn = "SPCD_0012_Abies_balsamea"
+)
+
+# Visualize the results
+terra::plot(res)
+```
+
+The resulting `SpatRaster` object contains the processed biomass values for Balsam Fir trees in our specified extent. The raster function has been applied server-side, returning only the processed data we need for analysis.
+
