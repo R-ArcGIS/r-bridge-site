@@ -1,0 +1,109 @@
+---
+title: "Adding New Fields to Feature Services"
+uid: new-fields-feature-service
+---
+
+This tutorial demonstrates how to add new fields to an existing feature service using R. Adding fields allows you to expand your published data without creating an entirely new service.
+
+## Prerequisites and Permissions
+
+To add fields to a feature service, you must be either the service owner or have administrative privileges. This is a potentially destructive operation, so proceed with caution and consider testing on non-production data first.
+
+## Common Use Cases
+
+Adding fields to existing feature services is useful when you need to:
+
+- Extend a published feature service with additional data columns
+- Add model predictions or calculated scores to existing spatial data  
+- Incorporate new attributes discovered after initial publication
+- Append analytical results without republishing the entire dataset
+
+## Authentication Setup
+
+Before beginning, you'll need to authenticate to ArcGIS Online or ArcGIS Enterprise. For detailed authentication approaches, see the [authentication guide](https://developers.arcgis.com/r-bridge/authentication/connecting-to-a-portal/).
+
+This tutorial uses the Palmer Penguins dataset as an example. We'll initially publish the data without the `body_mass` field, then demonstrate how to add it later. For more comprehensive publishing guidance, refer to the [publishing tutorial](https://developers.arcgis.com/r-bridge/layers/publishing/).
+
+```{r include=FALSE}
+library(pillar)
+
+```
+
+```{r message = FALSE}
+library(arcgis)
+set_arc_token(auth_user())
+```
+
+## Publishing the Initial Dataset
+
+We'll start by publishing the penguins dataset with all columns except `body_mass`, which we'll add later to demonstrate the field addition process:
+
+
+```{r warning=FALSE, message=FALSE}
+# create a random unique name for publishing
+layer_name <- paste0("penguins-", ulid::ulid())
+
+# subset to all but body mass
+to_publish <- subset(penguins, select = -body_mass)
+
+# publish a layer
+published <- publish_layer(to_publish, layer_name)
+```
+
+```{r include = FALSE}
+# sleep to give AGOL some time to process
+Sys.sleep(10)
+```
+
+```{r}
+new_service_url <- published$services$encodedServiceURL
+
+penguins_fl <- arc_open(new_service_url) |>
+  get_layer(0)
+
+penguins_fl
+```
+
+## Adding New Fields to the Service Definition
+
+Now we'll add the missing `body_mass` field to our published feature service. The service definition contains metadata that describes the service structure, including fields, symbology, and indexes.
+
+### Defining Field Types
+
+First, we need to define the field structure for the new column. The `arcgisutils::as_fields()` function automatically infers appropriate field types from your R data: 
+
+```{r}
+field_types <- as_fields(penguins[,"body_mass", drop = FALSE])
+field_types
+```
+
+**Important**: Only include the new fields you want to add. Including existing field names will cause an error since fields cannot be duplicated in the service definition.
+
+### Updating the Service Definition
+
+Use `arcgislayers::add_layer_definition()` to add the new field to the feature service. This function updates the service schema and returns the modified feature layer:
+
+```{r}
+# update the feature service definition
+penguins_fl <- add_layer_definition(
+  penguins_fl, 
+  fields = field_types
+)
+```
+
+### Verifying the New Field
+
+Let's confirm that our new field has been successfully added to the feature service:
+
+```{r}
+list_fields(penguins_fl)
+```
+
+You should now see the `body_mass` field listed among the service fields.
+
+## Next Steps
+
+With the new field added to the service definition, you can now populate it with data using `arcgislayers::update_features()`. The field structure is in place and ready to receive values that match the defined field type.
+
+This approach allows you to iteratively expand your feature services as your data requirements evolve, without the need to republish entirely new services.
+
