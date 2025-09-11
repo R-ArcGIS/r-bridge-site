@@ -4,14 +4,14 @@ uid: using-gp-services
 
 ---
 
-Geoprocessing (GP) is the fundamental framework that powers the ArcGIS System. Many of the tools and APIs available in ArcGIS Online, ArcGIS Enterprise, and ArcGIS Location Platform are exposed using the [Geoprocessing Service Framework](https://developers.arcgis.com/rest/services-reference/enterprise/gp-overview/).
+Geoprocessing (GP) is one of the fundamental frameworks that powers the ArcGIS System. Many of the tools and APIs available in ArcGIS Online, ArcGIS Enterprise, and ArcGIS Location Platform are exposed using the [Geoprocessing Service Framework](https://developers.arcgis.com/rest/services-reference/enterprise/gp-overview/).
 
 Geoprocessing services are used as the backbone of analysis services, routing, and can even be used to deploy custom tools in a scalable and asynchronous manner.
 
 `{arcgisutils}` provides a structured and unified interface to interacting with GP Services directly from R. 
 
 
-## Georpocessing Jobs
+## Geoprocessing Jobs
 
 We interact with geoprocessing services through a [GP job](https://developers.arcgis.com/rest/services-reference/enterprise/gp-job/) represented by the `arc_gp_job` R6 class. A new geoprocessing job can be created with `arc_gp_job$new()` with the following structure: 
 
