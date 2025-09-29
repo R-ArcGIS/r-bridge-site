@@ -49,7 +49,8 @@ The restaurant addresses are contained in the `restaurant_address` column. Pass 
 
 ```{r message=FALSE}
 geocoded <- geocode_addresses(
-  single_line = restaurants[["restaurant_address"]]
+  single_line = restaurants[["restaurant_address"]], 
+  .progress = FALSE
 )
 
 # preview the first 10 columns

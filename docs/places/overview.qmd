@@ -17,7 +17,7 @@ In order to use `{arcgisplaces}` you will need an ArcGIS Developers account. [Ge
 `{arcgisplaces}` can be installed directly from R-universe using 
 
 ```r
-install.packages("arcgisplaces", repos = c("https://r-arcgis.r-universe.dev", "https://cloud.r-project.org"))
+install.packages("arcgisplaces")
 ```
 
 ## Usage
@@ -62,7 +62,12 @@ set_arc_token(token)
 You can **search for places near a location** with `near_point()`.
 
 ```{r}
-coffee <- near_point(x = -122.334, y = 47.655, search_text = "Coffee")
+coffee <- near_point(
+  x = -122.3408, 
+  y = 47.62045, 
+  search_text = "Coffee"
+)
+
 coffee
 ```
 
@@ -71,30 +76,30 @@ Locations are returned as an sf object with the place ID, the place name, distan
 
 ::: callout-tip
 
-`arcgisplaces` will return an sf object, but the sf package is not required to work with the package. The `sf` print method will not be used unless the package is loaded. If package size is a consideration—i.e. deploying an app in a Docker container—consider using `wk` or `rsgeo`.
+`arcgisplaces` will return an sf object, but the sf package is not required to work with the package. The `sf` print method will not be used unless the package is loaded. If package size is a consideration—i.e. deploying an app in a Docker container—consider using `wk` or `geos`.
 
 :::
 
 Details for the places can be fetched using `place_details()`. The possible fields are [documented online](https://developers.arcgis.com/rest/places/place-id-get/#requestedfields) as well as contained in the exported vector `fields`. Because pricing is dependent upon which fields are requested, it is a required argument. 
 
-To get the add `requested_fields = "hours"`. Note, that the other possible fields will still be present in the result, but completely empty. 
+To fiew possible fields for places details use `arcgisplaces::fields`. 
 
 ```{r message=FALSE}
 details <- place_details(
   coffee$place_id,
-  requested_fields = "rating"
+  requested_fields = "all"
 )
 
-details[c("price", "user")]
+details[c("name", "website")]
 ```
 
 Or, you can search for places within a bounding box using `within_extent()`. This could be quite handy for searching within current map bounds, for example. 
 
 ```{r}
-bakeries <- within_extent(
+coffee_shops <- within_extent(
   -70.356, 43.588, -70.176, 43.7182,
-  category_id = "13002"
+  category_id = "4bf58dd8d48988d1e0931735"
 )
 
-bakeries[c("name")]
+coffee_shops[c("name")]
 ```

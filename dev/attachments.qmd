@@ -1,0 +1,30 @@
+---
+title: "TODO better title: Using Layer Attachments"
+uid: attachments
+---
+
+feature services can contain attachments associated with individual features in their layers
+this is often the case with survey 123
+the R-ArcGIS Bridge provides facilities to query, download, and update these attachments
+
+
+## Querying Attachments
+
+- lists the attachments associated with a feature service
+
+```{r}
+query_layer_attachments()
+```
+
+## Downloading Attachments
+
+```{r}
+tmp <- tempdir()
+download_attachments()
+```
+
+
+## Updating Attachments
+
+- requires uploading the attachment 
+- this example will require owneship of a feature service 

@@ -89,5 +89,7 @@ for (i in 1:length(in_fps)) {
   ip <- in_fps[[i]]
   op <- out_fps[[i]]
   cli::cli_alert_info("Rendering # file {i}: {.file {ip}} to {.file {op}}")
+  # always unset the arcgis token first
+  arcgisutils::unset_arc_token()
   render_qmd_to_md(ip, op)
 }
