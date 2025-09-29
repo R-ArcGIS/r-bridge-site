@@ -93,3 +93,12 @@ for (i in 1:length(in_fps)) {
   arcgisutils::unset_arc_token()
   render_qmd_to_md(ip, op)
 }
+
+zip::zip(
+  "_docs.zip",
+  list.files(
+    "_arcgis",
+    full.names = TRUE,
+    recursive = TRUE
+  )
+)
