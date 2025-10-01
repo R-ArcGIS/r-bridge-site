@@ -44,15 +44,16 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   # create the output markdown file so that downlit can write to it
   file.create(out_path)
 
+  md_body <- NULL
   # add autolinking and syntax highlighting (we will have to choose colors manually later)
   tryCatch({
     downlit::downlit_md_path(tmp, out_path = out_path)
-    md_body <- readLines(tmp)
+    md_body <- readLines(out_path)
   }, error = function(e) {
       cli::cli_alert_danger("Failed apply downlit to {.file {in_path}}")
-      md_body <- readLines(tmp)
+      md_body <<- readLines(tmp)
       # file.copy(tmp, out_path, TRUE)
-    }
+  }
   )
   final_content <- c(md_header, "", md_body)
   writeLines(final_content, out_path)
