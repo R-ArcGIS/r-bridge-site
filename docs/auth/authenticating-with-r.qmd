@@ -155,7 +155,7 @@ ARCGIS_API_KEY=your-secret-api-key
 
 Restart your R session for the key to be found. Next, load the `{arcgisutils}` package:
 
-```r
+```r eval = FALSE
 library(arcgisutils)
 auth_key()
 ```
