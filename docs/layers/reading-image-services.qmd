@@ -4,7 +4,7 @@ uid: reading-image-services
 freeze: true
 ---
 
-ArcGIS Online and Enterprise web services can easily be read into R using`{arcgislayers}`. Supported service types include:
+ArcGIS Online and Enterprise web services can easily be read into R using `{arcgislayers}`. Supported service types include:
 
  - [FeatureServer](https://developers.arcgis.com/rest/services-reference/enterprise/feature-service.htm)
     - [FeatureLayer](https://developers.arcgis.com/rest/services-reference/enterprise/feature-layer.htm)
@@ -113,12 +113,14 @@ The result is a `SpatRaster` object that you can now work with using **`terra`**
 
 From here, you can pursue your own raster and imagery workflows using `terra`. For some simple examples, consider plotting the image:
 
-```{r, message = FALSE}
+```{r, message = FALSE, eval = FALSE}
 terra::plotRGB(crater, stretch = "lin")
 ```
 
+![](../shared/images/ouarkziz-crater-RGB.tif)
+
 or saving the image locally:
 
-```{r, message = FALSE}
+```{r, message = FALSE, eval = FALSE}
 terra::writeRaster(crater, "ouarkziz-crater-RGB.tif", overwrite = TRUE)
 ```
