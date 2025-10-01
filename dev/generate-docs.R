@@ -21,8 +21,8 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
     # extract header from the .qmd file
     lines <- readLines(in_path)
     if (length(lines) > 0 && lines[1] == "---") {
-      qmd_end <- which(lines == "---")[-1][1] 
-      qmd_header <- lines[1:qmd_end]
+      hdr_end <- which(lines == "---")[-1][1] 
+      qmd_header <- lines[1:hdr_end]
     } else {
       qmd_header <- character(0)
     }
