@@ -19,12 +19,13 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   # #> [1] "Hello world"
 
     # extract header from the .qmd file
-    lines <- readLines(in_path)
-    if (length(lines) > 0 && lines[1] == "---") {
-      hdr_end <- which(lines == "---")[-1][1] 
-      qmd_header <- lines[1:hdr_end]
+    header <- rmarkdown::yaml_front_matter(in_path)
+    if (length(header) > 0) {
+      md_header <- c("---", 
+                      paste(names(header), header, sep = ": "), 
+                      "---", "")
     } else {
-      qmd_header <- character(0)
+      md_header <- character(0)
     }
 
   # create a temporary file to write to this is because rmarkdown::render cannot find
@@ -53,7 +54,7 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
       # file.copy(tmp, out_path, TRUE)
     }
   )
-  final_content <- c(qmd_header, "", md_body)
+  final_content <- c(md_header, "", md_body)
   writeLines(final_content, out_path)
 }
 
