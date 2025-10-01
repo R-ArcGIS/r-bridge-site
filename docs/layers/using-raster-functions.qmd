@@ -1,6 +1,6 @@
 ---
-title: "Using Raster Functions"
-uid: raster-fns
+title: "Using raster functions"
+uid: using-raster-functions
 ---
 
 Raster functions are server-side operations that can be applied to imagery and raster data to perform analysis, visualization, and data transformation. These functions are made available through ArcGIS ImageServers and allow you to process raster data dynamically without downloading large datasets to your local machine.

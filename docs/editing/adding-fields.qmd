@@ -1,6 +1,6 @@
 ---
-title: "Adding New Fields to Feature Services"
-uid: new-fields-feature-service
+title: "Adding fields to feature services"
+uid: adding-fields
 ---
 
 This tutorial demonstrates how to add new fields to an existing feature service using R. Adding fields allows you to expand your published data without creating an entirely new service.

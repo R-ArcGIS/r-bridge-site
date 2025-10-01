@@ -1,5 +1,5 @@
 ---
-title: Editing layers
+title: Overview
 uid: editing-overview
 ---
 

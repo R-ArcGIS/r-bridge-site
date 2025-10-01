@@ -1,6 +1,6 @@
 ---
 title: Deleting features
-uid: editing-delete-features
+uid: deleting-features
 ---
 
 ```{r include=FALSE}

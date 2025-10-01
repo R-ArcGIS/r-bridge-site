@@ -34,5 +34,5 @@ See the instruction for further details.
 
 ### Learn more
 
-- Installing `{arcgisbinding}`
-- Creating geoprocessing tools
+- Installing [`{arcgisbinding}`](xref:///installation)
+- Creating [geoprocessing tools](xref:///geoprocessing-overview)

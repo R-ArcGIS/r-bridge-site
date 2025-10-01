@@ -1,6 +1,6 @@
 ---
-title: "Making Geoprocessing Tools"
-uid: creating-gp-tools
+title: "Making geoprocessing tools"
+uid: making-gp-tools
 ---
 
 The basic anatomy of an R-based GP script tool is like so:
@@ -90,10 +90,8 @@ It is incumbent upon the developer to take these parameter inputs and use them a
 | Date | `character` in the format of your system e.g. `"11/17/2023 4:35:57 PM"` |
 | Field | `character` the field name of a feature class |
 | Folder | `character` absolute path e.g. `"C:\\Users\username\Documents"` |
-| Feature Class | `character`absolute path e.g. `"C:\\Users\username\mydatabase.gdb\\feature_class` |
+| Feature Class | `character` absolute path e.g. `"C:\\Users\username\mydatabase.gdb\\feature_class` |
 | Spatial Reference | `character` a string representation of the spatial reference e.g. `"PROJCS["...."]"` |
-
-: Data type mapping {.striped tbl-colwidths="[25,75]"}
 
 For a complete list of parameter data types, see [Geoprocessing data types](https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm).
 

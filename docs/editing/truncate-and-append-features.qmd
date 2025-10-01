@@ -1,8 +1,8 @@
 ---
 title: Truncate and append features
-uid: editing-overwrite-features
+uid: truncate-and-append-features
 freeze: true
---- 
+---
 
 ```{r include = FALSE}
 knitr::opts_chunk$set(eval = FALSE)
@@ -153,7 +153,3 @@ Capabilities: Create,Delete,Query,Update,Editing
 If you view the hosted Feature Layer in the map viewer, you should now see the convex hulls.
 
 ![](../shared/images/nc-sids.png)
-
-
-
-![](../shared/images/nc-sids.png){width="10px"}

@@ -1,6 +1,6 @@
 ---
 title: Overview
-uid: auth-index
+uid: authentication-overview
 ---
 
 There a number of times when you will need to verify who you say you are when using ArcGIS location services. This is done through a process called **authentication**. Authentication is required when you want to:

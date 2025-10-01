@@ -1,6 +1,6 @@
 ---
 title: Updating features
-uid: editing-update-features
+uid: updating-features
 ---
 
 ```{r include = FALSE}
