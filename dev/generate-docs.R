@@ -18,6 +18,15 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   # print("Hello world")
   # #> [1] "Hello world"
 
+    # extract header from the .qmd file
+    lines <- readLines(in_path)
+    if (length(lines) > 0 && lines[1] == "---") {
+      yaml_end <- which(lines == "---")[-1][1]  # Find the second '---'
+      yaml_header <- lines[1:yaml_end]
+    } else {
+      yaml_header <- character(0)
+    }
+
   # create a temporary file to write to this is because rmarkdown::render cannot find
   # the appropriate directory and i have no idea why :/
   tmp <- tempfile(fileext = ".md")
@@ -35,13 +44,17 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   file.create(out_path)
 
   # add autolinking and syntax highlighting (we will have to choose colors manually later)
-  tryCatch(
-    downlit::downlit_md_path(tmp, out_path = out_path),
-    error = function(e) {
+  tryCatch({
+    downlit::downlit_md_path(tmp, out_path = out_path)
+    md_body <- readLines(tmp)
+  }, error = function(e) {
       cli::cli_alert_danger("Failed apply downlit to {.file {in_path}}")
-      file.copy(tmp, out_path, TRUE)
+      md_body <- readLines(tmp)
+      # file.copy(tmp, out_path, TRUE)
     }
   )
+  final_content <- c(yaml_header, "", md_body)
+  writeLines(final_content, out_path)
 }
 
 
