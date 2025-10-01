@@ -1,6 +1,6 @@
 ---
 title: Adding features
-uid: editing-add-features
+uid: adding-features
 ---
 
 ```{r, include = FALSE}

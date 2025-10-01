@@ -1,6 +1,6 @@
 ---
 title: "Bulk geocoding"
-uid: geocoding-bulk
+uid: bulk-geocoding
 ---
 
 

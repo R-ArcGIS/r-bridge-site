@@ -1,6 +1,6 @@
 ---
 title: Truncate and append features
-uid: editing-overwrite-features
+uid: truncate-and-append-features
 freeze: true
 --- 
 

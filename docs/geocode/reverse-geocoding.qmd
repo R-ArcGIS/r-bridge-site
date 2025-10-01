@@ -1,6 +1,6 @@
 ---
 title: Reverse geocoding
-uid: geocoding-reverse
+uid: reverse-geocoding
 keywords:
    - geocoding
 description: Learn about geocoding with R and ArcGIS. 

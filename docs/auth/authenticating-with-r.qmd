@@ -1,5 +1,5 @@
 ---
-title: "Connect to your Portal"
+title: "Authenticating with R"
 uid: authenticating-with-r
 ---
 

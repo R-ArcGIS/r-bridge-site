@@ -1,6 +1,6 @@
 ---
 title: Forward geocoding
-uid: geocoding-forward
+uid: forward-geocoding
 ---
 
 Forward geocoding is the process of taking an address or place information and identifying its location on the globe. 

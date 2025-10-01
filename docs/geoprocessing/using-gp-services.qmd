@@ -1,7 +1,6 @@
 ---
-title: "Using Geoprocessing Services"
+title: "Using geoprocessing services"
 uid: using-gp-services
-
 ---
 
 Geoprocessing (GP) is one of the fundamental frameworks that powers the ArcGIS System. Many of the tools and APIs available in ArcGIS Online, ArcGIS Enterprise, and ArcGIS Location Platform are exposed using the [Geoprocessing Service Framework](https://developers.arcgis.com/rest/services-reference/enterprise/gp-overview/).

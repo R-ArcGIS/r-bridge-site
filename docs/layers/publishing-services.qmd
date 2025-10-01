@@ -1,6 +1,6 @@
 ---
-title: "Publishing from R"
-uid: publishing-from-r
+title: "Publishing services"
+uid: publishing-services
 subtitle: "Create Hosted ArcGIS Online or Enterprise Feature Services from R"
 freeze: true
 ---
