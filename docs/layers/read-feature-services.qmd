@@ -1,5 +1,5 @@
 ---
-title: "Reading feature services"
+title: Reading feature services
 uid: reading-feature-services
 freeze: true
 ---

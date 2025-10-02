@@ -1,10 +1,6 @@
 ---
 title: Reverse geocoding
 uid: reverse-geocoding
-keywords:
-   - geocoding
-description: Learn about geocoding with R and ArcGIS. 
-sidebar: 'Got documentation feedback? <a class="launch-link" href=" https://arcg.is/1H1aza">Take this short survey&nbsp;<svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" style="display:inline-block;" ><path d="M1 1h8v1H2v12h12V7h1v8H1zm7.325 7.382L14 2.707V5h1V1h-4v1h2.293L7.618 7.675z"></path></svg></a>'
 ---
 Often you may coordinates of locations but need their addresses as well. **Reverse geocoding** finds an address associated with a location on earth. 
 

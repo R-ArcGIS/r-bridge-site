@@ -1,5 +1,5 @@
 ---
-title: "Authenticating with R"
+title: Authenticating with R
 uid: authenticating-with-r
 ---
 

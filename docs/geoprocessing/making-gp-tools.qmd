@@ -1,5 +1,5 @@
 ---
-title: "Making geoprocessing tools"
+title: Making geoprocessing tools
 uid: making-gp-tools
 ---
 

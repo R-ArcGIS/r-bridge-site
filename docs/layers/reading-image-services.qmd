@@ -1,5 +1,5 @@
 ---
-title: "Reading image services"
+title: Reading image services
 uid: reading-image-services
 freeze: true
 ---
