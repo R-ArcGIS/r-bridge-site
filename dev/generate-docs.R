@@ -59,6 +59,25 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   writeLines(final_content, out_path)
 }
 
+# wrap the render function to allow retries and an optional waiting period
+render_with_retries <- function(in_path, out_path, work_dir, max_retries = 3, wait = 0) {
+  attempt <- 1
+  success <- FALSE
+  while (attempt <= max_retries && !success) {
+    tryCatch({
+      render_qmd_to_md(in_path, out_path, work_dir)
+      success <- TRUE
+    }, error = function(e) {
+      cli::cli_alert_warning("Failed attempt {attempt} for {.file {in_path}}: {e$message}")
+      attempt <<- attempt + 1
+      if (wait > 0 && attempt <= max_retries) {
+        cli::cli_alert_info("Waiting {wait} seconds before retrying...")
+        Sys.sleep(wait)
+      }
+    })
+  }
+  return(success)
+}
 
 all_files <- list.files(
   c("images", "docs"),
@@ -100,13 +119,31 @@ file.copy(
 source("dev/imgs.R")
 
 # render all of the files
+failed_files <- c()
 for (i in 1:length(in_fps)) {
   ip <- in_fps[[i]]
   op <- out_fps[[i]]
+  # check if rendered md already exists
+  if (file.exists(op)) {
+    cli::cli_alert_info("Skipping {.file {ip}}. Output exists at {.file {op}}")
+    next
+  }
   cli::cli_alert_info("Rendering # file {i}: {.file {ip}} to {.file {op}}")
   # always unset the arcgis token first
   arcgisutils::unset_arc_token()
-  render_qmd_to_md(ip, op)
+  # render and retry up to 3 times (default) if it fails
+  success <- render_with_retries(ip, op, dirname(ip))
+  # add failed files to list
+  if (!success) {
+    failed_files <- c(failed_files, ip)
+  }
+}
+
+if (length(failed_files) > 0) {
+  cli::cli_alert_danger("The following files failed after retries:")
+  print(failed_files)
+} else {
+  cli::cli_alert_success("All files rendered or copied successfully.")
 }
 
 zip::zip(
