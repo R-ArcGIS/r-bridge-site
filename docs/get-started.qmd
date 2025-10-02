@@ -10,23 +10,26 @@ sidebar: 'Got documentation feedback? <a class="launch-link" href=" https://arcg
 
 The R-ArcGIS Bridge supports working with both ArcGIS Pro as well as ArcGIS location services.
 
-## Using ArcGIS location services
+## Using ArcGIS location services with `{arcgis}`
 
-The R-ArcGIS Bridge R packages that interact with location services are contained in the metapackage [{arcgis}](https://github.com/R-ArcGIS/arcgis/). It contains: 
+The R-ArcGIS Bridge R packages that interact with location services are contained in the metapackage [{arcgis}](https://github.com/R-ArcGIS/arcgis/):
 
 - [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils): manages authorization for all location service R packages and other utilities
 - [`{arcgislayers}`](https://github.com/R-ArcGIS/arcgislayers): provides read and write access to layers on ArcGIS Online, Enterprise, and Platform
-- [`{arcgisgeocode}`](https://github.com/R-ArcGIS/arcgisgeocode): geocode addresses and reverse geocode point data
-- [`{arcgisplaces}`](https://github.com/R-ArcGIS/arcgisplaces): access rich point-of-interest data from the ArcGIS Places Service
+- [`{arcgisgeocode}`](https://github.com/R-ArcGIS/arcgisgeocode): supports geocoding operations including forward, reverse, and bulk geocoding
+- [`{calcite}`](https://github.com/R-ArcGIS/calcite): enables creation of interactive web applications and static HTML using ArcGIS design patterns from the Calcite Design System.
+- [`{arcgisplaces}`](https://github.com/R-ArcGIS/arcgisplaces): provides an interface to rich point-of-interest data from the ArcGIS Places Service
+- [`{arcpbf}`](https://github.com/R-ArcGIS/arcpbf): processes ArcGIS FeatureCollection protocol buffers in R
 
 ### Learn more
 
-- Reading Data
-- Publishing
-- Geocoding
-- Places services (POI data)
+- Installing [`{arcgis}`](xref:///installation)
+- [Reading Data](xref:///reading-feature-services)
+- [Publishing](xref:///publishing-services)
+- [Geocoding](xref:///geocoding-overview)
+- [Places](xref:///places-overview) services (POI data)
 
-## Get started with `{arcgisbinding}` for ArcGIS Pro
+## Geoprocessing with `{arcgisbinding}` for ArcGIS Pro
 
 The package `{arcgisbinding}` enables the use of geoprocessing script tools within ArcGIS Pro. It can even be used to deploy R-based geoprocessing tools on ArcGIS Enterprise. 
 
