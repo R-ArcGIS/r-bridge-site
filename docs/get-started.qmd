@@ -33,9 +33,10 @@ The R-ArcGIS Bridge R packages that interact with location services are containe
 
 The package `{arcgisbinding}` enables the use of geoprocessing script tools within ArcGIS Pro. It can even be used to deploy R-based geoprocessing tools on ArcGIS Enterprise. 
 
-See the instruction for further details. 
+See the instructions for further details. 
 
 ### Learn more
 
 - Installing [`{arcgisbinding}`](xref:///installation)
 - Creating [geoprocessing tools](xref:///geoprocessing-overview)
+- Using [geoprocessing services](xref:///using-gp-services)
