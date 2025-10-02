@@ -36,19 +36,23 @@ For this example, you will read in population data of major US cities from ArcGI
 
 You will use the functions `arc_open()` and `arc_select()` to read data from ArcGIS Online into R. However, these functions require the url of the hosted feature service. To find this, navigate to the [item](https://www.arcgis.com/home/item.html?id=9df5e769bfe8412b8de36a2e618c7672) in ArcGIS Online.
 
+<img src="../shared/images/usa-cities.png" style="width:100.0%" />
 
-![](../shared/images/usa-cities.png)
 When you scroll down, on the right hand side, you will see a button to view the service itself.
 
-![](../shared/images/view-url.png){width=45%}
+<div style="width:250px;">
+  <img src="../shared/images/view-url.png" width=100 />
+</div>
 
 Clicking this will bring you to the Feature Service. Inside of a Feature Server there may be many layers or tables that you can use. In this case, there is only one layer. Click the hyperlinked **USA Major Cities**.
 
-![](../shared/images/usa-cities-server.png)
+<img src="../shared/images/usa-cities-server.png" style="width:100.0%" />
 
 This reveals the Feature Layer of interest.
 
-![](../shared/images/usa-cities-layer.png){width=70%}
+<div style="width:400px;">
+  <img src="../shared/images/usa-cities-layer.png" width=100 />
+</div>
 
 Navigate to your browser's search bar and copy the url.
 
