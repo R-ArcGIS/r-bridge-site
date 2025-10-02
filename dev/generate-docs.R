@@ -19,12 +19,13 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   # #> [1] "Hello world"
 
     # extract header from the .qmd file
-    lines <- readLines(in_path)
-    if (length(lines) > 0 && lines[1] == "---") {
-      hdr_end <- which(lines == "---")[-1][1] 
-      qmd_header <- lines[1:hdr_end]
+    header <- rmarkdown::yaml_front_matter(in_path)
+    if (length(header) > 0) {
+      md_header <- c("---", 
+                      paste(names(header), header, sep = ": "), 
+                      "---", "")
     } else {
-      qmd_header <- character(0)
+      md_header <- character(0)
     }
 
   # create a temporary file to write to this is because rmarkdown::render cannot find
@@ -43,17 +44,18 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   # create the output markdown file so that downlit can write to it
   file.create(out_path)
 
+  md_body <- NULL
   # add autolinking and syntax highlighting (we will have to choose colors manually later)
   tryCatch({
     downlit::downlit_md_path(tmp, out_path = out_path)
-    md_body <- readLines(tmp)
+    md_body <- readLines(out_path)
   }, error = function(e) {
       cli::cli_alert_danger("Failed apply downlit to {.file {in_path}}")
-      md_body <- readLines(tmp)
+      md_body <<- readLines(tmp)
       # file.copy(tmp, out_path, TRUE)
-    }
+  }
   )
-  final_content <- c(qmd_header, "", md_body)
+  final_content <- c(md_header, "", md_body)
   writeLines(final_content, out_path)
 }
 
