@@ -1,5 +1,5 @@
 ---
-title: "Making geoprocessing tools"
+title: Making geoprocessing tools
 uid: making-gp-tools
 ---
 
@@ -30,7 +30,7 @@ _always_ refer to the input parameters and the second to the outputs.
 `in_params` and `out_params` are named lists. The elements of these lists are
 determined by the **direction** of a parameter. 
 
-![](../shared/images/gp-tool-properties.png){width=50%}
+<img src="../shared/images/gp-tool-properties.png" style="width:50.0%" />
 
 If the direction is `Input`, it will be contained in `in_params`. Likewise, 
 if the direction is `Output`, it will be contained in `out_params`. 
@@ -99,14 +99,14 @@ For a complete list of parameter data types, see [Geoprocessing data types](http
 
 When selecting the `Multiple values` check box in the parameter data type dialog box, users can then provide multiple inputs of that type. 
 
-![](../shared/images/gp-parameter-type.png)
+<img src="../shared/images/gp-parameter-type.png" style="width:50.0%"/>
 
 When the `Multiple values` option is enabled, the parameter returns a list containing each of the input values. 
 
 Note that when multiple values are provided, they will
 be captured in R as a list of scalars. Take the below input, for example:
 
-![](../shared/images/gp-multiple-strings.png)
+<img src="../shared/images/gp-multiple-strings.png" style="width:50.0%"/>
 
 In R, this parameter value would be `list("string 1", "string 2")` and **not** `c("string 1", "string 2")`.
 

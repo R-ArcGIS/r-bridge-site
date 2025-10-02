@@ -1,5 +1,5 @@
 ---
-title: "Authenticating with R"
+title: Authenticating with R
 uid: authenticating-with-r
 ---
 
@@ -10,7 +10,7 @@ uid: authenticating-with-r
 In order to create content, interact with non-public items, save geocoding results, or use POI data with the Places Service, you will need to authenticate through ArcGIS Online, ArcGIS Enterprise, or Platform. 
 
 :::{.callout-tip title="ArcGIS Sharing model" collapse="true"}
-Items in ArcGIS Online and ArcGIS Enterprise can be unshared (accessible only to the item owner) or shared to groups, your organization, or everyone (`r img("../shared/images/sharing-public.png", 50)`). [Learn more about Sharing here.](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm) Read and write access to an item is controlled by the owner-specified sharing level, organizational security settings, and the accessing user's [privileges](https://doc.arcgis.com/en/arcgis-online/administer/roles.htm).
+Items in ArcGIS Online and ArcGIS Enterprise can be unshared (accessible only to the item owner) or shared to groups, your organization, or everyone (<span style="display:inline-block; width: 179px;"><img src="../shared/images/sharing-public.png"/></span>). [Learn more about Sharing here.](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm) Read and write access to an item is controlled by the owner-specified sharing level, organizational security settings, and the accessing user's [privileges](https://doc.arcgis.com/en/arcgis-online/administer/roles.htm).
 :::
 
 
@@ -31,17 +31,23 @@ You can do so by creating an application item.
 - Click `New Item`
 - Select `Application` 
 
-![](../shared/images/content-app.png){width=50%}
+<div style="width:400px;">
+  <img src="../shared/images/content-app.png" width=100% />
+</div>
 
 - Choose `Other application` as your `Application Type`
 - Give the item an informative name such as `r-arcgis`
     - Optionally, specify the folder, tags, and summary as well.
 
-![](../shared/images/new-item.png){width=50%}
+<div style="width:400px;">
+  <img src="../shared/images/new-item.png" width=100% />
+</div>
 
 - You will be directed to the item details page of the newly created application where you can see your credentials. **Do not share these**.
 
-![](../shared/images/credentials.png){width=50%}
+<div style="width:400px;">
+  <img src="../shared/images/credentials.png" width=100% />
+</div>
 
 
 ### Authorizing
@@ -66,11 +72,15 @@ token <- auth_code()
 ```
 You will be prompted to sign in to your portal. 
 
-![](../shared/images/oauth-sign-in.png){width=50%}
+<div style="width:400px;">
+  <img src="../shared/images/oauth-sign-in.png" width=100% />
+</div>
 
 Once you've signed in, copy the code that appears, and return to R. Enter the code into the console without any modifications and press enter. 
 
-![](../shared/images/oauth-code.png){width=70%}
+<div style="width:400px;">
+  <img src="../shared/images/oauth-code.png" width=100% />
+</div>
 
 Your authorization will have completed. 
 

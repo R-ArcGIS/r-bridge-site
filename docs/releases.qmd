@@ -10,5 +10,7 @@ Release notes for the R-ArcGIS Bridge packages are available on GitHub:
   - [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils/blob/main/NEWS.md)
   - [`{arcgisgeocode}`](https://github.com/R-ArcGIS/arcgisgeocode/blob/main/NEWS.md)
   - [`{arcgisplaces}`](https://github.com/R-ArcGIS/arcgisplaces/blob/main/NEWS.md)
+  - [`{arcpbf}`](https://github.com/R-ArcGIS/arcpbf/blob/main/NEWS.md)
+  - [`{calcite}`](https://github.com/R-ArcGIS/calcite)
   - [`{arcgis}`](https://github.com/R-ArcGIS/arcgis)
   - [`{arcgisbinding}`](https://github.com/R-ArcGIS/r-bridge)

@@ -3,9 +3,6 @@ title: Get started
 uid: get-started
 uids: 
   - r-arcgis-bridge-get-started
-description: Learn how to develop with the R-ArcGIS Bridge and ArcGIS location services.
-keywords: [guide, tutorials, apps, r-arcgis bridge]
-sidebar: 'Got documentation feedback? <a class="launch-link" href=" https://arcg.is/1H1aza">Take this short survey&nbsp;<svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" style="display:inline-block;" ><path d="M1 1h8v1H2v12h12V7h1v8H1zm7.325 7.382L14 2.707V5h1V1h-4v1h2.293L7.618 7.675z"></path></svg></a>'
 --- 
 
 The R-ArcGIS Bridge supports working with both ArcGIS Pro as well as ArcGIS location services.

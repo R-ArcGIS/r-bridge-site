@@ -1,5 +1,5 @@
 ---
-title: "Reading image services"
+title: Reading image services
 uid: reading-image-services
 freeze: true
 ---
@@ -16,7 +16,7 @@ ArcGIS Online and Enterprise web services can easily be read into R using `{arcg
 
 Metadata for all of the above service types can be accessed using `arc_open()`. Feature data can be read in using `arc_select()` for FeatureLayer, Table, and ImageServer.
 
-This tutorial will teach you the basics of reading data from hosted image services into R as [`{terra} SpatRaster`](https://rspatial.github.io/terra/reference/rast.html) objects using`{arcgislayers}`. The source for an image service is published raster or imagery data. To learn more about image services, see the [Image services documentation](https://enterprise.arcgis.com/en/server/latest/publish-services/windows/key-concepts-for-image-services.htm).
+This tutorial will teach you the basics of reading data from hosted image services into R as [`{terra} SpatRaster`](https://rspatial.github.io/terra/reference/rast.html) objects using `{arcgislayers}`. The source for an image service is published raster or imagery data. To learn more about image services, see the [Image services documentation](https://enterprise.arcgis.com/en/server/latest/publish-services/windows/key-concepts-for-image-services.htm).
 
 :::{.callout-note}
 When leveraging Esri hosted content, organizations should review the [ArcGIS Online terms of use](https://doc.arcgis.com/en/arcgis-online/reference/terms-of-use.htm), as well as the terms of use for the data layer to ensure they are in compliance with extracting data and/or making it available in other systems.
@@ -38,11 +38,12 @@ For this example, you will read in multispectral Landsat imagery of the Ouarkziz
 
 You will use the functions `arc_open()` and `arc_raster()` to read image data from ArcGIS Online into R. However, these functions require the url of the hosted image service. To find this, navigate to the [item](https://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b) in ArcGIS Online.
 
+<img src="../shared/images/multispectral-landsat.png" style="width:70.0%" />
 
-![](../shared/images/multispectral-landsat.png)
 When you scroll down, on the right hand side, you will see a button to view the service itself.
 
-![](../shared/images/view-url-imagery.png){width=45%}
+<img src="../shared/images/view-url-imagery.png"
+style="width:45.0%" />
 
 Clicking this will bring you to the Image Service, where you can more closely investigate the metadata and supported operations for this service. Navigate to your browser's search bar and copy the url.
 
@@ -117,7 +118,7 @@ From here, you can pursue your own raster and imagery workflows using `terra`. F
 terra::plotRGB(crater, stretch = "lin")
 ```
 
-![](../shared/images/ouarkziz-crater-RGB.tif)
+<img src="../shared/images/unnamed-chunk-5-1.png" style="width:70.0%" />
 
 or saving the image locally:
 

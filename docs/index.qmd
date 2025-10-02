@@ -1,0 +1,22 @@
+---
+title: R-ArcGIS Bridge
+uid: index
+uids: 
+  - r-arcgis-bridge-index
+description: Learn how to develop with the R-ArcGIS Bridge.
+---
+
+The R-ArcGIS Bridge is a collection of R packages designed to integrate the R language with the ArcGIS Ecosystem. The R-ArcGIS Bridge can be used to:
+
+- Create R-based geoprocessing tools
+- Access and publish data on ArcGIS Online, Enterprise, or Platform
+- Geocode addresses at scale
+- Access detailed point of interest (POI) data
+
+<span style="display:inline-block;width:300px"><img src="https://raw.githubusercontent.com/R-ArcGIS/arcgislayers/main/man/figures/logo.svg" width=100% /></span>
+
+## Where to start
+
+1.  Discover [key features](xref:///key-features) of the R-ArcGIS Bridge.
+2.  [Install](xref:///installation) the R packages.
+3.  Explore [authentication](xref:///authentication-overview) and work with [layers](xref:///layers-overview).

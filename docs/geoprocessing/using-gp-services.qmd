@@ -1,5 +1,5 @@
 ---
-title: "Using geoprocessing services"
+title: Using geoprocessing services
 uid: using-gp-services
 ---
 

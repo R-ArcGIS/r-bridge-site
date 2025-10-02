@@ -33,7 +33,7 @@ The R package `{arcgislayers}` provides access to services. Working with data se
 
 Using `{arcgislayers}`, the function `arc_open()` will create a reference to a service based on its url. 
 
-```{r}
+```{r warning=FALSE}
 library(arcgis)
 
 # feature service url
