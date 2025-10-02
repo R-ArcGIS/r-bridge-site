@@ -19,4 +19,4 @@ The R-ArcGIS Bridge is a collection of R packages designed to integrate the R la
 
 1.  Discover [key features](xref:///key-features) of the R-ArcGIS Bridge.
 2.  [Install](xref:///installation) the R packages.
-3.  Explore [authentication](xref:///auth-index) and work with [layers](xref:///layers-overview).
+3.  Explore [authentication](xref:///authentication-overview) and work with [layers](xref:///layers-overview).
