@@ -1,8 +1,6 @@
 ---
 title: R-ArcGIS Bridge
-uid: index
-uids: 
-  - r-arcgis-bridge-index
+uid: r-arcgis-bridge-index
 description: Learn how to develop with the R-ArcGIS Bridge.
 ---
 
