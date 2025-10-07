@@ -1,0 +1,73 @@
+---
+title: Encoding field values from domains
+uid: encoding-field-values
+---
+
+Domains are predefined lists of acceptable values for an attribute in a layer or feature service. Using domains can be helpful for enforcing data integrity and consistency by restricting the values that can be entered into a specific field. A domain consists of labels and corresponding codes. For example, in a hiking trails feature service, a `difficulty rating` field could use a domain with the following labels (and codes): Easy (`1`), Moderate (`2`), and Challenging (`3`). Learn more about [defining domain lists](https://doc.arcgis.com/en/arcgis-online/manage-data/define-attribute-lists-and-ranges.htm) in ArcGIS Online.
+
+When querying a service, domain codes are returned by default, as these are the values that are stored in the service. But there may be times when the label is preferred, like when the data will be used for visualization or user-facing applications. By using `encode_field_values()` you can replace the codes with labels or add the labels as metadata, giving you flexible options for working with domain-based attributes.
+
+The following example uses [a Living Atlas feature service](https://analysis-1.maps.arcgis.com/home/item.html?id=524770d249eb48b78c5280fc12b9b42b#overview) containing field office boundaries for Bureau of Land Management administrative units.
+
+First, it's helpful to take a look at the metadata for the feature service to understand which fields use domains:
+
+```{r message=FALSE, warning=FALSE}
+library(arcgis)
+
+# Feature service URL
+field_offices_url <- "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/blm_natl_admu_field_poly_webpub_A_view/FeatureServer/0"
+
+# Create a connection to the feature service
+lyr <- arc_open(field_offices_url)
+
+# Extract the domain info from the service metadata
+domain_info <- lyr$fields$domain
+
+# Preview domain values and codes for a field
+head(domain_info[[8]]$codedValues)
+
+# Read in data from the feature service
+res <- arc_select(
+  lyr,
+  fields = c("ADM_UNIT_CD", "ADMIN_ST"),
+  geometry = FALSE
+)
+
+dplyr::glimpse(res)
+```
+
+## Replacing codes with domain labels
+
+Above, we viewed some domain labels and codes for the administrative unit code field, `ADM_UNIT_CD`. Let's replace the existing coded values with their corresponding labels for easier interpretation:
+
+```{r}
+# Replace the domain codes with labels
+offices_encoded <- encode_field_values(res, lyr, field = "ADM_UNIT_CD")
+
+# Updated field values
+dplyr::glimpse(offices_encoded)
+```
+
+Replacing codes with descriptive labels can improve readability and make the data more suitable for display in maps or other user-facing applications.
+
+## Adding domain labels as metadata
+
+If you prefer to keep the original coded values and simply add the labels as metadata, this is possible using the `label` option, which assigns [`haven`](https://haven.tidyverse.org/reference/labelled.html) labels to each of the existing values. This option is useful for analysis workflows where both the code and label are needed.
+
+Below, we add labels to the Administrative State Code field (`ADMIN_ST`):
+
+```{r}
+# Add domain labels
+offices_labelled <- encode_field_values(res, lyr, field = "ADMIN_ST", codes = "label")
+
+# convert to tibble to see labeling
+tibble::as_tibble(offices_labelled)
+
+# Check the field
+haven::is.labelled(offices_labelled$ADMIN_ST)
+
+# View labels
+labelled::val_labels(offices_labelled$ADMIN_ST)
+```
+
+This approach preserves the original data structure while enhancing interpretability for downstream analysis.
