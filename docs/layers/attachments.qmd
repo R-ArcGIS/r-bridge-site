@@ -1,0 +1,158 @@
+---
+title: "Working with Feature Layer Attachments"
+uid: attachments
+---
+
+```{r include=FALSE}
+library(pillar)
+```
+
+# Working with Feature Layer Attachments
+
+Feature services in ArcGIS Online and ArcGIS Enterprise can store attachments linked to individual features within their layers. This capability is commonly used in Survey123 forms where users upload photos, documents, or other files as part of their data collection. The R-ArcGIS Bridge provides three core functions for managing these attachments: querying metadata, downloading files, and updating attachments.
+
+## Understanding Attachment Workflows
+
+Before working with attachments, you need to establish a connection to your feature layer. This requires authentication if you're accessing private services or plan to modify attachments. The typical workflow involves opening a layer reference, querying to understand what attachments exist, and then downloading or updating those files as needed.
+
+## Querying Attachment Metadata
+
+The `query_layer_attachments()` function retrieves metadata about attachments without downloading the actual files. This lets you inspect what attachments exist, their file names, sizes, and which features they belong to before committing to a download operation.
+
+```{r}
+library(arcgisutils)
+library(arcgislayers)
+
+# Authenticate if working with private data
+set_arc_token(auth_user())
+
+# Connect to your feature layer
+furl <- "https://services1.arcgis.com/hLJbHVT9ZrDIzK0I/arcgis/rest/services/v8_Wide_Area_Search_Form_Feature_Layer___a2fe9c/FeatureServer/0"
+layer <- arc_open(furl)
+
+# Query all attachments in the layer
+att <- query_layer_attachments(layer)
+
+# preview the results
+dplyr::glimpse(att)
+```
+
+The returned data frame contains columns like `PARENTOBJECTID` (which feature the attachment belongs to), `att_name` (the file name), and `id` (the attachment's unique identifier). This metadata allows you to make informed decisions about which attachments to download.
+
+## Filtering Attachments
+
+You can filter attachments in two ways:
+
+1. by feature attributes or,
+2. by attachment properties.
+
+Filtering by feature attributes is useful when you only want attachments from features meeting certain criteria, such as records flagged for follow-up.
+
+The `definition_expression` argument accepts a standard SQL WHERE clause that is applied to the features in the feature service. This is akin to the `where` argument in `arc_select()`.
+
+```{r}
+# Filter based on **feature** attributes
+# Only get attachments where the followup_status field 
+# is set to `"needs_followup"
+query_layer_attachments(
+  layer, 
+  "followup_status = 'needs_followup'"
+)
+```
+
+Alternatively, you can filter based on the properties of the attachment itself. To see what properties are available to query based on you can check the `attachmentProperties` element of the layer object.
+
+```{r}
+layer$attachmentProperties
+```
+
+This shows that we can query based on the `fieldName`s. To actually query based on these, we use the `attachments_definition_expression` argument which is applied to the attachment properties.
+
+```{r}
+# Filter based on attachment file names
+# Only get attachments from a specific date
+attachments <- query_layer_attachments(
+  layer,
+  attachments_definition_expression = "att_name like '%20221005%'"
+)
+```
+
+
+## Downloading Attachments
+
+Once you've identified the attachments you need, `download_attachments()` retrieves the actual files to your local system. The function takes the metadata from `query_layer_attachments()` and a destination folder, then downloads each file while preserving its original name.
+
+```{r}
+# Create a temporary directory for downloads
+tmp <- tempdir()
+
+# Download the queried attachments
+res <- download_attachments(attachments, tmp, .progress = FALSE)
+
+# Verify the downloads
+downloaded <- list.files(tmp)
+```
+
+The function returns a data frame showing the download results, including file paths and any errors encountered. This makes it easy to verify successful downloads and handle any issues that arose during the transfer.
+
+## Updating Attachments
+
+Updating attachments requires write access to the feature service, which typically means you need to own the service or have editing permissions granted by the owner. The update process involves uploading new attachment files and associating them with specific features using the `update_attachments()` function. This operation requires proper authentication through `set_arc_token()` before attempting any modifications.
+
+In this example we will prepend the current date to the files. To do this, we will rename the files locally.
+
+```{r}
+# get today's date
+today <- Sys.Date()
+
+# prepend attachments with the date
+new_filenames <- paste0(today, "-", basename(attachments$name))
+
+# create new file paths
+new_fps <- file.path(dirname(tmp), new_filenames)
+
+# the full name of downloaded attachments: 
+fps <- file.path(tmp, downloaded)
+
+# rename the files
+file.rename(fps, new_fps)
+```
+
+Now that we have renamed the files, we can use `update_attachments()` to update the attachments in the feature service.
+
+```{r}
+# update the attachments
+update_res <- update_attachments(
+  layer,
+  # OID of the feature <> attachment relationship
+  attachments$parentObjectId,
+  # the attachment ID
+  attachments$id,
+  # the path to the attachment on disk
+  new_fps,
+  # turn off for rmarkdown
+  .progress = FALSE
+)
+
+head(update_res)
+```
+
+
+Similarly, we can undo our change just as easily! 
+
+
+```{r}
+# rename the files again
+file.rename(new_fps, fps)
+
+update_res <- update_attachments(
+  layer,
+  attachments$parentObjectId,
+  attachments$id,
+  # using the previous filenames
+  fps,
+  .progress = FALSE
+)
+
+head(update_res)
+```
