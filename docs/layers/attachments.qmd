@@ -7,7 +7,6 @@ uid: attachments
 library(pillar)
 ```
 
-# Working with Feature Layer Attachments
 
 Feature services in ArcGIS Online and ArcGIS Enterprise can store attachments linked to individual features within their layers. This capability is commonly used in Survey123 forms where users upload photos, documents, or other files as part of their data collection. The R-ArcGIS Bridge provides three core functions for managing these attachments: querying metadata, downloading files, and updating attachments.
 
