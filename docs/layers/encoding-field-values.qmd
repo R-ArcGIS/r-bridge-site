@@ -30,7 +30,9 @@ head(domain_info[[8]]$codedValues)
 res <- arc_select(
   lyr,
   fields = c("ADM_UNIT_CD", "ADMIN_ST"),
+  geometry = FALSE
 )
+
 dplyr::glimpse(res)
 ```
 
@@ -57,6 +59,9 @@ Below, we add labels to the Administrative State Code field (`ADMIN_ST`):
 ```{r}
 # Add domain labels
 offices_labelled <- encode_field_values(res, lyr, field = "ADMIN_ST", codes = "label")
+
+# convert to tibble to see labeling
+tibble::as_tibble(offices_labelled)
 
 # Check the field
 haven::is.labelled(offices_labelled$ADMIN_ST)
