@@ -131,10 +131,6 @@ file.copy(
 
 source("dev/imgs.R")
 
-i <- 23
-in_path <- in_fps[i]
-out_path <- out_fps[i]
-work_dir = dirname(in_path)
 
 # render all of the files
 failed_files <- c()
