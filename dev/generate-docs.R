@@ -18,27 +18,27 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   # print("Hello world")
   # #> [1] "Hello world"
 
-    # extract header from the .qmd file
-    header <- rmarkdown::yaml_front_matter(in_path)
-    if (length(header) > 0) {
-      md_header <- c("---", 
-                      paste(names(header), header, sep = ": "), 
-                      "---", "")
-    } else {
-      md_header <- character(0)
-    }
+  # extract header from the .qmd file
+  header <- rmarkdown::yaml_front_matter(in_path)
+  if (length(header) > 0) {
+    md_header <- c("---", paste(names(header), header, sep = ": "), "---", "")
+  } else {
+    md_header <- character(0)
+  }
 
   # create a temporary file to write to this is because rmarkdown::render cannot find
   # the appropriate directory and i have no idea why :/
   tmp <- tempfile(fileext = ".md")
   knitr::opts_chunk$set(comment = "#>")
+
   # render the section alone
   out <- rmarkdown::render(
     in_path,
     rmarkdown::github_document(),
     output_file = tmp,
     knit_root_dir = fs::path_abs(work_dir),
-    quiet = TRUE
+    quiet = TRUE,
+    envir = new.env()
   )
 
   # create the output markdown file so that downlit can write to it
@@ -46,35 +46,48 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
 
   md_body <- NULL
   # add autolinking and syntax highlighting (we will have to choose colors manually later)
-  tryCatch({
-    downlit::downlit_md_path(tmp, out_path = out_path)
-    md_body <- readLines(out_path)
-  }, error = function(e) {
+  tryCatch(
+    {
+      downlit::downlit_md_path(tmp, out_path = out_path)
+      md_body <- readLines(out_path)
+    },
+    error = function(e) {
       cli::cli_alert_danger("Failed apply downlit to {.file {in_path}}")
       md_body <<- readLines(tmp)
       # file.copy(tmp, out_path, TRUE)
-  }
+    }
   )
   final_content <- c(md_header, "", md_body)
   writeLines(final_content, out_path)
 }
 
 # wrap the render function to allow retries and an optional waiting period
-render_with_retries <- function(in_path, out_path, work_dir, max_retries = 3, wait = 0) {
+render_with_retries <- function(
+  in_path,
+  out_path,
+  work_dir,
+  max_retries = 3,
+  wait = 0
+) {
   attempt <- 1
   success <- FALSE
   while (attempt <= max_retries && !success) {
-    tryCatch({
-      render_qmd_to_md(in_path, out_path, work_dir)
-      success <- TRUE
-    }, error = function(e) {
-      cli::cli_alert_warning("Failed attempt {attempt} for {.file {in_path}}: {e$message}")
-      attempt <<- attempt + 1
-      if (wait > 0 && attempt <= max_retries) {
-        cli::cli_alert_info("Waiting {wait} seconds before retrying...")
-        Sys.sleep(wait)
+    tryCatch(
+      {
+        render_qmd_to_md(in_path, out_path, work_dir)
+        success <- TRUE
+      },
+      error = function(e) {
+        cli::cli_alert_warning(
+          "Failed attempt {attempt} for {.file {in_path}}: {e$message}"
+        )
+        attempt <<- attempt + 1
+        if (wait > 0 && attempt <= max_retries) {
+          cli::cli_alert_info("Waiting {wait} seconds before retrying...")
+          Sys.sleep(wait)
+        }
       }
-    })
+    )
   }
   return(success)
 }
@@ -117,6 +130,7 @@ file.copy(
 )
 
 source("dev/imgs.R")
+
 
 # render all of the files
 failed_files <- c()

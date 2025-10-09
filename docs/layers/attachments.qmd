@@ -83,7 +83,10 @@ Once you've identified the attachments you need, `download_attachments()` retrie
 
 ```{r}
 # Create a temporary directory for downloads
-tmp <- tempdir()
+tmp <- file.path(tempdir(), ulid::ulid()) 
+
+# Create the directory if it doesn't exist
+dir.create(tmp, recursive = TRUE, showWarnings = FALSE)
 
 # Download the queried attachments
 res <- download_attachments(attachments, tmp, .progress = FALSE)
@@ -108,9 +111,9 @@ today <- Sys.Date()
 new_filenames <- paste0(today, "-", basename(attachments$name))
 
 # create new file paths
-new_fps <- file.path(dirname(tmp), new_filenames)
+new_fps <- file.path(tmp, new_filenames)
 
-# the full name of downloaded attachments: 
+# the full name of downloaded attachments
 fps <- file.path(tmp, downloaded)
 
 # rename the files

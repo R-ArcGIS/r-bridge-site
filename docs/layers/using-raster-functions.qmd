@@ -60,5 +60,7 @@ res <- arc_raster(
 terra::plot(res)
 ```
 
+<img src="../shared/images/rasterfn-balsamfir.png" style="width:70.0%" />
+
 The resulting `SpatRaster` object contains the processed biomass values for Balsam Fir trees in our specified extent. The raster function has been applied server-side, returning only the processed data we need for analysis.
 

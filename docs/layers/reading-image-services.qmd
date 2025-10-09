@@ -118,7 +118,7 @@ From here, you can pursue your own raster and imagery workflows using `terra`. F
 terra::plotRGB(crater, stretch = "lin")
 ```
 
-<img src="../shared/images/ouarkziz-crater-RGB.png.png" style="width:70.0%" />
+<img src="../shared/images/ouarkziz-crater-RGB.png" style="width:70.0%" />
 
 or saving the image locally:
 
