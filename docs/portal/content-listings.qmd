@@ -1,0 +1,191 @@
+---
+title: Content Listings
+uid: portal-content-listings
+subtitle: "Discover and search for portal content items"
+freeze: true
+---
+
+ArcGIS portals contain numerous content items including feature services, maps, apps, and more. The `{arcgisutils}` package provides three main approaches for discovering content: searching by group, searching by user, and full-text search across the portal.
+
+## Objective
+
+This tutorial will teach you how to:
+
+- Get content items shared with a specific group
+- Get content items owned by a specific user
+- Search for content using full-text search
+- Filter search results by item type
+
+## Authentication
+
+Content listings may require authentication depending on what you're trying to access:
+
+- **Public content**: No authentication needed
+- **Organization content**: Requires authentication
+- **Private content**: Requires authentication as a user with appropriate permissions
+
+```{r message = FALSE}
+library(arcgisutils)
+
+# Authenticate to your portal
+set_arc_token(auth_user())
+```
+
+## Group Content
+
+If you know a group ID, you can retrieve all content items shared with that group using `arc_group_content()`.
+
+First, get information about a group using `arc_group()`:
+
+```{r}
+# Web Application Templates group from esri_en
+web_app_templates <- arc_group("2f0ec8cb03574128bd673cefab106f39")
+web_app_templates
+```
+
+Then retrieve all content items shared with this group:
+
+```{r}
+group_items <- arc_group_content(web_app_templates)
+group_items
+```
+
+The result is a data frame containing metadata about each item, including:
+
+- `id`: Unique item identifier
+- `title`: Item title
+- `type`: Item type (e.g., "Feature Service", "Web Map")
+- `owner`: Username of the item owner
+- `url`: Service URL (if applicable)
+
+:::{.callout-tip}
+You can pass a `PortalGroup` object or a group ID string directly to `arc_group_content()`.
+:::
+
+## User Content
+
+To retrieve content items owned by a specific user, use `arc_user_content()`.
+
+### Your Own Content
+
+To get your own content items, first retrieve your user information with `arc_user_self()`:
+
+```{r}
+# Get current user information
+self <- arc_user_self()
+
+# Get your content items
+my_items <- arc_user_content(self$username)
+my_items
+```
+
+### Another User's Content
+
+You can also retrieve content for any other user by their username:
+
+```{r}
+# Get content for a specific user
+user_items <- arc_user_content("jparry_ANGP")
+user_items
+```
+
+:::{.callout-note}
+You can only see content items that you have permission to access. Private items owned by other users will not be visible unless they are shared with you.
+:::
+
+## Full-Text Search
+
+The `search_items()` function provides powerful full-text search capabilities across portal content. This is useful when you don't know the specific group or user, but want to find content by keywords.
+
+### Basic Search
+
+Provide a search query as the first argument:
+
+```{r}
+# Search for crime-related content
+search_items(
+  query = "crime",
+  max_pages = 1
+)
+```
+
+:::{.callout-note}
+By default, `search_items()` searches ArcGIS Online. To search your private or Enterprise portal, set the `ARCGIS_HOST` environment variable to your portal URL.
+:::
+
+### Filtering by Item Type
+
+You can filter search results to specific item types using the `item_type` argument. To see all available item types, use `portal_item_types()`:
+
+```{r}
+# View all valid item types
+head(portal_item_types())
+```
+
+Filter your search to only Feature Services:
+
+```{r}
+# Search for crime feature services only
+crime_fs <- search_items(
+  query = "crime",
+  item_type = "Feature Service",
+  max_pages = 1
+)
+
+crime_fs
+```
+
+### Pagination
+
+Search results are paginated. By default, `search_items()` will fetch all pages, but you can limit results using `max_pages`:
+
+```{r}
+# Fetch only the first 3 pages of results
+search_items(
+  query = "demographics",
+  item_type = "Feature Service",
+  max_pages = 3
+)
+```
+
+:::{.callout-warning}
+Setting `max_pages = NULL` will fetch all available pages. Use caution with broad searches that may return thousands of items.
+:::
+
+## Using Search Results
+
+Once you have search results, you can extract item IDs and open them with `arc_open()` from the `{arcgislayers}` package:
+
+```{r}
+library(arcgislayers)
+
+# Search for feature services
+results <- search_items(
+  query = "crime",
+  item_type = "Feature Service",
+  max_pages = 1
+)
+
+# Open the first result
+arc_open(results$id[1])
+```
+
+## Advanced Search Queries
+
+The `query` parameter accepts Esri's [advanced search syntax](https://developers.arcgis.com/rest/users-groups-and-items/search-reference.htm), allowing you to build complex queries:
+
+```{r}
+# Search for items owned by a specific user
+search_items(
+  query = "owner:jparry_ANGP",
+  max_pages = 1
+)
+```
+
+## Summary
+
+Choose the approach that best fits your workflow:
+
+- Use group content when working with curated collections
+- Use user content when you know the content owner
+- Use search when exploring content by keywords or attributes
