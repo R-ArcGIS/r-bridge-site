@@ -29,7 +29,7 @@ The R-ArcGIS Bridge provides functions to:
 Most portal-related functionality requires authentication to your portal. Before working with portal functions, you need to obtain an access token.
 
 :::{.callout-caution}
-If you have not yet set up your R environment for authentication, see the [Authentication section](/authentication/overview). Ensure that the environment variables. If you are using ArcGIS Enterprise, ensure that `ARCGIS_HOST` is properly set.
+If you have not yet set up your R environment for authentication, see the [Authentication section](xref:///authentication-overview). Ensure that the environment variables. If you are using ArcGIS Enterprise, ensure that `ARCGIS_HOST` is properly set.
 :::
 
 To authenticate as yourself and set the token for your session:
