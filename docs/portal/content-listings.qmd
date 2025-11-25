@@ -5,6 +5,10 @@ subtitle: "Discover and search for portal content items"
 freeze: true
 ---
 
+```{r include=FALSE}
+library(pillar)
+```
+
 ArcGIS portals contain numerous content items including feature services, maps, apps, and more. The `{arcgisutils}` package provides three main approaches for discovering content: searching by group, searching by user, and full-text search across the portal.
 
 ## Objective
@@ -85,7 +89,7 @@ You can also retrieve content for any other user by their username:
 
 ```{r}
 # Get content for a specific user
-user_items <- arc_user_content("jparry_ANGP")
+user_items <- arc_user_content("r-bridge-docs")
 user_items
 ```
 
@@ -177,7 +181,7 @@ The `query` parameter accepts Esri's [advanced search syntax](https://developers
 ```{r}
 # Search for items owned by a specific user
 search_items(
-  query = "owner:jparry_ANGP",
+  query = "owner:r-bridge-docs",
   max_pages = 1
 )
 ```

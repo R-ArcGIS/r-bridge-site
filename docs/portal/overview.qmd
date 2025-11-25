@@ -10,23 +10,9 @@ Portal-related function documentation is available in the [API Reference](https:
 :::
 
 
-## Portal Functionality
-
-The R-ArcGIS Bridge provides functions to:
-
-| Function | Description |
-| -------- | ----------- |
-| `arc_user()` | Get information about a specific user by username or ID |
-| `arc_user_self()` | Get information about the currently authenticated user |
-| `arc_portal_users()` | List all users in a portal |
-| `arc_group()` | Get information about a specific group by ID |
-| `arc_user_content()` | List content items owned by a user |
-| `arc_group_content()` | List content items shared with a group |
-| `search_items()` | Search for content items using full-text search |
-
 ## Authentication
 
-Most portal-related functionality requires authentication to your portal. Before working with portal functions, you need to obtain an access token.
+Most portal-related functionality is dependent upon user-privileges. As such, many functions require authenticating to your portal. Further, some functionality may be restricted based on your user's role. Before working with portal functions, you need to obtain an access token.
 
 :::{.callout-caution}
 If you have not yet set up your R environment for authentication, see the [Authentication section](xref:///authentication-overview). Ensure that the environment variables. If you are using ArcGIS Enterprise, ensure that `ARCGIS_HOST` is properly set.
@@ -44,6 +30,21 @@ set_arc_token(auth_user())
 :::{.callout-tip}
 Using `set_arc_token()` makes the authentication token available for all subsequent portal operations in your R session, so you don't need to pass the token to each function call.
 :::
+
+## Portal Functionality
+
+The R-ArcGIS Bridge provides functions to:
+
+| Function | Description |
+| -------- | ----------- |
+| `arc_user()` | Get information about a specific user by username or ID |
+| `arc_user_self()` | Get information about the currently authenticated user |
+| `arc_portal_users()` | List all users in a portal |
+| `arc_group()` | Get information about a specific group by ID |
+| `arc_user_content()` | List content items owned by a user |
+| `arc_group_content()` | List content items shared with a group |
+| `search_items()` | Search for content items using full-text search |
+
 
 ## Working with Portal Objects
 
