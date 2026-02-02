@@ -1,0 +1,115 @@
+---
+title: "What's New in the R–ArcGIS Bridge (Q1 2026)"
+uid: whats-new-q1
+---
+
+```{r include = FALSE}
+library(arcgis)
+```
+
+This quarter's release represents a major milestone in full-stack spatial development with R. Driven by feedback from last year's Developer Summit where many of you asked for better Shiny integration, we've focused on making it seamless to build professional web applications that connect R's analytical power with ArcGIS data and services.
+
+Key focus areas:
+
+- Shiny application development
+- Geoprocessing service support
+- Simplified content access
+- Portal integration
+
+## Changelogs
+
+For a full list of changes please refer to the individual changelogs for each package.
+
+- [`{calcite}`](https://github.com/R-ArcGIS/calcite/blob/main/NEWS.md)
+- [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils/blob/main/NEWS.md)
+- [`{arcgislayers}`](https://github.com/R-ArcGIS/arcigslayers/blob/main/NEWS.md)
+
+
+## Shiny Integration
+
+
+At this year's **2026 Esri Developer & Technology Summit** we are hosting the workshop [**"Full-stack spatial with R and ArcGIS"**](https://registration.esri.com/flow/esri/26epcdev/deveventportal/page/detailed-agenda/session/1761117256768001avMt). Our focus is building [`{shiny}`](http://shiny.posit.co) applications in R that harness the [Calcite Design System](https://developers.arcgis.com/calcite-design-system/) for building beautiful UIs while leveraging the ArcGIS System.
+
+To this end, we've revamped the `{calcite}` package with hand-crafted R bindings to make the integration feel as native as [`{bslib}`](https://rstudio.github.io/bslib/).
+
+- Build with alerts, accordions, date pickers, sliders, switches, and form inputs
+- Use page layouts: `page_navbar()`, `page_sidebar()`, `page_actionbar()`
+- Access component values directly (e.g., `input$my_btn$clicks`)
+
+Explore over 20 interactive examples via `calcite::open_example()`!
+
+The new `arcgisutils::auth_shiny()` function builds off of [shinyOAuth](https://lukakoning.github.io/shinyOAuth/) enabling user-specific behavior in shiny applications! 
+
+- Users authenticate with their ArcGIS accounts
+- Tokens work throughout your application
+- Perform user-specific actions (read private content, edit services, access org resources)
+
+
+## Geoprocessing Services
+
+In an effort to increase the number of services in the ArcGIS System we support, we have built out native R support for geoprocessing services (GP services) in the `{arcgisutils}` R package. 
+
+You can now call geoprocessing services directly from R with full async job management. Whether working with Esri's hosted services or your own published web tools, invoke them programmatically:
+
+```r
+downstream_job <- arc_gp_job$new(
+  base_url = service_url,
+  params = list(InputPoints = as_esri_featureset(input_points), f = "json"),
+  result_fn = parse_gp_feature_record_set,
+  token = arc_token()
+)
+```
+
+Key features:
+
+- Built on [S7](https://github.com/RConsortium/S7) object system for type safety
+- Async job control with `$start()` and `$await()`
+- Works with any custom GP service you've published
+
+Learn more in our [geoprocessing services guide](https://developers.arcgis.com/r-bridge/geoprocessing/using-gp-services/#example-trace-downstream-service).
+
+
+## Simplified Content Access
+
+The `arc_open()` function now accepts virtually any ArcGIS URL or item ID ([PR #275](https://github.com/R-ArcGIS/arcgislayers/pull/275)). 
+This work wouldn't have been possible without the effort and contribution of [Eli Pousson](https://github.com/elipousson)!
+
+```{r}
+# use an item ID
+arc_open("3c164274a80748dda926a046525da610")
+
+# or the feature service url 
+furl <- "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Counties_Generalized_Boundaries/FeatureServer/0"
+
+arc_open(furl)
+```
+
+Due to our improved portal integration in `{arcgisutils}`, `arc_open()` now supports working with portal items and users.
+
+```{r}
+arc_open("https://analysis-1.maps.arcgis.com/home/user.html?user=r-bridge-docs")
+```
+
+### Portal Integration
+
+We've worked hard on improving the portal integration in `{arcgisutils}` with functionality to: 
+
+- search portal items
+- list users and groups and their items
+- download portal items
+- access current user metadata from the authentication token
+
+
+## What's Next?
+
+Looking ahead to the **2026 Esri User Conference**:
+
+- New `{arcgisrouting}` package ([in development](https://github.com/r-arcgis/arcgisrouting/))
+- Built on GP services and S7 support
+- R-native access to routing and network analysis services
+
+---
+
+## We Want Your Feedback
+
+We'd love to hear what would make your workflows even better. [Start a discussion](https://github.com/R-ArcGIS/arcgis/discussions/new?category=ideas) or open an issue on our GitHub repositories—your feedback shapes our roadmap.
