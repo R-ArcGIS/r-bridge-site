@@ -1,0 +1,209 @@
+---
+title: Users and Groups
+uid: portal-users-groups
+subtitle: "Work with portal users and group memberships"
+freeze: true
+---
+
+```{r include=FALSE}
+library(pillar)
+```
+
+ArcGIS portals are collaborative environments where users organize into groups to share content and coordinate work. The `{arcgisutils}` package provides functions to programmatically access user profiles and group information.
+
+## Objective
+
+This tutorial will teach you how to:
+
+- Get information about individual users
+- List all users in a portal
+- Access user profile information and group memberships
+- Get information about groups
+
+## Authentication
+
+Working with users and groups typically requires authentication:
+
+```{r}
+library(arcgisutils)
+
+set_arc_token(auth_user())
+```
+
+:::{.callout-note}
+Some user and group information may be publicly accessible, but most operations require an authenticated session.
+:::
+
+## Working with Users
+
+### Getting User Information
+
+You can retrieve information about a specific user using `arc_user()`, which accepts either a username or user ID:
+
+```{r}
+# Get user by username
+docs_user <- arc_user("r-bridge-docs")
+docs_user
+```
+
+The `arc_user()` function returns a `PortalUser` object, which is a list with a custom print method. The object contains extensive information about the user:
+
+```{r}
+# View all available fields
+names(docs_user)
+```
+
+### Accessing User Profile Details
+
+User objects contain many useful fields:
+
+```{r}
+# User's full name
+docs_user$fullName
+
+# User role
+docs_user$role
+
+# Account creation date
+docs_user$created
+
+# Last modified date
+docs_user$modified
+```
+
+### Viewing User's Groups
+
+One particularly useful field is the `groups` data frame, which contains information about all groups the user belongs to:
+
+```{r}
+# View user's groups
+docs_user$groups
+
+# Extract just the group titles
+docs_user$groups$title
+```
+
+### Getting the Current User
+
+To get information about yourself (the currently authenticated user), use `arc_user_self()`:
+
+```{r}
+# Get your own user information
+me <- arc_user_self()
+me
+
+# Your username
+me$username
+
+# Your organization ID
+me$orgId
+```
+
+:::{.callout-tip}
+`arc_user_self()` is useful when you need to programmatically work with your own content or verify your authentication status.
+:::
+
+## Listing All Portal Users
+
+To retrieve a list of all users in your portal, use `arc_portal_users()`:
+
+```{r}
+# Get all users in the portal
+all_users <- arc_portal_users()
+```
+
+This returns a data frame with information about each user:
+
+```{r}
+# View specific columns
+all_users[c("id", "userType", "created", "modified")]
+```
+
+### Using User IDs
+
+Once you have user IDs from `arc_portal_users()`, you can fetch detailed information about specific users:
+
+```{r}
+# Filter to get a specific user's ID
+docs_user_id <- subset(
+  all_users,
+  username == "r-bridge-docs",
+  select = "id",
+  drop = TRUE
+)
+
+# Get detailed user information by ID
+arc_user(docs_user_id)
+```
+
+You can use this approach with multiple IDs to fetch information about several users at once.
+
+## Working with Groups
+
+### Getting Group Information
+
+If you have a group ID, you can retrieve metadata about the group using `arc_group()`:
+
+```{r}
+# Get group by ID
+web_app_templates <- arc_group("2f0ec8cb03574128bd673cefab106f39")
+
+# View the structure
+str(web_app_templates, max.level = 1)
+```
+
+The `arc_group()` function returns a `PortalGroup` object containing information such as:
+
+```{r}
+# Group title
+web_app_templates$title
+
+# Group description
+web_app_templates$description
+
+# Group owner
+web_app_templates$owner
+
+# Group access level (private, org, public)
+web_app_templates$access
+```
+
+### Finding Group IDs
+
+Group IDs can be found in several ways:
+
+1. From a user's groups:
+
+```{r}
+# Get groups for a user
+user <- arc_user("r-bridge-docs")
+
+# View group IDs and titles
+user$groups[c("id", "title")]
+```
+
+2. From the group URL in ArcGIS Online or Enterprise. The group ID is in the URL:
+
+```{r}
+group_url <- "https://www.arcgis.com/home/group.html?id=2f0ec8cb03574128bd673cefab106f39#overview"
+
+arc_open(group_url)
+```
+
+3. From your own groups as the current user:
+
+```{r}
+# Get your groups
+me <- arc_user_self()
+me$groups[c("id", "title")]
+```
+
+
+### Listing Group Users 
+
+It is possible to also list all of the users in a group using the `arc_group_users()` function.
+
+
+```{r}
+arc_group_users(me$groups$id[1])
+```
