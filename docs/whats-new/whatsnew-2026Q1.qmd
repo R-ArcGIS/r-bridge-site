@@ -28,7 +28,7 @@ For a full list of changes please refer to the individual changelogs for each pa
 ## Shiny Integration
 
 
-At this year's **2026 Esri Developer Summit** we are hosting the workshop [**"Full-stack spatial with R and ArcGIS"**](https://registration.esri.com/flow/esri/26epcdev/deveventportal/page/detailed-agenda/session/1761117256768001avMt). Our focus is building [`{shiny}`](http://shiny.posit.co) applications in R that harness the [Calcite Design System](https://developers.arcgis.com/calcite-design-system/) for building beautiful UIs while leveraging the ArcGIS System.
+At this year's **2026 Esri Developer & Technology Summit** we are hosting the workshop [**"Full-stack spatial with R and ArcGIS"**](https://registration.esri.com/flow/esri/26epcdev/deveventportal/page/detailed-agenda/session/1761117256768001avMt). Our focus is building [`{shiny}`](http://shiny.posit.co) applications in R that harness the [Calcite Design System](https://developers.arcgis.com/calcite-design-system/) for building beautiful UIs while leveraging the ArcGIS System.
 
 To this end, we've revamped the `{calcite}` package with hand-crafted R bindings to make the integration feel as native as [`{bslib}`](https://rstudio.github.io/bslib/)
 
