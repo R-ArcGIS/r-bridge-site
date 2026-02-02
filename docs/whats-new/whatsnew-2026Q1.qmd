@@ -47,7 +47,7 @@ The new `arcgisutils::auth_shiny()` function builds off of [shinyOAuth](https://
 
 ## Geoprocessing Services
 
-In an effort to increase the number of services in the ArcGIS System we support, we have built out native R support for **Geoprocessing Services** (GP services) in the `{arcgisutils}` R package. 
+In an effort to increase the number of services in the ArcGIS System we support, we have built out native R support for geoprocessing services (GP services) in the `{arcgisutils}` R package. 
 
 You can now call geoprocessing services directly from R with full async job management. Whether working with Esri's hosted services or your own published web tools, invoke them programmatically:
 
