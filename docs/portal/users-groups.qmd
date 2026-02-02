@@ -198,3 +198,12 @@ me <- arc_user_self()
 me$groups[c("id", "title")]
 ```
 
+
+### Listing Group Users 
+
+It is possible to also list all of the users in a group using the `arc_group_users()` function.
+
+
+```{r}
+arc_group_users(me$groups$id[1])
+```
