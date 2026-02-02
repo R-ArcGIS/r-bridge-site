@@ -1,189 +1,115 @@
 ---
-title: "What’s New in the R–ArcGIS Bridge (Q1 2026)"
-authors: ["Josiah", "Martha", "Nick"]
-categories: ["R", "Developers", "ArcGIS Bridge"]
+title: "What's New in the R–ArcGIS Bridge (Q1 2026)"
+uid: whats-new-q1
 ---
 
-<!-- Whats New - PR for doc site in what's new section (date, not version number), Blog should be more paragraphs about why users should care -->
+```{r include = FALSE}
+library(arcgis)
+```
 
-## Introduction
+This quarter's release represents a major milestone in full-stack spatial development with R. Driven by feedback from last year's Developer Summit where many of you asked for better Shiny integration, we've focused on making it seamless to build professional web applications that connect R's analytical power with ArcGIS data and services.
 
-The R–ArcGIS Bridge continues to grow as a powerful way to connect your R workflows with ArcGIS data, services, and analysis tools. This quarter brings major improvements across authentication, feature service editing, geoprocessing, Shiny integration, and developer ergonomics. Whether you're building reproducible data pipelines, interactive apps, or advanced spatial analyses, these updates make it easier than ever to work with your ArcGIS content directly from R.
+Key focus areas:
 
-Below is a look at the most impactful enhancements across the R-ArcGIS Bridge.
+- Shiny application development
+- Geoprocessing service support
+- Simplified content access
+- Portal integration
 
----
+## Changelogs
 
-## 🔐 Authentication & Identity
+For a full list of changes please refer to the individual changelogs for each package.
 
-### Interactive OAuth + Shiny App Login  
-**Packages:** `{arcgisutils}` (dev)
+- [`{calcite}`](https://github.com/R-ArcGIS/calcite/blob/main/NEWS.md)
+- [`{arcgisutils}`](https://github.com/R-ArcGIS/arcgisutils/blob/main/NEWS.md)
+- [`{arcgislayers}`](https://github.com/R-ArcGIS/arcigslayers/blob/main/NEWS.md)
 
-- New `auth_shiny()` and `oauth_provider_arcgis()` functions make it possible to authenticate users directly inside Shiny apps.
-- `{shinyOAuth}` is now a suggested dependency, enabling smoother integration with existing OAuth flows.
-- Token validation improvements in `arc_base_req()` ensure more reliable authenticated requests.
 
-### Portal & User Management Enhancements  
-**Packages:** `{arcgisutils}` 0.4.0
+## Shiny Integration
 
-- `arc_user_self()` retrieves metadata for the currently authenticated user.
-- New helpers for exploring your ArcGIS Enterprise portal:
-  - `arc_portal_servers()` lists federated servers.
-  - `arc_portal_users()` lists all users.
-  - `arc_portal_resources()` lists file resources for a given item.
-  - `arc_group_content()` and `arc_user_content()` fetch content listings.
 
-These updates make it far easier to build R workflows that understand *who* is logged in and *what* they have access to.
+At this year's **2026 Esri Developer Summit** we are hosting the workshop [**"Full-stack spatial with R and ArcGIS"**](https://registration.esri.com/flow/esri/26epcdev/deveventportal/page/detailed-agenda/session/1761117256768001avMt). Our focus is building [`{shiny}`](http://shiny.posit.co) applications in R that harness the [Calcite Design System](https://developers.arcgis.com/calcite-design-system/) for building beautiful UIs while leveraging the ArcGIS System.
 
----
+To this end, we've revamped the `{calcite}` package with hand-crafted R bindings to make the integration feel as native as [`{bslib}`](https://rstudio.github.io/bslib/)
 
-## 🗂️ Feature Services: Editing, Definitions & Attachments
+- Build with alerts, accordions, date pickers, sliders, switches, and form inputs
+- Use page layouts: `page_navbar()`, `page_sidebar()`, `page_actionbar()`
+- Access component values directly (e.g., `input$my_btn$clicks`)
 
-### Faster, Parallelized Feature Editing  
-**Packages:** `{arcgislayers}` 0.5.0
+Explore over 20 interactive examples via `calcite::open_example()`!
 
-- `update_features()` and `delete_features()` now run in parallel and operate in chunks for significantly improved performance on large datasets.
-- Both functions now return a `data.frame` instead of a list, simplifying downstream processing.
-- Improved error messaging when `objectid` fields are not integers.
+The new `arcgisutils::auth_shiny()` function builds off of [shinyOAuth](https://lukakoning.github.io/shinyOAuth/) enabling user-specific behavior in shiny applications! 
 
-### New Attachment Editing  
-**Packages:** `{arcgislayers}` 0.5.0
+- Users authenticate with their ArcGIS accounts
+- Tokens work throughout your application
+- Perform user-specific actions (read private content, edit services, access org resources)
 
-- `update_attachments()` lets you add, update, or delete attachments on feature services directly from R.
 
-### Layer & Service Definition Management  
-**Packages:** `{arcgislayers}` 0.5.0
+## Geoprocessing Services
 
-- New administrative helpers:
-  - `add_definition()`
-  - `update_definition()`
-  - `delete_definition()`
+In an effort to increase the number of services in the ArcGIS System we support, we have built out native R support for **Geoprocessing Services** (GP services) in the `{arcgisutils}` R package. 
 
-These functions make it possible to manage FeatureServer and FeatureLayer definitions programmatically.
+You can now call geoprocessing services directly from R with full async job management. Whether working with Esri's hosted services or your own published web tools, invoke them programmatically:
 
-### Smarter Field Value Handling  
-**Packages:** `{arcgislayers}` 0.5.1
+```r
+downstream_job <- arc_gp_job$new(
+  base_url = service_url,
+  params = list(InputPoints = as_esri_featureset(input_points), f = "json"),
+  result_fn = parse_gp_feature_record_set,
+  token = arc_token()
+)
+```
 
-- `encode_field_values(codes = "replace-valid")` now allows invalid coded values to be preserved.
-- Better handling of numeric coded value domains and range domains.
+Key features:
 
-### More Robust Layer Access  
-**Packages:** `{arcgislayers}` 0.5.0–dev
+- Built on [S7](https://github.com/RConsortium/S7) object system for type safety
+- Async job control with `$start()` and `$await()`
+- Works with any custom GP service you've published
 
-- `arc_open()` now accepts item IDs and a wider variety of ArcGIS URLs (items, users, groups, and more).
-- `get_layer()` now warns correctly on invalid layer names.
-- `arc_select()` returns an empty `data.frame` instead of `NULL` when no features match a query.
+Learn more in our [geoprocessing services guide](https://developers.arcgis.com/r-bridge/geoprocessing/using-gp-services/#example-trace-downstream-service).
 
----
 
-## 🌐 Geoprocessing Services
+## Simplified Content Access
 
-### First-Class GP Service Support  
-**Packages:** `{arcgisutils}` 0.4.0 + dev
+The `arc_open()` function now accepts virtually any ArcGIS URL or item ID [PR #275](https://github.com/R-ArcGIS/arcgislayers/pull/275). 
+This work wouldn't have been possible without the effort and contribution of [Eli Pousson](https://github.com/elipousson)!
 
-- New S7 classes for interacting with geoprocessing services:
-  - `arc_gp_job`
-  - `arc_job_status`
-  - `arc_form_params`
-- `gp_job_from_url()` creates a job object directly from a GP service URL.
-- New utilities for parsing and creating GP service JSON (`?gp_params`).
+```{r}
+# use an item ID
+arc_open("3c164274a80748dda926a046525da610")
 
-These additions lay the groundwork for richer geoprocessing workflows entirely from R.
+# or the feature service url 
+furl <- "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Counties_Generalized_Boundaries/FeatureServer/0"
 
----
+arc_open(furl)
+```
 
-## 🔍 Content Search & URL Utilities
+Due to our improved portal integration in `{arcgisutils}`, `arc_open()` now supports working with portal items and users.
 
-### Improved Item Search  
-**Packages:** `{arcgisutils}` 0.4.0
+```{r}
+arc_open("https://analysis-1.maps.arcgis.com/home/user.html?user=r-bridge-docs")
+```
 
-- `search_item()` now includes automatic pagination, making it easier to retrieve large result sets.
+### Portal Integration
 
-### URL Parsing & Type Detection  
-**Packages:** `{arcgisutils}` 0.4.0
+We've worked hard on improving the portal integration in `{arcgisutils}` with functionality to: 
 
-- Experimental helpers:
-  - `arc_url_parse()`
-  - `arc_url_type()`
-  - `is_url()`
+- search portal items
+- list users and groups and their items
+- download portal items
+- access current user metadata from the authentication token
 
-These utilities help developers build more robust functions that accept a wide variety of ArcGIS URLs.
 
----
+## What's Next?
 
-## 🧭 Geocoding Improvements
+Looking ahead to User Conference 2026:
 
-### Updated World Geocoder Interface  
-**Packages:** `{arcgisgeocode}` 0.4.0
-
-- The `world_geocoder` object has been replaced with the new `world_geocoder()` function.
-- Fixes issues with parsing geocoding results when certain fields are missing (#41, #42).
+- New `{arcgisrouting}` package ([in development](https://github.com/r-arcgis/arcgisrouting/))
+- Built on GP services and S7 support
+- R-native access to routing and network analysis services
 
 ---
 
-## 🧱 Shiny UI Components with Calcite Design System
+## We Want Your Feedback
 
-### Expanded Calcite Component Library  
-**Packages:** `{calcite}` (dev)
-
-The Calcite package continues to grow into a comprehensive UI toolkit for Shiny developers. New or improved components include:
-
-- **Layout containers:** `page_navbar()`, `page_sidebar()`, `page_actionbar()`
-- **Inputs:**  
-  `calcite_input_text()`, `calcite_input_number()`, `calcite_input_message()`, `calcite_select()`, `calcite_switch()`
-- **UI elements:**  
-  `calcite_action()`, `calcite_block()`, `calcite_tile()`, `calcite_tile_group()`, `calcite_slider()`,  
-  `calcite_segmented_control_item()`, `calcite_notice()`, `calcite_panel()`, `calcite_link()`
-- **Alerts:**  
-  `calcite_alert()`, `calcite_alert_info()`, `calcite_alert_warning()`, `calcite_alert_success()`,  
-  `calcite_alert_danger()`, `calcite_alert_brand()`
-- **Accordions:**  
-  `calcite_accordion()`, `calcite_accordion_item()`
-
-### Examples Included
-
-Use `open_example()` to explore new components, such as:
-
-- `inst/examples/calcite-accordion.R`
-- `inst/examples/calcite-action-button.R`
-
-These additions make it easier to build polished, accessible, ArcGIS‑styled Shiny apps.
-
----
-
-## 🧭 Routing (In Progress)
-
-### Early Routing Enhancements  
-**Packages:** `{arcgisrouting}` (in progress)
-
-- Initial support for geoprocessing‑based routing workflows via `{arcgisutils}` GP service classes.
-
-More updates are expected in upcoming releases.
-
----
-
-## 🧭 Spatial Reference & Geometry Helpers
-
-**Packages:** `{arcgisutils}` (dev)
-
-- `from_envelope()` and `from_spatial_reference()` convert Esri JSON geometry objects into `sf` bbox objects.
-
-These utilities help bridge Esri geometry formats with the broader R spatial ecosystem.
-
----
-
-## 📦 Other Developer Experience Improvements
-
-- `{arcgislayers}` now requires **R 4.2+**.
-- `list_service_raster_fns()` is deprecated in favor of `list_raster_fns()`.
-- New `data_frame()` helper in `{arcgisutils}` creates tibble‑like output without requiring the tibble package.
-
----
-
-## What Should We Build Next?
-
-We’d love to hear what features would make your R + ArcGIS workflows even better.  
-[Start a discussion](https://github.com/R-ArcGIS/arcgis/discussions/new?category=ideas) or open an issue on our GitHub repositories - your feedback helps shape our roadmap.
-
-And if you're attending the [**2026 Esri Developer & Technology Summit**](https://www.google.com/aclk?sa=L&ai=DChsSEwiQ1Z_A5KySAxUwl-4BHfTlGcwYACICCAEQABoCZHo&ae=2&co=1&ase=2&gclid=Cj0KCQiA4eHLBhCzARIsAJ2NZoLM-NEdt3SuDmNAr7eYNBFX9Q5q3c1WDUlZP0054cgX3nzjzsWDroYaAlDyEALw_wcB&cid=CAASWeRoaON6h_k6nRAv_8-euL4AfSMig4NTSNt6YfPAvDOG8cSAWiBYrmk8mOIlfoVgSqdJypOpQKkFr4UNDiaPPyqbytdvrTDiOT5U83Q-nAa5DAaBerGCpOnH&cce=2&category=acrcp_v1_71&sig=AOD64_0SOYLxUzhS8Wvu9USFCVRJ7WdCIQ&q&nis=4&adurl&ved=2ahUKEwjX3ZTA5KySAxWeKUQIHUkbIxgQ0Qx6BAgXEAE), come say hello. We’d love to show you what’s new and what’s coming next.
-
+We'd love to hear what would make your workflows even better. [Start a discussion](https://github.com/R-ArcGIS/arcgis/discussions/new?category=ideas) or open an issue on our GitHub repositories—your feedback shapes our roadmap.
