@@ -30,7 +30,7 @@ For a full list of changes please refer to the individual changelogs for each pa
 
 At this year's **2026 Esri Developer & Technology Summit** we are hosting the workshop [**"Full-stack spatial with R and ArcGIS"**](https://registration.esri.com/flow/esri/26epcdev/deveventportal/page/detailed-agenda/session/1761117256768001avMt). Our focus is building [`{shiny}`](http://shiny.posit.co) applications in R that harness the [Calcite Design System](https://developers.arcgis.com/calcite-design-system/) for building beautiful UIs while leveraging the ArcGIS System.
 
-To this end, we've revamped the `{calcite}` package with hand-crafted R bindings to make the integration feel as native as [`{bslib}`](https://rstudio.github.io/bslib/)
+To this end, we've revamped the `{calcite}` package with hand-crafted R bindings to make the integration feel as native as [`{bslib}`](https://rstudio.github.io/bslib/).
 
 - Build with alerts, accordions, date pickers, sliders, switches, and form inputs
 - Use page layouts: `page_navbar()`, `page_sidebar()`, `page_actionbar()`
@@ -71,7 +71,7 @@ Learn more in our [geoprocessing services guide](https://developers.arcgis.com/r
 
 ## Simplified Content Access
 
-The `arc_open()` function now accepts virtually any ArcGIS URL or item ID [PR #275](https://github.com/R-ArcGIS/arcgislayers/pull/275). 
+The `arc_open()` function now accepts virtually any ArcGIS URL or item ID ([PR #275](https://github.com/R-ArcGIS/arcgislayers/pull/275)). 
 This work wouldn't have been possible without the effort and contribution of [Eli Pousson](https://github.com/elipousson)!
 
 ```{r}
@@ -102,7 +102,7 @@ We've worked hard on improving the portal integration in `{arcgisutils}` with fu
 
 ## What's Next?
 
-Looking ahead to User Conference 2026:
+Looking ahead to the **2026 Esri User Conference**:
 
 - New `{arcgisrouting}` package ([in development](https://github.com/r-arcgis/arcgisrouting/))
 - Built on GP services and S7 support
