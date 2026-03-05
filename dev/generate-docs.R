@@ -19,6 +19,7 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   # #> [1] "Hello world"
 
   # extract header from the .qmd file
+  cli::cli_progress_step("Extracting YAML front matter")
   header <- rmarkdown::yaml_front_matter(in_path)
   if (length(header) > 0) {
     md_header <- c("---", paste(names(header), header, sep = ": "), "---", "")
@@ -32,6 +33,7 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
   knitr::opts_chunk$set(comment = "#>")
 
   # render the section alone
+  cli::cli_progress_step("Rendering {.file {in_path}} via rmarkdown")
   out <- rmarkdown::render(
     in_path,
     rmarkdown::github_document(),
@@ -46,17 +48,19 @@ render_qmd_to_md <- function(in_path, out_path, work_dir = dirname(in_path)) {
 
   md_body <- NULL
   # add autolinking and syntax highlighting (we will have to choose colors manually later)
+  cli::cli_progress_step("Applying downlit autolinking")
   tryCatch(
     {
       downlit::downlit_md_path(tmp, out_path = out_path)
       md_body <- readLines(out_path)
     },
     error = function(e) {
-      cli::cli_alert_danger("Failed apply downlit to {.file {in_path}}")
+      cli::cli_alert_danger("Failed to apply downlit to {.file {in_path}}")
       md_body <<- readLines(tmp)
       # file.copy(tmp, out_path, TRUE)
     }
   )
+  cli::cli_progress_step("Writing {.file {out_path}}")
   final_content <- c(md_header, "", md_body)
   writeLines(final_content, out_path)
 }
@@ -92,6 +96,8 @@ render_with_retries <- function(
   return(success)
 }
 
+cli::cli_h1("Collecting files")
+
 all_files <- list.files(
   c("images", "docs"),
   full.names = TRUE,
@@ -101,6 +107,7 @@ all_files <- list.files(
 
 # all quarto docs
 in_fps <- list.files(pattern = "*.qmd", recursive = TRUE)
+cli::cli_alert_info("Found {length(in_fps)} .qmd file{?s} and {length(all_files)} total asset{?s}")
 
 # remove quarto docs from all_files
 to_copy <- setdiff(all_files, in_fps)
@@ -116,6 +123,7 @@ out_fps <- paste0(
 )
 
 # create directories
+cli::cli_progress_step("Creating output directories")
 for (dirp in unique(dirname(c(out_fps, copy_dest)))) {
   if (!dir.exists(dirp)) {
     dir.create(dirp, recursive = TRUE)
@@ -123,26 +131,30 @@ for (dirp in unique(dirname(c(out_fps, copy_dest)))) {
 }
 
 # copy all of the non-quarto files
+cli::cli_progress_step("Copying {length(to_copy)} non-Quarto asset{?s}")
 file.copy(
   to_copy,
   copy_dest,
   overwrite = TRUE
 )
 
+cli::cli_progress_step("Processing images")
 source("dev/imgs.R")
 
+cli::cli_h1("Rendering documents")
 
 # render all of the files
 failed_files <- c()
-for (i in 1:length(in_fps)) {
+n <- length(in_fps)
+for (i in seq_along(in_fps)) {
   ip <- in_fps[[i]]
   op <- out_fps[[i]]
   # check if rendered md already exists
   if (file.exists(op)) {
-    cli::cli_alert_info("Skipping {.file {ip}}. Output exists at {.file {op}}")
+    cli::cli_alert_info("[{i}/{n}] Skipping {.file {ip}} — output already exists")
     next
   }
-  cli::cli_alert_info("Rendering # file {i}: {.file {ip}} to {.file {op}}")
+  cli::cli_h2("[{i}/{n}] {ip}")
   # always unset the arcgis token first
   arcgisutils::unset_arc_token()
   # render and retry up to 3 times (default) if it fails
@@ -153,13 +165,15 @@ for (i in 1:length(in_fps)) {
   }
 }
 
+cli::cli_h1("Summary")
 if (length(failed_files) > 0) {
-  cli::cli_alert_danger("The following files failed after retries:")
-  print(failed_files)
+  cli::cli_alert_danger("{length(failed_files)} file{?s} failed after retries:")
+  cli::cli_ul(failed_files)
 } else {
-  cli::cli_alert_success("All files rendered or copied successfully.")
+  cli::cli_alert_success("All {n} file{?s} rendered or skipped successfully")
 }
 
+cli::cli_progress_step("Zipping {.file _docs.zip}")
 zip::zip(
   "_docs.zip",
   list.files(
@@ -168,3 +182,4 @@ zip::zip(
     recursive = TRUE
   )
 )
+cli::cli_alert_success("Done — {.file _docs.zip} created")
