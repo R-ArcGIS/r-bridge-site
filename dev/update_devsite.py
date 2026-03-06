@@ -1,3 +1,20 @@
+"""
+Instructions for updating the developer's site repo:
+1. Set up machine as specified here: https://docs.afd.geocloud.com/general/install-windows/
+2. Clone dev site repo locally; create a new branch; note the repo path and use as DEST_DIR in this script
+3. In this script, set `DRY_RUN = True` and run to see which files will be updated (review the log file)
+4. If new pages will be added to the documentation site, manually update the yml here: documentation\topic.navigation.yml
+5. If new pages will be added to the api ref, manually update the yml here: config\api-ref-topic.navigation.yml
+6. If new packages are added to the api ref and need to be added to the drop-down nav, manually update the yml here: config\config.yml
+7. In this script, set `DRY_RUN = False` and run it to update the documentation and api-ref files.
+8. To preview the site, open cmd prompt as administrator, cd to the dev site repo and run `npm install` (if needed) and `npm start` 
+**NOTE** if any changes need to be made, they should be made in the github doc site first and docs should be re-rendered. No doc or api-ref changes should be made directly to the developers site repo!
+9. If the site looks good, commit the changes to your new branch and push
+10. In the PR, set the branch to merge to "next" (create a next branch based off main if needed) so that the changes can be previewed
+11. After a day or so, preview the site at: https://next.gha.afd.arcgis.com/r-bridge/
+12. Then create a PR from the next branch to main to push final changes to the live site.
+"""
+
 import os
 import shutil
 import tempfile

@@ -1,5 +1,5 @@
 ---
-title: "What's New in the R–ArcGIS Bridge (Q1 2026)"
+title: "2026 Q1"
 uid: whats-new-2026q1
 ---
 
