@@ -1,0 +1,764 @@
+DOC SYNC LOG
+================================================================================
+Timestamp: 2026-03-06T16:25:18
+Source repo: C:\projects\r-bridge-site
+Destination repo: C:\projects\r-bridge-doc
+Dry run: False
+
+Processed zip files:
+  - C:\projects\r-bridge-site\_docs.zip
+  - C:\projects\r-bridge-site\api-ref.zip
+
+NAV FILE UPDATE
+--------------------------------------------------------------------------------
+Source:      C:\projects\r-bridge-site\api-ref\_api_ref\nav.yml
+Destination: C:\projects\r-bridge-doc\config\api-ref-topic.navigation.yml
+Status:      NOT UPDATED
+Warning:     NAV NOT OVERWRITTEN: destination has more lines than source (434 > 246). Destination may contain additional content not present in source.
+
+OVERWRITTEN MARKDOWN FILES (.md) - NO DIFF
+--------------------------------------------------------------------------------
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\index.md
+DEST: C:\projects\r-bridge-doc\documentation\index.md
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\releases.md
+DEST: C:\projects\r-bridge-doc\documentation\releases.md
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\editing\overview.md
+DEST: C:\projects\r-bridge-doc\documentation\editing\overview.md
+
+OVERWRITTEN MARKDOWN FILES (.md) - DIFF
+--------------------------------------------------------------------------------
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\get-started.md
+DEST:          C:\projects\r-bridge-doc\documentation\get-started.md
+LINES_ADDED:   1
+LINES_REMOVED: 1
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\installation.md
+DEST:          C:\projects\r-bridge-doc\documentation\installation.md
+LINES_ADDED:   3
+LINES_REMOVED: 2
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\system-requirements.md
+DEST:          C:\projects\r-bridge-doc\documentation\system-requirements.md
+LINES_ADDED:   1
+LINES_REMOVED: 1
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\authentication\authenticating-with-r.md
+DEST:          C:\projects\r-bridge-doc\documentation\authentication\authenticating-with-r.md
+LINES_ADDED:   11
+LINES_REMOVED: 10
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\authentication\overview.md
+DEST:          C:\projects\r-bridge-doc\documentation\authentication\overview.md
+LINES_ADDED:   5
+LINES_REMOVED: 5
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\authentication\storing-credentials.md
+DEST:          C:\projects\r-bridge-doc\documentation\authentication\storing-credentials.md
+LINES_ADDED:   4
+LINES_REMOVED: 1
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\editing\adding-features.md
+DEST:          C:\projects\r-bridge-doc\documentation\editing\adding-features.md
+LINES_ADDED:   31
+LINES_REMOVED: 36
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\editing\adding-fields.md
+DEST:          C:\projects\r-bridge-doc\documentation\editing\adding-fields.md
+LINES_ADDED:   26
+LINES_REMOVED: 28
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\editing\deleting-features.md
+DEST:          C:\projects\r-bridge-doc\documentation\editing\deleting-features.md
+LINES_ADDED:   12
+LINES_REMOVED: 12
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\editing\truncate-and-append-features.md
+DEST:          C:\projects\r-bridge-doc\documentation\editing\truncate-and-append-features.md
+LINES_ADDED:   23
+LINES_REMOVED: 26
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\editing\updating-features.md
+DEST:          C:\projects\r-bridge-doc\documentation\editing\updating-features.md
+LINES_ADDED:   7
+LINES_REMOVED: 7
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\geocoding\bulk-geocoding.md
+DEST:          C:\projects\r-bridge-doc\documentation\geocoding\bulk-geocoding.md
+LINES_ADDED:   125
+LINES_REMOVED: 121
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\geocoding\forward-geocoding.md
+DEST:          C:\projects\r-bridge-doc\documentation\geocoding\forward-geocoding.md
+LINES_ADDED:   81
+LINES_REMOVED: 78
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\geocoding\overview.md
+DEST:          C:\projects\r-bridge-doc\documentation\geocoding\overview.md
+LINES_ADDED:   19
+LINES_REMOVED: 25
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\geocoding\reverse-geocoding.md
+DEST:          C:\projects\r-bridge-doc\documentation\geocoding\reverse-geocoding.md
+LINES_ADDED:   107
+LINES_REMOVED: 111
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\geoprocessing\making-gp-tools.md
+DEST:          C:\projects\r-bridge-doc\documentation\geoprocessing\making-gp-tools.md
+LINES_ADDED:   12
+LINES_REMOVED: 10
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\geoprocessing\overview.md
+DEST:          C:\projects\r-bridge-doc\documentation\geoprocessing\overview.md
+LINES_ADDED:   1
+LINES_REMOVED: 1
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\geoprocessing\using-gp-services.md
+DEST:          C:\projects\r-bridge-doc\documentation\geoprocessing\using-gp-services.md
+LINES_ADDED:   17
+LINES_REMOVED: 21
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\layers\overview.md
+DEST:          C:\projects\r-bridge-doc\documentation\layers\overview.md
+LINES_ADDED:   24
+LINES_REMOVED: 31
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\layers\publishing-services.md
+DEST:          C:\projects\r-bridge-doc\documentation\layers\publishing-services.md
+LINES_ADDED:   27
+LINES_REMOVED: 27
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\layers\reading-feature-services.md
+DEST:          C:\projects\r-bridge-doc\documentation\layers\reading-feature-services.md
+LINES_ADDED:   134
+LINES_REMOVED: 168
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\layers\reading-image-services.md
+DEST:          C:\projects\r-bridge-doc\documentation\layers\reading-image-services.md
+LINES_ADDED:   12
+LINES_REMOVED: 9
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\layers\using-raster-functions.md
+DEST:          C:\projects\r-bridge-doc\documentation\layers\using-raster-functions.md
+LINES_ADDED:   29
+LINES_REMOVED: 20
+
+SRC:           C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\places\overview.md
+DEST:          C:\projects\r-bridge-doc\documentation\places\overview.md
+LINES_ADDED:   56
+LINES_REMOVED: 57
+
+NEW MARKDOWN FILES ADDED (.md)
+--------------------------------------------------------------------------------
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\geocoding\custom-locators.md
+DEST: C:\projects\r-bridge-doc\documentation\geocoding\custom-locators.md
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\layers\attachments.md
+DEST: C:\projects\r-bridge-doc\documentation\layers\attachments.md
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\layers\encoding-field-values.md
+DEST: C:\projects\r-bridge-doc\documentation\layers\encoding-field-values.md
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract__docs_34k4cwof\_arcgis\docs\whats-new\whatsnew-2026Q1.md
+DEST: C:\projects\r-bridge-doc\documentation\whats-new\whatsnew-2026Q1.md
+
+OVERWRITTEN API REF HTML FILES (.html)
+--------------------------------------------------------------------------------
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgis\arcgis-package.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgis\arcgis-package.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgis\arcgis_packages.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgis\arcgis_packages.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgis\index.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgis\index.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\arcgisgeocode-package.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\arcgisgeocode-package.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\esri_wkids.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\esri_wkids.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\find_address_candidates.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\find_address_candidates.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\geocode_addresses.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\geocode_addresses.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\geocode_server.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\geocode_server.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\index.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\index.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\iso_3166_codes.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\iso_3166_codes.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\list_geocoders.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\list_geocoders.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\reverse_geocode.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\reverse_geocode.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\storage.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\storage.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\suggest_places.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\suggest_places.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisgeocode\world_geocoder.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisgeocode\world_geocoder.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\arc_open.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\arc_open.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\arc_raster.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\arc_raster.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\arc_read.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\arc_read.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\arc_select.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\arc_select.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\attachments.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\attachments.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\create_feature_server.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\create_feature_server.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\definition.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\definition.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\encode_field_values.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\encode_field_values.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\get_layer.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\get_layer.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\get_layer_estimates.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\get_layer_estimates.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\index.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\index.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\modify.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\modify.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\publish.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\publish.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\raster_fns.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\raster_fns.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\set_layer_aliases.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\set_layer_aliases.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\spatial_filter.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\spatial_filter.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\truncate_layer.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\truncate_layer.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\update_attachments.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\update_attachments.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\update_params.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\update_params.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgislayers\utils.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgislayers\utils.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisplaces\arcgisplaces-package.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisplaces\arcgisplaces-package.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisplaces\categories.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisplaces\categories.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisplaces\category_details.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisplaces\category_details.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisplaces\fields.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisplaces\fields.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisplaces\index.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisplaces\index.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisplaces\near_point.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisplaces\near_point.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisplaces\place_details.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisplaces\place_details.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisplaces\within_extent.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisplaces\within_extent.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_agent.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_agent.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_base_req.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_base_req.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_form_params.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_form_params.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_host.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_host.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_item_data.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_item_data.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_job_status.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_job_status.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_paginate_req.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_paginate_req.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_portal_resources.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_portal_resources.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_portal_servers.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_portal_servers.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_portal_urls.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_portal_urls.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_portal_users.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_portal_users.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_user.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_user.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_user_self.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_user_self.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\as_esri_geometry.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\as_esri_geometry.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\as_extent.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\as_extent.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\auth.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\auth.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\content.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\content.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\dates.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\dates.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\detect_errors.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\detect_errors.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\determine_dims.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\determine_dims.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\determine_esri_geo_type.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\determine_esri_geo_type.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\features.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\features.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\featureset.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\featureset.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\fetch_layer_metadata.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\fetch_layer_metadata.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\field_mapping.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\field_mapping.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\gp_job.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\gp_job.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\gp_params.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\gp_params.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\index.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\index.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\layer_json.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\layer_json.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\parse_esri_json.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\parse_esri_json.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\portal_types.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\portal_types.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\rbind_results.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\rbind_results.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\search_items.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\search_items.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\self.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\self.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\token.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\token.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\url.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\url.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\utilities.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\utilities.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\validate_crs.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\validate_crs.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcpbf\httr2.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcpbf\httr2.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcpbf\index.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcpbf\index.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcpbf\open_pbf.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcpbf\open_pbf.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcpbf\post_process_pbf.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcpbf\post_process_pbf.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcpbf\process_pbf.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcpbf\process_pbf.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcpbf\read_pbf.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcpbf\read_pbf.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_accordion.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_accordion.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_accordion_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_accordion_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_action.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_action.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_action_bar.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_action_bar.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_action_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_action_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_action_pad.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_action_pad.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_alert.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_alert.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_avatar.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_avatar.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_block.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_block.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_block_section.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_block_section.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_button.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_button.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_card.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_card.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_card_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_card_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_carousel.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_carousel.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_carousel_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_carousel_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_checkbox.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_checkbox.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_chip.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_chip.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_chip_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_chip_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_color_picker.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_color_picker.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_combobox.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_combobox.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_combobox_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_combobox_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_combobox_item_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_combobox_item_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_date_picker.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_date_picker.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_dialog.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_dialog.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_dropdown.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_dropdown.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_dropdown_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_dropdown_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_dropdown_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_dropdown_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_fab.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_fab.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_filter.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_filter.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_flow.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_flow.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_flow_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_flow_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_icon.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_icon.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_inline_editable.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_inline_editable.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_input.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_input.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_input_date_picker.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_input_date_picker.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_input_message.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_input_message.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_input_number.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_input_number.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_input_text.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_input_text.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_input_time_picker.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_input_time_picker.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_input_time_zone.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_input_time_zone.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_label.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_label.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_link.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_link.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_list.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_list.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_list_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_list_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_list_item_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_list_item_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_loader.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_loader.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_menu.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_menu.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_menu_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_menu_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_meter.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_meter.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_modal.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_modal.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_navigation.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_navigation.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_navigation_logo.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_navigation_logo.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_navigation_user.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_navigation_user.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_notice.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_notice.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_option.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_option.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_option_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_option_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_pagination.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_pagination.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_panel.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_panel.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_popover.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_popover.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_progress.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_progress.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_radio_button.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_radio_button.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_radio_button_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_radio_button_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_rating.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_rating.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_scrim.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_scrim.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_segmented_control.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_segmented_control.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_segmented_control_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_segmented_control_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_select.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_select.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_sheet.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_sheet.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_shell.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_shell.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_shell_center_row.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_shell_center_row.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_shell_panel.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_shell_panel.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_slider.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_slider.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_split_button.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_split_button.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_stepper.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_stepper.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_stepper_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_stepper_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_switch.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_switch.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tab.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tab.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_table.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_table.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_table_cell.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_table_cell.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_table_header.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_table_header.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_table_row.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_table_row.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tabs.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tabs.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tab_nav.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tab_nav.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tab_title.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tab_title.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_text_area.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_text_area.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tile.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tile.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tile_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tile_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tile_select.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tile_select.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tile_select_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tile_select_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_time_picker.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_time_picker.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tip.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tip.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tip_group.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tip_group.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tip_manager.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tip_manager.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tooltip.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tooltip.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tree.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tree.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_tree_item.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_tree_item.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_version.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_version.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\index.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\index.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\update_calcite.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\update_calcite.html
+
+NEW API REF HTML FILES ADDED (.html)
+--------------------------------------------------------------------------------
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\arc_group_users.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\arc_group_users.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\auth_shiny.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\auth_shiny.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\arcgisutils\gp_job_from_url.html
+DEST: C:\projects\r-bridge-doc\api-reference\arcgisutils\gp_job_from_url.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite-package.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite-package.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\calcite_input_file.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\calcite_input_file.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\examples.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\examples.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\page_actionbar.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\page_actionbar.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\page_navbar.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\page_navbar.html
+
+SRC:  C:\Users\mar10556\AppData\Local\Temp\extract_api-ref__my1htj4\_api_ref\calcite\page_sidebar.html
+DEST: C:\projects\r-bridge-doc\api-reference\calcite\page_sidebar.html
+
+NEW IMAGES ADDED (from extracted _docs.zip)
+--------------------------------------------------------------------------------
+Images destination: C:\projects\r-bridge-doc\documentation\shared\images
+(none)
