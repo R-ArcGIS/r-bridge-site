@@ -1,5 +1,8 @@
-api-ref: 
-  R -q -f dev/generate-api-ref.R
+default:
+  just --list
 
-doc:
-  R -q -f dev/generate-docs.R
+doc-ref:
+  R -f dev/generate-api-ref.R
+
+doc-pages:
+  R -f dev/generate-docs.R

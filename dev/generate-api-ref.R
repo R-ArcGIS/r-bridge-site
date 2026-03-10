@@ -16,21 +16,28 @@ pkgs <- c(
 )
 
 generate_api_ref <- function(pkg) {
+  cli::cli_h1("Processing {.pkg {pkg}}")
+
   tmp <- tempdir()
   clone_dir <- file.path(tmp, pkg)
 
   if (file.exists(clone_dir)) {
     unlink(clone_dir, recursive = TRUE)
   }
+
   # clone into a temporary directory
+  cli::cli_progress_step("Cloning {.pkg {pkg}} from GitHub")
   gert::git_clone(
     sprintf("https://github.com/r-arcgis/%s", pkg),
     path = clone_dir
   )
 
   # init pkgdown in the temporary folder
+  cli::cli_progress_step("Initialising pkgdown site")
   pkgdown::init_site(clone_dir)
+
   # generate reference docs
+  cli::cli_progress_step("Building reference docs")
   pkgdown::build_reference(clone_dir, preview = FALSE)
 
   all_pkg_files <- list.files(
@@ -40,6 +47,7 @@ generate_api_ref <- function(pkg) {
   )
 
   # create the api reference directory for the package
+  cli::cli_progress_step("Creating output directories")
   dir.create(
     file.path("_api_ref", pkg),
     recursive = TRUE
@@ -73,6 +81,7 @@ generate_api_ref <- function(pkg) {
     vapply(strsplit(to_copy, "reference/"), `[[`, character(1), 2)
   )
 
+  cli::cli_progress_step("Copying {length(to_copy)} non-HTML asset{?s}")
   file.copy(to_copy, copy_dest, overwrite = TRUE)
 
   # this function extract the html content
@@ -83,20 +92,20 @@ generate_api_ref <- function(pkg) {
   }
 
   # apply to all html files
+  cli::cli_progress_step("Extracting content from {length(fn_ref_html)} HTML file{?s}")
   extracted <- lapply(fn_ref_html, extract_fn_ref)
   out_ref_paths <- file.path("_api_ref", pkg, basename(fn_ref_html))
 
   # write the html files
+  cli::cli_progress_step("Writing {length(out_ref_paths)} reference page{?s}")
   Map(
-    function(.html, .path) {
-      cli::cli_alert_info("Writing {.file {(.path)}}")
-      writeLines(.html, .path)
-    },
+    function(.html, .path) writeLines(.html, .path),
     extracted,
     out_ref_paths
   )
 
   # Process the index file
+  cli::cli_progress_step("Processing package index")
   index_html <-
     rvest::read_html(file.path(clone_dir, "docs", "reference", "index.html")) |>
     rvest::html_nodes("#main") |>
@@ -110,11 +119,14 @@ generate_api_ref <- function(pkg) {
   )
 
   unlink(tmp)
+  cli::cli_alert_success("Done with {.pkg {pkg}}")
 }
 
+cli::cli_h1("Generating API references")
 for (pkg in pkgs) {
   generate_api_ref(pkg)
 }
+cli::cli_alert_success("All packages processed")
 
 # NOTE url paths are adjusted manually using find and replace all w/ regex in vs code
 # search: https://r\.esri\.com/([^/]+)/reference/([^/]+)\.html
@@ -190,10 +202,15 @@ as_topic_nav <- function(pkg_indices) {
     yaml::as.yaml(indent.mapping.sequence = TRUE)
 }
 
+cli::cli_h1("Building topic navigation")
+cli::cli_progress_step("Generating nav YAML from {length(pkg_indices)} package index{?es}")
 as_topic_nav(pkg_indices) |>
   brio::write_file("_api_ref/nav.yml")
+cli::cli_alert_success("Written {.file _api_ref/nav.yml}")
 
+cli::cli_progress_step("Zipping {.file api-ref.zip}")
 zip::zip(
   "api-ref.zip",
   list.files("_api_ref", recursive = TRUE, full.names = TRUE)
 )
+cli::cli_alert_success("Done — {.file api-ref.zip} created")
