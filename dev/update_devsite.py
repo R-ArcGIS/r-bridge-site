@@ -53,7 +53,7 @@ NAV_DEST = Path(DEST_DIR / r"config\api-ref-topic.navigation.yml")
 # Images go here (from extracted _docs.zip content)
 IMAGES_DEST_DIR = Path(DEST_DIR / r"documentation\shared\images")
 
-LOG_FILE = SRC_DIR / f"update_devsite_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+LOG_FILE = SRC_DIR / f"dev/update_devsite_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 DRY_RUN = True
 
 
