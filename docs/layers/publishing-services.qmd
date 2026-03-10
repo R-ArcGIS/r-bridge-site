@@ -20,11 +20,8 @@ Go through the following code flow to set your credentials.
 ```{r, eval = FALSE}
 library(arcgis)
 
-token <- auth_code()  # <1>
-set_arc_token(token) # <2>
+set_arc_token(auth_user())
 ```
-1. Create an access token
-2. Set it to an environment variable.
 
 Now that you have authorized to your Portal, you will be able to publish content. 
 

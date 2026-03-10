@@ -1,0 +1,64 @@
+---
+title: Overview
+uid: portal-overview
+---
+
+The `{arcgisutils}` package provides utility functions for working with ArcGIS Online and ArcGIS Enterprise portals. Portal functionality enables you to interact with users, groups, and content items programmatically from R.
+
+:::{.callout-note}
+Portal-related function documentation is available in the [API Reference](https://developers.arcgis.com/r-bridge/api-reference/arcgisutils/#portal)
+:::
+
+
+## Authentication
+
+Most portal-related functionality is dependent upon user-privileges. As such, many functions require authenticating to your portal. Further, some functionality may be restricted based on your user's role. Before working with portal functions, you need to obtain an access token.
+
+:::{.callout-caution}
+If you have not yet set up your R environment for authentication, see the [Authentication section](xref:///authentication-overview). Ensure that the environment variables. If you are using ArcGIS Enterprise, ensure that `ARCGIS_HOST` is properly set.
+:::
+
+To authenticate as yourself and set the token for your session:
+
+```{r message=FALSE}
+library(arcgisutils)
+
+# Set the token for the entire session
+set_arc_token(auth_user())
+```
+
+:::{.callout-tip}
+Using `set_arc_token()` makes the authentication token available for all subsequent portal operations in your R session, so you don't need to pass the token to each function call.
+:::
+
+## Portal Functionality
+
+The R-ArcGIS Bridge provides functions to:
+
+| Function | Description |
+| -------- | ----------- |
+| `arc_user()` | Get information about a specific user by username or ID |
+| `arc_user_self()` | Get information about the currently authenticated user |
+| `arc_portal_users()` | List all users in a portal |
+| `arc_group()` | Get information about a specific group by ID |
+| `arc_user_content()` | List content items owned by a user |
+| `arc_group_content()` | List content items shared with a group |
+| `search_items()` | Search for content items using full-text search |
+
+
+## Working with Portal Objects
+
+Portal functions return specially formatted objects that contain metadata about users, groups, and content items:
+
+- **`PortalUser`**: Contains user profile information, groups, and settings
+- **`PortalGroup`**: Contains group metadata, membership info, and sharing settings
+- **`PortalItem`**: Contains item metadata like title, type, owner, and URL
+
+These objects are lists with custom print methods that display key information in a user-friendly format. You can access individual fields using standard list notation (e.g., `user$username`, `group$title`).
+
+## Next Steps
+
+Learn more about specific portal functionality:
+
+- [**Content Listings**](xref:///portal-content-listings): Search and discover content items
+- [**Users and Groups**](xref:///portal-users-groups): Work with portal users and groups
