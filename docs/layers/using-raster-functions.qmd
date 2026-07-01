@@ -19,7 +19,7 @@ First, we'll establish a connection to the ImageServer containing our biomass da
 library(arcgis)
 
 # Store the ImageServer URL
-tree_species_biomass <- "https://di-usfsdata.img.arcgis.com/arcgis/rest/services/FIA_BIGMAP_2018_Tree_Species_Aboveground_Biomass/ImageServer"
+tree_species_biomass <- "https://imagery.geoplatform.gov/iipp/rest/services/Vegetation/USFS_FIA_BIGMAP_AboveGroundBiomass/ImageServer"
 
 # Create a connection to the ImageServer
 srvr <- arc_open(tree_species_biomass)
