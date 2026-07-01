@@ -3,6 +3,8 @@
 _api_ref.*
 _api_ref/
 _arcgis/
+api-ref.zip
+_docs.zip
 /.quarto/
 .Rproj.user
 _site/

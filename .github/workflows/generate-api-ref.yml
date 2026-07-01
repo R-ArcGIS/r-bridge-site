@@ -1,0 +1,63 @@
+name: Generate API Reference
+
+on:
+  workflow_dispatch: {}
+
+env:
+  CARGO_TARGET_DIR: ${{ github.workspace }}/rust-target
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore Rust cache
+        id: rust-cache-restore
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            ~/.cargo/registry
+            rust-target/release/deps
+            rust-target/release/build
+          key: ${{ runner.os }}-rust-api-ref
+          restore-keys: ${{ runner.os }}-rust-
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::pkgdown
+            any::gert
+            any::rvest
+            any::cli
+            any::yaml
+            any::brio
+            any::zip
+
+      - name: Generate API reference
+        run: Rscript dev/generate-api-ref.R
+
+      - name: Save Rust cache
+        if: always() && steps.rust-cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v5
+        with:
+          path: |
+            ~/.cargo/registry
+            rust-target/release/deps
+            rust-target/release/build
+          key: ${{ runner.os }}-rust-api-ref
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: api-ref
+          path: api-ref.zip
+          retention-days: 14

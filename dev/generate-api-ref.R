@@ -3,13 +3,16 @@
 #' gert
 #' rvest
 #' cli
-#' arcgis
+#' yaml
+#' brio
+#' zip
 # create the API references
 pkgs <- c(
   "arcgislayers",
   "arcgisutils",
   "arcgisgeocode",
   "arcgisplaces",
+  "arcgisrouting",
   "arcpbf",
   "calcite",
   "arcgis"
