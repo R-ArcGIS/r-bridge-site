@@ -9,12 +9,12 @@
 #' zip
 # create the API references
 pkgs <- c(
-  "arcgislayers",
   "arcgisutils",
+  "arcpbf",
+  "arcgislayers",
   "arcgisgeocode",
   "arcgisplaces",
   "arcgisrouting",
-  "arcpbf",
   "calcite",
   "arcgis"
 )

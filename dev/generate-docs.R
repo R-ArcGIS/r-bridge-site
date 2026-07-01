@@ -173,6 +173,10 @@ if (length(failed_files) > 0) {
   cli::cli_alert_success("All {n} file{?s} rendered or skipped successfully")
 }
 
+if (length(failed_files) > 0) {
+  cli::cli_abort("{length(failed_files)} file{?s} failed to render after retries")
+}
+
 cli::cli_progress_step("Zipping {.file _docs.zip}")
 zip::zip(
   "_docs.zip",
