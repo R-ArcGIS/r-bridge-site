@@ -3,6 +3,9 @@ title: Overview
 uid: places-overview
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
 
 `{arcgisplaces}` is an R package to interface with [ArcGIS Places Service](https://developers.arcgis.com/rest/places/).
 

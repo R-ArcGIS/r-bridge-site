@@ -50,6 +50,7 @@ jobs:
             any::sf
             any::terra
             any::hms
+            any::shiny
 
       - name: Generate API reference
         run: Rscript dev/generate-api-ref.R
