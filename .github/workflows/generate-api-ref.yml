@@ -111,6 +111,12 @@ jobs:
             any::sf
             any::dplyr
             any::pillar
+            any::ulid
+            any::readr
+            any::tidyr
+            any::tibble
+            any::haven
+            any::labelled
             github::r-arcgis/arcgis
             github::r-arcgis/arcgisutils
             github::r-arcgis/arcgisgeocode

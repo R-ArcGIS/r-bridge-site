@@ -107,7 +107,9 @@ all_files <- list.files(
 
 # all quarto docs
 in_fps <- list.files(pattern = "*.qmd", recursive = TRUE)
-cli::cli_alert_info("Found {length(in_fps)} .qmd file{?s} and {length(all_files)} total asset{?s}")
+cli::cli_alert_info(
+  "Found {length(in_fps)} .qmd file{?s} and {length(all_files)} total asset{?s}"
+)
 
 # remove quarto docs from all_files
 to_copy <- setdiff(all_files, in_fps)
@@ -151,7 +153,9 @@ for (i in seq_along(in_fps)) {
   op <- out_fps[[i]]
   # check if rendered md already exists
   if (file.exists(op)) {
-    cli::cli_alert_info("[{i}/{n}] Skipping {.file {ip}} — output already exists")
+    cli::cli_alert_info(
+      "[{i}/{n}] Skipping {.file {ip}} — output already exists"
+    )
     next
   }
   cli::cli_h2("[{i}/{n}] {ip}")
@@ -159,23 +163,12 @@ for (i in seq_along(in_fps)) {
   arcgisutils::unset_arc_token()
   # render and retry up to 3 times (default) if it fails
   success <- render_with_retries(ip, op, dirname(ip))
-  # add failed files to list
   if (!success) {
-    failed_files <- c(failed_files, ip)
+    cli::cli_abort("{.file {ip}} failed to render after retries")
   }
 }
 
-cli::cli_h1("Summary")
-if (length(failed_files) > 0) {
-  cli::cli_alert_danger("{length(failed_files)} file{?s} failed after retries:")
-  cli::cli_ul(failed_files)
-} else {
-  cli::cli_alert_success("All {n} file{?s} rendered or skipped successfully")
-}
-
-if (length(failed_files) > 0) {
-  cli::cli_abort("{length(failed_files)} file{?s} failed to render after retries")
-}
+cli::cli_alert_success("All {n} file{?s} rendered or skipped successfully")
 
 cli::cli_progress_step("Zipping {.file _docs.zip}")
 zip::zip(

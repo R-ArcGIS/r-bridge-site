@@ -96,7 +96,9 @@ generate_api_ref <- function(pkg) {
   }
 
   # apply to all html files
-  cli::cli_progress_step("Extracting content from {length(fn_ref_html)} HTML file{?s}")
+  cli::cli_progress_step(
+    "Extracting content from {length(fn_ref_html)} HTML file{?s}"
+  )
   extracted <- lapply(fn_ref_html, extract_fn_ref)
   out_ref_paths <- file.path("_api_ref", pkg, basename(fn_ref_html))
 
@@ -207,7 +209,9 @@ as_topic_nav <- function(pkg_indices) {
 }
 
 cli::cli_h1("Building topic navigation")
-cli::cli_progress_step("Generating nav YAML from {length(pkg_indices)} package index{?es}")
+cli::cli_progress_step(
+  "Generating nav YAML from {length(pkg_indices)} package index{?es}"
+)
 as_topic_nav(pkg_indices) |>
   brio::write_file("_api_ref/nav.yml")
 cli::cli_alert_success("Written {.file _api_ref/nav.yml}")
