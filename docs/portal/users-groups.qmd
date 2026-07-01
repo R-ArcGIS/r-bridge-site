@@ -185,6 +185,8 @@ user$groups[c("id", "title")]
 2. From the group URL in ArcGIS Online or Enterprise. The group ID is in the URL:
 
 ```{r}
+library(arcgislayers)
+
 group_url <- "https://www.arcgis.com/home/group.html?id=2f0ec8cb03574128bd673cefab106f39#overview"
 
 arc_open(group_url)

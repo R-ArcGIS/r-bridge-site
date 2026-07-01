@@ -112,6 +112,7 @@ jobs:
             any::zip
             any::sf
             any::dplyr
+            any::collapse
             any::pillar
             any::ulid
             any::readr
