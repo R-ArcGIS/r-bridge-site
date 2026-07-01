@@ -1,4 +1,5 @@
 #' Requires:
+#' pak
 #' pkgdown
 #' gert
 #' rvest

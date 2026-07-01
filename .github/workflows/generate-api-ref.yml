@@ -34,7 +34,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          dependencies: '"hard"'
           packages: |
+            any::pak
             any::pkgdown
             any::pkgload
             any::gert
@@ -43,6 +45,10 @@ jobs:
             any::yaml
             any::brio
             any::zip
+            any::jsonify
+            any::RcppSimdJson
+            any::sf
+            any::terra
 
       - name: Generate API reference
         run: Rscript dev/generate-api-ref.R
@@ -94,6 +100,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          dependencies: '"hard"'
           packages: |
             any::rmarkdown
             any::knitr
