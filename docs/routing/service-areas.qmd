@@ -1,0 +1,104 @@
+---
+title: Service areas
+uid: service-areas
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+A service area, also known as an isochrone, is a polygon that represents the distance that can be reached when driving or walking on a street network. For example, a drive-time polygon can represent how far you can drive in any direction from the center of a city in 20 minutes.
+
+Service areas are commonly used to visualize and measure the accessibility of a location that provides some kind of service. A three-minute drive-time polygon around a grocery store can determine which residents are able to reach the store within three minutes. Generating multiple service areas around one or more locations shows how accessibility changes as travel time or travel distance increases, for example to determine how many hospitals are within 5, 10, and 15 minute drive times of schools. When service areas are based on travel time, the service can also account for traffic, which can change the area that can be reached at different times of day.
+
+`find_service_areas()` generates one or more service areas around a set of facilities.
+
+## Step 1. Authenticate
+
+```{r}
+library(sf)
+library(arcgisutils)
+library(arcgisrouting)
+
+set_arc_token(auth_user())
+```
+
+## Step 2. Define facilities
+
+`find_service_areas()` takes `facilities` as an `sf` or `sfc` object of point geometries, the locations around which service areas are generated.
+
+```{r}
+facility <- st_sfc(
+  st_point(c(-122.253, 37.757)),
+  crs = 4326
+)
+```
+
+## Step 3. Generate service areas
+
+Pass the facility to `find_service_areas()`. `default_breaks` sets the size and number of service areas to generate, `c(5, 10, 15)` by default, with units determined by `impedance`.
+
+```{r}
+service_areas <- find_service_areas(facility)
+service_areas$service_areas
+```
+
+## Walk-distance areas
+
+An elementary school might use a service area to determine which students live within walking distance and so do not qualify for bus service. Set `travel_mode` to a walking travel mode, `default_breaks` to the distance of interest, and `travel_direction = "towards"` so the area is measured as students walk toward the school rather than away from it.
+
+```{r}
+school <- st_sfc(
+  st_point(c(-117.133163, 34.022445)),
+  crs = 4326
+)
+
+walk_area <- find_service_areas(
+  school,
+  default_breaks = 2.5,
+  travel_direction = "towards",
+  travel_mode = "Walking Distance"
+)
+
+walk_area$service_areas
+```
+
+## Drive-time areas around multiple facilities
+
+A grocery chain might generate 5, 10, and 15 minute drive-time polygons around each of its stores to see how many customers can easily reach them. Provide all of the store locations as `facilities` and set `travel_direction = "towards"` to measure how long it takes customers to reach each store.
+
+```{r}
+stores <- st_sf(
+  store_name = c("Store 1", "Store 2", "Store 3"),
+  geometry = st_sfc(
+    st_point(c(-117.140030, 34.071220)),
+    st_point(c(-117.207330, 34.047980)),
+    st_point(c(-117.181940, 34.063520)),
+    crs = 4326
+  )
+)
+
+drive_areas <- find_service_areas(
+  stores,
+  default_breaks = c(5, 10, 15),
+  travel_direction = "towards"
+)
+drive_areas$service_areas
+```
+
+The isochrone can be visualized with ggplot as well.
+
+```{r}
+library(ggplot2)
+
+ggplot(drive_areas$service_areas, aes(fill = as.factor(FromBreak))) +
+  geom_sf(lwd = 0.1, color = "black", alpha = 0.5) +
+  scale_fill_viridis_d() +
+  facet_wrap("FacilityID") +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+## Larger service area jobs
+
+`find_service_areas()` makes a direct request, which suits shorter transactions with fewer than 100 facilities that complete in under five minutes. For longer transactions, up to 1,000 facilities completing in under two hours, use `find_service_areas_job()` instead, which creates a geoprocessing job.

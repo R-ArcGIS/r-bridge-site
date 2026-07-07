@@ -1,0 +1,87 @@
+---
+title: Location-allocation
+uid: location-allocation
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+Location-allocation is the process of finding a set of facilities that will best serve demand from surrounding areas. It is a two-fold problem that simultaneously locates facilities and allocates demand points to them. Location-allocation can answer questions such as which site for a new fire station would provide the best response times for a community, which stores a retail company should close to maximize overall demand, or where a factory should be built to minimize the distance to distribution centers.
+
+Location-allocation only supports asynchronous job requests. `location_allocation_job()` takes `facilities`, the candidate locations, and `demand_points`, the locations that generate demand for those facilities.
+
+## Step 1. Authenticate
+
+```{r}
+library(sf)
+library(arcgisutils)
+library(arcgisrouting)
+
+set_arc_token(auth_user())
+```
+
+## Step 2. Define facilities and demand points
+
+Each household in `demand_points` has a `weight` representing the size of its demand, and an optional `group_name` for grouping related demand points.
+
+```{r}
+facilities <- st_sf(
+  name = c("Facility A", "Facility B"),
+  facility_type = c(0L, 0L),
+  curb_approach = c(0L, 0L),
+  geometry = st_sfc(
+    st_point(c(-58.557329417999938, -34.587693706999971)),
+    st_point(c(-58.460247408999976, -34.683348039999942)),
+    crs = 4326
+  )
+)
+
+demand_points <- st_sf(
+  name = c("Household 4", "Household 3", "Household 2", "Household 1"),
+  group_name = c("A", "A", NA, NA),
+  weight = c(2, 2, 3, 5),
+  curb_approach = c(0L, 0L, 0L, 1L),
+  geometry = st_sfc(
+    st_point(c(-58.664405163999959, -34.614819562999969)),
+    st_point(c(-58.514499119999982, -34.496322404999944)),
+    st_point(c(-58.54162497599998, -34.788996107999935)),
+    st_point(c(-58.40599569799997, -34.637662387999967)),
+    crs = 4326
+  )
+)
+```
+
+## Step 3. Submit the job
+
+`location_allocation_job()` creates a geoprocessing job. Call `$start()` to submit it, then `$await()` to poll until it completes and bring the results into memory.
+
+```{r}
+job <- location_allocation_job(facilities, demand_points)
+job$start()
+result <- job$await()
+```
+
+`result` is a named list. `solve_succeeded` tells you whether the solve completed, `allocation_lines` shows which facility each demand point was allocated to, and `facilities` and `demand_points` return the input features with the allocation attributes attached.
+
+```{r}
+result$solve_succeeded
+result$allocation_lines
+```
+
+## Choosing a problem type
+
+`problem_type` controls the objective of the analysis. To choose a new restaurant location that captures as many nearby customers as possible, for example, use `problem_type = "maximize_attendance"` together with `number_of_facilities_to_find` to control how many new locations to select, and `travel_direction = "demand_to_facility"` since customers travel to the facility.
+
+```{r}
+job <- location_allocation_job(
+  facilities,
+  demand_points,
+  problem_type = "maximize_attendance",
+  number_of_facilities_to_find = 2,
+  travel_direction = "demand_to_facility"
+)
+
+job$start()
+job$await()
+```

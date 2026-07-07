@@ -1,0 +1,87 @@
+---
+title: Find routes and directions
+uid: finding-routes
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+Routing, also known as simple routing, is the process of finding the best path from an origin to a destination for an individual or a single vehicle. It accounts for network data such as speed limit, number of lanes, and time of day, and it can incorporate real-time conditions such as traffic, accidents, and other barriers.
+
+A route can be **simple** or **optimized**. A simple route is the shortest path between an ordered set of stops. An optimized route reorders the stops to find the most efficient path between them. `find_routes()` provides both, and it can also return turn-by-turn directions for the trip.
+
+## Step 1. Authenticate
+
+Routing services require an authenticated token. Set one for your session using `{arcgisutils}`.
+
+```{r}
+library(sf)
+library(arcgisutils)
+library(arcgisrouting)
+
+set_arc_token(auth_user())
+```
+
+## Step 2. Define stops
+
+`find_routes()` takes `stops` as an `sf` object of point geometries. Create three stops in San Francisco using `st_sf()`.
+
+```{r}
+stops <- st_sf(
+  name = c("Ferry Building", "Coit Tower", "Painted Ladies"),
+  geometry = st_sfc(
+    st_point(c(-122.3933, 37.7955)),
+    st_point(c(-122.4058, 37.8024)),
+    st_point(c(-122.4329, 37.7762)),
+    crs = 4326
+  )
+)
+
+stops
+```
+
+## Step 3. Find the route
+
+Pass the stops to `find_routes()`. By default the route visits the stops in the order provided and includes both the route geometry and turn-by-turn directions.
+
+```{r}
+route <- find_routes(stops)
+route$routes
+```
+
+The `directions` element contains the turn-by-turn directions for the trip.
+
+```{r}
+route$directions |> 
+  tidyr::unnest(directions) |> 
+  dplyr::select(time, length, text)
+```
+
+## Optimizing the stop order
+
+Set `find_best_sequence = TRUE` to reorder the stops and find the most efficient route. Use `preserve_first_stop` and `preserve_last_stop` to keep the trip's starting or ending point fixed while the stops in between are reordered.
+
+```{r}
+optimized <- find_routes(
+  stops,
+  find_best_sequence = TRUE,
+  preserve_first_stop = TRUE,
+  preserve_last_stop = TRUE
+)
+
+optimized$routes
+```
+
+## Choosing a travel mode
+
+`find_routes()` defaults to a standard driving travel mode. Use `travel_mode` to route by walking or trucking instead, or to apply a travel mode defined by your organization. See `get_travel_modes()` to discover the travel modes available to you.
+
+```{r}
+modes <- get_travel_modes()
+modes
+```
+
+## Larger routing jobs
+
+`find_routes()` makes a direct request, which suits shorter transactions with fewer than 150 stops that complete in under five minutes. For longer transactions, up to 10,000 stops completing in under 60 minutes, use `find_routes_job()` instead, which creates a geoprocessing job.

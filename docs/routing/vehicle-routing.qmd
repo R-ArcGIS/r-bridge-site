@@ -1,0 +1,91 @@
+---
+title: Vehicle routing problem
+uid: vehicle-routing
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+The vehicle routing problem (VRP) is the process of determining the most effective routes for a fleet of vehicles that need to visit a set of locations, minimizing the overall transportation cost. A furniture store might deliver goods from a central warehouse, a specialized recycling company might route trucks to pick up materials from multiple sites, or a health department might schedule daily inspection visits for its inspectors.
+
+To find an optimized route for a single vehicle rather than a fleet, see [Find routes and directions](/docs/routing/finding-routes.qmd).
+
+`route_vehicles()` takes three inputs: `orders`, the locations to visit, `depots`, the start and return locations for vehicles, and `routes`, the characteristics and constraints of each vehicle.
+
+## Step 1. Authenticate
+
+```{r}
+library(sf)
+library(arcgisutils)
+library(arcgisrouting)
+
+set_arc_token(auth_user())
+```
+
+## Step 2. Define orders, depots, and routes
+
+Two vehicles depart from the same depot to fulfill two orders.
+
+```{r}
+orders <- st_sf(
+  name = c("Order 1", "Order 2"),
+  geometry = st_sfc(
+    st_point(c(-0.1891, 51.5254)),
+    st_point(c(-0.1744, 51.5353)),
+    crs = 4326
+  )
+)
+
+depots <- st_sf(
+  name = "Depot1",
+  geometry = st_sfc(st_point(c(-0.2, 51.5)), crs = 4326)
+)
+```
+
+`routes` is a `data.frame` describing each vehicle. Each route names its start and end depot and, optionally, constraints such as capacity.
+
+```{r}
+routes <- data.frame(
+  name = "Truck1",
+  start_depot_name = "Depot1",
+  end_depot_name = "Depot1",
+  capacities = "40000"
+)
+```
+
+## Step 3. Solve the vehicle routing problem
+
+```{r}
+result <- route_vehicles(orders, depots, routes)
+result$routes
+```
+
+`route_vehicles()` returns a named list. `solve_succeeded` tells you whether the solve completed, `unassigned_stops` lists any orders that could not be assigned to a route, and `stops` shows the route assignment for each order that was assigned.
+
+```{r}
+result$solve_succeeded
+result$unassigned_stops
+result$stops
+```
+
+`usage_cost` and `messages` report the credits consumed and any status or warning messages from the service.
+
+## Generating directions
+
+Set `populate_directions = TRUE` to generate turn-by-turn directions for each route.
+
+```{r}
+result <- route_vehicles(
+  orders,
+  depots,
+  routes,
+  populate_directions = TRUE
+)
+
+result$directions
+```
+
+## Larger vehicle routing jobs
+
+`route_vehicles()` makes a direct request, which suits shorter transactions that complete in under five minutes and optimize up to 2 routes and 100 orders. For longer transactions, up to 100 routes and 2,000 orders completing in under four hours, use `route_vehicles_job()` instead, which creates a geoprocessing job.

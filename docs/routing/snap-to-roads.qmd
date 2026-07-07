@@ -1,0 +1,67 @@
+---
+title: Snap to roads
+uid: snap-to-roads
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+Snap to roads aligns GPS track points with the nearest routable road segments in a transportation network. GPS data is often imprecise, and snapping the points to the nearest road segments improves the accuracy of the data and provides a more reliable representation of the actual route taken.
+
+In addition to the snapped points and road segments, `snap_to_roads()` can return road attributes such as posted speed limits and segment lengths. These attributes support analyses such as route adherence, which compares an actual travel path against a planned or expected route. Snap to roads can be used to improve the accuracy of GPS tracks, reconstruct accurate routes and route length for tax reimbursement, or monitor driver behavior by comparing driving speed against posted speed limits.
+
+## Step 1. Authenticate
+
+```{r}
+library(sf)
+library(arcgisutils)
+library(arcgisrouting)
+
+set_arc_token(auth_user())
+```
+
+## Step 2. Define GPS points
+
+`snap_to_roads()` takes `points` as an `sf` or `sfc` object of point geometries representing a GPS track.
+
+```{r}
+pts <- st_sfc(
+  st_point(c(-122.43410, 37.80016)),
+  st_point(c(-122.43460, 37.80074)),
+  st_point(c(-122.43539, 37.80096)),
+  crs = 4326
+)
+```
+
+## Step 3. Snap the points to roads
+
+```{r}
+snapped <- snap_to_roads(pts)
+snapped$snapped_points
+```
+
+By default `return_lines = TRUE`, so the result also includes `snap_lines`, the traversed road segments.
+
+```{r}
+snapped$snap_lines
+```
+
+## Getting road attributes
+
+Use `point_properties` and `line_properties` to request road attributes such as posted speed limits and segment lengths on the snapped points and lines. These attributes are useful for comparing actual driving speed against posted limits.
+
+```{r}
+snapped <- snap_to_roads(
+  pts,
+  point_properties = c("posted_speed_limit_mph"),
+  line_properties = c("posted_speed_limit_mph", "length_miles")
+)
+
+snapped$snapped_points
+snapped$snap_lines
+```
+
+## Choosing a travel mode
+
+`snap_to_roads()` uses the travel mode to determine the most likely roads traveled. Set `travel_mode` to match how the points were collected, for example a walking travel mode for a pedestrian GPS track. See `get_travel_modes()` to discover the travel modes available to you.

@@ -1,0 +1,64 @@
+---
+title: Overview
+uid: routing-overview
+---
+
+Routing is the process of finding routes and directions and performing advanced analysis on street networks. The `{arcgisrouting}` package brings the [ArcGIS routing and directions services](https://developers.arcgis.com/documentation/mapping-and-location-services/routing-and-directions/) to R, wrapping every operation of the [routing REST API](https://developers.arcgis.com/rest/routing/) so you can solve network problems ranging from a single trip between two points to the optimization of a delivery fleet.
+
+The services model real-world travel. They account for the direction of streets, turn restrictions, and travel modes such as walking, driving, and trucking, and they can incorporate live and historical traffic. Because of this, a route is rarely a straight line, and the least-cost path between two places depends on how you are traveling.
+
+## Capabilities
+
+`{arcgisrouting}` covers the full range of ArcGIS network analysis operations.
+
+- **Find routes and directions.** Find the quickest or shortest route through an ordered or optimized set of stops, and read the turn-by-turn directions for the trip.
+- **Create service areas.** Find the area that can be reached from a location within a given travel time or distance. These regions are often called isochrones.
+- **Find closest facilities.** Measure the travel cost from a set of incidents to a set of facilities to determine which facilities are closest.
+- **Build an origin-destination cost matrix.** Create a table of the travel time or distance between every origin and every destination.
+- **Snap GPS points to roads.** Align a sequence of GPS track points to the roads most likely traveled.
+
+For fleet and network optimization problems the package also supports vehicle routing, last-mile delivery, and location-allocation, which finds the best set of locations for facilities to serve demand.
+
+Each capability maps to one or more functions.
+
+| Capability | Function |
+| ---------- | -------- |
+| [Find routes and directions](/docs/routing/finding-routes.qmd) | `find_routes()` |
+| [Service areas](/docs/routing/service-areas.qmd) | `find_service_areas()` |
+| [Closest facilities](/docs/routing/closest-facilities.qmd) | `find_closest_facilities()` |
+| Origin-destination cost matrix | `od_cost_matrix()` |
+| [Snap GPS points to roads](/docs/routing/snap-to-roads.qmd) | `snap_to_roads()` |
+| [Vehicle routing](/docs/routing/vehicle-routing.qmd) | `route_vehicles()` |
+| [Last-mile delivery](/docs/routing/last-mile-delivery.qmd) | `last_mile_delivery()` |
+| [Location-allocation](/docs/routing/location-allocation.qmd) | `location_allocation_job()` |
+
+Two helpers support these functions. Use `get_travel_modes()` to discover the travel modes available to your organization, and `decode_compressed_geometry()` to decompress geometry returned by the services.
+
+## Direct and job requests
+
+ArcGIS offers each operation through two execution models. A **direct request** is a single request for a transaction that typically has a short duration, and it returns results immediately. A **job request** starts a long-running operation on the server, which you submit and then retrieve once it finishes. Direct requests suit smaller, interactive work, while job requests handle larger inputs and longer computations without timing out.
+
+In `{arcgisrouting}`, the functions in the table above make direct requests. Their job-based counterparts share the same name with a `_job` suffix, such as `find_routes_job()`. See [Asynchronous requests](/docs/routing/async-requests.qmd) for how to submit and retrieve a job.
+
+## Licensing considerations
+
+Routing and directions are premium ArcGIS services. They require an authenticated token and consume ArcGIS credits, with the number of credits depending on the operation and the size of the request. Review the [routing and directions documentation](https://developers.arcgis.com/documentation/mapping-and-location-services/routing-and-directions/) to understand the cost before running large jobs.
+
+## Get Started
+
+To start routing install `{arcgisrouting}` from CRAN.
+
+```r
+install.packages("arcgisrouting")
+```
+
+Routing services require an authenticated token, so you must set one for your session before making a request. Here we use user-based authentication, but you may choose whichever [authentication](/docs/authentication/overview.qmd) method suits your workflow.
+
+```{r message=FALSE}
+library(arcgisutils)
+library(arcgisrouting)
+
+set_arc_token(auth_user())
+```
+
+With a token in place, you are ready to find your first route. Continue to [Find routes and directions](/docs/routing/finding-routes.qmd) to build a set of stops and read the results.

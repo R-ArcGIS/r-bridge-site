@@ -120,11 +120,13 @@ jobs:
             any::tibble
             any::haven
             any::labelled
+            any::ggplot2
             github::r-arcgis/arcgis
             github::r-arcgis/arcgisutils
             github::r-arcgis/arcgisgeocode
             github::r-arcgis/arcgisplaces
             github::r-arcgis/arcgislayers
+            github::r-arcgis/arcgisrouting
             github::r-arcgis/arcpbf
 
       - name: Generate docs

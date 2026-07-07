@@ -1,0 +1,68 @@
+---
+title: Closest facility routing
+uid: closest-facilities
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+Closest facility routing is the process of finding one or more nearby facilities from incidents based on travel time or travel distance. Once you've found the closest facilities, you can display the best route to them and include the travel time, travel distance, and driving directions to each facility.
+
+Closest facility routing can be used to find the closest hospital to an accident, dispatch the two closest police cars to a crime scene, or find the three closest fire stations that can respond to a fire within five minutes' drive time.
+
+`find_closest_facilities()` takes two sets of locations: `incidents`, the locations to search from, and `facilities`, the locations to search among.
+
+## Step 1. Authenticate
+
+```{r}
+library(sf)
+library(arcgisutils)
+library(arcgisrouting)
+
+set_arc_token(auth_user())
+```
+
+## Step 2. Define incidents and facilities
+
+Define the incident, a reported fire, and the fire stations that might respond to it.
+
+```{r}
+incidents <- st_sfc(
+  st_point(c(-122.4496, 37.7467)),
+  crs = 4326
+)
+
+facilities <- st_sf(
+  name = c("Station 11", "Station 20", "Station 24", "Station 39"),
+  geometry = st_sfc(
+    st_point(c(-122.4267, 37.7486)),
+    st_point(c(-122.4561, 37.7513)),
+    st_point(c(-122.4409, 37.7533)),
+    st_point(c(-122.4578, 37.7407)),
+    crs = 4326
+  )
+)
+```
+
+## Step 3. Find the closest facilities
+
+You need to find the two closest fire stations within three miles of the fire. Set `default_target_facility_count = 2` and `default_cutoff = 3`. Since fire engines travel from the stations to the incident, set `travel_direction = "away"` so travel is measured from the facilities toward the incident. Set `return_geometry = "cf_routes"` to get the routes to each of the closest stations.
+
+```{r}
+result <- find_closest_facilities(
+  incidents = incidents,
+  facilities = facilities,
+  default_target_facility_count = 2,
+  default_cutoff = 3,
+  travel_direction = "away",
+  return_geometry = "cf_routes",
+  directions_length_units = "miles"
+)
+
+result$cf_routes
+```
+
+## Larger closest facility jobs
+
+`find_closest_facilities()` makes a direct request, which suits shorter transactions to find up to 10 facilities from 100 facilities and 100 incidents in under five minutes. For longer transactions, up to 100 facilities from 5,000 facilities and 5,000 incidents in under 60 minutes, use `find_closest_facilities_job()` instead, which creates a geoprocessing job.
