@@ -73,13 +73,16 @@ result$allocation_lines
 
 `problem_type` controls the objective of the analysis. To choose a new restaurant location that captures as many nearby customers as possible, for example, use `problem_type = "maximize_attendance"` together with `number_of_facilities_to_find` to control how many new locations to select, and `travel_direction = "demand_to_facility"` since customers travel to the facility.
 
+`maximize_attendance` requires an impedance cutoff. Set `default_measurement_cutoff` (in `measurement_units`, minutes by default) to define it. Demand is only allocated to a facility within that cutoff, and falls off with distance.
+
 ```{r}
 job <- location_allocation_job(
   facilities,
   demand_points,
   problem_type = "maximize_attendance",
   number_of_facilities_to_find = 2,
-  travel_direction = "demand_to_facility"
+  travel_direction = "demand_to_facility",
+  default_measurement_cutoff = 30
 )
 
 job$start()
